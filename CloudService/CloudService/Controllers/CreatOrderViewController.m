@@ -30,6 +30,7 @@
     [super viewDidLoad];
     __weak typeof(self) weakSelf = self;
     self.tfLicenseNo.delegate = self;
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(licenseNoChanged:) name:UITextFieldTextDidChangeNotification object:self.tfLicenseNo];
     [weakSelf setLeftImageBarButtonItemWithFrame:CGRectMake(0, 0, 35, 35) image:@"title-back" selectImage:@"back" action:^(AYCButton *button) {
         [weakSelf.navigationController popViewControllerAnimated:YES];
     }];
@@ -127,12 +128,13 @@
     {
         [self.isNewCarBtn setImage:[UIImage imageNamed:@"checkbox"] forState:(UIControlStateNormal)];
         self.tfLicenseNo.enabled = YES;
+        self.tfLicenseNo.text = @"";
         self.tfLicenseNo.placeholder = @"请输入车牌号";
     }else
     {
         [self.isNewCarBtn setImage:[UIImage imageNamed:@"checkbox_"] forState:(UIControlStateNormal)];
         self.tfLicenseNo.enabled = NO;
-        self.tfLicenseNo.placeholder = @"暂无车牌号";
+        self.tfLicenseNo.text = @"新车";
     }
     self.isNewCarBtn.selected = !self.isNewCarBtn.selected;
     
@@ -153,11 +155,8 @@
 
 }
 - (void)textFieldDidEndEditing:(UITextField *)textField {
-    if ([textField isEqual:self.tfLicenseNo]) {
-        self.tfLicenseNo.text = [textField.text uppercaseString];
-    }
     if ([textField isEqual:self.tfPhone]) {
-        if (![HelperUtil checkTelNumber:self.tfPhone.text]){
+        if (![self.tfPhone.text isEqualToString:@""] && ![HelperUtil checkTelNumber:self.tfPhone.text]){
             [MBProgressHUD showMessag:@"手机号格式不正确" toView:self.view];
             return ;
         }
@@ -171,7 +170,10 @@
     }
     
 }
-
+- (void)licenseNoChanged:(NSNotificationCenter *)sender {
+    self.tfLicenseNo.text = [self.tfLicenseNo.text uppercaseString];
+    
+}
 - (void)viewWillAppear:(BOOL)animated {
     
     [super viewWillAppear:animated];

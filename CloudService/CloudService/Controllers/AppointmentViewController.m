@@ -111,7 +111,7 @@
         _textView.textAlignment = NSTextAlignmentLeft;
         _textView.placeholderColor = RGBCOLOR(0x89, 0x89, 0x89);
         _textView.placeholder = @"请输入备注内容";
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textViewChanged:) name:UITextFieldTextDidChangeNotification object:self.textView];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textViewChanged:) name:UITextViewTextDidChangeNotification object:self.textView];
     }
     
     return _textView;
@@ -121,12 +121,13 @@
 
 
 //在这个地方计算输入的字数
-- (void)textViewChanged:(UITextView *)textView
+- (void)textViewChanged:(NSNotification *)sender
 {
+    PlaceholderTextView *textView = (PlaceholderTextView *)sender.object;
     NSInteger wordCount = textView.text.length;
     self.wordCountLabel.text = [NSString stringWithFormat:@"%ld/50",(long)wordCount];
     if (wordCount >= 50) {
-        self.textView.text=[textView.text substringToIndex:50];
+        self.textView.text=[textView.text substringToIndex:49];
         [MBProgressHUD showMessag:@"最多输入50个字符" toView:self.view];
     }
 }
