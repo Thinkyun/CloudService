@@ -61,33 +61,35 @@ static CGFloat headerHeight = 30;
     [btnOffer addTarget:self action:@selector(offerAction) forControlEvents:(UIControlEventTouchUpInside)];
     [btnOffer setBackgroundImage:[UIImage imageNamed:@"btn4"] forState:UIControlStateNormal];
     [_footView addSubview:btnOffer];
-    // 给左边视图添加约束
+    
+    
+    // 给右边视图添加约束
     [btnSave mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        //添加上边距约束
+        make.top.mas_equalTo(10);
+        // 添加左边距约束（距离左边按键的距离）
+        make.left.equalTo(btnOffer.mas_right).with.offset(20);
+        // 添加右边距约束（距离当前主视图右边的距离）
+        make.right.mas_equalTo(-20);
+        // 添加当前按钮的高度
+        make.height.mas_equalTo(40);
+        // 添加宽度（宽度跟左边按键一样）
+        make.width.equalTo(btnOffer);
+    }];
+    
+    // 给左边视图添加约束
+    [btnOffer mas_makeConstraints:^(MASConstraintMaker *make) {
         
         //添加上边距约束
         make.top.mas_equalTo(10);
         // 添加左边距约束（距离当前主视图左边的距离）
         make.left.mas_equalTo(20);
         // 添加右边距约束（距离第二个按键左边的距离）
-        make.right.equalTo(btnOffer.mas_left).with.offset(-20);
+        make.right.equalTo(btnSave.mas_left).with.offset(-20);
         // 添加当前按钮的高度
         make.height.mas_equalTo(40);
         // 添加宽度（宽度跟右边按键一样）
-        make.width.equalTo(btnOffer);
-    }];
-    
-    // 给右边视图添加约束
-    [btnOffer mas_makeConstraints:^(MASConstraintMaker *make) {
-        
-        //添加上边距约束
-        make.top.mas_equalTo(10);
-        // 添加左边距约束（距离左边按键的距离）
-        make.left.equalTo(btnSave.mas_right).with.offset(20);
-        // 添加右边距约束（距离当前主视图右边的距离）
-        make.right.mas_equalTo(-20);
-        // 添加当前按钮的高度
-        make.height.mas_equalTo(40);
-        // 添加宽度（宽度跟左边按键一样）
         make.width.equalTo(btnSave);
     }];
 }
@@ -204,7 +206,7 @@ static CGFloat headerHeight = 30;
 //            cliteVC.url = url;
 //            [weakSelf createOrderWithParam:myServerDict pushUrl:url];
 //        }else{
-//            [MBProgressHUD showError:returnData[@"msg"] toView:self.view];
+//            [MBProgressHUD showMessag:returnData[@"msg"] toView:self.view];
 //        }
 //        
 //    } failureBlock:^(NSError *error) {
@@ -223,7 +225,7 @@ static CGFloat headerHeight = 30;
             orderH5VC.url = url;
             [weakSelf.navigationController pushViewController:orderH5VC animated:YES];
         }else {
-            [MBProgressHUD showError:[returnData objectForKey:@"msg"] toView:self.view];
+            [MBProgressHUD showMessag:[returnData objectForKey:@"msg"] toView:self.view];
         }
         
     } failureBlock:^(NSError *error) {
@@ -327,7 +329,7 @@ static CGFloat headerHeight = 30;
     if ([textField isEqual:cell1.engine]) {
         if (![cell1.engine.text isEqualToString:@""]) {
             if (![HelperUtil validateEngineNo:cell1.engine.text]) {
-                [MBProgressHUD showError:@"发动机号格式错误" toView:self.view];
+                [MBProgressHUD showMessag:@"发动机号格式错误" toView:self.view];
                 return ;
             }
         }
@@ -335,7 +337,7 @@ static CGFloat headerHeight = 30;
     if ([textField isEqual:cell1.carFrameCode]) {
         if (![cell1.carFrameCode.text isEqualToString:@""]) {
             if (![HelperUtil validateCarFrame:cell1.carFrameCode.text]) {
-                [MBProgressHUD showError:@"车架号格式错误" toView:self.view];
+                [MBProgressHUD showMessag:@"车架号格式错误" toView:self.view];
                 return ;
             }
         }
@@ -343,7 +345,7 @@ static CGFloat headerHeight = 30;
     if ([textField isEqual:cell2.carUserCard]) {
         if (![cell2.carUserCard.text isEqualToString:@""]) {
             if (![HelperUtil checkUserIdCard:cell2.carUserCard.text]) {
-                [MBProgressHUD showError:@"身份证号格式错误" toView:self.view];
+                [MBProgressHUD showMessag:@"身份证号格式错误" toView:self.view];
                 return ;
             }
         }

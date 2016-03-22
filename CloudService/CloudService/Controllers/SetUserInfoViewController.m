@@ -103,9 +103,9 @@ static NSString *const select_CellID = @"selectCell";
         if ([[returnData valueForKey:@"flag"] isEqualToString:@"success"]) {
             [self saveUserInfo:dict];
             if ([self.rightBtn.titleLabel.text isEqualToString:@"提交"]) {
-                [MBProgressHUD showSuccess:@"提交成功,一个小时后生效" toView:nil];
+                [MBProgressHUD showMessag:@"提交成功,一个小时后生效" toView:nil];
             }else {
-                [MBProgressHUD showSuccess:@"修改成功" toView:nil];
+                [MBProgressHUD showMessag:@"修改成功" toView:nil];
             }
             UIViewController *VC = [self.navigationController.viewControllers firstObject];
             if ([[VC class] isSubclassOfClass:[LoginViewController class]]) {
@@ -115,7 +115,7 @@ static NSString *const select_CellID = @"selectCell";
             [[NSNotificationCenter defaultCenter] postNotificationName:ReloadHomeData object:nil];
             [self.navigationController popToRootViewControllerAnimated:YES];
         }else {
-            [MBProgressHUD showError:[returnData valueForKey:@"msg"] toView:self.view];
+            [MBProgressHUD showMessag:[returnData valueForKey:@"msg"] toView:self.view];
         }
         
     } failureBlock:^(NSError *error) {
@@ -252,11 +252,11 @@ static NSString *const select_CellID = @"selectCell";
     }
     if (_indexPath.section == 1 && (_indexPath.row == 1)) {
         if (![HelperUtil checkBankCard:text]) {
-            [MBProgressHUD showError:@"你输入的银行卡号无效,请重新输入" toView:self.view];
+            [MBProgressHUD showMessag:@"你输入的银行卡号无效,请重新输入" toView:self.view];
         }else {
             NSString *bankBin = [text substringToIndex:6];
             if ([self getBankNameWithBankbin:bankBin].length <= 0) {
-                [MBProgressHUD showError:@"查不到你的银行卡信息,请手动输入开户银行" toView:self.view];
+                [MBProgressHUD showMessag:@"查不到你的银行卡信息,请手动输入开户银行" toView:self.view];
             }else {
                 _valueArray_Bank[2] = [self getBankNameWithBankbin:bankBin];
             }
@@ -335,14 +335,16 @@ static NSString *const select_CellID = @"selectCell";
     cell.delegate = self;
     cell.textFiled.enabled = YES;
     cell.textFiled.keyboardType = UIKeyboardTypeDefault;
-    
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UITextFieldTextDidChangeNotification object:self];
     if (self.notEnable) {
         cell.textFiled.enabled = NO;
         return cell;
     }
+    
     if (indexPath.section == 0) {
         if (indexPath.row == 1) {
             cell.textFiled.keyboardType = UIKeyboardTypeDefault;
+            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(carUserCardChanged:) name:UITextFieldTextDidChangeNotification object:cell.textFiled];
         }else if(indexPath.row == 2 || indexPath.row == 5)
         {
             cell.textFiled.enabled = NO;
@@ -354,6 +356,7 @@ static NSString *const select_CellID = @"selectCell";
     {
         if(indexPath.row == 1){
             cell.textFiled.keyboardType = UIKeyboardTypePhonePad;
+            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(bankCardChanged:) name:UITextFieldTextDidChangeNotification object:cell.textFiled];
         }
         if (indexPath.row == 4 || indexPath.row == 5)
         {
@@ -363,6 +366,18 @@ static NSString *const select_CellID = @"selectCell";
     return cell;
 }
 
+- (void)carUserCardChanged:(NSNotification *)sender {
+    UITextField *tfUserCard = (UITextField *)sender.object;
+        if (tfUserCard.text.length >=18) {
+        tfUserCard.text = [tfUserCard.text substringToIndex:18];
+    }
+}
+- (void)bankCardChanged:(NSNotification *)sender {
+    UITextField *tfUserCard = (UITextField *)sender.object;
+    if (tfUserCard.text.length >=21) {
+        tfUserCard.text = [tfUserCard.text substringToIndex:21];
+    }
+}
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     if (self.notEnable) {
@@ -585,7 +600,7 @@ static NSString *const select_CellID = @"selectCell";
         if (_indexPath.section == 0)
         {
             if (_saleCityArray.count > 3) {
-                [MBProgressHUD showSuccess:@"城市选择不能超过四个" toView:self.view];
+                [MBProgressHUD showMessag:@"城市选择不能超过四个" toView:self.view];
                 return ;
             }
             
@@ -653,7 +668,9 @@ static NSString *const select_CellID = @"selectCell";
 // 通过数组模型得到城市或公司字符串
 - (NSString *)changeStrArraytoTextString:(NSArray *)array {
     
-    
+    if (array.count <= 0) {
+        return @"";
+    }
     NSMutableString *resultStr = [NSMutableString string];
     for (CodeNameModel *model in array) {
         if (model.provinceName.length > 0)
@@ -671,7 +688,9 @@ static NSString *const select_CellID = @"selectCell";
 // 通过数组模型得到城市或公司编码
 - (NSString *)changeStrArraytoCodeString:(NSArray *)array {
     
-    
+    if (array.count <= 0) {
+        return @"";
+    }
     NSMutableString *resultStr = [NSMutableString string];
     for (CodeNameModel *model in array) {
         if (model.provinceName.length > 0)

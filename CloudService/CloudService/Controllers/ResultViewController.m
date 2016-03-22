@@ -328,13 +328,13 @@
             Achievement *monthAchievement = [[Achievement alloc] init];
             monthAchievement.orderNum = [[monthDic objectForKey:@"orderNum"] intValue];
             monthAchievement.totalPremium = [[monthDic objectForKey:@"totalPremium"] floatValue];
-            monthAchievement.resultTime = @"本月业绩";
+            monthAchievement.resultTime = @"本周业绩";
             
             NSDictionary *weekDic = [dataDic objectForKey:@"week"];
             Achievement *weekAchievement = [[Achievement alloc] init];
             weekAchievement.orderNum = [[weekDic objectForKey:@"orderNum"] intValue];
             weekAchievement.totalPremium = [[weekDic objectForKey:@"totalPremium"] floatValue];
-            weekAchievement.resultTime = @"本周业绩";
+            weekAchievement.resultTime = @"本月业绩";
             
             _userAchievementArray = @[dayAchievement,monthAchievement,weekAchievement];
             [_tableView reloadData];
@@ -342,7 +342,7 @@
             
         }else {
             [_tableView.mj_header endRefreshing];
-            [MBProgressHUD showError:[returnData objectForKey:@"msg"] toView:self.view];
+            [MBProgressHUD showMessag:[returnData objectForKey:@"msg"] toView:self.view];
             [self.tableView addSubview:_noDataImg];
             [self.tableView addSubview:_lbNoData];
         }
@@ -430,7 +430,7 @@
             }
             
         }else {
-            [MBProgressHUD showError:[dic objectForKey:@"msg"] toView:self.view];
+            [MBProgressHUD showMessag:[dic objectForKey:@"msg"] toView:self.view];
             [self.pageView addSubview:_noDataImg];
             [self.pageView addSubview:_lbNoData];
         }
@@ -530,7 +530,7 @@
             }
 
         }else {
-            [MBProgressHUD showError:[dic objectForKey:@"msg"] toView:self.view];
+            [MBProgressHUD showMessag:[dic objectForKey:@"msg"] toView:self.view];
         }
         if ([type isEqualToString:@"day"]) {
             [_tableView1 reloadData];

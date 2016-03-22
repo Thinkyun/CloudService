@@ -314,7 +314,7 @@
     btnSearch.layer.masksToBounds = YES;
     [btnSearch setTitle:@"搜索" forState:UIControlStateNormal];
     btnSearch.titleLabel.font = [UIFont systemFontOfSize:14];
-    btnSearch.backgroundColor = [UIColor redColor];
+    btnSearch.backgroundColor = [HelperUtil colorWithHexString:@"FF6271"];
     [btnSearch addTarget:self action:@selector(sureClick:) forControlEvents:UIControlEventTouchUpInside];
     [_searchView addSubview:btnSearch];
     
@@ -516,7 +516,7 @@
             [_orderArray addObjectsFromArray:[Order mj_objectArrayWithKeyValuesArray:listArray]];
             NSLog(@"%@",_orderArray);
         }else {
-            [MBProgressHUD showError:[dic objectForKey:@"msg"] toView:self.view];
+            [MBProgressHUD showMessag:[dic objectForKey:@"msg"] toView:self.view];
             [self setupNoData];
             
         }

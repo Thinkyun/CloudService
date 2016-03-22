@@ -10,6 +10,7 @@
 #import "RestAPI.h"
 #import "YWBCityPickerView.h"
 #import "Utility.h"
+#import "ZQCityPickerView.h"
 
 @interface RegisterViewController ()
 
@@ -21,8 +22,6 @@
 @property (weak, nonatomic) IBOutlet UITextField *pwdText;
 @property (weak, nonatomic) IBOutlet UITextField *ensurePwd;
 @property (weak, nonatomic) IBOutlet UITextField *invateCode;
-
-@property (nonatomic, strong) YWBCityPickerView *cityPickerView;
 @property (nonatomic,strong)UIView *maskView;
 
 @end
@@ -82,7 +81,7 @@
                 [[SingleHandle shareSingleHandle] saveUserInfo:user];
                 [weakSelf performSegueWithIdentifier:RegisterSuccess sender:weakSelf];
             }else {
-                [MBProgressHUD showError:dict[@"msg"] toView:self.view];
+                [MBProgressHUD showMessag:dict[@"msg"] toView:self.view];
             }
         } failureBlock:^(NSError *error) {
 
@@ -94,16 +93,14 @@
 - (IBAction)locateAction:(id)sender {
     
     [self resignKeyBoardInView:self.view];
-    if (!self.cityPickerView) {
-        _maskView = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
-        _maskView.backgroundColor = [UIColor colorWithRed:0.363 green:0.380 blue:0.373 alpha:0.500];
-        [_maskView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideCityPickerView:)]];
-        [self.view addSubview:_maskView];
-        self.cityPickerView = [[YWBCityPickerView alloc] init];
-        self.cityPickerView.backgroundColor = [UIColor whiteColor];
-        self.cityPickerView.frame = CGRectMake(0, self.view.frame.size.height, KWidth, 300);
-    }
-    [self showCityPickerView];
+
+    __block ZQCityPickerView *cityPickerView = [[ZQCityPickerView alloc] initWithProvincesArray:nil cityArray:nil componentsCount:2];
+    [cityPickerView showPickViewAnimated:^(NSString *province, NSString *city, NSString *cityCode, NSString *provinceCode) {
+        self.locateBtn.selected = !self.locateBtn.selected;
+        NSString *cityStr = [NSString stringWithFormat:@"%@%@",province,city];
+        [self.locateBtn setTitle:cityStr forState:(UIControlStateNormal)];
+        cityPickerView = nil;
+    }];
     
 }
 
@@ -114,7 +111,7 @@
     BOOL isPhoneMatch = [predicatePhoneNum evaluateWithObject:self.phoneNum.text];
     if (!isPhoneMatch)
     {
-        [MBProgressHUD showError:@"手机号输入错误" toView:self.view];
+        [MBProgressHUD showMessag:@"手机号输入错误" toView:self.view];
     }else {
         [self countDownTime:@60];
         [MHNetworkManager postReqeustWithURL:[RequestEntity urlString:kGetCodeAPI] params:@{@"phoneNo":self.phoneNum.text} successBlock:^(id returnData) {
@@ -125,22 +122,6 @@
             
         } showHUD:YES];
     }
-}
-
-- (void)hideCityPickerView:(UIGestureRecognizer *)sender {
-    
-    self.locateBtn.selected = !self.locateBtn.selected;
-    NSString *cityStr = [NSString stringWithFormat:@"%@%@",self.cityPickerView.province,self.cityPickerView.city];
-    [self.locateBtn setTitle:cityStr forState:(UIControlStateNormal)];
-    _maskView.hidden = YES;
-    [self.cityPickerView hiddenPickerView];
-}
-
-- (void)showCityPickerView {
-    
-    _maskView.hidden = NO;
-    [self.cityPickerView showInView:self.maskView];
-    
 }
 
 /**
@@ -205,17 +186,17 @@
     BOOL ensurePwd = [self.pwdText.text isEqualToString:self.ensurePwd.text];
     if (!isPhoneMatch)
     {
-        [MBProgressHUD showError:@"手机号输入错误" toView:self.view];
+        [MBProgressHUD showMessag:@"手机号输入错误" toView:self.view];
         return false;
     }
     if (!isPasswordMatch)
     {
-        [MBProgressHUD showError:@"密码格式错误,请输入6到16位密码" toView:self.view];
+        [MBProgressHUD showMessag:@"密码格式错误,请输入6到16位密码" toView:self.view];
         return false;
     }
     if (!ensurePwd)
     {
-        [MBProgressHUD showError:@"两次输入密码不一致" toView:self.view];
+        [MBProgressHUD showMessag:@"两次输入密码不一致" toView:self.view];
         return false;
     }
     return true;

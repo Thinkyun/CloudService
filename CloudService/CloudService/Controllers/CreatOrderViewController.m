@@ -115,7 +115,7 @@
             orderH5VC.url = url;
             [weakSelf.navigationController pushViewController:orderH5VC animated:YES];
         }else {
-            [MBProgressHUD showError:[returnData objectForKey:@"msg"] toView:self.view];
+            [MBProgressHUD showMessag:[returnData objectForKey:@"msg"] toView:self.view];
         }
         
     } failureBlock:^(NSError *error) {
@@ -123,7 +123,6 @@
     } showHUD:NO];
 }
 - (IBAction)newCarAction:(id)sender {
-    NSLog(@"%d",self.isNewCarBtn.selected);
     if (self.isNewCarBtn.selected)
     {
         [self.isNewCarBtn setImage:[UIImage imageNamed:@"checkbox"] forState:(UIControlStateNormal)];
