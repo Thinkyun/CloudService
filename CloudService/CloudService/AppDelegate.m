@@ -56,6 +56,8 @@
     
     //设置状态栏为白色
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    
+    
 
     [self registerFireData];
     return YES;
