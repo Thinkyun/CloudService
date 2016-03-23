@@ -30,7 +30,8 @@
     [super viewDidLoad];
     __weak typeof(self) weakSelf = self;
     self.tfLicenseNo.delegate = self;
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(licenseNoChanged:) name:UITextFieldTextDidChangeNotification object:self.tfLicenseNo];
+    self.tfLicenseNo.autocapitalizationType = UITextAutocapitalizationTypeAllCharacters;
+
     [weakSelf setLeftImageBarButtonItemWithFrame:CGRectMake(0, 0, 35, 35) image:@"title-back" selectImage:@"back" action:^(AYCButton *button) {
         [weakSelf.navigationController popViewControllerAnimated:YES];
     }];
@@ -54,8 +55,17 @@
         [MBProgressHUD showMessag:@"请输入汽车所在城市" toView:self.view];
         return ;
     }
-    
-    
+    if (![HelperUtil checkTelNumber:self.tfPhone.text]){
+        [MBProgressHUD showMessag:@"手机号格式不正确" toView:self.view];
+        return ;
+    }
+
+    if (!self.isNewCarBtn.selected && ![HelperUtil validateCarNo:self.tfLicenseNo.text]){
+        [MBProgressHUD showMessag:@"车牌号格式不正确" toView:self.view];
+        return ;
+    }
+
+
         AppDelegate *delegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
         delegate.isThird=YES;
         /**
@@ -163,6 +173,7 @@
     }
     
     if ([textField isEqual:self.tfLicenseNo]) {
+        self.tfLicenseNo.text = [self.tfLicenseNo.text uppercaseString];
         if (![self.tfLicenseNo.text isEqualToString:@""] && ![HelperUtil validateCarNo:self.tfLicenseNo.text]){
             [MBProgressHUD showMessag:@"车牌号格式不正确" toView:self.view];
             return ;
@@ -170,10 +181,7 @@
     }
     
 }
-- (void)licenseNoChanged:(NSNotificationCenter *)sender {
-    self.tfLicenseNo.text = [self.tfLicenseNo.text uppercaseString];
-    
-}
+
 - (void)viewWillAppear:(BOOL)animated {
     
     [super viewWillAppear:animated];

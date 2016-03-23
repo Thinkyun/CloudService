@@ -327,6 +327,7 @@ static CGFloat headerHeight = 30;
     NSIndexPath *path2 = [NSIndexPath indexPathForRow:0 inSection:1];
     OfferTableViewCell *cell2 = [self.tableView cellForRowAtIndexPath:path2];
     if ([textField isEqual:cell1.engine]) {
+        cell1.engine.text = [cell1.engine.text uppercaseString];
         if (![cell1.engine.text isEqualToString:@""]) {
             if (![HelperUtil validateEngineNo:cell1.engine.text]) {
                 [MBProgressHUD showMessag:@"发动机号格式错误" toView:self.view];
@@ -335,6 +336,7 @@ static CGFloat headerHeight = 30;
         }
     }
     if ([textField isEqual:cell1.carFrameCode]) {
+        cell1.carFrameCode.text = [cell1.carFrameCode.text uppercaseString];
         if (![cell1.carFrameCode.text isEqualToString:@""]) {
             if (![HelperUtil validateCarFrame:cell1.carFrameCode.text]) {
                 [MBProgressHUD showMessag:@"车架号格式错误" toView:self.view];
@@ -343,6 +345,7 @@ static CGFloat headerHeight = 30;
         }
     }
     if ([textField isEqual:cell2.carUserCard]) {
+        cell1.carUserCard.text = [cell1.carUserCard.text uppercaseString];
         if (![cell2.carUserCard.text isEqualToString:@""]) {
             if (![HelperUtil checkUserIdCard:cell2.carUserCard.text]) {
                 [MBProgressHUD showMessag:@"身份证号格式错误" toView:self.view];

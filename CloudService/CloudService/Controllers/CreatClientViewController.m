@@ -30,7 +30,7 @@
     __weak typeof(self) weakSelf = self;
     self.tfLicenseNo.delegate = self;
     self.tfPhone.delegate = self;
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(licenseNoChanged:) name:UITextFieldTextDidChangeNotification object:self.tfLicenseNo];
+    self.tfLicenseNo.autocapitalizationType = UITextAutocapitalizationTypeAllCharacters;
     [weakSelf setLeftImageBarButtonItemWithFrame:CGRectMake(0, 0, 35, 35) image:@"title-back" selectImage:@"back" action:^(AYCButton *button) {
         [weakSelf.navigationController popViewControllerAnimated:YES];
     }];
@@ -54,8 +54,18 @@
         return ;
     }
     
-   
     
+    if (![_tfPhone.text isEqualToString:@""] &&![HelperUtil checkTelNumber:_tfPhone.text]){
+        [MBProgressHUD showMessag:@"手机号格式不正确" toView:self.view];
+        return ;
+    }
+    if (!self.isNewCarBtn.selected && ![HelperUtil validateCarNo:_tfLicenseNo.text]){
+        self.tfLicenseNo.text = [self.tfLicenseNo.text uppercaseString];
+        [MBProgressHUD showMessag:@"车牌号格式不正确" toView:self.view];
+        return ;
+    }
+
+
     [self performSegueWithIdentifier:@"offer" sender:self];
 }
 
@@ -94,8 +104,9 @@
 }
 - (void)textFieldDidEndEditing:(UITextField *)textField {
     if ([textField isEqual:self.tfLicenseNo]) {
-        
+
         if (![_tfLicenseNo.text isEqualToString:@""] && ![HelperUtil validateCarNo:_tfLicenseNo.text]){
+            self.tfLicenseNo.text = [self.tfLicenseNo.text uppercaseString];
             [MBProgressHUD showMessag:@"车牌号格式不正确" toView:self.view];
             return ;
         }
@@ -107,17 +118,7 @@
         }
     }
 }
-//- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
-//    if ([textField isEqual:self.tfLicenseNo]) {
-//        self.tfLicenseNo.text = [self.tfLicenseNo.text uppercaseString];
-//    }
-//  
-//    return YES;
-//}
-- (void)licenseNoChanged:(NSNotificationCenter *)sender {
-    self.tfLicenseNo.text = [self.tfLicenseNo.text uppercaseString];
-    
-}
+
 - (void)viewWillAppear:(BOOL)animated {
     
     [super viewWillAppear:animated];
