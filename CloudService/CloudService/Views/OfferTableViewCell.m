@@ -22,26 +22,26 @@
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(carFrameCodeChanged:) name:UITextFieldTextDidChangeNotification object:self.carFrameCode];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(carUserCardChanged:) name:UITextFieldTextDidChangeNotification object:self.carUserCard];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(engineChanged:) name:UITextFieldTextDidChangeNotification object:self.engine];
-    
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(engineChanged:) name:UITextFieldTextDidChangeNotification object:self.engine];
+    self.carFrameCode.autocapitalizationType = UITextAutocapitalizationTypeAllCharacters;
+    self.carUserCard.autocapitalizationType = UITextAutocapitalizationTypeAllCharacters;
+    self.engine.autocapitalizationType = UITextAutocapitalizationTypeAllCharacters;
 }
 - (void)carFrameCodeChanged:(NSNotificationCenter *)sender {
-    self.carFrameCode.text = [self.carFrameCode.text uppercaseString];
+  
     if (self.carFrameCode.text.length >=17) {
         
         self.carFrameCode.text = [self.carFrameCode.text substringToIndex:17];
     }
 }
 - (void)carUserCardChanged:(NSNotificationCenter *)sender {
-    self.carUserCard.text = [self.carUserCard.text uppercaseString];
+   
     if (self.carUserCard.text.length >=18) {
         self.carUserCard.text = [self.carUserCard.text substringToIndex:18];
     }
 }
-- (void)engineChanged:(NSNotificationCenter *)sender {
-   self.engine.text = [self.engine.text uppercaseString];
 
-}
+
 - (IBAction)tapDateButton:(UIButton *)sender {
     
     _pickerView = [HZQDatePickerView instanceDatePickerView];

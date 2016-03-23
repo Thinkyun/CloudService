@@ -17,8 +17,8 @@
     UIView *_searchView;//搜索菜单页面
     UIButton *_blackBtn;//背景层
     BOOL isOpen;//菜单是否展开
-    UILabel *_lbStart;//开始时间
-    UILabel *_lbEnd;//结束时间
+    UITextField *_tfStart;//开始时间
+    UITextField *_tfEnd;
     HZQDatePickerView *_pickerView;//时间选择器
     int _page;//当前页数
     int _pageSize;//每页加载数
@@ -109,15 +109,18 @@
         make.top.mas_equalTo(15);
     }];
     
-    _lbStart = [UILabel new];
-    _lbStart.textAlignment = NSTextAlignmentCenter;
-    _lbStart.textColor = [UIColor lightGrayColor];
-    _lbStart.font = [UIFont systemFontOfSize:14];
-    _lbStart.text = @"起始时间";
-    _lbStart.userInteractionEnabled = YES;
-    UITapGestureRecognizer *codeTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(startDateClick:)];
-    [_lbStart addGestureRecognizer:codeTap];
-    [_searchView addSubview:_lbStart];
+
+    
+    _tfStart = [UITextField new];
+    _tfStart.font = [UIFont systemFontOfSize:14];
+    _tfStart.placeholder = @"起始时间";
+    _tfStart.userInteractionEnabled = NO;
+    [_searchView addSubview:_tfStart];
+    
+    UIButton *startBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    startBtn.backgroundColor = [UIColor clearColor];
+    [startBtn addTarget:self action:@selector(startDateClick:) forControlEvents:UIControlEventTouchUpInside];
+    [_searchView addSubview:startBtn];
     
     UILabel *lbEndTime = [UILabel new];
     lbEndTime.textColor = [UIColor darkGrayColor];
@@ -134,16 +137,19 @@
         make.top.equalTo(lbStartTime.mas_bottom).offset(15);
     }];
     
-    _lbEnd = [UILabel new];
-    _lbEnd.textAlignment = NSTextAlignmentCenter;
-    _lbEnd.textColor = [UIColor lightGrayColor];
-    _lbEnd.font = [UIFont systemFontOfSize:14];
-    _lbEnd.text = @"终止时间";
-    _lbEnd.userInteractionEnabled = YES;
-    UITapGestureRecognizer *endTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(endDateClick:)];
-    [_lbEnd addGestureRecognizer:endTap];
-    [_searchView addSubview:_lbEnd];
-    [_lbStart mas_makeConstraints:^(MASConstraintMaker *make) {
+
+    
+    _tfEnd = [UITextField new];
+    _tfEnd.font = [UIFont systemFontOfSize:14];
+    _tfEnd.placeholder = @"终止时间";
+    _tfEnd.userInteractionEnabled = NO;
+    [_searchView addSubview:_tfEnd];
+    
+    UIButton *endBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    endBtn.backgroundColor = [UIColor clearColor];
+    [endBtn addTarget:self action:@selector(endDateClick:) forControlEvents:UIControlEventTouchUpInside];
+    [_searchView addSubview:endBtn];
+    [_tfStart mas_makeConstraints:^(MASConstraintMaker *make) {
         //添加高约束
         make.height.mas_equalTo(34);
         //添加上边距约束
@@ -154,24 +160,49 @@
         make.right.mas_equalTo(-60);
         
         // 添加宽度（宽度跟右边按键一样）
-        make.width.equalTo(_lbEnd);
+        make.width.equalTo(_tfEnd);
     }];
-    
-    
-    [_lbEnd mas_makeConstraints:^(MASConstraintMaker *make) {
+    [startBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         //添加高约束
         make.height.mas_equalTo(34);
         //添加上边距约束
-        make.top.equalTo(_lbStart.mas_bottom).offset(15);
+        make.top.mas_equalTo(15);
+        // 添加左边距约束（距离当前主视图左边的距离）
+        make.left.equalTo(lbStartTime.mas_right).offset(15);
+        // 添加右边距约束（距离第二个按键左边的距离）
+        make.right.mas_equalTo(-60);
+        
+        // 添加宽度（宽度跟右边按键一样）
+        make.width.equalTo(_tfEnd);
+    }];
+    
+    
+    [_tfEnd mas_makeConstraints:^(MASConstraintMaker *make) {
+        //添加高约束
+        make.height.mas_equalTo(34);
+        //添加上边距约束
+        make.top.equalTo(_tfStart.mas_bottom).offset(15);
         // 添加左边距约束（距离左边按键的距离）
-        make.left.equalTo(_lbStart.mas_right).with.offset(20);
+        make.left.equalTo(_tfStart.mas_right).with.offset(20);
         // 添加右边距约束（距离当前主视图右边的距离）
         make.right.mas_equalTo(-60);
         
         // 添加宽度（宽度跟右边按键一样）
-        make.width.equalTo(_lbStart);
+        make.width.equalTo(_tfEnd);
     }];
-    
+    [endBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        //添加高约束
+        make.height.mas_equalTo(34);
+        //添加上边距约束
+        make.top.equalTo(_tfStart.mas_bottom).offset(15);
+        // 添加左边距约束（距离左边按键的距离）
+        make.left.equalTo(_tfStart.mas_right).with.offset(20);
+        // 添加右边距约束（距离当前主视图右边的距离）
+        make.right.mas_equalTo(-60);
+        
+        // 添加宽度（宽度跟右边按键一样）
+        make.width.equalTo(_tfStart);
+    }];
    
     
     UIButton *btnCancel = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -211,7 +242,7 @@
     [btnSearch mas_makeConstraints:^(MASConstraintMaker *make) {
         
         //添加上边距约束
-        make.top.equalTo(_lbEnd.mas_bottom).offset(15);
+        make.top.equalTo(_tfEnd.mas_bottom).offset(15);
         // 添加左边距约束（距离左边按键的距离）
         make.left.equalTo(btnCancel.mas_right).with.offset(20);
         // 添加右边距约束（距离当前主视图右边的距离）
@@ -277,13 +308,13 @@
     
     switch (type) {
         case DateTypeOfStart:
-            _lbStart.text = currentOlderOneDateStr;
+            _tfStart.text = currentOlderOneDateStr;
             _startTime = currentOlderOneDateStr;
             
             break;
             
         case DateTypeOfEnd:
-            _lbEnd.text = currentOlderOneDateStr;
+            _tfEnd.text = currentOlderOneDateStr;
             _endTime = currentOlderOneDateStr;
             
             break;

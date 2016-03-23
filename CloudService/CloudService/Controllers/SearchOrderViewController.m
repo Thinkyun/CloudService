@@ -25,6 +25,7 @@
     UILabel *_lbEnd;//结束时间
     HZQDatePickerView *_pickerView;//时间选择器
     UILabel *_lbCode;//结束码
+    UITextField *_tfCode;//结束码
     int _page;//当前页数
     int _pageSize;//每页加载数
     UIImageView *_noDataImg;
@@ -202,15 +203,27 @@
         make.top.equalTo(lbCar.mas_bottom).offset(15);
     }];
     
-    _lbCode = [UILabel new];
-//    _lbCode.textAlignment = NSTextAlignmentCenter;
-    _lbCode.textColor = [UIColor lightGrayColor];
-    _lbCode.font = [UIFont systemFontOfSize:14];
-    _lbCode.text = @"初始";
-    _lbCode.userInteractionEnabled = YES;
-    UITapGestureRecognizer *startTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(codeClick:)];
-    [_lbCode addGestureRecognizer:startTap];
-    [_searchView addSubview:_lbCode];
+//    _lbCode = [UILabel new];
+////    _lbCode.textAlignment = NSTextAlignmentCenter;
+//    _lbCode.textColor = [UIColor lightGrayColor];
+//    _lbCode.font = [UIFont systemFontOfSize:14];
+//    _lbCode.text = @"请选择结束码";
+//    _lbCode.userInteractionEnabled = YES;
+//    UITapGestureRecognizer *startTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(codeClick:)];
+//    [_lbCode addGestureRecognizer:startTap];
+//    [_searchView addSubview:_lbCode];
+    
+    _tfCode = [UITextField new];
+    _tfCode.font = [UIFont systemFontOfSize:14];
+    _tfCode.placeholder = @"请选择结束码";
+    _tfCode.userInteractionEnabled = NO;
+    [_searchView addSubview:_tfCode];
+    
+    UIButton *endBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    endBtn.backgroundColor = [UIColor clearColor];
+    [endBtn addTarget:self action:@selector(codeClick:) forControlEvents:UIControlEventTouchUpInside];
+    [_searchView addSubview:endBtn];
+    
     [_lbCode mas_makeConstraints:^(MASConstraintMaker *make) {
         //添加高约束
         make.height.mas_equalTo(34);
