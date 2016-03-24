@@ -14,12 +14,15 @@
 #import "Utility.h"
 #import "MHAsiNetworkHandler.h"
 #import "FireData.h"
+#import <JPUSHService.h>
 
 
 
 #define MObAppKey     @"100082c56c5c0"
 #define WXAppID       @"wx125bcc153468cc36"
 #define WXAppSecret   @"5d792862f07b6ff0b27eaced2ffbd01d"
+#define JAppKey       @""
+#define Jchannel      @""
 @interface AppDelegate ()<CLLocationManagerDelegate,UIAlertViewDelegate> {
     BOOL _isSetCity;
 }
@@ -34,11 +37,38 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
    
     // Override point for customization after application launch.
+    //极光推送
+    if ([[UIDevice currentDevice].systemVersion floatValue] >= 8.0) {
+        //可以添加自定义categories
+        [JPUSHService registerForRemoteNotificationTypes:(UIUserNotificationTypeBadge |
+                                                          UIUserNotificationTypeSound |
+                                                          UIUserNotificationTypeAlert)
+                                              categories:nil];
+    } else {
+        //categories 必须为nil
+        [JPUSHService registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge |
+                                                          UIRemoteNotificationTypeSound |
+                                                          UIRemoteNotificationTypeAlert)
+                                              categories:nil];
+    }
+    //JAppKey : 是你在极光推送申请下来的appKey Jchannel : 可以直接设置默认值即可 Publish channel
+    [JPUSHService setupWithOption:launchOptions appKey:JAppKey
+                          channel:Jchannel apsForProduction:NO]; //如果是生产环境应该设置为YES
     
     //检测网络状态
     if ([[HelperUtil getNetWorkStates] isEqualToString:@"2G"]) {
         [MBProgressHUD showMessag:@"当前处于2G网络，您当前所有操作可能会有延迟！" toView:nil];
     }
+    
+    //用于绑定Tag的 根据自己想要的Tag加入，值得注意的是这里Tag需要用到NSSet
+    [JPUSHService setTags:[NSSet set]callbackSelector:nil object:self];
+    //用于绑定Alias的  使用NSString 即可
+    [JPUSHService setAlias:@"" callbackSelector:nil object:self];
+    
+    //用于同时绑定Tag与Alias的
+    [JPUSHService setTags:[NSSet set] alias:@"" callbackSelector:nil target:self];
+    
+
     
     // 检查版本号
     [Utility checkNewVersion:^(BOOL hasNewVersion) {
@@ -201,6 +231,40 @@
     {
         [self.locateManager startUpdatingLocation];
     }
+}
+
+#pragma mark JPush
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {    // Required
+    [JPUSHService registerDeviceToken:deviceToken];
+}
+
+-(void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo{
+    NSString *alert = [[userInfo objectForKey:@"aps"] objectForKey:@"alert"];
+    if (application.applicationState == UIApplicationStateActive) {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"推送消息"
+                                                            message:alert
+                                                           delegate:self
+                                                  cancelButtonTitle:@"OK"
+                                                  otherButtonTitles:nil];
+        [alertView show];
+    }
+    [application setApplicationIconBadgeNumber:0];
+    [JPUSHService handleRemoteNotification:userInfo];
+}
+
+
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
+    
+    // IOS 7 Support Required
+    [JPUSHService handleRemoteNotification:userInfo];
+    completionHandler(UIBackgroundFetchResultNewData);
+}
+
+- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
+    
+    //Optional
+    NSLog(@"did Fail To Register For Remote Notifications With Error: %@", error);
 }
 
 #pragma mark AppDelegate
