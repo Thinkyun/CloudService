@@ -81,7 +81,7 @@
     
     [weakSelf setRightTextBarButtonItemWithFrame:CGRectMake(0, 0, 80, 30) title:@"积分明细" titleColor:[UIColor whiteColor] backImage:@"" selectBackImage:@"" action:^(AYCButton *button) {
         [weakSelf performSegueWithIdentifier:@"integral" sender:weakSelf];
-       
+
     }];
 }
 
