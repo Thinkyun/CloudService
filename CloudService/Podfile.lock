@@ -37,6 +37,7 @@ DEPENDENCIES:
   - AFNetworking
   - FMDB (~> 2.6)
   - IQKeyboardManager
+  - JPush (~> 2.1.0)
   - LazyPageScrollView
   - Masonry
   - MBProgressHUD

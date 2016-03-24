@@ -24,7 +24,6 @@
 		634EE6201C995A8D00FB526D /* activity2@2X.png in Resources */ = {isa = PBXBuildFile; fileRef = 634EE61E1C995A8D00FB526D /* activity2@2X.png */; };
 		634EE6271C997F0000FB526D /* rulebg3.png in Resources */ = {isa = PBXBuildFile; fileRef = 634EE6251C997F0000FB526D /* rulebg3.png */; };
 		634EE62B1C997F9400FB526D /* RuleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 634EE62A1C997F9400FB526D /* RuleViewController.m */; };
-		63508C851C86D37800505F08 /* YWBCityPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 63508C841C86D37800505F08 /* YWBCityPickerView.m */; };
 		635C2AC91C8527D10051708D /* CreatClientViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 635C2AC81C8527D10051708D /* CreatClientViewController.m */; };
 		6367FB0D1C9AA19900947038 /* rulebg1.png in Resources */ = {isa = PBXBuildFile; fileRef = 6367FB0C1C9AA19900947038 /* rulebg1.png */; };
 		6367FB101C9ACDCC00947038 /* CouponsRuleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6367FB0F1C9ACDCC00947038 /* CouponsRuleViewController.m */; };
@@ -61,6 +60,7 @@
 		6392CFF11C8D235400D84F38 /* TeamMember.m in Sources */ = {isa = PBXBuildFile; fileRef = 6392CFF01C8D235400D84F38 /* TeamMember.m */; };
 		6392CFF41C8D8F8200D84F38 /* Achievement.m in Sources */ = {isa = PBXBuildFile; fileRef = 6392CFF31C8D8F8200D84F38 /* Achievement.m */; };
 		639CF6AD1C9FF0800086C72B /* UIViewController+AlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 639CF6AC1C9FF0800086C72B /* UIViewController+AlertView.m */; };
+		639D79951CA2A510002523E6 /* SelectCityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 639D79941CA2A510002523E6 /* SelectCityViewController.m */; };
 		63A2AB021CA13F440094B876 /* activity3.png in Resources */ = {isa = PBXBuildFile; fileRef = 63A2AB001CA13F440094B876 /* activity3.png */; };
 		63A2AB031CA13F440094B876 /* activity3@2X.png in Resources */ = {isa = PBXBuildFile; fileRef = 63A2AB011CA13F440094B876 /* activity3@2X.png */; };
 		63A2AB051CA13F980094B876 /* rulebg2.png in Resources */ = {isa = PBXBuildFile; fileRef = 63A2AB041CA13F980094B876 /* rulebg2.png */; };
@@ -184,8 +184,6 @@
 		634EE6251C997F0000FB526D /* rulebg3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rulebg3.png; sourceTree = "<group>"; };
 		634EE6291C997F9400FB526D /* RuleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RuleViewController.h; sourceTree = "<group>"; };
 		634EE62A1C997F9400FB526D /* RuleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RuleViewController.m; sourceTree = "<group>"; };
-		63508C831C86D37800505F08 /* YWBCityPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YWBCityPickerView.h; sourceTree = "<group>"; };
-		63508C841C86D37800505F08 /* YWBCityPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YWBCityPickerView.m; sourceTree = "<group>"; };
 		635C2AC71C8527D10051708D /* CreatClientViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreatClientViewController.h; sourceTree = "<group>"; };
 		635C2AC81C8527D10051708D /* CreatClientViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreatClientViewController.m; sourceTree = "<group>"; };
 		6367FB0C1C9AA19900947038 /* rulebg1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rulebg1.png; sourceTree = "<group>"; };
@@ -239,6 +237,8 @@
 		6392CFF31C8D8F8200D84F38 /* Achievement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Achievement.m; sourceTree = "<group>"; };
 		639CF6AB1C9FF0800086C72B /* UIViewController+AlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+AlertView.h"; sourceTree = "<group>"; };
 		639CF6AC1C9FF0800086C72B /* UIViewController+AlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+AlertView.m"; sourceTree = "<group>"; };
+		639D79931CA2A510002523E6 /* SelectCityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectCityViewController.h; sourceTree = "<group>"; };
+		639D79941CA2A510002523E6 /* SelectCityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectCityViewController.m; sourceTree = "<group>"; };
 		63A2AB001CA13F440094B876 /* activity3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = activity3.png; sourceTree = "<group>"; };
 		63A2AB011CA13F440094B876 /* activity3@2X.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "activity3@2X.png"; sourceTree = "<group>"; };
 		63A2AB041CA13F980094B876 /* rulebg2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rulebg2.png; sourceTree = "<group>"; };
@@ -652,6 +652,8 @@
 				F019C9E41C7C7BB700E73A2C /* SetUserInfoViewController.m */,
 				F0DF32101C87E612008D098F /* ResetUserPwdViewController.h */,
 				F0DF32111C87E612008D098F /* ResetUserPwdViewController.m */,
+				639D79931CA2A510002523E6 /* SelectCityViewController.h */,
+				639D79941CA2A510002523E6 /* SelectCityViewController.m */,
 			);
 			name = "LoginRegisterControllers(登录注册)";
 			sourceTree = "<group>";
@@ -796,8 +798,6 @@
 			isa = PBXGroup;
 			children = (
 				63ADFBE81C7F0622000D3164 /* lib1 */,
-				63508C831C86D37800505F08 /* YWBCityPickerView.h */,
-				63508C841C86D37800505F08 /* YWBCityPickerView.m */,
 				63790FE41C93B12B006CB0E2 /* HoriCardFlowLayout2.h */,
 				63790FE51C93B12B006CB0E2 /* HoriCardFlowLayout2.m */,
 				F0AB898A1C8ED04F00849E3A /* ZQCityPickerView.h */,
@@ -974,7 +974,12 @@
 				TargetAttributes = {
 					F0292BA91C7B00CD00A810A9 = {
 						CreatedOnToolsVersion = 7.2;
-						DevelopmentTeam = LH28XA7T22;
+						DevelopmentTeam = 7PS2AH4H79;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -1122,6 +1127,7 @@
 				F0292BE31C7B015200A810A9 /* User.m in Sources */,
 				637A62501C8ED5A00020AE5E /* CouponsDistributed.m in Sources */,
 				F0292BE01C7B015200A810A9 /* BaseNaviViewController.m in Sources */,
+				639D79951CA2A510002523E6 /* SelectCityViewController.m in Sources */,
 				63C54E321C7C2F96007CE8CA /* OrderManagerCell.m in Sources */,
 				F0AB898C1C8ED04F00849E3A /* ZQCityPickerView.m in Sources */,
 				6320B73C1C89A2CE0076FC7E /* Coupons.m in Sources */,
@@ -1177,7 +1183,6 @@
 				F07FF9DF1C81752D00EB1BB1 /* MyTeamTableViewCell.m in Sources */,
 				630EF18A1C8530940059CB34 /* MyClientTableViewCell.m in Sources */,
 				F059AA791A55822E0008D7BD /* VerifyCodeViewController.m in Sources */,
-				63508C851C86D37800505F08 /* YWBCityPickerView.m in Sources */,
 				6383656C1C7DB8BA001A10C4 /* UIColor+HexString.m in Sources */,
 				635C2AC91C8527D10051708D /* CreatClientViewController.m in Sources */,
 				F074D9321C93A756007A6A88 /* CodeNameModel.m in Sources */,
@@ -1249,8 +1254,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Sunshine Insurance Group Co., Ltd.";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Sunshine Insurance Group Co., Ltd.";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_BITCODE = NO;
@@ -1295,8 +1300,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Sunshine Insurance Group Co., Ltd.";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Sunshine Insurance Group Co., Ltd.";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_BITCODE = NO;
@@ -1323,8 +1328,8 @@
 			baseConfigurationReference = 8080CD2CAEE01D9CB60C40F6 /* Pods-CloudService.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1349,8 +1354,8 @@
 			baseConfigurationReference = AA863A4D44EB33149F738225 /* Pods-CloudService.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

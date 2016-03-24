@@ -14,5 +14,7 @@
 @property(nonatomic,copy)NSString *companyName;
 @property(nonatomic,copy)NSString *provinceCode;
 @property(nonatomic,copy)NSString *provinceName;
+@property(nonatomic,copy)NSString *cityCode;
+@property(nonatomic,copy)NSString *cityName;
 
 @end

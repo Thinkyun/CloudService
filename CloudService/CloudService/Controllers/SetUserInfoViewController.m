@@ -13,7 +13,6 @@
 #import "HelperUtil.h"
 #import "DataSource.h"
 #import "Utility.h"
-#import "YWBCityPickerView.h"
 #import "ZQCityPickerView.h"
 #import "LoginViewController.h"
 #import "CodeNameModel.h"
@@ -453,7 +452,9 @@ static NSString *const select_CellID = @"selectCell";
 //                            } animated:YES];
                         break;
                     }
-            case 8:     [self showCityPickerViewWithCount:1];
+            case 8:
+                [self showCityPickerViewWithCount:1];
+//                [self performSegueWithIdentifier:@"selectCity" sender:self];
                         break;
             default:
                 break;
@@ -463,6 +464,7 @@ static NSString *const select_CellID = @"selectCell";
         if (indexPath.row == 4 || indexPath.row == 5)
         {
             [self showCityPickerViewWithCount:2];
+            
         }
        
     }
