@@ -16,8 +16,6 @@
 #import "FireData.h"
 #import <JPUSHService.h>
 
-
-
 #define MObAppKey     @"100082c56c5c0"
 #define WXAppID       @"wx125bcc153468cc36"
 #define WXAppSecret   @"5d792862f07b6ff0b27eaced2ffbd01d"
