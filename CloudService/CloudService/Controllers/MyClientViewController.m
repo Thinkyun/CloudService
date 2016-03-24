@@ -81,7 +81,10 @@
 
 - (void)requestData:(NSString *)condition{
 
-    NSDictionary *paramsDic=@{@"userId":[[SingleHandle shareSingleHandle] getUserInfo].userId,@"pageSize":[NSString stringWithFormat:@"%i",_pageSize],@"pageNo":[NSString stringWithFormat:@"%i",_page],@"condition":condition};
+    NSDictionary *paramsDic=@{@"userId":[[SingleHandle shareSingleHandle] getUserInfo].userId,
+                              @"pageSize":[NSString stringWithFormat:@"%i",_pageSize],
+                              @"pageNo":[NSString stringWithFormat:@"%i",_page],
+                              @"condition":condition};
     NSString *url = [NSString stringWithFormat:@"%@%@",BaseAPI,kfindPersonCustList];
     [MHNetworkManager postReqeustWithURL:url params:paramsDic successBlock:^(id returnData) {
         NSLog(@"%@",returnData);
@@ -120,7 +123,10 @@
 - (void)requestMoreData:(NSString *)condition{
     _page++;
     
-    NSDictionary *paramsDic=@{@"userId":[[SingleHandle shareSingleHandle] getUserInfo].userId,@"pageSize":[NSString stringWithFormat:@"%i",_pageSize],@"pageNo":[NSString stringWithFormat:@"%i",_page],@"condition":condition};
+    NSDictionary *paramsDic=@{@"userId":[[SingleHandle shareSingleHandle] getUserInfo].userId,
+                              @"pageSize":[NSString stringWithFormat:@"%i",_pageSize],
+                              @"pageNo":[NSString stringWithFormat:@"%i",_page],
+                              @"condition":condition};
     NSString *url = [NSString stringWithFormat:@"%@%@",BaseAPI,kfindPersonCustList];
     [MHNetworkManager postReqeustWithURL:url params:paramsDic successBlock:^(id returnData) {
         NSLog(@"%@",returnData);

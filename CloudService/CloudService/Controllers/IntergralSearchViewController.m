@@ -25,8 +25,7 @@
     NSMutableArray *_integralArray;
     UIImageView *_noDataImg;
     UILabel *_lbNoData;
-    NSString *_startTime;
-    NSString *_endTime;
+
 }
 
 @property (weak, nonatomic)IBOutlet UITableView *tableView;
@@ -36,8 +35,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    _startTime = @"";
-    _endTime = @"";
     _integralArray = [NSMutableArray array];
     __weak typeof(self) weakSelf = self;
     [weakSelf setLeftImageBarButtonItemWithFrame:CGRectMake(0, 0, 35, 35) image:@"title-back" selectImage:@"back" action:^(AYCButton *button) {
@@ -267,7 +264,7 @@
 }
 /** 收回菜单*/
 - (void)upMenu {
-    [self resignKeyBoardInView:self.view];
+    [HelperUtil resignKeyBoardInView:self.view];
     isOpen = !isOpen;
     [UIView animateWithDuration:0.5 animations:^{
         _searchView.frame = CGRectMake(0, -160, KWidth, 160);
@@ -276,14 +273,14 @@
 }
 // 开始时间
 - (void)startDateClick:(UITapGestureRecognizer *)tap {
-    [self resignKeyBoardInView:self.view];
+    [HelperUtil resignKeyBoardInView:self.view];
     [self setupDateView:DateTypeOfStart];
     
 }
 
 // 结束时间
 - (void)endDateClick:(UITapGestureRecognizer *)tap {
-    [self resignKeyBoardInView:self.view];
+    [HelperUtil resignKeyBoardInView:self.view];
     [self setupDateView:DateTypeOfEnd];
     
 }
@@ -309,13 +306,11 @@
     switch (type) {
         case DateTypeOfStart:
             _tfStart.text = currentOlderOneDateStr;
-            _startTime = currentOlderOneDateStr;
             
             break;
             
         case DateTypeOfEnd:
             _tfEnd.text = currentOlderOneDateStr;
-            _endTime = currentOlderOneDateStr;
             
             break;
             
@@ -324,28 +319,7 @@
     }
 }
 
-/** 消失键盘*/
-- (void)resignKeyBoardInView:(UIView *)view
 
-{
-    
-    for (UIView *v in view.subviews) {
-        
-        if ([v.subviews count] > 0) {
-            
-            [self resignKeyBoardInView:v];
-            
-        }
-        
-        if ([v isKindOfClass:[UITextView class]] || [v isKindOfClass:[UITextField class]]) {
-            
-            [v resignFirstResponder];
-            
-        }
-        
-    }
-    
-}
 - (void)searchClick:(UIButton *)sender {
     [self upMenu];
     [self.tableView.mj_header beginRefreshing];
@@ -378,7 +352,11 @@
 - (void)requestData {
     [self removeNoData];
   
-    NSDictionary *paramsDic=@{@"userId":[[SingleHandle shareSingleHandle] getUserInfo].userId,@"pageSize":[NSString stringWithFormat:@"%i",_pageSize],@"pageNo":[NSString stringWithFormat:@"%i",_page],@"startDate":_startTime,@"endData":_endTime};
+    NSDictionary *paramsDic=@{@"userId":[[SingleHandle shareSingleHandle] getUserInfo].userId,
+                              @"pageSize":[NSString stringWithFormat:@"%i",_pageSize],
+                              @"pageNo":[NSString stringWithFormat:@"%i",_page],
+                              @"startDate":_tfStart.text,
+                              @"endData":_tfEnd.text};
     NSString *url = [NSString stringWithFormat:@"%@%@",BaseAPI,kfindUserCreditsRecord];
     [MHNetworkManager postReqeustWithURL:url params:paramsDic successBlock:^(id returnData) {
         NSDictionary *dic = returnData;
@@ -420,7 +398,11 @@
 - (void)requestMoreData {
     _page++;
     
-    NSDictionary *paramsDic=@{@"userId":[[SingleHandle shareSingleHandle] getUserInfo].userId,@"pageSize":[NSString stringWithFormat:@"%i",_pageSize],@"pageNo":[NSString stringWithFormat:@"%i",_page],@"startDate":_startTime,@"endData":_endTime};
+    NSDictionary *paramsDic=@{@"userId":[[SingleHandle shareSingleHandle] getUserInfo].userId,
+                              @"pageSize":[NSString stringWithFormat:@"%i",_pageSize],
+                              @"pageNo":[NSString stringWithFormat:@"%i",_page],
+                              @"startDate":_tfStart.text,
+                              @"endData":_tfEnd.text};
     NSString *url = [NSString stringWithFormat:@"%@%@",BaseAPI,kfindUserCreditsRecord];
     [MHNetworkManager postReqeustWithURL:url params:paramsDic successBlock:^(id returnData) {
         

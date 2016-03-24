@@ -43,10 +43,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    _dayArray = [NSMutableArray array];
-    _weekArray = [NSMutableArray array];
+    _dayArray   = [NSMutableArray array];
+    _weekArray  = [NSMutableArray array];
     _monthArray = [NSMutableArray array];
-    
+
     [self setupNoData];
     if ([[[SingleHandle shareSingleHandle] getUserInfo].roleName isEqualToString:@"团队长"]) {
             [self initPageView];
@@ -67,11 +67,11 @@
 }
 
 - (void)setupNoData {
-    _noDataImg = [[UIImageView alloc] initWithFrame:CGRectMake(KWidth/2-30, KHeight/2-80, 75, 85)];
-    _noDataImg.image = [UIImage imageNamed:@"pix2"];
-    _lbNoData = [[UILabel alloc] initWithFrame:CGRectMake(KWidth/2-20, KHeight/2+10, 60, 25)];
-    _lbNoData.text = @"暂无数据";
-    _lbNoData.font = [UIFont systemFontOfSize:14];
+    _noDataImg          = [[UIImageView alloc] initWithFrame:CGRectMake(KWidth/2-30, KHeight/2-80, 75, 85)];
+    _noDataImg.image    = [UIImage imageNamed:@"pix2"];
+    _lbNoData           = [[UILabel alloc] initWithFrame:CGRectMake(KWidth/2-20, KHeight/2+10, 60, 25)];
+    _lbNoData.text      = @"暂无数据";
+    _lbNoData.font      = [UIFont systemFontOfSize:14];
     _lbNoData.textColor = [UIColor lightGrayColor];
 }
 - (void)removeNoData {
@@ -83,12 +83,12 @@
 #pragma mark pageView
 - (void)initPageView {
     
-    _page1=1;
-    _pageSize1=6;
-    _page2=1;
-    _pageSize2=6;
-    _page3=1;
-    _pageSize3=6;
+    _page1     = 1;
+    _pageSize1 = 6;
+    _page2     = 1;
+    _pageSize2 = 6;
+    _page3     = 1;
+    _pageSize3 = 6;
     [self.view addSubview:self.pageView];
     _pageView.delegate=self;
     [_pageView initTab:YES Gap:38 TabHeight:38 VerticalDistance:0 BkColor:[UIColor whiteColor]];
@@ -161,7 +161,7 @@
         
     }];
     [_pageView addTab:@"本月业绩" View:_tableView3 Info:nil];
-    
+
     [_pageView enableTabBottomLine:YES LineHeight:2 LineColor:[HelperUtil colorWithHexString:@"277FD9"] LineBottomGap:0 ExtraWidth:50];
     [_pageView setTitleStyle:[UIFont systemFontOfSize:14] SelFont:[UIFont systemFontOfSize:16] Color:[UIColor blackColor] SelColor:[HelperUtil colorWithHexString:@"277FD9"]];    [_pageView generate:^(UIButton *firstTitleControl, UIView *viewTitleEffect) {
         CGRect frame= firstTitleControl.frame;

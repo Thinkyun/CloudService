@@ -22,6 +22,9 @@
 
 -(void)setTitle:(NSString *)title {
     self.label.text = title;
+    self.label.textColor = [UIColor whiteColor];
+    self.label.textAlignment = NSTextAlignmentCenter;
+ 
 }
 
 @end

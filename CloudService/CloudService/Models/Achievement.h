@@ -10,9 +10,9 @@
 
 @interface Achievement : NSObject
 
-@property (nonatomic, assign)int orderNum;
-@property (nonatomic, assign)float totalPremium;
-@property (nonatomic, copy)NSString *realName;
-@property (nonatomic, copy)NSString *userNum;
-@property (nonatomic, copy)NSString *resultTime;
+@property (nonatomic, assign) int      orderNum;
+@property (nonatomic, assign) float    totalPremium;
+@property (nonatomic, copy  ) NSString *realName;
+@property (nonatomic, copy  ) NSString *userNum;
+@property (nonatomic, copy  ) NSString *resultTime;
 @end

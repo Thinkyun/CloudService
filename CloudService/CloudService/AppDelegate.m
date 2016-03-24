@@ -19,8 +19,8 @@
 #define MObAppKey     @"100082c56c5c0"
 #define WXAppID       @"wx125bcc153468cc36"
 #define WXAppSecret   @"5d792862f07b6ff0b27eaced2ffbd01d"
-#define JAppKey       @""
-#define Jchannel      @""
+#define JAppKey       @"f8500a8c6752cafab40e7daf"
+#define Jchannel      @"Publish channel"
 @interface AppDelegate ()<CLLocationManagerDelegate,UIAlertViewDelegate> {
     BOOL _isSetCity;
 }
@@ -58,13 +58,13 @@
         [MBProgressHUD showMessag:@"当前处于2G网络，您当前所有操作可能会有延迟！" toView:nil];
     }
     
-    //用于绑定Tag的 根据自己想要的Tag加入，值得注意的是这里Tag需要用到NSSet
-    [JPUSHService setTags:[NSSet set]callbackSelector:nil object:self];
-    //用于绑定Alias的  使用NSString 即可
-    [JPUSHService setAlias:@"" callbackSelector:nil object:self];
-    
-    //用于同时绑定Tag与Alias的
-    [JPUSHService setTags:[NSSet set] alias:@"" callbackSelector:nil target:self];
+//    //用于绑定Tag的 根据自己想要的Tag加入，值得注意的是这里Tag需要用到NSSet
+//    [JPUSHService setTags:[NSSet set]callbackSelector:nil object:self];
+//    //用于绑定Alias的  使用NSString 即可
+//    [JPUSHService setAlias:@"" callbackSelector:nil object:self];
+//    
+//    //用于同时绑定Tag与Alias的
+//    [JPUSHService setTags:[NSSet set] alias:@"" callbackSelector:nil target:self];
     
 
     
@@ -234,6 +234,8 @@
 #pragma mark JPush
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {    // Required
     [JPUSHService registerDeviceToken:deviceToken];
+    //    //用于绑定Alias的  使用NSString 即可
+        [JPUSHService setAlias:@"123" callbackSelector:nil object:self];
 }
 
 -(void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo{
@@ -277,6 +279,7 @@
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
+    [application setApplicationIconBadgeNumber:0];
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
 }

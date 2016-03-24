@@ -64,12 +64,13 @@
         manager.responseSerializer.acceptableContentTypes =  [NSSet setWithObject:@"text/html"];
         manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/xml", nil];
         manager.responseSerializer = [AFJSONResponseSerializer serializer];
-        //设置请求超时时长
-        [manager.requestSerializer setTimeoutInterval:10];
+      
         AppDelegate *delegate=(AppDelegate*)[[UIApplication sharedApplication] delegate];
         if (delegate.isThird) {
             manager.requestSerializer = [AFJSONRequestSerializer serializer];
         }
+        //设置请求超时时长
+        [manager.requestSerializer setTimeoutInterval:10];
         if (networkType==MHAsiNetWorkGET)
         {
             [manager GET:url parameters:params progress:^(NSProgress * _Nonnull downloadProgress) {

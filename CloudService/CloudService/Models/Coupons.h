@@ -10,14 +10,14 @@
 
 @interface Coupons : NSObject
 
-@property (nonatomic, assign)int amount;
-@property (nonatomic, copy)NSString *couponName;
-@property (nonatomic, assign)int couponNum;
-@property (nonatomic, copy)NSString *createTime;
-@property (nonatomic, copy)NSString *ctype;
-@property (nonatomic, copy)NSString *endTime;
-@property (nonatomic, copy)NSString *couponId;
-@property (nonatomic, copy)NSString *startTime;
+@property (nonatomic, assign) int      amount;
+@property (nonatomic, copy  ) NSString *couponName;
+@property (nonatomic, assign) int      couponNum;
+@property (nonatomic, copy  ) NSString *createTime;
+@property (nonatomic, copy  ) NSString *ctype;
+@property (nonatomic, copy  ) NSString *endTime;
+@property (nonatomic, copy  ) NSString *couponId;
+@property (nonatomic, copy  ) NSString *startTime;
 
 
 - (NSDictionary *)dictionaryWithModel:(Coupons *)coupons;

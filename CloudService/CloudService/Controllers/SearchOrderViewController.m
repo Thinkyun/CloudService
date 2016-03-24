@@ -21,19 +21,16 @@
     UITextField *_tfName;//客户姓名
     UITextField *_tfTel;//客户手机号
     UITextField *_tfCar;//车牌号
-    UILabel *_lbStart;//开始时间
-    UILabel *_lbEnd;//结束时间
+    UITextField *_tfStart;//开始时间
+    UITextField *_tfEnd;
     HZQDatePickerView *_pickerView;//时间选择器
-    UILabel *_lbCode;//结束码
     UITextField *_tfCode;//结束码
     int _page;//当前页数
     int _pageSize;//每页加载数
     UIImageView *_noDataImg;
     UILabel *_lbNoData;
     NSMutableArray *_orderArray;
-    NSString *_startTime;
-    NSString *_endTime;
-    NSString *_codeStr;
+
 }
 @property (weak, nonatomic)IBOutlet UITableView *tableView;
 @end
@@ -42,9 +39,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    _startTime = @"";
-    _endTime = @"";
-    _codeStr = @"";
+
     _orderArray = [NSMutableArray array];
     __weak typeof(self) weakSelf = self;
     [weakSelf setLeftImageBarButtonItemWithFrame:CGRectMake(0, 0, 35, 35) image:@"title-back" selectImage:@"back" action:^(AYCButton *button) {
@@ -219,12 +214,12 @@
     _tfCode.userInteractionEnabled = NO;
     [_searchView addSubview:_tfCode];
     
-    UIButton *endBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    endBtn.backgroundColor = [UIColor clearColor];
-    [endBtn addTarget:self action:@selector(codeClick:) forControlEvents:UIControlEventTouchUpInside];
-    [_searchView addSubview:endBtn];
+    UIButton *endCodeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    endCodeBtn.backgroundColor = [UIColor clearColor];
+    [endCodeBtn addTarget:self action:@selector(codeClick:) forControlEvents:UIControlEventTouchUpInside];
+    [_searchView addSubview:endCodeBtn];
     
-    [_lbCode mas_makeConstraints:^(MASConstraintMaker *make) {
+    [_tfCode mas_makeConstraints:^(MASConstraintMaker *make) {
         //添加高约束
         make.height.mas_equalTo(34);
         //添加左边距约束(距离左边label的距离)
@@ -253,52 +248,55 @@
         make.top.equalTo(lbState.mas_bottom).offset(15);
     }];
     
-    _lbStart = [UILabel new];
-    _lbStart.textAlignment = NSTextAlignmentCenter;
-    _lbStart.textColor = [UIColor lightGrayColor];
-    _lbStart.font = [UIFont systemFontOfSize:14];
-    _lbStart.text = @"起始时间";
-    _lbStart.userInteractionEnabled = YES;
-    UITapGestureRecognizer *codeTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(startDateClick:)];
-    [_lbStart addGestureRecognizer:codeTap];
-    [_searchView addSubview:_lbStart];
+    _tfStart = [UITextField new];
+    _tfStart.font = [UIFont systemFontOfSize:14];
+    _tfStart.placeholder = @"起始时间";
+    _tfStart.userInteractionEnabled = NO;
+    [_searchView addSubview:_tfStart];
     
-    _lbEnd = [UILabel new];
-    _lbEnd.textAlignment = NSTextAlignmentCenter;
-    _lbEnd.textColor = [UIColor lightGrayColor];
-    _lbEnd.font = [UIFont systemFontOfSize:14];
-    _lbEnd.text = @"终止时间";
-    _lbEnd.userInteractionEnabled = YES;
-    UITapGestureRecognizer *endTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(endDateClick:)];
-    [_lbEnd addGestureRecognizer:endTap];
-    [_searchView addSubview:_lbEnd];
-    [_lbStart mas_makeConstraints:^(MASConstraintMaker *make) {
+    UIButton *startBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    startBtn.backgroundColor = [UIColor clearColor];
+    [startBtn addTarget:self action:@selector(startDateClick:) forControlEvents:UIControlEventTouchUpInside];
+    [_searchView addSubview:startBtn];
+    
+    _tfEnd = [UITextField new];
+    _tfEnd.font = [UIFont systemFontOfSize:14];
+    _tfEnd.placeholder = @"终止时间";
+    _tfEnd.userInteractionEnabled = NO;
+    [_searchView addSubview:_tfEnd];
+    
+    UIButton *endBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    endBtn.backgroundColor = [UIColor clearColor];
+    [endBtn addTarget:self action:@selector(endDateClick:) forControlEvents:UIControlEventTouchUpInside];
+    [_searchView addSubview:endBtn];
+    
+    [_tfStart mas_makeConstraints:^(MASConstraintMaker *make) {
         //添加高约束
         make.height.mas_equalTo(34);
         //添加上边距约束
-        make.top.equalTo(_lbCode.mas_bottom).offset(15);
+        make.top.equalTo(_tfCode.mas_bottom).offset(15);
         // 添加左边距约束（距离当前主视图左边的距离）
         make.left.equalTo(lbTime.mas_right).offset(15);
         // 添加右边距约束（距离第二个按键左边的距离）
-        make.right.equalTo(_lbEnd.mas_left).with.offset(-20);
+        make.right.equalTo(_tfEnd.mas_left).with.offset(-20);
 
         // 添加宽度（宽度跟右边按键一样）
-        make.width.equalTo(_lbEnd);
+        make.width.equalTo(_tfEnd);
     }];
     
     
-    [_lbEnd mas_makeConstraints:^(MASConstraintMaker *make) {
+    [_tfEnd mas_makeConstraints:^(MASConstraintMaker *make) {
         //添加高约束
         make.height.mas_equalTo(34);
         //添加上边距约束
-        make.top.equalTo(_lbCode.mas_bottom).offset(15);
+        make.top.equalTo(_tfCode.mas_bottom).offset(15);
         // 添加左边距约束（距离左边按键的距离）
-        make.left.equalTo(_lbStart.mas_right).with.offset(20);
+        make.left.equalTo(_tfStart.mas_right).with.offset(20);
         // 添加右边距约束（距离当前主视图右边的距离）
         make.right.equalTo(self.view.mas_right).with.offset(-20);
         
         // 添加宽度（宽度跟右边按键一样）
-        make.width.equalTo(_lbStart);
+        make.width.equalTo(_tfStart);
     }];
     
     UIView *lineView = [UIView new];
@@ -308,7 +306,7 @@
         //添加大小约束
         make.size.mas_equalTo(CGSizeMake(10, 1));
         //添加左边距约束
-         make.left.equalTo(_lbStart.mas_right).with.offset(5);
+         make.left.equalTo(_tfStart.mas_right).with.offset(5);
         //添加上边距约束（上边距 = lbName的下边框 + 偏移量15）
         make.top.equalTo(lbState.mas_bottom).offset(31);
     }];
@@ -335,7 +333,7 @@
     [btnCancel mas_makeConstraints:^(MASConstraintMaker *make) {
         
         //添加上边距约束
-        make.top.equalTo(_lbStart.mas_bottom).offset(15);
+        make.top.equalTo(_tfStart.mas_bottom).offset(15);
         // 添加左边距约束（距离当前主视图左边的距离）
         make.left.equalTo(self.view.mas_left).with.offset(20);
         // 添加右边距约束（距离第二个按键左边的距离）
@@ -350,7 +348,7 @@
     [btnSearch mas_makeConstraints:^(MASConstraintMaker *make) {
         
         //添加上边距约束
-        make.top.equalTo(_lbEnd.mas_bottom).offset(15);
+        make.top.equalTo(_tfEnd.mas_bottom).offset(15);
         // 添加左边距约束（距离左边按键的距离）
         make.left.equalTo(btnCancel.mas_right).with.offset(20);
         // 添加右边距约束（距离当前主视图右边的距离）
@@ -381,9 +379,9 @@
      
      array
                                                         action:^(NSInteger index) {
-                                                            _lbCode.textColor = [UIColor blackColor];
-                                                            _lbCode.text = [array objectAtIndex:index];
-                                                            _codeStr = [array objectAtIndex:index];
+                                                            
+                                                            _tfCode.text = [array objectAtIndex:index];
+                                                            
                                                         } animated:YES];
 
 }
@@ -439,15 +437,13 @@
 
     switch (type) {
         case DateTypeOfStart:
-            _lbStart.textColor = [UIColor blackColor];
-            _lbStart.text = currentOlderOneDateStr;
-            _startTime = currentOlderOneDateStr;
+            _tfStart.text = currentOlderOneDateStr;
+
             break;
             
         case DateTypeOfEnd:
-            _lbEnd.textColor = [UIColor blackColor];
-            _lbEnd.text = currentOlderOneDateStr;
-            _endTime = currentOlderOneDateStr;
+            _tfEnd.text = currentOlderOneDateStr;
+  
             break;
             
         default:
@@ -498,12 +494,12 @@
     NSDictionary *paramsDic=@{@"userId":[[SingleHandle shareSingleHandle] getUserInfo].userId,
                               @"pageSize":[NSString stringWithFormat:@"%i",_pageSize],
                               @"pageNo":[NSString stringWithFormat:@"%i",_page],
-                              @"startDate":_startTime,
-                              @"endData":_endTime,
+                              @"startDate":_tfStart.text,
+                              @"endData":_tfEnd.text,
                               @"custName":_tfName.text,
                               @"phoneNo":_tfTel.text,
                               @"licenseNo":_tfCar.text,
-                              @"endCode":_codeStr};
+                              @"endCode":_tfCode.text};
     NSString *url = [NSString stringWithFormat:@"%@%@",BaseAPI,kfindOrderByCondition];
     [MHNetworkManager postReqeustWithURL:url params:paramsDic successBlock:^(id returnData) {
         NSLog(@"%@",returnData);
@@ -551,11 +547,12 @@
     NSDictionary *paramsDic=@{@"userId":[[SingleHandle shareSingleHandle] getUserInfo].userId,
                               @"pageSize":[NSString stringWithFormat:@"%i",_pageSize],
                               @"pageNo":[NSString stringWithFormat:@"%i",_page],
-                              @"startDate":_startTime,
-                              @"endData":_endTime,@"custName":_tfName.text,
+                              @"startDate":_tfStart.text,
+                              @"endData":_tfEnd.text,
+                              @"custName":_tfName.text,
                               @"phoneNo":_tfTel.text,
                               @"licenseNo":_tfCar.text,
-                              @"endCode":_codeStr};
+                              @"endCode":_tfCode.text};
     NSString *url = [NSString stringWithFormat:@"%@%@",BaseAPI,kfindOrderByCondition];
     [MHNetworkManager postReqeustWithURL:url params:paramsDic successBlock:^(id returnData) {
         NSLog(@"%@",returnData);

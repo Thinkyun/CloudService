@@ -10,7 +10,8 @@
 
 @interface CouponsDistributed : NSObject
 
-@property (assign, nonatomic)BOOL isCheck;
-@property (copy, nonatomic)NSString *name;
-@property (assign, nonatomic)int moneyNum;
+@property (assign, nonatomic) BOOL     isCheck;
+@property (copy, nonatomic  ) NSString *name;
+@property (assign, nonatomic) int      moneyNum;
+
 @end

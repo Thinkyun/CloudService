@@ -81,7 +81,9 @@ static NSString *cell_id = @"myTeamCell";
 #pragma mark 加载个人优惠券
 - (void)requestTeamMemberData {
   
-    NSDictionary *paramsDic=@{@"userId":[[SingleHandle shareSingleHandle] getUserInfo].userId,@"pageSize":[NSString stringWithFormat:@"%i",_pageSize],@"pageNo":[NSString stringWithFormat:@"%i",_page]};
+    NSDictionary *paramsDic=@{@"userId":[[SingleHandle shareSingleHandle] getUserInfo].userId,
+                              @"pageSize":[NSString stringWithFormat:@"%i",_pageSize],
+                              @"pageNo":[NSString stringWithFormat:@"%i",_page]};
     NSString *url = [NSString stringWithFormat:@"%@%@",BaseAPI,kfindTeamMember];
     [MHNetworkManager postReqeustWithURL:url params:paramsDic successBlock:^(id returnData) {
         NSLog(@"%@",returnData);
@@ -118,7 +120,9 @@ static NSString *cell_id = @"myTeamCell";
 - (void)requestMoreTeamMemberData {
     _page++;
     
-    NSDictionary *paramsDic=@{@"userId":[[SingleHandle shareSingleHandle] getUserInfo].userId,@"pageSize":[NSString stringWithFormat:@"%i",_pageSize],@"pageNo":[NSString stringWithFormat:@"%i",_page]};
+    NSDictionary *paramsDic=@{@"userId":[[SingleHandle shareSingleHandle] getUserInfo].userId,
+                              @"pageSize":[NSString stringWithFormat:@"%i",_pageSize],
+                              @"pageNo":[NSString stringWithFormat:@"%i",_page]};
     NSString *url = [NSString stringWithFormat:@"%@%@",BaseAPI,kfindTeamMember];
     [MHNetworkManager postReqeustWithURL:url params:paramsDic successBlock:^(id returnData) {
         NSLog(@"%@",returnData);
