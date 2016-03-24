@@ -10,10 +10,10 @@
 
 @interface ActifityModel : NSObject
 
-@property(nonatomic,copy)NSString *monkeyOne;
-@property(nonatomic,copy)NSString *monkeyTwo;
-@property(nonatomic,copy)NSString *monkeyThree;
-@property(nonatomic,copy)NSString *sendCoupon;
-@property(nonatomic,copy)NSString *flag;
+@property (nonatomic,copy) NSString *monkeyOne;
+@property (nonatomic,copy) NSString *monkeyTwo;
+@property (nonatomic,copy) NSString *monkeyThree;
+@property (nonatomic,copy) NSString *sendCoupon;
+@property (nonatomic,copy) NSString *flag;
 
 @end

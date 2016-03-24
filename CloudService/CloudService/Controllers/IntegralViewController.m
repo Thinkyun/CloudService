@@ -79,7 +79,9 @@
 - (void)requestData {
     [self removeNoData];
 
-    NSDictionary *paramsDic=@{@"userId":[[SingleHandle shareSingleHandle] getUserInfo].userId,@"pageSize":[NSString stringWithFormat:@"%i",_pageSize],@"pageNo":[NSString stringWithFormat:@"%i",_page]};
+    NSDictionary *paramsDic=@{@"userId":[[SingleHandle shareSingleHandle] getUserInfo].userId,
+                              @"pageSize":[NSString stringWithFormat:@"%i",_pageSize],
+                              @"pageNo":[NSString stringWithFormat:@"%i",_page]};
     NSString *url = [NSString stringWithFormat:@"%@%@",BaseAPI,kfindUserCreditsRecord];
     [MHNetworkManager postReqeustWithURL:url params:paramsDic successBlock:^(id returnData) {
         NSDictionary *dic = returnData;

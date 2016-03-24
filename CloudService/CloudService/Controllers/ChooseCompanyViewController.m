@@ -24,25 +24,26 @@ static NSString *header_Id = @"header_Id";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    __weak typeof(self) weakSelf = self;
+    self.title = @"选择公司";
+    __weak typeof(self) weakSelf             = self;
     [self setLeftImageBarButtonItemWithFrame:CGRectMake(0, 0, 25, 25) image:@"title-back" selectImage:@"" action:^(AYCButton *button) {
         [weakSelf.navigationController popViewControllerAnimated:YES];
         [[NSNotificationCenter defaultCenter] postNotificationName:ChooseSaleCompany object:nil];
     }];
-    
-    CGFloat inset = 8;
-    UICollectionViewFlowLayout *flowLayOut = [[UICollectionViewFlowLayout alloc] init];
-    flowLayOut.minimumInteritemSpacing = inset;
-    flowLayOut.minimumLineSpacing = 1 * inset;
-    flowLayOut.sectionInset = UIEdgeInsetsMake(inset / 2.0, inset, inset / 2.0, inset);
-    flowLayOut.itemSize = CGSizeMake(80, 50);
-    flowLayOut.headerReferenceSize = CGSizeMake(375, 30);
-    
+
+    CGFloat inset                            = 4;
+    UICollectionViewFlowLayout *flowLayOut   = [[UICollectionViewFlowLayout alloc] init];
+    flowLayOut.minimumInteritemSpacing       = inset/2;
+    flowLayOut.minimumLineSpacing            = inset/2;
+    flowLayOut.sectionInset                  = UIEdgeInsetsMake(inset / 2.0, inset, inset / 2.0, inset);
+    flowLayOut.itemSize                      = CGSizeMake(100, 55);
+    flowLayOut.headerReferenceSize           = CGSizeMake(375, 44);
+
     [self.collectionView registerNib:[UINib nibWithNibName:@"TagSelectItem" bundle:nil] forCellWithReuseIdentifier:cell_Id];
-    self.collectionView.backgroundColor = [UIColor whiteColor];
+    self.collectionView.backgroundColor      = [UIColor whiteColor];
     self.collectionView.collectionViewLayout = flowLayOut;
     [self.collectionView registerNib:[UINib nibWithNibName:@"HeaderCompanyView" bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:header_Id];
+
 }
 
 
@@ -60,14 +61,17 @@ static NSString *header_Id = @"header_Id";
     TagSelectItem *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cell_Id forIndexPath:indexPath];
     CodeNameModel *model = indexPath.section == 0 ? _selectArray[indexPath.row] : _dataArray[indexPath.row];
     cell.titleLabel.text = model.companyName;
+  
     return cell;
 }
 
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
     
     HeaderCompanyView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:header_Id forIndexPath:indexPath];
-    NSString *str = indexPath.section == 0 ? @"销售数据城市" : @"选择城市";
+    NSString *str = indexPath.section == 0 ? @"销售保险公司" : @"未添加保险公司";
+    headerView.backgroundColor= [HelperUtil colorWithHexString:@"#DBDBDB"];
     headerView.title = str;
+    
     return headerView;
     
 }

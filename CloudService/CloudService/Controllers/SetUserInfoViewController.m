@@ -92,7 +92,7 @@ static NSString *const select_CellID = @"selectCell";
         [self.tableView reloadData];
         return;
     }
-    [self resignKeyBoardInView:self.view];
+    [HelperUtil resignKeyBoardInView:self.view];
     NSDictionary *dict = [self getParam];
     if (!dict) {
         return ;
@@ -214,7 +214,7 @@ static NSString *const select_CellID = @"selectCell";
 
 #pragma mark -- SetUserInfoCell2Delegate
 -(void)didDeleteTextForCompany:(SetUserInfoCell2 *)cell {
-    [self resignKeyBoardInView:self.view];
+    [HelperUtil resignKeyBoardInView:self.view];
     _indexPath = [self.tableView indexPathForCell:cell];
     if (_indexPath.row == 7)
     {
@@ -269,7 +269,7 @@ static NSString *const select_CellID = @"selectCell";
 #pragma mark -- UITableViewDelegate
 -(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
     
-    [self resignKeyBoardInView:self.view];
+    [HelperUtil resignKeyBoardInView:self.view];
     
 }
 
@@ -382,7 +382,7 @@ static NSString *const select_CellID = @"selectCell";
     if (self.notEnable) {
         return ;
     }
-    [self resignKeyBoardInView:self.view];
+    [HelperUtil resignKeyBoardInView:self.view];
     _indexPath = indexPath;
     BOOL isCell2 = (indexPath.section == 0) && (indexPath.row == 3 || indexPath.row == 4 || indexPath.row == 7 || indexPath.row == 8) ? 1 : 0;
     CGRect tempRect = CGRectZero;
@@ -595,7 +595,7 @@ static NSString *const select_CellID = @"selectCell";
 
 - (void)showCityPickerViewWithCount:(NSInteger )count {
     
-    [self resignKeyBoardInView:self.view];
+    [HelperUtil resignKeyBoardInView:self.view];
     __block ZQCityPickerView *cityPickerView = [[ZQCityPickerView alloc] initWithProvincesArray:nil cityArray:nil componentsCount:count];
     
     [cityPickerView showPickViewAnimated:^(NSString *province, NSString *city,NSString *cityCode,NSString *provinceCode) {
@@ -640,19 +640,7 @@ static NSString *const select_CellID = @"selectCell";
     
 }
 
-/** 消失键盘*/
-- (void)resignKeyBoardInView:(UIView *)view
 
-{
-    for (UIView *v in view.subviews) {
-        if ([v.subviews count] > 0) {
-            [self resignKeyBoardInView:v];
-        }
-        if ([v isKindOfClass:[UITextView class]] || [v isKindOfClass:[UITextField class]]) {
-            [v resignFirstResponder];
-        }
-    }
-}
 
 // 填写银行卡号后,自动显示银行卡信息
 - (void)keyBoardDidHidden {

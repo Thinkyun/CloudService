@@ -21,13 +21,14 @@
     BOOL _isEye;
 }
 
-@property (weak, nonatomic) IBOutlet LoginInputView *inputView;
-@property (weak, nonatomic) IBOutlet UIButton *loginBtn;
-@property (weak, nonatomic) IBOutlet UITextField *UserTextFiled;
-@property (weak, nonatomic) IBOutlet UITextField *pwdTextFiled;
-@property (weak, nonatomic) IBOutlet UIImageView *backImg;
-@property (weak, nonatomic) IBOutlet UIButton *choseBtn;
-@property (strong, nonatomic)UIImageView *eyeImg;
+@property (weak, nonatomic  ) IBOutlet LoginInputView *inputView;
+@property (weak, nonatomic  ) IBOutlet UIButton       *loginBtn;
+@property (weak, nonatomic  ) IBOutlet UITextField    *UserTextFiled;
+@property (weak, nonatomic  ) IBOutlet UITextField    *pwdTextFiled;
+@property (weak, nonatomic  ) IBOutlet UIImageView    *backImg;
+@property (weak, nonatomic  ) IBOutlet UIButton       *choseBtn;
+@property (strong, nonatomic) UIImageView    *eyeImg;
+
 
 @end
 
@@ -61,15 +62,15 @@
 }
 
 - (void)setupView {
-    
+
     [self.view bringSubviewToFront:self.backImg];
     self.inputView.layer.cornerRadius = 3;
-    self.inputView.clipsToBounds = YES;
-    self.inputView.backgroundColor = [UIColor colorWithRed:0.918 green:0.917
+    self.inputView.clipsToBounds      = YES;
+    self.inputView.backgroundColor    = [UIColor colorWithRed:0.918 green:0.917
                                                       blue:0.925 alpha:0.600];
-    
+
     UIColor *color = [UIColor colorWithRed:0.263 green:0.561 blue:0.796 alpha:1.000];
-    self.UserTextFiled.leftView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"login-user"]];
+    self.UserTextFiled.leftView     = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"login-user"]];
     self.UserTextFiled.leftViewMode = UITextFieldViewModeAlways;
     self.UserTextFiled.attributedPlaceholder = [[NSAttributedString alloc]
                                                 initWithString:@"用户名/手机号码/邮箱"
@@ -84,7 +85,7 @@
     self.pwdTextFiled.rightView.userInteractionEnabled = YES;
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(eyeTap:)];
     [self.pwdTextFiled.rightView addGestureRecognizer:tap];
-    self.pwdTextFiled.leftViewMode = UITextFieldViewModeAlways;
+    self.pwdTextFiled.leftViewMode  = UITextFieldViewModeAlways;
     self.pwdTextFiled.rightViewMode = UITextFieldViewModeAlways;
     self.pwdTextFiled.attributedPlaceholder = [[NSAttributedString alloc]
                                                initWithString:@"请输入密码"

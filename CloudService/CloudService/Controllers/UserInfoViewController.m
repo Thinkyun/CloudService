@@ -65,13 +65,6 @@
     
     User *user = [[SingleHandle shareSingleHandle] getUserInfo];
     
-    // 从user中获取
-//    [MHNetworkManager postReqeustWithURL:[RequestEntity urlString:kGetuserInfoAPI] params:@{@"userId":user.userId} successBlock:^(id returnData) {
-//        
-//    } failureBlock:^(NSError *error) {
-
-//    } showHUD:YES];
-    
     _valueArray[0] = @"";
     if (user.realName.length > 0) {
         _valueArray[1] = user.realName;

@@ -66,7 +66,8 @@
     }
     
     User *user = [[SingleHandle shareSingleHandle] getUserInfo];
-    [MHNetworkManager postReqeustWithURL:[RequestEntity urlString:kGetExchangeIntergralAPI] params:@{@"userId":user.userId,@"cash":self.intergNumTextFiled.text} successBlock:^(id returnData) {
+    [MHNetworkManager postReqeustWithURL:[RequestEntity urlString:kGetExchangeIntergralAPI] params:@{@"userId":user.userId,@"cash":self.intergNumTextFiled.text}
+                            successBlock:^(id returnData) {
         if ([[returnData valueForKey:@"flag"] isEqualToString:@"success"]) {
             [self.navigationController popViewControllerAnimated:YES];
             [[NSNotificationCenter defaultCenter] postNotificationName:ExchangeIntegralSuccess object:nil];
