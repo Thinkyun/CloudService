@@ -11,6 +11,7 @@
 #import <MJRefresh.h>
 #import "Order.h"
 #import "OrderInfoViewController.h"
+#import "ButelHandle.h"
 
 @interface OrderManagerViewController ()<LazyPageScrollViewDelegate,UITableViewDataSource,UITableViewDelegate>
 {
@@ -54,6 +55,11 @@
     [self.tabBarController setRightImageBarButtonItemWithFrame:CGRectMake(0, 0, 30, 30) image:@"title-search" selectImage:@"title-search_" action:^(AYCButton *button) {
         [weakSelf performSegueWithIdentifier:@"searchOrder" sender:weakSelf];
     }];
+    
+    /**
+     *  隐藏青牛拨打页面
+     */
+    [[ButelHandle shareButelHandle] hideCallView];
 
 }
 

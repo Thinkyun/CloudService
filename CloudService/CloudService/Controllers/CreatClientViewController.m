@@ -10,6 +10,7 @@
 #import "OfferViewController.h"
 #import "ZQCityPickerView.h"
 #import "Order.h"
+#import "ButelHandle.h"
 
 @interface CreatClientViewController ()<UITextFieldDelegate>
 {
@@ -34,7 +35,22 @@
     [weakSelf setLeftImageBarButtonItemWithFrame:CGRectMake(0, 0, 35, 35) image:@"title-back" selectImage:@"back" action:^(AYCButton *button) {
         [weakSelf.navigationController popViewControllerAnimated:YES];
     }];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tfPhoneChanged:) name:UITextFieldTextDidChangeNotification object:self.tfPhone];
+    /**
+     *  显示青牛拨打页面
+     *
+     */
+    [[ButelHandle shareButelHandle] showCallView];
     // Do any additional setup after loading the view.
+}
+/**
+ *  设置青牛拨打号码
+ */
+- (void)tfPhoneChanged:(NSNotification *)sender {
+    if (self.tfPhone.text.length == 11) {
+        [[ButelHandle shareButelHandle] setPhoneNo:_tfPhone.text];
+    }
+    
 }
 - (IBAction)nextAction:(id)sender {
     if ([_tfName.text isEqualToString:@""]) {

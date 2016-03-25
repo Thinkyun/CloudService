@@ -18,6 +18,7 @@
 #import "RuleViewController.h"
 #import "Order.h"
 #import "SetUserInfoViewController.h"
+#import "ButelHandle.h"
 
 @interface HomeViewController ()<UICollectionViewDataSource,UICollectionViewDelegate,UIAlertViewDelegate>
 {
@@ -42,7 +43,6 @@ static NSString *headerView_ID = @"headerView";
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-//    [self.tabBarController.tabBar setBackgroundColor:[UIColor blackColor]];
     [self initData];
     [self setupViews];
     // 获取我的积分
@@ -51,6 +51,7 @@ static NSString *headerView_ID = @"headerView";
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getMyintegralData) name:ExchangeIntegralSuccess object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadCollectionView:) name:ReloadHomeData object:nil];
 
+    
     
 }
 
@@ -95,6 +96,10 @@ static NSString *headerView_ID = @"headerView";
 
 
 - (void)viewWillAppear:(BOOL)animated {
+    /**
+     *  首页隐藏青牛拨打页面
+     */
+    [[ButelHandle shareButelHandle] hideCallView];
     //导航条滑动返回
     [super viewWillAppear:animated];
     self.navigationController.interactivePopGestureRecognizer.delegate = (id)self;

@@ -12,6 +12,7 @@
 #import <MJRefresh.h>
 #import "OrderManagerCell.h"
 #import "Order.h"
+#import "ButelHandle.h"
 
 @interface SearchOrderViewController ()<HZQDatePickerViewDelegate,UITableViewDataSource,UITableViewDelegate>
 {
@@ -72,7 +73,13 @@
     // Do any additional setup after loading the view.
 }
 
-
+-(void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    /**
+     *  隐藏青牛拨打页面
+     */
+    [[ButelHandle shareButelHandle] hideCallView];
+}
 
 /** 搜索菜单*/
 - (void)initSearchMenu {
