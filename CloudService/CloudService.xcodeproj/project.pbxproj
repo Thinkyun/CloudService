@@ -24,6 +24,10 @@
 		634EE6201C995A8D00FB526D /* activity2@2X.png in Resources */ = {isa = PBXBuildFile; fileRef = 634EE61E1C995A8D00FB526D /* activity2@2X.png */; };
 		634EE6271C997F0000FB526D /* rulebg3.png in Resources */ = {isa = PBXBuildFile; fileRef = 634EE6251C997F0000FB526D /* rulebg3.png */; };
 		634EE62B1C997F9400FB526D /* RuleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 634EE62A1C997F9400FB526D /* RuleViewController.m */; };
+		63588FE21CA4CEA4002C6857 /* ButelCommonConnectSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 63588FDC1CA4CEA4002C6857 /* ButelCommonConnectSDK.bundle */; };
+		63588FE31CA4CEA4002C6857 /* ButelCommonConnectSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63588FDD1CA4CEA4002C6857 /* ButelCommonConnectSDK.framework */; };
+		63588FE41CA4CEA4002C6857 /* ButelHandle.m in Sources */ = {isa = PBXBuildFile; fileRef = 63588FDF1CA4CEA4002C6857 /* ButelHandle.m */; };
+		63588FE51CA4CEA4002C6857 /* CallView.m in Sources */ = {isa = PBXBuildFile; fileRef = 63588FE11CA4CEA4002C6857 /* CallView.m */; };
 		635C2AC91C8527D10051708D /* CreatClientViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 635C2AC81C8527D10051708D /* CreatClientViewController.m */; };
 		6367FB0D1C9AA19900947038 /* rulebg1.png in Resources */ = {isa = PBXBuildFile; fileRef = 6367FB0C1C9AA19900947038 /* rulebg1.png */; };
 		6367FB101C9ACDCC00947038 /* CouponsRuleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6367FB0F1C9ACDCC00947038 /* CouponsRuleViewController.m */; };
@@ -184,6 +188,12 @@
 		634EE6251C997F0000FB526D /* rulebg3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rulebg3.png; sourceTree = "<group>"; };
 		634EE6291C997F9400FB526D /* RuleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RuleViewController.h; sourceTree = "<group>"; };
 		634EE62A1C997F9400FB526D /* RuleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RuleViewController.m; sourceTree = "<group>"; };
+		63588FDC1CA4CEA4002C6857 /* ButelCommonConnectSDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ButelCommonConnectSDK.bundle; sourceTree = "<group>"; };
+		63588FDD1CA4CEA4002C6857 /* ButelCommonConnectSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ButelCommonConnectSDK.framework; sourceTree = "<group>"; };
+		63588FDE1CA4CEA4002C6857 /* ButelHandle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ButelHandle.h; sourceTree = "<group>"; };
+		63588FDF1CA4CEA4002C6857 /* ButelHandle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ButelHandle.m; sourceTree = "<group>"; };
+		63588FE01CA4CEA4002C6857 /* CallView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CallView.h; sourceTree = "<group>"; };
+		63588FE11CA4CEA4002C6857 /* CallView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CallView.m; sourceTree = "<group>"; };
 		635C2AC71C8527D10051708D /* CreatClientViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreatClientViewController.h; sourceTree = "<group>"; };
 		635C2AC81C8527D10051708D /* CreatClientViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreatClientViewController.m; sourceTree = "<group>"; };
 		6367FB0C1C9AA19900947038 /* rulebg1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rulebg1.png; sourceTree = "<group>"; };
@@ -415,6 +425,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				636CD92C1C880C4E0050935E /* AVFoundation.framework in Frameworks */,
+				63588FE31CA4CEA4002C6857 /* ButelCommonConnectSDK.framework in Frameworks */,
 				F0906A811C96A9CF007C3BBC /* libFireData.a in Frameworks */,
 				636CD92A1C880C4A0050935E /* MediaPlayer.framework in Frameworks */,
 				636CD9281C880C440050935E /* AudioToolbox.framework in Frameworks */,
@@ -441,6 +452,19 @@
 				AA863A4D44EB33149F738225 /* Pods-CloudService.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		63588FDB1CA4CEA4002C6857 /* 青牛 */ = {
+			isa = PBXGroup;
+			children = (
+				63588FDC1CA4CEA4002C6857 /* ButelCommonConnectSDK.bundle */,
+				63588FDD1CA4CEA4002C6857 /* ButelCommonConnectSDK.framework */,
+				63588FDE1CA4CEA4002C6857 /* ButelHandle.h */,
+				63588FDF1CA4CEA4002C6857 /* ButelHandle.m */,
+				63588FE01CA4CEA4002C6857 /* CallView.h */,
+				63588FE11CA4CEA4002C6857 /* CallView.m */,
+			);
+			path = "青牛";
 			sourceTree = "<group>";
 		};
 		637533B71C8431F800A12932 /* OfferCell */ = {
@@ -716,6 +740,7 @@
 		F0292BAC1C7B00CD00A810A9 /* CloudService */ = {
 			isa = PBXGroup;
 			children = (
+				63588FDB1CA4CEA4002C6857 /* 青牛 */,
 				F0292BC41C7B015200A810A9 /* API */,
 				F0292BCA1C7B015200A810A9 /* BaseViewControllers */,
 				F0292BD21C7B015200A810A9 /* DataStorage */,
@@ -1043,6 +1068,7 @@
 				F0292BB81C7B00CD00A810A9 /* Main.storyboard in Resources */,
 				6367FB0D1C9AA19900947038 /* rulebg1.png in Resources */,
 				630EF1901C8543900059CB34 /* PersonResultCell.xib in Resources */,
+				63588FE21CA4CEA4002C6857 /* ButelCommonConnectSDK.bundle in Resources */,
 				637533B01C83F64100A12932 /* details-icon.png in Resources */,
 				F0AFC54C1C9C0D2B00BC3CBC /* Default-568h@2x.png in Resources */,
 			);
@@ -1137,6 +1163,7 @@
 				F06DDBA41C7DAAE900C862A1 /* SearchOrderViewController.m in Sources */,
 				F07FF9E31C8189E200EB1BB1 /* UserInfoViewController.m in Sources */,
 				F019C9E51C7C7BB700E73A2C /* SetUserInfoViewController.m in Sources */,
+				63588FE41CA4CEA4002C6857 /* ButelHandle.m in Sources */,
 				63C54E3B1C7C359A007CE8CA /* HomeViewController.m in Sources */,
 				630EF19F1C856CFD0059CB34 /* CouponsTableViewCell.m in Sources */,
 				F07FF9DB1C815BF600EB1BB1 /* MyTeamViewController.m in Sources */,
@@ -1177,6 +1204,7 @@
 				F06DDBAA1C7DAB7400C862A1 /* UIViewController+AYCNavigationItem.m in Sources */,
 				F09A5F931A55F0AA008D4963 /* InviteFriendViewController.m in Sources */,
 				63C54E3E1C7C35AA007CE8CA /* ResultViewController.m in Sources */,
+				63588FE51CA4CEA4002C6857 /* CallView.m in Sources */,
 				630EF1A61C8579630059CB34 /* MyIntergralViewController.m in Sources */,
 				6367FB101C9ACDCC00947038 /* CouponsRuleViewController.m in Sources */,
 				F090DEDA1C89394900168BF8 /* RequestEntity.m in Sources */,
@@ -1334,6 +1362,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/CloudService/Helper/青牛",
+					"$(PROJECT_DIR)/CloudService/青牛",
 				);
 				GCC_PREFIX_HEADER = "$(SRCROOT)/$(PROJECT_NAME)/PrefixHeader.pch";
 				INFOPLIST_FILE = CloudService/Info.plist;
@@ -1360,6 +1389,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/CloudService/Helper/青牛",
+					"$(PROJECT_DIR)/CloudService/青牛",
 				);
 				GCC_PREFIX_HEADER = "$(SRCROOT)/$(PROJECT_NAME)/PrefixHeader.pch";
 				INFOPLIST_FILE = CloudService/Info.plist;

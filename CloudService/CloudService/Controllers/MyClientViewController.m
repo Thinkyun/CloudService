@@ -12,6 +12,7 @@
 #import "Order.h"
 #import "OfferViewController.h"
 #import "OrderInfoViewController.h"
+#import "ButelHandle.h"
 
 @interface MyClientViewController ()<UITableViewDataSource,UITableViewDelegate,UISearchBarDelegate>
 {
@@ -46,6 +47,11 @@
 - (void)viewWillAppear:(BOOL)animated {
     
     [super viewWillAppear:animated];
+    /**
+     *  隐藏青牛页面
+     */
+    [[ButelHandle shareButelHandle] hideCallView];
+    
     self.title = @"我的客户";
     __weak typeof(self) weakSelf = self;
     [weakSelf setRightImageBarButtonItemWithFrame:CGRectMake(0, 0, 35, 35) image:@"head-add" selectImage:@"head-add" action:^(AYCButton *button) {

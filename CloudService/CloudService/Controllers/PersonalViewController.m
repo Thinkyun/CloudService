@@ -12,6 +12,7 @@
 #import "UserInfoViewController.h"
 #import "SetUserInfoViewController.h"
 #import "InviteFriendViewController.h"
+#import "ButelHandle.h"
 
 @interface PersonalViewController ()<UITableViewDataSource,UITableViewDelegate> {
     NSArray *_dataArray;
@@ -68,12 +69,7 @@ static NSString *cell_id = @"personalCell";
     [self.headIconImg addGestureRecognizer:tap];
 }
 
-// 退出登录
-- (void)logOutAction {
-    
-//    [self dismissViewControllerAnimated:YES completion:nil];
-    [[NSNotificationCenter defaultCenter] postNotificationName:LogOutViewNotice object:nil];
-}
+
 
 - (void)tapHeadicon {
     [self performSegueWithIdentifier:@"userinfoVC" sender:self];
@@ -161,6 +157,7 @@ static NSString *cell_id = @"personalCell";
     
     if (indexPath.section == 3) {
         [[NSNotificationCenter defaultCenter] postNotificationName:LogOutViewNotice object:nil];
+//        [[ButelHandle shareButelHandle] logOut];
         return;
     }
     

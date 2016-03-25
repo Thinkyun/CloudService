@@ -12,6 +12,7 @@
 #import "AppointmentViewController.h"
 #import "AppDelegate.h"
 #import "OrderH5ViewController.h"
+#import "ButelHandle.h"
 
 
 @interface OrderInfoViewController ()<UITableViewDataSource,UITableViewDelegate>
@@ -24,6 +25,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    /**
+     *  显示青牛拨打页面,并设置手机号
+     */
+    [[ButelHandle shareButelHandle] showCallView];
+    [[ButelHandle shareButelHandle] setPhoneNo:self.order.phoneNo];
     
     self.tableView.backgroundColor = [HelperUtil colorWithHexString:@"F4F4F4"];
     __weak typeof(self) weakSelf = self;
@@ -67,7 +73,7 @@
 }
 /** 拨打电话*/
 - (void)callClick:(UIButton *)sender {
- 
+    [[ButelHandle shareButelHandle] makeCallWithPhoneNo:self.order.phoneNo];
 
 }
 /** 报价*/

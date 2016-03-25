@@ -15,6 +15,7 @@
 #import "MHAsiNetworkHandler.h"
 #import "FireData.h"
 #import <JPUSHService.h>
+#import "ButelHandle.h"
 
 #define MObAppKey     @"100082c56c5c0"
 #define WXAppID       @"wx125bcc153468cc36"
@@ -182,22 +183,28 @@
 - (void)loginToMenu {
     UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     BaseNaviViewController *menuVC = [storyBoard instantiateViewControllerWithIdentifier:@"MenuNavi"];
-//    [UIView transitionFromView:self.window.rootViewController.view toView:menuVC.view duration:0.3 options:UIViewAnimationOptionTransitionCurlUp completion:^(BOOL finished) {
-//    }];
+
     UIViewController *oldVC = self.window.rootViewController;
     oldVC = nil;
     self.window.rootViewController = menuVC;
+    /**
+     *  首页初始化青牛
+     */
+    [[ButelHandle shareButelHandle] Init];
     
 }
 
 - (void)logOut {
-    
+    /**
+     *  退出青牛sdk
+     */
+//    [[ButelHandle shareButelHandle] logOut];
     UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     UIViewController *loginVC = [storyBoard instantiateViewControllerWithIdentifier:@"loginNavi"];
     UIViewController *oldVC = self.window.rootViewController;
     oldVC = nil;
     self.window.rootViewController = loginVC;
-    
+  
 }
 
 #pragma mark -- CLLocationManagerDelegate
