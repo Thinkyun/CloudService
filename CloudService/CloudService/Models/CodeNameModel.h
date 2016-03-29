@@ -16,5 +16,6 @@
 @property (nonatomic,copy) NSString *provinceName;
 @property (nonatomic,copy) NSString *cityCode;
 @property (nonatomic,copy) NSString *cityName;
+@property (nonatomic, assign) BOOL isCheck;
 
 @end

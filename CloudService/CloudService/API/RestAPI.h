@@ -70,6 +70,8 @@
 
 #define kZhiKe      @"http://139.198.1.22:80/zkyq-web/platform/getInfo"              //直客
 
+#define kZhiKeInfo      @"http://139.198.1.22:80/zkyq-web/platform/getInfo/unfinishedOrder/returnPage?baseId="   //直客订单详情
+
 #define kfindOrderByCondition     @"/app/order/findOrderByCondition"             //订单条件查询
 
 #define kfindMainOrder     @"/app/order/findMainOrder"             //订单列表查询
@@ -80,6 +82,7 @@
 
 #define kCheckVersionAPI        @"/app/system/getVersion"                         // 版本检测
 
+#define agentCode               @"CLOUD_SERVICE"                         //agentCode
 //   常量
 /**************************************************************************************/
 

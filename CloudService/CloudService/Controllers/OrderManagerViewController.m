@@ -245,6 +245,7 @@
     cell.lbBiPremium.text = order.biPremium;
     cell.lbCiPremium.text = order.ciPremium;
     cell.lbVehicleTaxPremium.text = order.vehicleTaxPremium;
+  
     
     return cell;
 }
@@ -299,6 +300,8 @@
     
     [self removeNoData];
     NSString *url = [NSString stringWithFormat:@"%@%@",BaseAPI,kfindMainOrder];
+    AppDelegate *delegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
+    delegate.isThird=NO;
     [MHNetworkManager postReqeustWithURL:url params:paramsDic successBlock:^(id returnData) {
         NSLog(@"%@",returnData);
         

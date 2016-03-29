@@ -198,13 +198,9 @@
     /**
      *  退出青牛sdk
      */
-//    [[ButelHandle shareButelHandle] logOut];
-    UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    UIViewController *loginVC = [storyBoard instantiateViewControllerWithIdentifier:@"loginNavi"];
-    UIViewController *oldVC = self.window.rootViewController;
-    oldVC = nil;
-    self.window.rootViewController = loginVC;
-  
+    [[ButelHandle shareButelHandle] logOut];
+    
+    
 }
 
 #pragma mark -- CLLocationManagerDelegate

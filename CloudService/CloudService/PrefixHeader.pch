@@ -18,6 +18,7 @@
 #import <MJExtension.h>
 #import "SingleHandle.h"
 #import "FireData.h"
+#import "AppDelegate.h"
 
 #ifdef DEBUG
 #define ZQLog(...) NSLog(__VA_ARGS__)

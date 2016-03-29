@@ -49,4 +49,8 @@
  * 设置拨打手机号
  */
 - (void)setPhoneNo:(NSString *)phoneNo;
+/**
+ *  弹出拨打视图
+ */
+- (void)popCallView;
 @end

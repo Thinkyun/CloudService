@@ -55,7 +55,7 @@
     OrderInfoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
     if (cell == nil) {
         NSArray *array = [[NSBundle mainBundle] loadNibNamed:@"OrderInfoTableViewCell" owner:self options:nil];
-        cell = [array objectAtIndex:0];
+        cell = [array objectAtIndex:2];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     cell.lbOrderNum.text = [NSString stringWithFormat:@"订单号:%@",_order.baseId];
@@ -66,14 +66,22 @@
     [cell.callBtn addTarget:self action:@selector(callClick:) forControlEvents:UIControlEventTouchUpInside];
     [cell.priceBtn addTarget:self action:@selector(priceClick:) forControlEvents:UIControlEventTouchUpInside];
     [cell.appointmentBtn addTarget:self action:@selector(appointmentClick:) forControlEvents:UIControlEventTouchUpInside];
+    [cell.btnOrderInfo addTarget:self action:@selector(zhiKeOrderInfo:) forControlEvents:UIControlEventTouchUpInside];
     return cell;
 }
+
+- (void)zhiKeOrderInfo:(UIButton *)sender {
+    OrderH5ViewController *orderH5VC = [[OrderH5ViewController alloc] init];
+    orderH5VC.url = [NSString stringWithFormat:@"%@%@",kZhiKeInfo,self.order.baseId];
+    NSLog(@"%@",[NSString stringWithFormat:@"%@%@",kZhiKeInfo,self.order.baseId]);
+    [self.navigationController pushViewController:orderH5VC animated:YES];
+}
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 231;
+    return 293;
 }
 /** 拨打电话*/
 - (void)callClick:(UIButton *)sender {
-    [[ButelHandle shareButelHandle] makeCallWithPhoneNo:self.order.phoneNo];
+    [[ButelHandle shareButelHandle] popCallView];
 
 }
 /** 报价*/
@@ -84,7 +92,7 @@
     /**
      *  dataType 01:创建订单,获取新数据 02:创建客户
      */
-    NSDictionary *params = @{@"operType":@"测试",
+    NSDictionary *params = @{@"operType":@"",
                              @"msg":@"",
                              @"sendTime":@"",
                              @"sign":@"",
@@ -92,10 +100,9 @@
                                        @"customerName":self.order.customerName,
                                        @"phoneNo":self.order.phoneNo,
                                        @"dataType":@"01",
-                                       @"comeFrom":@"YPT",
                                        @"activeType":@"1",
-                                       @"macAdress":@"28:f0:76:18:c1:08",
-                                       @"agentCode":@"123",
+                                       @"macAdress":@"02:00:00:00:00:00",
+                                       @"agentCode":agentCode,
                                        @"engineNo":self.order.engineNo,
                                        @"vehicleFrameNo":self.order.frameNo,
                                        @"licenseNo":self.order.licenseNo,
@@ -115,6 +122,8 @@
             orderH5VC.url = url;
             [weakSelf.navigationController pushViewController:orderH5VC animated:YES];
             
+        }else {
+            [MBProgressHUD showMessag:returnData[@"msg"] toView:self.view];
         }
         
     } failureBlock:^(NSError *error) {
@@ -134,6 +143,7 @@
         // segue.destinationViewController：获取连线时所指的界面（VC）
         AppointmentViewController *receive = segue.destinationViewController;
         receive.customerId = self.order.customerId;
+        receive.baseId = self.order.baseId;
     }
 }
 

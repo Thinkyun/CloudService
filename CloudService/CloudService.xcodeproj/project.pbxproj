@@ -74,6 +74,7 @@
 		63ADFBE61C7EAC52000D3164 /* ResultTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 63ADFBE41C7EAC52000D3164 /* ResultTableViewCell.m */; };
 		63ADFBE71C7EAC52000D3164 /* ResultTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 63ADFBE51C7EAC52000D3164 /* ResultTableViewCell.xib */; };
 		63ADFBEB1C7F0622000D3164 /* PellTableViewSelect.m in Sources */ = {isa = PBXBuildFile; fileRef = 63ADFBEA1C7F0622000D3164 /* PellTableViewSelect.m */; };
+		63B2F1151CA912EB001F2BD2 /* donghua.gif in Resources */ = {isa = PBXBuildFile; fileRef = 63B2F1141CA912EB001F2BD2 /* donghua.gif */; };
 		63C07B9A1C7B14BB0084581F /* MBProgressHUD+Add.m in Sources */ = {isa = PBXBuildFile; fileRef = 63C07B8C1C7B14BB0084581F /* MBProgressHUD+Add.m */; };
 		63C07B9B1C7B14BB0084581F /* MHAsiNetworkHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 63C07B911C7B14BB0084581F /* MHAsiNetworkHandler.m */; };
 		63C07B9C1C7B14BB0084581F /* MHAsiNetworkItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 63C07B931C7B14BB0084581F /* MHAsiNetworkItem.m */; };
@@ -261,6 +262,7 @@
 		63ADFBE51C7EAC52000D3164 /* ResultTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ResultTableViewCell.xib; sourceTree = "<group>"; };
 		63ADFBE91C7F0622000D3164 /* PellTableViewSelect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PellTableViewSelect.h; sourceTree = "<group>"; };
 		63ADFBEA1C7F0622000D3164 /* PellTableViewSelect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PellTableViewSelect.m; sourceTree = "<group>"; };
+		63B2F1141CA912EB001F2BD2 /* donghua.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = donghua.gif; sourceTree = "<group>"; };
 		63C07B8B1C7B14BB0084581F /* MBProgressHUD+Add.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD+Add.h"; sourceTree = "<group>"; };
 		63C07B8C1C7B14BB0084581F /* MBProgressHUD+Add.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MBProgressHUD+Add.m"; sourceTree = "<group>"; };
 		63C07B8E1C7B14BB0084581F /* MHAsiNetworkDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MHAsiNetworkDefine.h; sourceTree = "<group>"; };
@@ -685,6 +687,7 @@
 		F019C9DA1C7C05FD00E73A2C /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				63B2F1141CA912EB001F2BD2 /* donghua.gif */,
 				636A35CF1C9CFEB900540CD0 /* guize.png */,
 				F0AFC5481C9C0D2B00BC3CBC /* Default-568h@2x.png */,
 				F0AFC5491C9C0D2B00BC3CBC /* Default-667h@2x.png */,
@@ -1036,6 +1039,7 @@
 				63ADFBE71C7EAC52000D3164 /* ResultTableViewCell.xib in Resources */,
 				F07531D21C8687BB00E71796 /* area.plist in Resources */,
 				63A2AB031CA13F440094B876 /* activity3@2X.png in Resources */,
+				63B2F1151CA912EB001F2BD2 /* donghua.gif in Resources */,
 				634EE6201C995A8D00FB526D /* activity2@2X.png in Resources */,
 				63A2AB051CA13F980094B876 /* rulebg2.png in Resources */,
 				63C54E331C7C2F96007CE8CA /* OrderManagerCell.xib in Resources */,
@@ -1282,8 +1286,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Sunshine Insurance Group Co., Ltd.";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Sunshine Insurance Group Co., Ltd.";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_BITCODE = NO;
@@ -1306,7 +1310,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "1d845a3f-dc6f-487f-975f-4be95ad4ef10";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -1328,8 +1332,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Sunshine Insurance Group Co., Ltd.";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Sunshine Insurance Group Co., Ltd.";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_BITCODE = NO;
@@ -1345,7 +1349,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "1d845a3f-dc6f-487f-975f-4be95ad4ef10";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};

@@ -90,7 +90,7 @@
     if ([self.tfLicenseNo.text isEqualToString:@""]) {
         licenseNo = @"新车";
     }
-        NSDictionary *params = @{@"operType":@"测试",
+        NSDictionary *params = @{@"operType":@"",
                                  @"msg":@"",
                                  @"sendTime":@"",
                                  @"sign":@"",
@@ -98,14 +98,13 @@
                                            @"customerName":_tfName.text,
                                            @"phoneNo":_tfPhone.text,
                                            @"dataType":@"01",
-                                           @"comeFrom":@"YPT",
                                            @"activeType":@"1",
-                                           @"macAdress":@"28:f0:76:18:c1:08",
-                                           @"agentCode":@"",
-                                           @"engineNo":@"jhg345325b135",
-                                           @"vehicleFrameNo":@"dg3452",
+                                           @"macAdress":@"02:00:00:00:00:00",
+                                           @"agentCode":agentCode,
+                                           @"engineNo":@"",
+                                           @"vehicleFrameNo":@"",
                                            @"licenseNo":licenseNo,
-                                           @"vehicleModelName":@"阿斯顿马丁",
+                                           @"vehicleModelName":@"",
                                            @"userId":user.userId,
                                            @"accountType":@"3",
                                            @"cityCode":_cityCode}
@@ -119,6 +118,8 @@
                 NSString *url = [returnData[@"data"] valueForKey:@"retPage"];
                 NSString *baseId = [returnData[@"data"] valueForKey:@"baseId"];
                 [weakSelf createOrderWithBaseId:baseId pushUrl:url];
+            }else{
+                [MBProgressHUD showMessag:returnData[@"msg"] toView:self.view];
             }
             
         } failureBlock:^(NSError *error) {
@@ -130,7 +131,11 @@
 
 - (void)createOrderWithBaseId:(NSString *)baseId pushUrl:(NSString *)url{
     
-    NSDictionary *params = @{@"baseId":baseId,@"userId":[[SingleHandle shareSingleHandle] getUserInfo].userId,@"custName":_tfName.text,@"phoneNo":_tfPhone.text,@"licenseNo":_tfLicenseNo.text};
+    NSDictionary *params = @{@"baseId":baseId,
+                             @"userId":[[SingleHandle shareSingleHandle] getUserInfo].userId,
+                             @"custName":_tfName.text,
+                             @"phoneNo":_tfPhone.text,
+                             @"licenseNo":_tfLicenseNo.text};
     
     __weak typeof(self) weakSelf = self;
     [MHNetworkManager postReqeustWithURL:[RequestEntity urlString:ksaveOrder] params:params successBlock:^(id returnData) {

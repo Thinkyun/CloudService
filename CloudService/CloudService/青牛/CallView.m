@@ -16,6 +16,7 @@
     
     BOOL isSpeaker; // 是否开启扬声器
     BOOL isMute;//是否静音
+    BOOL _isPop;//是否弹出拨打视图
     // 通话时长
     NSInteger _callDuration;
     UIButton *_btnCall;//拨号按钮
@@ -181,6 +182,7 @@
 
 - (void)oneFingerSwipeUp:(UIPanGestureRecognizer *)recognizer{
     CGPoint translatedPoint = [recognizer translationInView:self];
+    _isPop = !_isPop;
     if (translatedPoint.x>0) {
         [UIView animateWithDuration:.5 animations:^{
             self.frame = CGRectMake(KWidth-20, KHeight/2, 220, 80);
@@ -188,6 +190,25 @@
             _btnCall.userInteractionEnabled = NO;
         }];
     }else{
+        [UIView animateWithDuration:.5 animations:^{
+            self.frame = CGRectMake(KWidth-170, KHeight/2, 220, 80);
+        } completion:^(BOOL finished) {
+            _btnCall.userInteractionEnabled = YES;
+        }];
+    }
+    
+}
+
+- (void)popCallView {
+    if (_isPop) {
+        _isPop = !_isPop;
+        [UIView animateWithDuration:.5 animations:^{
+            self.frame = CGRectMake(KWidth-20, KHeight/2, 220, 80);
+        } completion:^(BOOL finished) {
+            _btnCall.userInteractionEnabled = NO;
+        }];
+    }else {
+        _isPop = !_isPop;
         [UIView animateWithDuration:.5 animations:^{
             self.frame = CGRectMake(KWidth-170, KHeight/2, 220, 80);
         } completion:^(BOOL finished) {
