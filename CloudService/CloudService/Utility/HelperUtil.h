@@ -106,5 +106,9 @@
  *  获取网络状态
  */
 +(NSString *)getNetWorkStates;
+/**
+ *  mac地址
+ */
++ (NSString *) macaddress;
 
 @end

@@ -62,7 +62,8 @@ static NSString *cellID = @"cellID";
 }
 
 - (void)requestData {
-    
+    AppDelegate *delegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
+    delegate.isThird=NO;
     __weak typeof(self) weakSelf = self;
     User *user = [[SingleHandle shareSingleHandle] getUserInfo];
     [MHNetworkManager postReqeustWithURL:[RequestEntity urlString:kActifityInfoAPI] params:@{@"userId":user.userId} successBlock:^(id returnData) {
@@ -282,7 +283,8 @@ static NSString *cellID = @"cellID";
 }
 
 - (IBAction)getCouponAction:(id)sender {
-    
+    AppDelegate *delegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
+    delegate.isThird=NO;
     User *user = [[SingleHandle shareSingleHandle] getUserInfo];
     [MHNetworkManager postReqeustWithURL:[RequestEntity urlString:kActifityCouponAPI] params:@{@"userId":user.userId} successBlock:^(id returnData) {
         
@@ -298,6 +300,8 @@ static NSString *cellID = @"cellID";
     
 }
 - (void)setUpInviteLink {
+    AppDelegate *delegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
+    delegate.isThird=NO;
     NSString *url = [NSString stringWithFormat:@"%@%@",BaseAPI,kfindInviteLink];
     
     [MHNetworkManager postReqeustWithURL:url params:nil successBlock:^(id returnData) {

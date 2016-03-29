@@ -13,6 +13,7 @@
 #import "OrderManagerCell.h"
 #import "Order.h"
 #import "ButelHandle.h"
+#import "OrderInfoViewController.h"
 
 @interface SearchOrderViewController ()<HZQDatePickerViewDelegate,UITableViewDataSource,UITableViewDelegate>
 {
@@ -31,6 +32,7 @@
     UIImageView *_noDataImg;
     UILabel *_lbNoData;
     NSMutableArray *_orderArray;
+    Order *_order;
 
 }
 @property (weak, nonatomic)IBOutlet UITableView *tableView;
@@ -617,6 +619,22 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
+    _order = [_orderArray objectAtIndex:indexPath.row];
+    
+    [self performSegueWithIdentifier:@"searchOrderInfo" sender:self];
+    
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // segue.identifier：获取连线的ID
+    
+    if ([segue.identifier isEqualToString:@"searchOrderInfo"]) {
+        // segue.destinationViewController：获取连线时所指的界面（VC）
+        OrderInfoViewController *receive = segue.destinationViewController;
+        receive.order = _order;
+        NSLog(@"%@",receive.order);
+    }
+
 }
 
 

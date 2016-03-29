@@ -203,8 +203,9 @@
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     [manager POST:url parameters:paramsDict constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
         [formData appendPartWithFileData:uploadParam.data name:uploadParam.name fileName:uploadParam.fileName mimeType:uploadParam.mimeType];
+    } progress:^(NSProgress * _Nonnull uploadProgress) {
+        
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        [MBProgressHUD hideHUDForView:nil animated:YES];
         DTLog(@"----> %@",responseObject);
         if (successBlock) {
             successBlock(responseObject);
@@ -216,6 +217,7 @@
             failureBlock(error);
         }
     }];
+   
 }
 
 @end

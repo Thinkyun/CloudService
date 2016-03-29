@@ -31,4 +31,8 @@
  *  拨打或挂断电话
  */
 - (void)callPhoneOrHangUp;
+/**
+ *  弹出拨打视图
+ */
+- (void)popCallView;
 @end

@@ -111,6 +111,8 @@ static CGFloat headerHeight = 30;
     NSLog(@"%@,%@%@%@",self.order.baseId,self.order.customerId,self.order.cityCode,self.order.phoneNo);
     
     NSLog(@"%@",cell1.carCode.text);
+    AppDelegate *delegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
+    delegate.isThird=NO;
     NSDictionary *myServerDict = @{@"userId":user.userId,
                                    @"baseId":self.order.baseId<=0?@"":self.order.baseId,
                                    @"id":self.order.customerId<=0?@"":self.order.customerId,
@@ -136,7 +138,6 @@ static CGFloat headerHeight = 30;
 }
 
 - (void)offerAction {
-//    [MBProgressHUD showMessag:@"程序猿正在火力开发中" toView:self.view];
 
     NSIndexPath *path1 = [NSIndexPath indexPathForRow:0 inSection:0];
     OfferTableViewCell *cell1 = [self.tableView cellForRowAtIndexPath:path1];
@@ -148,15 +149,32 @@ static CGFloat headerHeight = 30;
     
     AppDelegate *delegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
     delegate.isThird=YES;
-    /**
-     *  dataType 01:创建订单,获取新数据 02:创建客户
-     */
+
     User *user = [[SingleHandle shareSingleHandle] getUserInfo];
     NSString *licenseNo = self.order.licenseNo;
     if ([self.order.licenseNo isEqualToString:@""]) {
         licenseNo = @"新车";
     }
-    NSDictionary *params = @{@"operType":@"测试",
+    /**
+     *  直客参数
+     *
+     *  @param proportion   积分比（即用户积分在总的积分中占有比例）
+     *  @param customerName   客户姓名
+     *  @param phoneNo   手机号
+     *  @param dataType 01:创建订单,获取新数据 02:创建客户
+     *  @param activeType   活动类型
+     *  @param macAdress   Mac地址
+     *  @param agentCode   服务区域代码
+     *  @param engineNo   发动机号
+     *  @param vehicleFrameNo   车架号
+     *  @param licenseNo   车牌号
+     *  @param vehicleModelName   品牌型号
+     *  @param userId   用户id
+     *  @param accountType   账号类型
+     *  @param cityCode   城市代码
+     *  @param registerDate   初登日期
+     */
+    NSDictionary *params = @{@"operType":@"",
                              @"msg":@"",
                              @"sendTime":@"",
                              @"sign":@"",
@@ -164,10 +182,9 @@ static CGFloat headerHeight = 30;
                                        @"customerName":cell2.carUserName.text,
                                        @"phoneNo":self.order.phoneNo,
                                        @"dataType":@"02",
-                                       @"comeFrom":@"YPT",
                                        @"activeType":@"1",
-                                       @"macAdress":@"28:f0:76:18:c1:08",
-                                       @"agentCode":@"",
+                                       @"macAdress":@"02:00:00:00:00:00",
+                                       @"agentCode":agentCode,
                                        @"engineNo":cell1.engine.text,
                                        @"vehicleFrameNo":cell1.carFrameCode.text,
                                        @"licenseNo":licenseNo,

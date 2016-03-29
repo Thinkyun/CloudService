@@ -16,9 +16,16 @@
 #define PROVINCE_WIDTH  100
 
 #import "SelectCityViewController.h"
+#import "DataSource.h"
+#import <FMDB.h>
+#import "CodeNameModel.h"
 
-@interface SelectCityViewController ()
+@interface SelectCityViewController ()<UITableViewDelegate,UITableViewDataSource>
+{
+    NSMutableArray *_provinceArray;
+    NSMutableArray *_cityArray;
 
+}
 /**
  *  省份的tableView
  */
@@ -34,74 +41,32 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    _provinceArray = [NSMutableArray array];
+    _cityArray = [NSMutableArray array];
+    /**
+     *  取出省份数组
+     */
+    NSArray *provinceNameArray = [DataSource provinceArray];
+    /**
+     *  取出省份code
+     */
+    NSDictionary *provinceCodeDict = [DataSource provinceCodeDict];
+   
+    for (int i = 0; i<provinceNameArray.count; i++) {
+        CodeNameModel *proviceModel = [CodeNameModel new];
+        proviceModel.provinceName = provinceNameArray[i];
+        proviceModel.provinceCode = [provinceCodeDict valueForKey:provinceNameArray[i]];
+        proviceModel.isCheck = NO;
+        [_provinceArray addObject:proviceModel];
+    }
     
+    CodeNameModel *proviceModel = _provinceArray[0];
+    [self searchCityinProvinceCode:proviceModel.provinceCode];
     
-    [self setupProvinceTableView];
-    
-    [self setupCityTableView];
+
     // Do any additional setup after loading the view.
 }
-/**
- *  初始化省份表格
- */
-- (void)setupProvinceTableView{
-    
 
-    self.provinceTableView.tag = TAG_PROVINCE;
-    self.provinceTableView.showsVerticalScrollIndicator = NO;
-    self.provinceTableView.sectionIndexBackgroundColor = [UIColor clearColor];
-    self.provinceTableView.sectionIndexColor = [UIColor grayColor];
-    
-    
-    // 头部view
-    UIView *viewHead = [[UIView alloc] initWithFrame:CGRectMake(0, 0, PROVINCE_WIDTH, 44)];
-    [viewHead setBackgroundColor:[HelperUtil colorWithHexString:@"#F4F4F4"]];
-    [self.provinceTableView setTableHeaderView:viewHead];
-    
-    UILabel *lbl = [[UILabel alloc] initWithFrame:CGRectMake(15, 0, 70, 44)];
-    [lbl setText:@"省份"];
-    [lbl setBackgroundColor:[UIColor whiteColor]];
-    [lbl setFont:TGSystemFontContent];
-    [viewHead addSubview:lbl];
-    
-    UILabel *lblLine2 = [[UILabel alloc] initWithFrame:CGRectMake(0, 43, PROVINCE_WIDTH, 1)];
-    [lblLine2 setBackgroundColor:[UIColor darkGrayColor]];
-    [viewHead addSubview:lblLine2];
-    
-    UILabel *lblLine1 = [[UILabel alloc] initWithFrame:CGRectMake(99, 0, 1, 44)];
-    [lblLine1 setBackgroundColor:[UIColor purpleColor]];
-    [viewHead addSubview:lblLine1];
-
-    
-}
-/**
- *  初始化城市表格
- */
-- (void)setupCityTableView{
-
-
-    self.cityTableView.tag = TAG_CITY;
-    self.cityTableView.showsVerticalScrollIndicator = NO;
-    self.cityTableView.sectionIndexBackgroundColor = [UIColor clearColor];
-    self.cityTableView.sectionIndexColor = [UIColor grayColor];
-
-    
-    // 头部view
-    UIView *viewHead = [[UIView alloc] initWithFrame:CGRectMake(0, 0, PROVINCE_WIDTH, 44)];
-    [viewHead setBackgroundColor:[HelperUtil colorWithHexString:@"#F4F4F4"]];
-    [self.cityTableView setTableHeaderView:viewHead];
-
-    UILabel *lbl = [[UILabel alloc] initWithFrame:CGRectMake(20, 0, 70, 44)];
-    [lbl setText:@"城市"];
-    [lbl setBackgroundColor:[UIColor darkGrayColor]];
-    [lbl setFont:TGSystemFontContent];
-    [viewHead addSubview:lbl];
-    
-    UILabel *lblLine2 = [[UILabel alloc] initWithFrame:CGRectMake(0, 43, self.view.frame.size.width - PROVINCE_WIDTH, 1)];
-    [lblLine2 setBackgroundColor:[UIColor redColor]];
-    [viewHead addSubview:lblLine2];
-    
-}
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -109,15 +74,14 @@
     switch (tableView.tag) {
             // 省份
         case TAG_PROVINCE:
-            return 20;
+            return _provinceArray.count;
             break;
             
             // 城市
         case TAG_CITY:
         {
-//            // 当前选中省份的城市
-//            FTYProvinceModel *province = self.provinces[self.isSelectProvince];
-            return 20;
+
+            return _cityArray.count;
         }
             break;
             
@@ -137,8 +101,20 @@
             if (cell == nil) {
                 cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:ID];
             }
-            
-
+            CodeNameModel *provinceModel = [_provinceArray objectAtIndex:indexPath.row];
+            cell.textLabel.text = provinceModel.provinceName;
+            UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(checkProvince:)];
+            cell.imageView.tag = indexPath.row;
+            cell.imageView.userInteractionEnabled = YES;
+            [cell.imageView addGestureRecognizer:tap];
+//            UIView *view = [UIView new];
+//            view.backgroundColor = [UIColor redColor];
+//            cell.selectedBackgroundView  = view;
+            if (provinceModel.isCheck) {
+                cell.imageView.image = [UIImage imageNamed:@"ico_check_circle"];
+            }else {
+                cell.imageView.image = [UIImage imageNamed:@"ico_circle_o"];
+            }
             
             return cell;
         }
@@ -151,9 +127,16 @@
             if (cell == nil) {
                 cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:ID];
             }
+            CodeNameModel *cityModel = [_cityArray objectAtIndex:indexPath.row];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            cell.textLabel.text = cityModel.cityName;
+            if (cityModel.isCheck) {
+                cell.accessoryType = UITableViewCellAccessoryCheckmark;
+            }else {
+                cell.accessoryType = UITableViewCellAccessoryNone;
+            }
             
 
-            
             return cell;
         }
             break;
@@ -163,6 +146,56 @@
     }
     return nil;
     
+}
+- (void)checkProvince:(UITapGestureRecognizer *)sender {
+    CodeNameModel *proviceModel = _provinceArray[sender.view.tag];
+    proviceModel.isCheck = !proviceModel.isCheck;
+    NSIndexPath *indexPath=[NSIndexPath indexPathForRow:sender.view.tag inSection:0];
+    [self.provinceTableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath,nil] withRowAnimation:UITableViewRowAnimationNone];
+}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+
+    if (tableView.tag == TAG_PROVINCE) {
+        CodeNameModel *proviceModel = _provinceArray[indexPath.row];
+        [self searchCityinProvinceCode:proviceModel.provinceCode];
+        [self.cityTableView reloadData];
+    }
+    if (tableView.tag == TAG_CITY) {
+        CodeNameModel *cityModel = _cityArray[indexPath.row];
+        cityModel.isCheck = !cityModel.isCheck;
+        [self.cityTableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath,nil] withRowAnimation:UITableViewRowAnimationNone];
+    }
+}
+
+
+/**
+ *  搜索城市
+ *
+ *  @param provinceCode 省编码
+ *
+ *  @return 市
+ */
+- (void)searchCityinProvinceCode:(NSString *)provinceCode {
+    
+    [_cityArray removeAllObjects];
+
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"province" ofType:@"sqlite"];
+    FMDatabase *db = [FMDatabase databaseWithPath:path];
+    if (![db open]) {
+        NSLog(@"数据库打开失败!");
+        return;
+    }
+    NSString *sqlStr = [NSString stringWithFormat:@"SELECT * FROM city where cityCode like '%@%%'",provinceCode];
+    FMResultSet *result = [db executeQuery:sqlStr];
+    while ([result next]) {
+
+        CodeNameModel *cityModel = [CodeNameModel new];
+        cityModel.cityName = [result stringForColumn:@"cityName"];
+        cityModel.cityCode = [result stringForColumn:@"cityCode"];
+        cityModel.isCheck = NO;
+        [_cityArray addObject:cityModel];
+    }
+    [db close];
 }
 
 

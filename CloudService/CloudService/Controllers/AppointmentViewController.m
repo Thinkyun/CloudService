@@ -134,7 +134,12 @@
 
 - (IBAction)save:(id)sender {
     NSString *url = [NSString stringWithFormat:@"%@%@",BaseAPI,kaddReserve];
-    NSDictionary *params = @{@"userId":[[SingleHandle shareSingleHandle] getUserInfo].userId,@"customerId":self.customerId,@"time":self.tfDate.text,@"comment":self.textView.text,@"endCode":self.tfCode.text};
+    NSDictionary *params = @{@"userId":[[SingleHandle shareSingleHandle] getUserInfo].userId,
+                             @"customerId":self.customerId,
+                             @"time":self.tfDate.text,
+                             @"comment":self.textView.text,
+                             @"endCode":self.tfCode.text,
+                             @"baseId":self.baseId};
     [MHNetworkManager postReqeustWithURL:url params:params successBlock:^(id returnData) {
         
         if ([[returnData objectForKey:@"flag"] isEqualToString:@"success"]) {

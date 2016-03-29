@@ -56,11 +56,13 @@
         self.select         = action;
         if (showHUD==YES) {
             [MBProgressHUD showHUDAddedTo:(UIView*)[[[UIApplication sharedApplication]delegate]window] animated:YES];
+            
         }
         __weak typeof(self)weakSelf = self;
         DTLog(@"--请求url地址--%@\n",url);
         DTLog(@"----请求参数%@\n",params);
         AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+       
         manager.responseSerializer.acceptableContentTypes =  [NSSet setWithObject:@"text/html"];
         manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/xml", nil];
         manager.responseSerializer = [AFJSONResponseSerializer serializer];

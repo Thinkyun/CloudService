@@ -309,6 +309,8 @@
 }
 //获取个人业绩
 - (void)requestUserAchievement {
+    AppDelegate *delegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
+    delegate.isThird=NO;
     [self removeNoData];
     NSString *url = [NSString stringWithFormat:@"%@%@",BaseAPI,kfindUserAchievement];
     NSDictionary *params = @{@"userId":[[SingleHandle shareSingleHandle] getUserInfo].userId};
@@ -380,6 +382,8 @@
     }
     
     [self removeNoData];
+    AppDelegate *delegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
+    delegate.isThird=NO;
     NSString *url = [NSString stringWithFormat:@"%@%@",BaseAPI,kfindTeamAchievement];
     [MHNetworkManager postReqeustWithURL:url params:paramsDic successBlock:^(id returnData) {
         NSLog(@"%@",returnData);

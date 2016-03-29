@@ -48,15 +48,29 @@ static ButelHandle *singleHandle = nil;
 }
 
 - (void)logOut {
-    [self.connect Logout];
-    //释放青牛sdk
-    [ButelEventConnectSDK destroyButelCommonConn:self.connect];
-    self.callView = nil;
+    if (isCanCall) {
+        [self.connect Logout];
+         self.callView = nil;
+        
+        UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        UIViewController *loginVC = [storyBoard instantiateViewControllerWithIdentifier:@"loginNavi"];
+        UIViewController *oldVC = [UIApplication sharedApplication].keyWindow.rootViewController;
+        oldVC = nil;
+       
+        [UIApplication sharedApplication].keyWindow.rootViewController = loginVC;
+    }else {
+        [MBProgressHUD showMessag:@"青牛正在登陆，请稍候" toView:nil];
+    }
+   
+   
+    
+
 }
 
 // 扬声器
 - (void)openSpeaker:(BOOL )isSpeaker {
     [self.connect OpenSpeaker:isSpeaker];
+    
 }
 
 // 静音
@@ -122,7 +136,9 @@ static ButelHandle *singleHandle = nil;
     [self.callView callPhoneOrHangUp];
 
 }
-
+- (void)popCallView {
+    [self.callView popCallView];
+}
 #pragma mark 回调入口
 /****************************************************回调实现****************************************************************/
 - (void)OnInit:(int)reason
@@ -194,6 +210,16 @@ static ButelHandle *singleHandle = nil;
 }
 
 - (void)OnUninit:(int)reason {
+    if (reason == 0) {
+        @try {
+            //释放青牛sdk
+            [ButelEventConnectSDK destroyButelCommonConn:self.connect];
+        } @catch (NSException *exception) {
+            NSLog(@"%@",[[exception callStackSymbols] componentsJoinedByString:@"\n"]);
+
+        }
+        
+    }
     
 }
 
@@ -221,14 +247,25 @@ static ButelHandle *singleHandle = nil;
  @param token	    登陆使用的token
  */
 - (void)OnLoginWithToken:(int)nReason token:(NSString *)token {
-    
+    if (nReason == 0) {
+     
+    }
 }
 
 ///** 登出回调
 // @param reason 登出成功与否 0：成功， <0：失败原因
-// @return void
-// */
-- (void)onLogout:(int)reason {
+
+-(void)onLogout:(int)reason {
+    if (reason == 0) {
+        @try {
+            ButelStatus status = [self.connect GetButelConnStatus];
+            NSLog(@"%i",status.curConnStatus);
+            [self.connect Uninit];
+        } @catch (NSException *exception) {
+            NSLog(@"%@",[[exception callStackSymbols] componentsJoinedByString:@"\n"]);
+        }
+    }
+   
     
 }
 

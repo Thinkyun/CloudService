@@ -19,6 +19,7 @@
 #import "Order.h"
 #import "SetUserInfoViewController.h"
 #import "ButelHandle.h"
+#import "AppDelegate.h"
 
 @interface HomeViewController ()<UICollectionViewDataSource,UICollectionViewDelegate,UIAlertViewDelegate>
 {
@@ -42,6 +43,7 @@ static NSString *headerView_ID = @"headerView";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
 
     [self initData];
     [self setupViews];
@@ -138,6 +140,8 @@ static NSString *headerView_ID = @"headerView";
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     [dict setValue:user.userId forKey:@"userId"];
     [dict setValue:[Utility location] forKey:@"address"];
+    AppDelegate *delegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
+    delegate.isThird=NO;
     [MHNetworkManager postReqeustWithURL:[RequestEntity urlString:kSignedAPI]
                                   params:dict
                             successBlock:^(id returnData) {
@@ -294,7 +298,8 @@ static NSString *headerView_ID = @"headerView";
  */
 
 - (void)getMyintegralData {
-    
+    AppDelegate *delegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
+    delegate.isThird=NO;
     User *user = [[SingleHandle shareSingleHandle] getUserInfo];
     __weak typeof(self) weakSelf = self;
     [MHNetworkManager postReqeustWithURL:[RequestEntity urlString:kGetuserIntergralAPI]
@@ -314,7 +319,8 @@ static NSString *headerView_ID = @"headerView";
 
 /** 获取数据*/
 - (void)getData {
-    
+    AppDelegate *delegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
+    delegate.isThird=NO;
     if ([[[SingleHandle shareSingleHandle] getUserInfo].sign isEqualToString:@"1"]) {
         
         NSDictionary *paramsDic=@{@"userId":[[SingleHandle shareSingleHandle] getUserInfo].userId};

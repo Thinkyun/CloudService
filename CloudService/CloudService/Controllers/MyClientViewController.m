@@ -86,7 +86,8 @@
 }
 
 - (void)requestData:(NSString *)condition{
-
+    AppDelegate *delegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
+    delegate.isThird=NO;
     NSDictionary *paramsDic=@{@"userId":[[SingleHandle shareSingleHandle] getUserInfo].userId,
                               @"pageSize":[NSString stringWithFormat:@"%i",_pageSize],
                               @"pageNo":[NSString stringWithFormat:@"%i",_page],
