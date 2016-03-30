@@ -34,6 +34,7 @@
     self.tfLicenseNo.autocapitalizationType = UITextAutocapitalizationTypeAllCharacters;
 
     [weakSelf setLeftImageBarButtonItemWithFrame:CGRectMake(0, 0, 35, 35) image:@"title-back" selectImage:@"back" action:^(AYCButton *button) {
+        [[FireData sharedInstance] eventWithCategory:@"创建订单" action:@"返回首页" evar:nil attributes:nil];
         [weakSelf.navigationController popViewControllerAnimated:YES];
     }];
     
@@ -79,7 +80,7 @@
         [MBProgressHUD showMessag:@"车牌号格式不正确" toView:self.view];
         return ;
     }
-
+    [[FireData sharedInstance] eventWithCategory:@"创建订单" action:@"下一步" evar:nil attributes:nil];
 
         AppDelegate *delegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
         delegate.isThird=YES;
@@ -157,12 +158,14 @@
 - (IBAction)newCarAction:(id)sender {
     if (self.isNewCarBtn.selected)
     {
+        [[FireData sharedInstance] eventWithCategory:@"创建订单" action:@"不是新车" evar:nil attributes:nil];
         [self.isNewCarBtn setImage:[UIImage imageNamed:@"checkbox"] forState:(UIControlStateNormal)];
         self.tfLicenseNo.enabled = YES;
         self.tfLicenseNo.text = @"";
         self.tfLicenseNo.placeholder = @"请输入车牌号";
     }else
     {
+        [[FireData sharedInstance] eventWithCategory:@"创建订单" action:@"新车" evar:nil attributes:nil];
         [self.isNewCarBtn setImage:[UIImage imageNamed:@"checkbox_"] forState:(UIControlStateNormal)];
         self.tfLicenseNo.enabled = NO;
         self.tfLicenseNo.text = @"新车";
@@ -171,7 +174,7 @@
     
 }
 - (IBAction)showCityPickerView:(id)sender {
-    
+    [[FireData sharedInstance] eventWithCategory:@"创建订单" action:@"选择行驶省市" evar:nil attributes:nil];
     [HelperUtil resignKeyBoardInView:self.view];
     
     __block ZQCityPickerView *cityPickerView = [[ZQCityPickerView alloc] initWithProvincesArray:nil cityArray:nil componentsCount:2];

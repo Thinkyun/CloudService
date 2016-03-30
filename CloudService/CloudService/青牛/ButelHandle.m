@@ -159,6 +159,7 @@ static ButelHandle *singleHandle = nil;
                 self.deviceId = [extDic objectForKey:@"nubeUUID"];
                 NSString *UUID = [extDic objectForKey:@"nubeAppKey"];
                 NSLog(@"%@",dic);
+                
                 [self.connect Login:UUID number:[array objectAtIndex:1] deviceId:self.deviceId nickname:@"CONNECT" userUniqueIdentifer:self.deviceId];
             }else {
                 [MBProgressHUD showError:[dic objectForKey:@"msg"] toView:nil];

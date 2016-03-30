@@ -89,6 +89,7 @@
 
 //派发优惠券
 - (void)distributeClick:(UIButton *)sender {
+    
     [HelperUtil resignKeyBoardInView:self.view];
     isDistribute = NO;
     TeamMember *teamMember = [_teamMemberArray objectAtIndex:0];
@@ -121,7 +122,7 @@
                         NSDictionary *dic = returnData;
                         if ([[dic objectForKey:@"flag"] isEqualToString:@"success"]) {
                             [MBProgressHUD showMessag:@"派发优惠券成功" toView:self.view];
-                            
+                            [[FireData sharedInstance] eventWithCategory:@"优惠券派发" action:@"派发优惠券" evar:nil attributes:nil];
                             if (self.refreshBlock) {
                                 // 刷新的block
                                 self.refreshBlock();
@@ -211,8 +212,10 @@
 }
 
 - (void)allCheckTap:(UITapGestureRecognizer *)tap {
+    
     isAllCheck = !isAllCheck;
     if (isAllCheck) {
+        [[FireData sharedInstance] eventWithCategory:@"优惠券派发" action:@"全选" evar:nil attributes:nil];
         [self.allCheckImg setImage:[UIImage imageNamed:@"youhuiquan-checkbox_"]];
         for (TeamMember *teamMember1 in _teamMemberArray) {
             teamMember1.isCheck=YES;

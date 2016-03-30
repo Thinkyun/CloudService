@@ -46,6 +46,7 @@
     _orderArray = [NSMutableArray array];
     __weak typeof(self) weakSelf = self;
     [weakSelf setLeftImageBarButtonItemWithFrame:CGRectMake(0, 0, 35, 35) image:@"title-back" selectImage:@"back" action:^(AYCButton *button) {
+        [[FireData sharedInstance] eventWithCategory:@"订单搜索" action:@"返回订单管理" evar:nil attributes:nil];
         [weakSelf.navigationController popViewControllerAnimated:YES];
     }];
     
@@ -53,8 +54,10 @@
     
     [weakSelf setRightImageBarButtonItemWithFrame:CGRectMake(0, 0, 30, 30) image:@"title-search" selectImage:@"title-search_" action:^(AYCButton *button) {
         if (isOpen) {
+            [[FireData sharedInstance] eventWithCategory:@"订单搜索" action:@"收回搜索菜单" evar:nil attributes:nil];
             [weakSelf upMenu];
         }else {
+            [[FireData sharedInstance] eventWithCategory:@"订单搜索" action:@"下拉搜索菜单" evar:nil attributes:nil];
             [weakSelf downMenu];
         }
         
@@ -207,15 +210,7 @@
         make.top.equalTo(lbCar.mas_bottom).offset(15);
     }];
     
-//    _lbCode = [UILabel new];
-////    _lbCode.textAlignment = NSTextAlignmentCenter;
-//    _lbCode.textColor = [UIColor lightGrayColor];
-//    _lbCode.font = [UIFont systemFontOfSize:14];
-//    _lbCode.text = @"请选择结束码";
-//    _lbCode.userInteractionEnabled = YES;
-//    UITapGestureRecognizer *startTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(codeClick:)];
-//    [_lbCode addGestureRecognizer:startTap];
-//    [_searchView addSubview:_lbCode];
+
     
     _tfCode = [UITextField new];
     _tfCode.font = [UIFont systemFontOfSize:14];
@@ -292,9 +287,35 @@
         // 添加宽度（宽度跟右边按键一样）
         make.width.equalTo(_tfEnd);
     }];
+    [startBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        //添加高约束
+        make.height.mas_equalTo(34);
+        //添加上边距约束
+        make.top.equalTo(_tfCode.mas_bottom).offset(15);
+        // 添加左边距约束（距离当前主视图左边的距离）
+        make.left.equalTo(lbTime.mas_right).offset(15);
+        // 添加右边距约束（距离第二个按键左边的距离）
+        make.right.equalTo(_tfEnd.mas_left).with.offset(-20);
+        
+        // 添加宽度（宽度跟右边按键一样）
+        make.width.equalTo(_tfEnd);
+    }];
     
     
     [_tfEnd mas_makeConstraints:^(MASConstraintMaker *make) {
+        //添加高约束
+        make.height.mas_equalTo(34);
+        //添加上边距约束
+        make.top.equalTo(_tfCode.mas_bottom).offset(15);
+        // 添加左边距约束（距离左边按键的距离）
+        make.left.equalTo(_tfStart.mas_right).with.offset(20);
+        // 添加右边距约束（距离当前主视图右边的距离）
+        make.right.equalTo(self.view.mas_right).with.offset(-20);
+        
+        // 添加宽度（宽度跟右边按键一样）
+        make.width.equalTo(_tfStart);
+    }];
+    [endBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         //添加高约束
         make.height.mas_equalTo(34);
         //添加上边距约束
@@ -372,16 +393,19 @@
 }
 
 - (void)cancelClick:(UIButton *)sender {
+    [[FireData sharedInstance] eventWithCategory:@"订单搜索" action:@"取消搜索" evar:nil attributes:nil];
     [self upMenu];
  
 }
 
 - (void)sureClick:(UIButton *)sender {
+    [[FireData sharedInstance] eventWithCategory:@"订单搜索" action:@"确定搜索" evar:nil attributes:nil];
     [self upMenu];
     [self.tableView.mj_header beginRefreshing];
 }
 /** 结束码下拉*/
 -  (void)codeClick:(UITapGestureRecognizer *)tap {
+    [[FireData sharedInstance] eventWithCategory:@"订单搜索" action:@"选择结束码" evar:nil attributes:nil];
     [HelperUtil resignKeyBoardInView:self.view];
     NSArray *array = [[SingleHandle shareSingleHandle] getEndCodeArray];
     [PellTableViewSelect addPellTableViewSelectWithWindowFrame:CGRectMake(80, 260, 200, 200) selectData:
@@ -414,6 +438,7 @@
 }
 // 开始时间
 - (void)startDateClick:(UITapGestureRecognizer *)tap {
+    [[FireData sharedInstance] eventWithCategory:@"订单搜索" action:@"起始时间" evar:nil attributes:nil];
     [HelperUtil resignKeyBoardInView:self.view];
     [self setupDateView:DateTypeOfStart];
     
@@ -421,6 +446,7 @@
 
 // 结束时间
 - (void)endDateClick:(UITapGestureRecognizer *)tap {
+    [[FireData sharedInstance] eventWithCategory:@"订单搜索" action:@"终止时间" evar:nil attributes:nil];
     [HelperUtil resignKeyBoardInView:self.view];
     [self setupDateView:DateTypeOfEnd];
     
@@ -618,7 +644,7 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
+    [[FireData sharedInstance] eventWithCategory:@"订单搜索" action:@"订单详情" evar:nil attributes:nil];
     _order = [_orderArray objectAtIndex:indexPath.row];
     
     [self performSegueWithIdentifier:@"searchOrderInfo" sender:self];

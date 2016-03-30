@@ -271,6 +271,7 @@
     // segue.identifier：获取连线的ID
     
     if ([segue.identifier isEqualToString:@"orderInfo"]) {
+         [[FireData sharedInstance] eventWithCategory:@"订单管理" action:@"订单详情" evar:nil attributes:nil];
         // segue.destinationViewController：获取连线时所指的界面（VC）
         OrderInfoViewController *receive = segue.destinationViewController;
         receive.order = _order;
