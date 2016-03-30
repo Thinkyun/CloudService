@@ -292,7 +292,7 @@
 #pragma mark 加载团队优惠券
 - (void)requestGroupData {
     [self removeNoData];
-
+    
     NSDictionary *paramsDic=@{@"userId":[[SingleHandle shareSingleHandle] getUserInfo].userId,
                               @"pageSize":[NSString stringWithFormat:@"%i",_pageSize2],
                               @"pageNo":[NSString stringWithFormat:@"%i",_page2]};
@@ -424,6 +424,13 @@
     if ([segue.identifier isEqualToString:@"distribute"]) {
         // segue.destinationViewController：获取连线时所指的界面（VC）
         CouponsDistributeViewController *receive = segue.destinationViewController;
+        
+        // 刷新的block
+        [receive refresh:^{
+            
+            [_tableView2.mj_header beginRefreshing];
+        }];
+        
         receive.coupons = [_teamArray objectAtIndex:_teamIndexPath.row];
     }
 }

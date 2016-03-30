@@ -7,8 +7,15 @@
 //
 
 #import "BaseViewController.h"
+
+typedef void (^refreshBlock)();
+
 @class Coupons;
 @interface CouponsDistributeViewController : BaseViewController
 
 @property (nonatomic, strong)Coupons *coupons;
+
+@property (nonatomic, copy) refreshBlock refreshBlock;
+- (void)refresh:(refreshBlock)block;
+
 @end

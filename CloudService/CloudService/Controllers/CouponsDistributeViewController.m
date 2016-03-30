@@ -81,6 +81,12 @@
     [button addTarget:self action:@selector(distributeClick:) forControlEvents:UIControlEventTouchUpInside];
     [_footView addSubview:button];
 }
+//刷新block
+- (void)refresh:(refreshBlock)block
+{
+    self.refreshBlock = block;
+}
+
 //派发优惠券
 - (void)distributeClick:(UIButton *)sender {
     [self resignKeyBoardInView:self.view];
@@ -115,6 +121,12 @@
                         NSDictionary *dic = returnData;
                         if ([[dic objectForKey:@"flag"] isEqualToString:@"success"]) {
                             [MBProgressHUD showMessag:@"派发优惠券成功" toView:self.view];
+                            
+                            if (self.refreshBlock) {
+                                self.refreshBlock();
+                            }
+                            
+                            [self.navigationController popViewControllerAnimated:YES];
                         }else {
                             [MBProgressHUD showMessag:[dic objectForKey:@"msg"] toView:self.view];
                         }
@@ -245,6 +257,15 @@
     }
     
 }
+
+//- (void)viewWillDisappear:(BOOL)animated
+//{
+//    [super viewWillDisappear:animated];
+//    if (self.refreshBlock) {
+//        self.refreshBlock(YES);
+//    }
+//}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
