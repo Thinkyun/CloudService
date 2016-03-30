@@ -81,6 +81,12 @@
     [button addTarget:self action:@selector(distributeClick:) forControlEvents:UIControlEventTouchUpInside];
     [_footView addSubview:button];
 }
+//刷新block
+- (void)refresh:(refreshBlock)block
+{
+    self.refreshBlock = block;
+}
+
 //派发优惠券
 - (void)distributeClick:(UIButton *)sender {
     [HelperUtil resignKeyBoardInView:self.view];

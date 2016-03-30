@@ -24,8 +24,6 @@
 		634EE6201C995A8D00FB526D /* activity2@2X.png in Resources */ = {isa = PBXBuildFile; fileRef = 634EE61E1C995A8D00FB526D /* activity2@2X.png */; };
 		634EE6271C997F0000FB526D /* rulebg3.png in Resources */ = {isa = PBXBuildFile; fileRef = 634EE6251C997F0000FB526D /* rulebg3.png */; };
 		634EE62B1C997F9400FB526D /* RuleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 634EE62A1C997F9400FB526D /* RuleViewController.m */; };
-		63588FE21CA4CEA4002C6857 /* ButelCommonConnectSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 63588FDC1CA4CEA4002C6857 /* ButelCommonConnectSDK.bundle */; };
-		63588FE31CA4CEA4002C6857 /* ButelCommonConnectSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63588FDD1CA4CEA4002C6857 /* ButelCommonConnectSDK.framework */; };
 		63588FE41CA4CEA4002C6857 /* ButelHandle.m in Sources */ = {isa = PBXBuildFile; fileRef = 63588FDF1CA4CEA4002C6857 /* ButelHandle.m */; };
 		63588FE51CA4CEA4002C6857 /* CallView.m in Sources */ = {isa = PBXBuildFile; fileRef = 63588FE11CA4CEA4002C6857 /* CallView.m */; };
 		635C2AC91C8527D10051708D /* CreatClientViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 635C2AC81C8527D10051708D /* CreatClientViewController.m */; };
@@ -94,6 +92,8 @@
 		63C54E3E1C7C35AA007CE8CA /* ResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63C54E3D1C7C35AA007CE8CA /* ResultViewController.m */; };
 		63C54E411C7C35BA007CE8CA /* PersonalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63C54E401C7C35BA007CE8CA /* PersonalViewController.m */; };
 		63E9BFDD1C9659B200FFE0BA /* Order.m in Sources */ = {isa = PBXBuildFile; fileRef = 63E9BFDC1C9659B200FFE0BA /* Order.m */; };
+		9025D0F91CA50B6500E3B43F /* ButelCommonConnectSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 9025D0F71CA50B6500E3B43F /* ButelCommonConnectSDK.bundle */; };
+		9025D0FA1CA50B6500E3B43F /* ButelCommonConnectSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9025D0F81CA50B6500E3B43F /* ButelCommonConnectSDK.framework */; };
 		91A97CA728DD2D371997D3F7 /* libPods-CloudService.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D96943D8DC951CBCC61FF495 /* libPods-CloudService.a */; };
 		F019C9D61C7BFD7900E73A2C /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F019C9D51C7BFD7900E73A2C /* LoginViewController.m */; };
 		F019C9D91C7BFD8D00E73A2C /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F019C9D81C7BFD8D00E73A2C /* RegisterViewController.m */; };
@@ -189,8 +189,6 @@
 		634EE6251C997F0000FB526D /* rulebg3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rulebg3.png; sourceTree = "<group>"; };
 		634EE6291C997F9400FB526D /* RuleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RuleViewController.h; sourceTree = "<group>"; };
 		634EE62A1C997F9400FB526D /* RuleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RuleViewController.m; sourceTree = "<group>"; };
-		63588FDC1CA4CEA4002C6857 /* ButelCommonConnectSDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ButelCommonConnectSDK.bundle; sourceTree = "<group>"; };
-		63588FDD1CA4CEA4002C6857 /* ButelCommonConnectSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ButelCommonConnectSDK.framework; sourceTree = "<group>"; };
 		63588FDE1CA4CEA4002C6857 /* ButelHandle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ButelHandle.h; sourceTree = "<group>"; };
 		63588FDF1CA4CEA4002C6857 /* ButelHandle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ButelHandle.m; sourceTree = "<group>"; };
 		63588FE01CA4CEA4002C6857 /* CallView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CallView.h; sourceTree = "<group>"; };
@@ -303,6 +301,8 @@
 		63E9BFDB1C9659B200FFE0BA /* Order.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Order.h; sourceTree = "<group>"; };
 		63E9BFDC1C9659B200FFE0BA /* Order.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Order.m; sourceTree = "<group>"; };
 		8080CD2CAEE01D9CB60C40F6 /* Pods-CloudService.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CloudService.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CloudService/Pods-CloudService.debug.xcconfig"; sourceTree = "<group>"; };
+		9025D0F71CA50B6500E3B43F /* ButelCommonConnectSDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ButelCommonConnectSDK.bundle; sourceTree = "<group>"; };
+		9025D0F81CA50B6500E3B43F /* ButelCommonConnectSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ButelCommonConnectSDK.framework; sourceTree = "<group>"; };
 		AA863A4D44EB33149F738225 /* Pods-CloudService.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CloudService.release.xcconfig"; path = "Pods/Target Support Files/Pods-CloudService/Pods-CloudService.release.xcconfig"; sourceTree = "<group>"; };
 		D96943D8DC951CBCC61FF495 /* libPods-CloudService.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CloudService.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F019C9D41C7BFD7900E73A2C /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
@@ -427,7 +427,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				636CD92C1C880C4E0050935E /* AVFoundation.framework in Frameworks */,
-				63588FE31CA4CEA4002C6857 /* ButelCommonConnectSDK.framework in Frameworks */,
+				9025D0FA1CA50B6500E3B43F /* ButelCommonConnectSDK.framework in Frameworks */,
 				F0906A811C96A9CF007C3BBC /* libFireData.a in Frameworks */,
 				636CD92A1C880C4A0050935E /* MediaPlayer.framework in Frameworks */,
 				636CD9281C880C440050935E /* AudioToolbox.framework in Frameworks */,
@@ -459,8 +459,8 @@
 		63588FDB1CA4CEA4002C6857 /* 青牛 */ = {
 			isa = PBXGroup;
 			children = (
-				63588FDC1CA4CEA4002C6857 /* ButelCommonConnectSDK.bundle */,
-				63588FDD1CA4CEA4002C6857 /* ButelCommonConnectSDK.framework */,
+				9025D0F71CA50B6500E3B43F /* ButelCommonConnectSDK.bundle */,
+				9025D0F81CA50B6500E3B43F /* ButelCommonConnectSDK.framework */,
 				63588FDE1CA4CEA4002C6857 /* ButelHandle.h */,
 				63588FDF1CA4CEA4002C6857 /* ButelHandle.m */,
 				63588FE01CA4CEA4002C6857 /* CallView.h */,
@@ -1072,7 +1072,7 @@
 				F0292BB81C7B00CD00A810A9 /* Main.storyboard in Resources */,
 				6367FB0D1C9AA19900947038 /* rulebg1.png in Resources */,
 				630EF1901C8543900059CB34 /* PersonResultCell.xib in Resources */,
-				63588FE21CA4CEA4002C6857 /* ButelCommonConnectSDK.bundle in Resources */,
+				9025D0F91CA50B6500E3B43F /* ButelCommonConnectSDK.bundle in Resources */,
 				637533B01C83F64100A12932 /* details-icon.png in Resources */,
 				F0AFC54C1C9C0D2B00BC3CBC /* Default-568h@2x.png in Resources */,
 			);
