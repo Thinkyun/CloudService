@@ -31,8 +31,6 @@
 @property (nonatomic, assign) int sessionInterval;              // 会话时间间隔，默认为10分钟
 @property (nonatomic, assign) int bufferNumber;                 // 日志缓存最高条数限制，默认为50条
 
-@property (nonatomic, copy) NSString *refcode;                  // 设置APP启动来源
-
 @property (nonatomic, strong) NSString *sendBaseUrl;
 
 @property (nonatomic, assign) BOOL enableIDFA;                  // 是否允许获取 IDFA, 默认为允许 YES
@@ -41,7 +39,7 @@
  初始化设置
  */
 - (void)initWithHost:(NSString *)url                // 服务端host地址
-               AppId:(NSString *)appid              // app id
+              appKey:(NSString *)appKey             // 用户APP的唯一标识
         distributors:(NSString *)channelId;        // app 渠道
 
 ///---------------------------------------------------------------------------------------
@@ -50,7 +48,7 @@
 /*
  用户登录
  */
-- (void)loginWithUserid:(NSString *)uid uvar:(NSString *)uvar;
+- (void)loginWithUserid:(NSString *)uid uvar:(NSDictionary *)uvar;
 /*
  用户退出登录
  */
@@ -60,13 +58,13 @@
 /**
  在该页面展示时调用beginLogPageView:，当退出该页面时调用endLogPageView:
  @param pageName 当前所处的页面名称.
- @param attributes pv级作用域的参数, 应包含 cid:cid, cch:channel, cchs:subchannel
+ @param attributes pv级作用域的参数, 应包含 cid:cid, cch:channel
  @param cvar 内容额外参数
  @return void.
  */
 - (void)beginLogPageView:(NSString *)pageName
               attributes:(NSDictionary *)attributes
-                    cvar:(NSString *)cvar;
+                    cvar:(NSDictionary *)cvar;
 
 /**
  必须配对调用beginLogPageView:和endLogPageView:两个函数来完成自动统计，若只调用某一个函数不会生成有效数据。
@@ -80,20 +78,29 @@
  自定义事件
  @param category 事件分类 (如：Videos, Music, Games...)
  @param action 动作 (如Play, Pause, Duration, Buy)
- @param name 名字，(如视频名字，歌曲名字等), 可选
- @value value 事件的值，可选
+ @param evar 事件统计参数（json格式）
  @param attributes 额外统计参数（可选，预留，若有值则以 key1=value1&key2=value2的形式加入post参数中）
  @return void.
  */
 - (void)eventWithCategory:(NSString *)category
                    action:(NSString *)action
-                     name:(NSString *)name
-                    value:(NSString *)value
+                     evar:(NSDictionary *)evar
                attributes:(NSDictionary *)attributes;
+
+/*
+ 重置各级作用域的相关参数
+ @return void.
+ */
+- (void)resetUserid:(NSString *)uid
+               uvar:(NSDictionary *)uvar
+               cvar:(NSDictionary *)cvar
+          contentId:(NSString *)cid
+         contentCat:(NSString *)cch;
 
 ///---------------------------------------------------------------------------------------
 /// @name  公用参数
 ///---------------------------------------------------------------------------------------
+- (NSString *)userid;
 - (NSString *)guid;
 - (NSString *)idfa;
 - (NSString *)idfv;

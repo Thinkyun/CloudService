@@ -142,6 +142,10 @@
             User *user = [User mj_objectWithKeyValues:[returnData valueForKey:@"data"]];
             [[SingleHandle shareSingleHandle] saveUserInfo:user];
             [Utility saveUserName:self.UserTextFiled.text passWord:self.pwdTextFiled.text];
+            /**
+             *  火炬登陆信息
+             */
+            [[FireData sharedInstance] loginWithUserid:user.userId uvar:nil];
             if (weakSelf.choseBtn.selected) {
                 [Utility remberPassWord:YES];
             }else {

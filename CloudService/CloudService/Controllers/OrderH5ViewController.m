@@ -18,6 +18,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.fireDataApp = [[FiredataApp alloc] init];
     [self setupViews];
     // Do any additional setup after loading the view.
 }
@@ -43,12 +44,20 @@
 }
 
 - (void)webViewDidStartLoad:(UIWebView *)webView {
-    
+    NSLog(@"开始加载");
     
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
-    
+    // 绑定 webView
+    [self.fireDataApp bindWebView:webView
+                   categoryPrefix:@"直客报价"
+                             uvar:nil
+                             cvar:nil
+                             evar:nil
+                        contentId:nil
+                       contentCat:nil];
+    NSLog(@"结束加载");
 }
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(nullable NSError *)error {

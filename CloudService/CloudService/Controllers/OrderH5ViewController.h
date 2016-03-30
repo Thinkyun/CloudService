@@ -7,9 +7,10 @@
 //
 
 #import "BaseViewController.h"
+#import "FiredataApp.h"
 
 @interface OrderH5ViewController : BaseViewController
 
 @property (nonatomic,copy)NSString *url;
-
+@property (nonatomic, strong) FiredataApp *fireDataApp;
 @end
