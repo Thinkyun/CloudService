@@ -251,14 +251,15 @@ static NSString *headerView_ID = @"headerView";
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     switch (indexPath.row) {
         case 0:
+            [[FireData sharedInstance] eventWithCategory:@"首页" action:@"获取数据" evar:nil attributes:nil];
             [self getData];
-
             break;
         case 1:
-             [[FireData sharedInstance] eventWithCategory:@"我的客户" action:@"获取数据" evar:nil attributes:nil];
+             [[FireData sharedInstance] eventWithCategory:@"首页" action:@"我的客户" evar:nil attributes:nil];
             [self performSegueWithIdentifier:@"myClient" sender:self];
             break;
         case 2:
+            [[FireData sharedInstance] eventWithCategory:@"首页" action:@"创建订单" evar:nil attributes:nil];
             [self performSegueWithIdentifier:@"creatOrder" sender:self];
 //            [MBProgressHUD showMessag:@"程序猿正在火力开发中" toView:self.view];
             break;
@@ -267,16 +268,19 @@ static NSString *headerView_ID = @"headerView";
 //            IntergralCityViewController *intergCityVC = [[IntergralCityViewController alloc] init];
 //            [self.navigationController pushViewController:intergCityVC animated:YES];
 //        }
+            [[FireData sharedInstance] eventWithCategory:@"首页" action:@"积分商城" evar:nil attributes:nil];
             [MBProgressHUD showMessag:@"程序猿正在火力开发中" toView:self.view];
             break;
         case 4:
         {
             UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
             UIViewController *vc = [storyBoard instantiateViewControllerWithIdentifier:@"InviteFriendsVC"];
+            [[FireData sharedInstance] eventWithCategory:@"首页" action:@"邀请好友" evar:nil attributes:nil];
             [self.navigationController pushViewController:vc animated:YES];
         }
             break;
         case 5:
+            [[FireData sharedInstance] eventWithCategory:@"首页" action:@"我的积分" evar:nil attributes:nil];
             [self performSegueWithIdentifier:@"myIntergralVC_push" sender:self];
             break;
             

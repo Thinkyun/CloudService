@@ -81,6 +81,8 @@ static NSString *const select_CellID = @"selectCell";
 
 - (IBAction)saveAction:(id)sender {
     
+    [[FireData sharedInstance] eventWithCategory:@"个人信息" action:@"保存" evar:nil attributes:nil];
+
     // 编辑
     if (self.notEnable) {
         self.notEnable = NO;
@@ -112,6 +114,7 @@ static NSString *const select_CellID = @"selectCell";
                 return ;
             }
             [[NSNotificationCenter defaultCenter] postNotificationName:ReloadHomeData object:nil];
+
             [self.navigationController popToRootViewControllerAnimated:YES];
         }else {
             [MBProgressHUD showMessag:[returnData valueForKey:@"msg"] toView:self.view];
@@ -129,6 +132,8 @@ static NSString *const select_CellID = @"selectCell";
     self.title = @"填写个人资料";
     __weak typeof(self) weakSelf = self;
     [self setLeftImageBarButtonItemWithFrame:CGRectMake(0, 0, 25, 25) image:@"title-back" selectImage:@"" action:^(AYCButton *button) {
+        
+        [[FireData sharedInstance] eventWithCategory:@"个人信息" action:@"返回" evar:nil attributes:nil];
         [weakSelf.navigationController popViewControllerAnimated:YES];
     }];
     
@@ -405,6 +410,7 @@ static NSString *const select_CellID = @"selectCell";
                         CGRect rect3 = CGRectMake(tempRect.origin.x, CGRectGetMaxY(cellFrame) - self.tableView.contentOffset.y + 64, tempRect.size.width, 4 * 40);
 //                        [self showPullDownViewWithRect:rect3];
                 
+                [[FireData sharedInstance] eventWithCategory:@"个人信息" action:@"原离职公司" evar:nil attributes:nil];
                         [PellTableViewSelect addPellTableViewSelectWithWindowFrame:rect3 selectData:_selectArray action:^(NSInteger index) {
                             _valueArray_User[_indexPath.row] = _selectArray[index];
                             [self.tableView reloadData];
@@ -412,12 +418,16 @@ static NSString *const select_CellID = @"selectCell";
                     }
                         break;
             case 5:
+                
+                [[FireData sharedInstance] eventWithCategory:@"个人信息" action:@"从业时间" evar:nil attributes:nil];
                         [self showDataPickerView];
                         break;
             case 4:{
                         _selectArray = @[@"销售职",@"销售管理职",@"其他"];
                         CGRect rect4 = CGRectMake(tempRect.origin.x, CGRectGetMaxY(cellFrame) - self.tableView.contentOffset.y + 64, tempRect.size.width, 3 * 40);
 //                        [self showPullDownViewWithRect:rect4];
+                
+                [[FireData sharedInstance] eventWithCategory:@"个人信息" action:@"原职位" evar:nil attributes:nil];
                             [PellTableViewSelect addPellTableViewSelectWithWindowFrame:rect4 selectData:_selectArray action:^(NSInteger index) {
                                 _valueArray_User[_indexPath.row] = _selectArray[index];
                                 [self.tableView reloadData];
@@ -430,6 +440,8 @@ static NSString *const select_CellID = @"selectCell";
                 chooseVC.selectArray = _companyArray;
                 [self getChooseDataArray];
                 chooseVC.dataArray = [NSMutableArray arrayWithArray:[self getChooseDataArray]];
+                
+                [[FireData sharedInstance] eventWithCategory:@"个人信息" action:@"申请销售保险公司" evar:nil attributes:nil];
                 [self.navigationController pushViewController:chooseVC animated:YES];
                 
 //                        _selectArray = [DataSource insureCommpanyNameArray];
@@ -453,6 +465,7 @@ static NSString *const select_CellID = @"selectCell";
                         break;
                     }
             case 8:
+                [[FireData sharedInstance] eventWithCategory:@"个人信息" action:@"销售数据城市" evar:nil attributes:nil];
                 [self showCityPickerViewWithCount:1];
 //                [self performSegueWithIdentifier:@"selectCity" sender:self];
                         break;
@@ -463,6 +476,7 @@ static NSString *const select_CellID = @"selectCell";
     if (indexPath.section == 1) {
         if (indexPath.row == 4 || indexPath.row == 5)
         {
+            [[FireData sharedInstance] eventWithCategory:@"个人信息" action:@"开户城市" evar:nil attributes:nil];
             [self showCityPickerViewWithCount:2];
             
         }

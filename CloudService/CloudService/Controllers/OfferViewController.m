@@ -103,6 +103,8 @@ static CGFloat headerHeight = 30;
 // 保存
 - (void)saveAction {
     
+    [[FireData sharedInstance] eventWithCategory:@"客户信息" action:@"保存" evar:nil attributes:nil];
+
     NSIndexPath *path1 = [NSIndexPath indexPathForRow:0 inSection:0];
     OfferTableViewCell *cell1 = [self.tableView cellForRowAtIndexPath:path1];
 
@@ -139,8 +141,10 @@ static CGFloat headerHeight = 30;
 //        VC.isSaveCarInfo = YES;
             // 刷新的block
             if (self.refreshBlock) {
+                
                 self.refreshBlock();
-            }            
+            }
+            
         [self.navigationController popToViewController:VC animated:YES];
     } failureBlock:^(NSError *error) {
         
@@ -148,6 +152,8 @@ static CGFloat headerHeight = 30;
 }
 
 - (void)offerAction {
+
+    [[FireData sharedInstance] eventWithCategory:@"客户信息" action:@"报价" evar:nil attributes:nil];
 
     NSIndexPath *path1 = [NSIndexPath indexPathForRow:0 inSection:0];
     OfferTableViewCell *cell1 = [self.tableView cellForRowAtIndexPath:path1];

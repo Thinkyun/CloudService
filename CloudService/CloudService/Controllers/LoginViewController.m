@@ -50,6 +50,8 @@
 
 - (IBAction)remeberPwdAction:(id)sender {
     
+    [[FireData sharedInstance] eventWithCategory:@"登录界面" action:@"记住密码" evar:nil attributes:nil];
+
     self.choseBtn.selected = !self.choseBtn.selected;
     if (self.choseBtn.selected) {
         [self.choseBtn setBackgroundImage:[UIImage imageNamed:@"login-choose_"] forState:(UIControlStateNormal)];
@@ -106,6 +108,9 @@
 }
 
 - (void)eyeTap:(UITapGestureRecognizer *)sender {
+    
+    [[FireData sharedInstance] eventWithCategory:@"登录页面" action:@"显示密码" evar:nil attributes:nil];
+    
     _isEye = !_isEye;
     if (_isEye) {
 
@@ -121,6 +126,8 @@
 // 登录
 - (IBAction)loginAction:(id)sender {
     
+    [[FireData sharedInstance] eventWithCategory:@"登录界面" action:@"登录" evar:nil attributes:nil];
+
     if (![self checkInputMode]) {
         return;
     }
@@ -145,7 +152,7 @@
             /**
              *  火炬登陆信息
              */
-            [[FireData sharedInstance] loginWithUserid:user.userId uvar:nil];
+            [[FireData sharedInstance] loginWithUserid:user.userNum uvar:nil];
             if (weakSelf.choseBtn.selected) {
                 [Utility remberPassWord:YES];
             }else {

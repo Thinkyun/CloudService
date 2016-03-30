@@ -43,6 +43,8 @@ static NSString *cellID = @"cellID";
     [super viewDidLoad];
     __weak typeof(self) weakSelf = self;
     [weakSelf setLeftImageBarButtonItemWithFrame:CGRectMake(0, 0, 35, 35) image:@"title-back" selectImage:@"back" action:^(AYCButton *button) {
+        
+        [[FireData sharedInstance] eventWithCategory:@"我的猴运" action:@"返回" evar:nil attributes:nil];
         [weakSelf.navigationController popViewControllerAnimated:YES];
     }];
     
@@ -50,6 +52,8 @@ static NSString *cellID = @"cellID";
         UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         RuleViewController *vc = [storyBoard instantiateViewControllerWithIdentifier:@"RuleVC"];
         vc.ruleStr = @"活动1";
+        
+        [[FireData sharedInstance] eventWithCategory:@"我的猴运" action:@"活动规则" evar:nil attributes:nil];
         [self.navigationController pushViewController:vc animated:YES];
     }];
 
@@ -261,6 +265,8 @@ static NSString *cellID = @"cellID";
 }
 
 - (void)button1:(UIButton *)sender {
+    
+    [[FireData sharedInstance] eventWithCategory:@"我的猴运" action:@"第一个" evar:nil attributes:nil];
     self.button1.layer.borderColor = [[UIColor redColor] CGColor];
     self.button2.layer.borderColor = [[UIColor clearColor] CGColor];
     self.button3.layer.borderColor = [[UIColor clearColor] CGColor];
@@ -268,6 +274,8 @@ static NSString *cellID = @"cellID";
     [self.collectionView scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:YES];
 }
 - (void)button2:(UIButton *)sender {
+    
+    [[FireData sharedInstance] eventWithCategory:@"我的猴运" action:@"第二个" evar:nil attributes:nil];
     self.button1.layer.borderColor = [[UIColor clearColor] CGColor];
     self.button2.layer.borderColor = [[UIColor redColor] CGColor];
     self.button3.layer.borderColor = [[UIColor clearColor] CGColor];
@@ -275,6 +283,8 @@ static NSString *cellID = @"cellID";
     [self.collectionView scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:YES];
 }
 - (void)button3:(UIButton *)sender {
+    
+    [[FireData sharedInstance] eventWithCategory:@"我的猴运" action:@"第三个" evar:nil attributes:nil];
     self.button1.layer.borderColor = [[UIColor clearColor] CGColor];
     self.button2.layer.borderColor = [[UIColor clearColor] CGColor];
     self.button3.layer.borderColor = [[UIColor redColor] CGColor];
@@ -283,6 +293,8 @@ static NSString *cellID = @"cellID";
 }
 
 - (IBAction)getCouponAction:(id)sender {
+    
+    [[FireData sharedInstance] eventWithCategory:@"我的猴运" action:@"领取" evar:nil attributes:nil];
     AppDelegate *delegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
     delegate.isThird=NO;
     User *user = [[SingleHandle shareSingleHandle] getUserInfo];
@@ -321,6 +333,8 @@ static NSString *cellID = @"cellID";
     
 }
 - (IBAction)shareAction:(id)sender {
+    
+    [[FireData sharedInstance] eventWithCategory:@"我的猴运" action:@"分享" evar:nil attributes:nil];
     if (!_linkUrl) {
         [MBProgressHUD showMessag:@"生成邀请url失败" toView:self.view];
         return;

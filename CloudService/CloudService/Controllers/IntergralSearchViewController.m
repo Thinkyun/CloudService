@@ -38,6 +38,8 @@
     _integralArray = [NSMutableArray array];
     __weak typeof(self) weakSelf = self;
     [weakSelf setLeftImageBarButtonItemWithFrame:CGRectMake(0, 0, 35, 35) image:@"title-back" selectImage:@"back" action:^(AYCButton *button) {
+        
+        [[FireData sharedInstance] eventWithCategory:@"积分搜索" action:@"返回" evar:nil attributes:nil];
         [weakSelf.navigationController popViewControllerAnimated:YES];
     }];
     
@@ -57,6 +59,8 @@
     self.title=@"积分搜索";
     __weak typeof(self) weakSelf = self;
     [weakSelf setRightImageBarButtonItemWithFrame:CGRectMake(0, 0, 30, 30) image:@"title-search" selectImage:@"title-search_" action:^(AYCButton *button) {
+        
+        [[FireData sharedInstance] eventWithCategory:@"积分搜索" action:@"搜索" evar:nil attributes:nil];
         if (isOpen) {
             [weakSelf upMenu];
         }else {
@@ -273,6 +277,8 @@
 }
 // 开始时间
 - (void)startDateClick:(UITapGestureRecognizer *)tap {
+    
+    [[FireData sharedInstance] eventWithCategory:@"积分搜索" action:@"起始时间" evar:nil attributes:nil];
     [HelperUtil resignKeyBoardInView:self.view];
     [self setupDateView:DateTypeOfStart];
     
@@ -280,6 +286,8 @@
 
 // 结束时间
 - (void)endDateClick:(UITapGestureRecognizer *)tap {
+    
+    [[FireData sharedInstance] eventWithCategory:@"积分搜索" action:@"终止时间" evar:nil attributes:nil];
     [HelperUtil resignKeyBoardInView:self.view];
     [self setupDateView:DateTypeOfEnd];
     
@@ -321,10 +329,14 @@
 
 
 - (void)searchClick:(UIButton *)sender {
+    
+    [[FireData sharedInstance] eventWithCategory:@"积分搜索" action:@"搜索" evar:nil attributes:nil];
     [self upMenu];
     [self.tableView.mj_header beginRefreshing];
 }
 - (void)cancelSearch:(UIButton *)sender {
+    
+    [[FireData sharedInstance] eventWithCategory:@"积分搜索" action:@"取消" evar:nil attributes:nil];
     [self upMenu];
 }
 

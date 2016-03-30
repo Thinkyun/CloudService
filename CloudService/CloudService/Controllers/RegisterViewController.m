@@ -61,6 +61,8 @@
 // 注册
 - (IBAction)registerAction:(id)sender {
     
+    [[FireData sharedInstance] eventWithCategory:@"注册界面" action:@"注册" evar:nil attributes:nil];
+
     [self resignKeyBoardInView:self.view];
     if ([self checkInputMode]) {
         NSString *location = self.locateBtn.titleLabel.text;
@@ -78,6 +80,7 @@
                 [Utility saveUserName:self.phoneNum.text passWord:@""];
                 User *user = [User mj_objectWithKeyValues:[returnData valueForKey:@"data"]];
                 [[SingleHandle shareSingleHandle] saveUserInfo:user];
+
                 [weakSelf performSegueWithIdentifier:RegisterSuccess sender:weakSelf];
             }else {
                 [MBProgressHUD showMessag:dict[@"msg"] toView:self.view];
@@ -91,10 +94,13 @@
 // 定位按钮
 - (IBAction)locateAction:(id)sender {
     
-    [self resignKeyBoardInView:self.view];
+    [[FireData sharedInstance] eventWithCategory:@"注册页面" action:@"定位" evar:nil attributes:nil];
 
+    [self resignKeyBoardInView:self.view];
+    
     __block ZQCityPickerView *cityPickerView = [[ZQCityPickerView alloc] initWithProvincesArray:nil cityArray:nil componentsCount:2];
     [cityPickerView showPickViewAnimated:^(NSString *province, NSString *city, NSString *cityCode, NSString *provinceCode) {
+        
         self.locateBtn.selected = !self.locateBtn.selected;
         NSString *cityStr = [NSString stringWithFormat:@"%@%@",province,city];
         [self.locateBtn setTitle:cityStr forState:(UIControlStateNormal)];
@@ -105,6 +111,8 @@
 
 - (IBAction)getCodeAction:(id)sender {
     
+    [[FireData sharedInstance] eventWithCategory:@"注册页面" action:@"获取验证码" evar:nil attributes:nil];
+
     NSString * regexPhoneNum = @"^1[0-9]{10}$";
     NSPredicate *predicatePhoneNum = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regexPhoneNum];
     BOOL isPhoneMatch = [predicatePhoneNum evaluateWithObject:self.phoneNum.text];

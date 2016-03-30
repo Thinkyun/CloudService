@@ -33,6 +33,8 @@
     self.tfPhone.delegate = self;
     self.tfLicenseNo.autocapitalizationType = UITextAutocapitalizationTypeAllCharacters;
     [weakSelf setLeftImageBarButtonItemWithFrame:CGRectMake(0, 0, 35, 35) image:@"title-back" selectImage:@"back" action:^(AYCButton *button) {
+        
+        [[FireData sharedInstance] eventWithCategory:@"创建订单" action:@"返回" evar:nil attributes:nil];
         [weakSelf.navigationController popViewControllerAnimated:YES];
     }];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tfPhoneChanged:) name:UITextFieldTextDidChangeNotification object:self.tfPhone];
@@ -54,6 +56,8 @@
     
 }
 - (IBAction)nextAction:(id)sender {
+    
+    [[FireData sharedInstance] eventWithCategory:@"创建订单" action:@"下一步" evar:nil attributes:nil];
     if ([_tfName.text isEqualToString:@""]) {
         [MBProgressHUD showMessag:@"请输入客户姓名" toView:self.view];
         return ;
@@ -87,6 +91,8 @@
 }
 
 - (IBAction)newCarAction:(id)sender {
+    
+    [[FireData sharedInstance] eventWithCategory:@"创建订单" action:@"新车" evar:nil attributes:nil];
     if (self.isNewCarBtn.selected)
     {
         [self.isNewCarBtn setImage:[UIImage imageNamed:@"checkbox"] forState:(UIControlStateNormal)];
@@ -107,6 +113,8 @@
 
 - (IBAction)showCityPickerView:(id)sender {
     
+    [[FireData sharedInstance] eventWithCategory:@"创建订单" action:@"行驶省市" evar:nil attributes:nil];
+
     [HelperUtil resignKeyBoardInView:self.view];
     
     __block ZQCityPickerView *cityPickerView = [[ZQCityPickerView alloc] initWithProvincesArray:nil cityArray:nil componentsCount:2];
