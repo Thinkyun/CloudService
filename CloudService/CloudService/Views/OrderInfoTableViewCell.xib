@@ -309,7 +309,6 @@
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <connections>
                 <outlet property="appointmentBtn" destination="DLn-MO-kaN" id="Y5c-5H-rNM"/>
-                <outlet property="btnOrderInfo" destination="Aae-s5-Rr7" id="oKS-Pd-JcM"/>
                 <outlet property="callBtn" destination="KgO-YT-UOt" id="46r-9R-AYy"/>
                 <outlet property="lbComment" destination="eeE-OA-9cA" id="Bhe-bq-uOT"/>
                 <outlet property="lbCustName" destination="Mn2-VQ-IpI" id="wza-za-WPI"/>
@@ -756,7 +755,6 @@
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <connections>
                 <outlet property="appointmentBtn" destination="H9u-dB-aCe" id="GR3-y1-jeo"/>
-                <outlet property="btnOrderInfo" destination="Qlh-F2-srX" id="5zG-4D-TQP"/>
                 <outlet property="callBtn" destination="Oav-Xq-hWa" id="goc-OS-XwY"/>
                 <outlet property="giftBtn" destination="ovJ-Zk-aYs" id="un9-UK-Uc6"/>
                 <outlet property="lbComment" destination="CbB-3R-pj5" id="Woh-tD-pax"/>
