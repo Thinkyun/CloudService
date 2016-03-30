@@ -148,7 +148,7 @@
         if ([[returnData valueForKey:@"flag"] isEqualToString:@"success"]) {
             User *user = [User mj_objectWithKeyValues:[returnData valueForKey:@"data"]];
             [[SingleHandle shareSingleHandle] saveUserInfo:user];
-            [Utility saveUserName:self.UserTextFiled.text passWord:self.pwdTextFiled.text];
+            [Utility saveUserName:weakSelf.UserTextFiled.text passWord:weakSelf.pwdTextFiled.text];
             /**
              *  火炬登陆信息
              */
@@ -161,7 +161,7 @@
             
             [[NSNotificationCenter defaultCenter] postNotificationName:LoginToMenuViewNotice object:nil];
         }else if([[returnData valueForKey:@"flag"] isEqualToString:@"error"]){
-            [MBProgressHUD showMessag:[returnData valueForKey:@"msg"] toView:self.view];
+            [MBProgressHUD showMessag:[returnData valueForKey:@"msg"] toView:weakSelf.view];
         }
     } failureBlock:^(NSError *error) {
  
