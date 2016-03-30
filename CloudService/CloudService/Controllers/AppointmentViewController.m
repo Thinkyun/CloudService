@@ -33,6 +33,7 @@
     
     __weak typeof(self) weakSelf = self;
     [weakSelf setLeftImageBarButtonItemWithFrame:CGRectMake(0, 0, 35, 35) image:@"title-back" selectImage:@"back" action:^(AYCButton *button) {
+        [[FireData sharedInstance] eventWithCategory:@"预约" action:@"返回订单详情" evar:nil attributes:nil];
         [weakSelf.navigationController popViewControllerAnimated:YES];
     }];
 
@@ -52,6 +53,7 @@
 
 
 - (IBAction)codeAction:(id)sender {
+    [[FireData sharedInstance] eventWithCategory:@"预约" action:@"选择结束码" evar:nil attributes:nil];
     [HelperUtil resignKeyBoardInView:self.view];
     [PellTableViewSelect addPellTableViewSelectWithWindowFrame:CGRectMake(110, 135, 200, 200) selectData:
 
@@ -63,6 +65,7 @@
 }
 
 - (IBAction)dateAction:(id)sender{
+    [[FireData sharedInstance] eventWithCategory:@"预约" action:@"选择预约时间" evar:nil attributes:nil];
     [HelperUtil resignKeyBoardInView:self.view];
     [self setupDateView:DateTypeOfStart];
 }
@@ -133,6 +136,7 @@
 }
 
 - (IBAction)save:(id)sender {
+    [[FireData sharedInstance] eventWithCategory:@"预约" action:@"保存预约" evar:nil attributes:nil];
     NSString *url = [NSString stringWithFormat:@"%@%@",BaseAPI,kaddReserve];
     NSDictionary *params = @{@"userId":[[SingleHandle shareSingleHandle] getUserInfo].userId,
                              @"customerId":self.customerId,

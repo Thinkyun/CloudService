@@ -55,7 +55,7 @@
 }
 
 - (IBAction)shareAction:(id)sender {
-    
+    [[FireData sharedInstance] eventWithCategory:@"邀请页面" action:@"分享" evar:nil attributes:nil];
     if (_linkUrl.length <= 0) {
         [MBProgressHUD showMessag:@"生成邀请url失败" toView:self.view];
         return;

@@ -48,7 +48,7 @@
 }
 
 - (IBAction)resetUserInfoAction:(id)sender {
-    
+    [[FireData sharedInstance] eventWithCategory:@"个人信息" action:@"修改" evar:nil attributes:nil];
     UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     SetUserInfoViewController *setUserInfoVC = [storyBoard instantiateViewControllerWithIdentifier:@"setUserInfo"];
     _isTosetUserInfo = YES;

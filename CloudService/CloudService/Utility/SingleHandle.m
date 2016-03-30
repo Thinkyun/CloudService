@@ -49,6 +49,7 @@ static SingleHandle *singleHandle = nil;
                        @"费用少",
                        @"无效数据",
                        @"成交"];
+
     return array;
 }
 

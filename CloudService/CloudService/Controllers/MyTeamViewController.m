@@ -158,12 +158,14 @@ static NSString *cell_id = @"myTeamCell";
 - (IBAction)inviteAction:(id)sender {
     if ([[[SingleHandle shareSingleHandle] getUserInfo].roleName isEqualToString:@"团队长"]) {
         
+        [[FireData sharedInstance] eventWithCategory:@"我的团队" action:@"邀请队友" evar:nil attributes:nil];
         UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         InviteFriendViewController *vc = [storyBoard instantiateViewControllerWithIdentifier:@"InviteFriendsVC"];
         vc.isTeamInvite = YES;
         [self.navigationController pushViewController:vc animated:YES];
 //        [self performSegueWithIdentifier:@"invite" sender:self];
     }else{
+        [[FireData sharedInstance] eventWithCategory:@"我的团队" action:@"申请团队长" evar:nil attributes:nil];
         NSString *url = [NSString stringWithFormat:@"%@%@",BaseAPI,kapplyTeamLeader];
         
         [MHNetworkManager postReqeustWithURL:url params:@{@"userId":[[SingleHandle shareSingleHandle] getUserInfo].userId} successBlock:^(id returnData) {

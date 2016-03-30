@@ -43,6 +43,7 @@
         [weakSelf.navigationController popViewControllerAnimated:YES];
     }];
     [weakSelf setRightTextBarButtonItemWithFrame:CGRectMake(0, 0, 80, 30) title:@"使用规则" titleColor:[UIColor whiteColor] backImage:@"" selectBackImage:@"" action:^(AYCButton *button) {
+        [[FireData sharedInstance] eventWithCategory:@"优惠券" action:@"使用规则" evar:nil attributes:nil];
         [weakSelf performSegueWithIdentifier:@"couponsRule" sender:weakSelf];
         
     }];
@@ -424,6 +425,7 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // segue.identifier：获取连线的ID
     if ([segue.identifier isEqualToString:@"distribute"]) {
+        [[FireData sharedInstance] eventWithCategory:@"优惠券" action:@"团队优惠券" evar:nil attributes:nil];
         // segue.destinationViewController：获取连线时所指的界面（VC）
         CouponsDistributeViewController *receive = segue.destinationViewController;
         

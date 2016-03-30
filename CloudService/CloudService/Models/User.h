@@ -24,7 +24,7 @@
 @property (nonatomic,copy) NSString *realName;
 @property (nonatomic,copy) NSString *registerTime;
 @property (nonatomic,copy) NSString *oldCompany;
-
+@property (nonatomic,copy) NSString *userNum;
 @property (nonatomic,copy) NSString *roleId;
 @property (nonatomic,copy) NSString *roleName;
 @property (nonatomic,copy) NSString *saleCity;

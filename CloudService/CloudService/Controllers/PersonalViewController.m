@@ -72,6 +72,7 @@ static NSString *cell_id = @"personalCell";
 
 
 - (void)tapHeadicon {
+    [[FireData sharedInstance] eventWithCategory:@"个人中心" action:@"个人信息" evar:nil attributes:nil];
     [self performSegueWithIdentifier:@"userinfoVC" sender:self];
 }
 
@@ -156,6 +157,7 @@ static NSString *cell_id = @"personalCell";
 
     
     if (indexPath.section == 3) {
+        [[FireData sharedInstance] eventWithCategory:@"个人中心" action:@"退出登录" evar:nil attributes:nil];
         [[NSNotificationCenter defaultCenter] postNotificationName:LogOutViewNotice object:nil];
 //        [[ButelHandle shareButelHandle] logOut];
         return;
@@ -165,6 +167,7 @@ static NSString *cell_id = @"personalCell";
         switch (indexPath.row) {
                 case 0:
             {
+                [[FireData sharedInstance] eventWithCategory:@"个人中心" action:@"个人信息" evar:nil attributes:nil];
                 UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
                 SetUserInfoViewController *setUserInfoVC = [storyBoard instantiateViewControllerWithIdentifier:@"setUserInfo"];
                 setUserInfoVC.rightBtnTitle = @"保存";
@@ -173,6 +176,7 @@ static NSString *cell_id = @"personalCell";
                 break;
             case 1:
             {
+                [[FireData sharedInstance] eventWithCategory:@"个人中心" action:@"我的团队" evar:nil attributes:nil];
                 if ([[[SingleHandle shareSingleHandle] getUserInfo].roleName isEqualToString:@"团队长"]||[[[SingleHandle shareSingleHandle] getUserInfo].roleName isEqualToString:@"认证用户"]) {
                    [self performSegueWithIdentifier:@"pushMyTeam" sender:self];
                 }else{
@@ -183,7 +187,7 @@ static NSString *cell_id = @"personalCell";
                 break;
             case 2:
             {
-                
+                [[FireData sharedInstance] eventWithCategory:@"个人中心" action:@"积分管理" evar:nil attributes:nil];
                 UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
                 UIViewController *setUserInfoVC = [storyBoard instantiateViewControllerWithIdentifier:@"MyIntergVC"];
                 [self.navigationController pushViewController:setUserInfoVC animated:YES];
@@ -192,6 +196,7 @@ static NSString *cell_id = @"personalCell";
                 break;
             case 3:
             {
+                [[FireData sharedInstance] eventWithCategory:@"个人中心" action:@"用户认证" evar:nil attributes:nil];
                 UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
                 SetUserInfoViewController *setUserInfoVC = [storyBoard instantiateViewControllerWithIdentifier:@"setUserInfo"];
                 setUserInfoVC.rightBtnTitle = @"提交";
@@ -205,6 +210,7 @@ static NSString *cell_id = @"personalCell";
                 break;
             case 4:
             {
+                [[FireData sharedInstance] eventWithCategory:@"个人中心" action:@"团队成员邀请" evar:nil attributes:nil];
                 if ([[[SingleHandle shareSingleHandle] getUserInfo].roleName isEqualToString:@"团队长"]||[[[SingleHandle shareSingleHandle] getUserInfo].roleName isEqualToString:@"团队成员"]) {
                     UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
                     InviteFriendViewController *vc = [storyBoard instantiateViewControllerWithIdentifier:@"InviteFriendsVC"];
@@ -218,6 +224,7 @@ static NSString *cell_id = @"personalCell";
                 break;
             case 5:
             {
+                [[FireData sharedInstance] eventWithCategory:@"个人中心" action:@"好友邀请" evar:nil attributes:nil];
                 [self performSegueWithIdentifier:@"invateFriend_push" sender:self];
             }
                 break;
@@ -226,9 +233,11 @@ static NSString *cell_id = @"personalCell";
         }
     }
     if (indexPath.section == 1) {
+        [[FireData sharedInstance] eventWithCategory:@"个人中心" action:@"我的优惠券" evar:nil attributes:nil];
         [self performSegueWithIdentifier:@"coupons" sender:self];
     }
     if (indexPath.section == 2) {
+        [[FireData sharedInstance] eventWithCategory:@"个人中心" action:@"关于应用" evar:nil attributes:nil];
         [self performSegueWithIdentifier:@"aboutApp_push" sender:self];
     }
 }

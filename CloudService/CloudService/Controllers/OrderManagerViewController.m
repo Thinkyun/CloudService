@@ -53,6 +53,7 @@
     self.view.frame = CGRectMake(0, 0, KWidth, KHeight - 64);
     __weak typeof(self) weakSelf = self;
     [self.tabBarController setRightImageBarButtonItemWithFrame:CGRectMake(0, 0, 30, 30) image:@"title-search" selectImage:@"title-search_" action:^(AYCButton *button) {
+        [[FireData sharedInstance] eventWithCategory:@"订单管理" action:@"搜索订单" evar:nil attributes:nil];
         [weakSelf performSegueWithIdentifier:@"searchOrder" sender:weakSelf];
     }];
     
@@ -270,6 +271,7 @@
     // segue.identifier：获取连线的ID
     
     if ([segue.identifier isEqualToString:@"orderInfo"]) {
+         [[FireData sharedInstance] eventWithCategory:@"订单管理" action:@"订单详情" evar:nil attributes:nil];
         // segue.destinationViewController：获取连线时所指的界面（VC）
         OrderInfoViewController *receive = segue.destinationViewController;
         receive.order = _order;

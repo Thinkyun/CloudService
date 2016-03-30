@@ -40,11 +40,11 @@
 - (void)eyeTap:(UITapGestureRecognizer *)sender {
     _isEye = !_isEye;
     if (_isEye) {
-        
+        [[FireData sharedInstance] eventWithCategory:@"验证原始密码" action:@"显示密码" evar:nil attributes:nil];
         self.eyeImg.image = [UIImage imageNamed:@"login-line_"];
         self.pwdTextWord.secureTextEntry = NO;
     }else {
-        
+        [[FireData sharedInstance] eventWithCategory:@"验证原始密码" action:@"隐藏密码" evar:nil attributes:nil];
         self.eyeImg.image = [UIImage imageNamed:@"login-line"];
         self.pwdTextWord.secureTextEntry = YES;
     }
@@ -54,7 +54,7 @@
     [self.navigationController setNavigationBarHidden:NO animated:YES];
 }
 - (IBAction)nextStepActopn:(id)sender {
-    
+    [[FireData sharedInstance] eventWithCategory:@"验证原始密码" action:@"下一步" evar:nil attributes:nil];
     NSString *pwd = [Utility passWord];
     if ([pwd isEqualToString:self.pwdTextWord.text])
     {
