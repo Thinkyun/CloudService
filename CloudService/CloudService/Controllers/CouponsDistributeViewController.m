@@ -122,6 +122,12 @@
                         if ([[dic objectForKey:@"flag"] isEqualToString:@"success"]) {
                             [MBProgressHUD showMessag:@"派发优惠券成功" toView:self.view];
                             
+                            if (self.refreshBlock) {
+                                
+                                // 刷新的block
+                                self.refreshBlock();
+                            }
+                            [self.navigationController popViewControllerAnimated:YES];
                         }else {
                             [MBProgressHUD showMessag:[dic objectForKey:@"msg"] toView:self.view];
                         }
