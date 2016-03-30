@@ -94,6 +94,12 @@ static CGFloat headerHeight = 30;
     }];
 }
 
+#pragma mark 刷新的 block
+- (void) refresh:(refreshBlock)block{
+    
+    self.refreshBlock = block;
+}
+
 // 保存
 - (void)saveAction {
     
@@ -130,7 +136,13 @@ static CGFloat headerHeight = 30;
     [MHNetworkManager postReqeustWithURL:[RequestEntity urlString:kEstablishCustBySelf] params:myServerDict
         successBlock:^(id returnData) {
         MyClientViewController *VC = self.navigationController.viewControllers[1];
-        VC.isSaveCarInfo = YES;
+//        VC.isSaveCarInfo = YES;
+            // 刷新的block
+            if (self.refreshBlock) {
+                
+                self.refreshBlock();
+            }
+            
         [self.navigationController popToViewController:VC animated:YES];
     } failureBlock:^(NSError *error) {
         
