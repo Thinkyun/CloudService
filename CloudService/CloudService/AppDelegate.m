@@ -22,7 +22,7 @@
 #define WXAppSecret   @"5d792862f07b6ff0b27eaced2ffbd01d"
 #define JAppKey       @"f8500a8c6752cafab40e7daf"
 #define Jchannel      @"Publish channel"
-@interface AppDelegate ()<CLLocationManagerDelegate,UIAlertViewDelegate> {
+@interface AppDelegate ()<CLLocationManagerDelegate,UIAlertViewDelegate,FireDataDelegate> {
     BOOL _isSetCity;
 }
 
@@ -107,15 +107,25 @@
  */
 -(void)registerFireData {
     // 配置统计 SDK
-    [[FireData sharedInstance] initWithHost:@"139.198.0.125" AppId:@"YUNKFD3SXE" distributors:@"ios"];
+    [[FireData sharedInstance] initWithHost:@"139.198.0.125" appKey:@"YUNKFD3SXE" distributors:@"ios"];
     [FireData sharedInstance].debugMode = NO;
     [FireData sharedInstance].enableCrashReport = YES;
     [FireData sharedInstance].enableLocationReport = YES;
     [FireData sharedInstance].sendTimeInterval = 2;
     [FireData sharedInstance].enableIDFA = NO;
-
-    [[FireData sharedInstance] loginWithUserid:@"user1" uvar:@"UvarsJson"];
-    [FireData sharedInstance].refcode = @"refcode100000";
+    [FireData sharedInstance].delegate = self;
+    
+//    [FireData sharedInstance].refcode = @"refcode100000";
+}
+/* 统计SDK捕获到异常，程序即将崩溃时，回调此函数 */
+-(void)onCrash {
+    
+}
+/**
+ 定义协议函数，在SDK内部捕获到对应崩溃事件，并将对应的崩溃事件添加到事件队列后进行对应的事件处理，并将当前获取到的异常信息对象传递
+ */
+- (void)onCrashAfterAddedToEventArrWithCrashInfo:(NSDictionary *)exception {
+    
 }
 
 - (void)registerShareSDK {

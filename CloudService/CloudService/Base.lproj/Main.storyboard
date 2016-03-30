@@ -2234,11 +2234,8 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                             </imageView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ya0-qo-TJc">
-                                <rect key="frame" x="67" y="150" width="240" height="360"/>
+                                <rect key="frame" x="50" y="150" width="275" height="349"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="360" id="Ygf-rJ-kgq"/>
-                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
@@ -2246,17 +2243,19 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="HdB-j2-hSa" secondAttribute="trailing" id="3hi-7E-p3c"/>
-                            <constraint firstItem="ya0-qo-TJc" firstAttribute="leading" secondItem="ewW-8D-blJ" secondAttribute="leading" constant="67" id="4MU-yr-BZh"/>
                             <constraint firstAttribute="bottom" secondItem="HdB-j2-hSa" secondAttribute="bottom" id="8Dm-4a-sYQ"/>
-                            <constraint firstItem="ya0-qo-TJc" firstAttribute="top" secondItem="YIg-Xj-Jbr" secondAttribute="bottom" constant="150" id="MA0-yM-2KI"/>
-                            <constraint firstAttribute="trailing" secondItem="ya0-qo-TJc" secondAttribute="trailing" constant="68" id="Ra6-zq-6Bx"/>
+                            <constraint firstItem="ya0-qo-TJc" firstAttribute="top" secondItem="YIg-Xj-Jbr" secondAttribute="bottom" constant="150" id="DKB-K1-Ncs"/>
+                            <constraint firstItem="ya0-qo-TJc" firstAttribute="leading" secondItem="ewW-8D-blJ" secondAttribute="leading" constant="50" id="KIb-he-otp"/>
                             <constraint firstItem="HdB-j2-hSa" firstAttribute="top" secondItem="YIg-Xj-Jbr" secondAttribute="bottom" id="ToI-ET-TfS"/>
+                            <constraint firstAttribute="trailing" secondItem="ya0-qo-TJc" secondAttribute="trailing" constant="50" id="aKc-Se-Q48"/>
+                            <constraint firstItem="Roa-6H-l1v" firstAttribute="top" secondItem="ya0-qo-TJc" secondAttribute="bottom" constant="55" id="rJP-DX-aTf"/>
                             <constraint firstItem="HdB-j2-hSa" firstAttribute="leading" secondItem="ewW-8D-blJ" secondAttribute="leading" id="tM0-M3-Ink"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="使用规则" id="KEQ-uF-zlr"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
+                        <outlet property="topLayout" destination="DKB-K1-Ncs" id="jl7-oQ-PDb"/>
                         <outlet property="tvContent" destination="ya0-qo-TJc" id="BVe-eZ-k4e"/>
                     </connections>
                 </viewController>
@@ -3087,7 +3086,7 @@
                             <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tEI-e1-eG5">
                                 <rect key="frame" x="217" y="260" width="108" height="30"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="point2" translatesAutoresizingMaskIntoConstraints="NO" id="5Qp-rF-ITq">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="point2" translatesAutoresizingMaskIntoConstraints="NO" id="5Qp-rF-ITq">
                                         <rect key="frame" x="0.0" y="10" width="15" height="15"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="5Qp-rF-ITq" secondAttribute="height" id="QqV-Bo-Vz3"/>

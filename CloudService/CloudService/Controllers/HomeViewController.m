@@ -255,7 +255,7 @@ static NSString *headerView_ID = @"headerView";
 
             break;
         case 1:
-            [[FireData sharedInstance] eventWithCategory:@"我的客户" action:@"获取数据" name:@"" value:@"" attributes:nil];
+             [[FireData sharedInstance] eventWithCategory:@"我的客户" action:@"获取数据" evar:nil attributes:nil];
             [self performSegueWithIdentifier:@"myClient" sender:self];
             break;
         case 2:
