@@ -139,10 +139,8 @@ static CGFloat headerHeight = 30;
 //        VC.isSaveCarInfo = YES;
             // 刷新的block
             if (self.refreshBlock) {
-                
                 self.refreshBlock();
-            }
-            
+            }            
         [self.navigationController popToViewController:VC animated:YES];
     } failureBlock:^(NSError *error) {
         
