@@ -31,6 +31,8 @@
     self.title = @"修改密码";
     __weak typeof(self) weakSelf = self;
     [self setLeftImageBarButtonItemWithFrame:CGRectMake(0, 0, 25, 25) image:@"title-back" selectImage:@"" action:^(AYCButton *button) {
+        
+        [[FireData sharedInstance] eventWithCategory:@"修改密码" action:@"返回" evar:nil attributes:nil];
         [weakSelf.navigationController popViewControllerAnimated:YES];
     }];
     
@@ -48,6 +50,8 @@
 
 - (IBAction)resetPwdAction:(id)sender {
     
+    [[FireData sharedInstance] eventWithCategory:@"修改密码" action:@"确定" evar:nil attributes:nil];
+
     if (![self checkInputMode]) {
         return;
     }
@@ -68,6 +72,8 @@
 
 - (IBAction)getCodeAction:(id)sender {
     
+    [[FireData sharedInstance] eventWithCategory:@"修改密码" action:@"获取验证码" evar:nil attributes:nil];
+
     NSString * regexPhoneNum = @"^1[0-9]{10}$";
     NSPredicate *predicatePhoneNum = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regexPhoneNum];
     BOOL isPhoneMatch = [predicatePhoneNum evaluateWithObject:self.phoneNum.text];

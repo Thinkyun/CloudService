@@ -75,11 +75,15 @@
     self.title = @"我的积分";
     __weak typeof(self) weakSelf = self;
     [self setLeftImageBarButtonItemWithFrame:CGRectMake(0, 0, 35, 35) image:@"title-back" selectImage:@"" action:^(AYCButton *button) {
+        
+        [[FireData sharedInstance] eventWithCategory:@"我的积分" action:@"返回" evar:nil attributes:nil];
         [weakSelf.navigationController popViewControllerAnimated:YES];
     }];
     self.backView.layer.cornerRadius = KWidth * 3 / 7 / 2.0;
     
     [weakSelf setRightTextBarButtonItemWithFrame:CGRectMake(0, 0, 80, 30) title:@"积分明细" titleColor:[UIColor whiteColor] backImage:@"" selectBackImage:@"" action:^(AYCButton *button) {
+        
+        [[FireData sharedInstance] eventWithCategory:@"我的积分" action:@"积分明细" evar:nil attributes:nil];
         [weakSelf performSegueWithIdentifier:@"integral" sender:weakSelf];
 
     }];
@@ -105,6 +109,8 @@
 }
 
 - (IBAction)intergralCityAction:(id)sender {
+    
+    [[FireData sharedInstance] eventWithCategory:@"我的积分" action:@"礼品商城" evar:nil attributes:nil];
     [MBProgressHUD showMessag:@"程序猿正在火力开发中" toView:self.view];
 //    IntergralCityViewController *VC = [[IntergralCityViewController alloc] init];
 //    [self.navigationController pushViewController:VC animated:YES];

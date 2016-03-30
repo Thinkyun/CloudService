@@ -40,6 +40,8 @@
     self.title = @"积分兑换";
     __weak typeof(self) weakSelf = self;
     [self setLeftImageBarButtonItemWithFrame:CGRectMake(0, 0, 35, 35) image:@"title-back" selectImage:@"" action:^(AYCButton *button) {
+        
+        [[FireData sharedInstance] eventWithCategory:@"积分兑换" action:@"返回" evar:nil attributes:nil];
         [weakSelf.navigationController popViewControllerAnimated:YES];
     }];
     self.backView.layer.cornerRadius = KWidth * 3 / 7 / 2.0;
@@ -61,6 +63,7 @@
 
 - (IBAction)changeIntergralAction:(id)sender {
     
+    [[FireData sharedInstance] eventWithCategory:@"积分兑换" action:@"立即兑换" evar:nil attributes:nil];
     if (![self checkInputMode]) {
         return;
     }

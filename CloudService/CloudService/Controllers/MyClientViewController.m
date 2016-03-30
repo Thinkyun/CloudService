@@ -39,6 +39,8 @@
     self.tableView.tableFooterView = [UIView new];
     __weak typeof(self) weakSelf = self;
     [weakSelf setLeftImageBarButtonItemWithFrame:CGRectMake(0, 0, 35, 35) image:@"title-back" selectImage:@"back" action:^(AYCButton *button) {
+        
+        [[FireData sharedInstance] eventWithCategory:@"我的客户" action:@"返回" evar:nil attributes:nil];
         [weakSelf.navigationController popViewControllerAnimated:YES];
     }];
     [self addMjRefresh];
@@ -55,6 +57,8 @@
     self.title = @"我的客户";
     __weak typeof(self) weakSelf = self;
     [weakSelf setRightImageBarButtonItemWithFrame:CGRectMake(0, 0, 35, 35) image:@"head-add" selectImage:@"head-add" action:^(AYCButton *button) {
+        
+        [[FireData sharedInstance] eventWithCategory:@"我的客户" action:@"添加" evar:nil attributes:nil];
         [weakSelf performSegueWithIdentifier:@"creatClient" sender:weakSelf];
     }];
 //    if (self.isSaveCarInfo) {
@@ -192,8 +196,11 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
+    [[FireData sharedInstance] eventWithCategory:@"我的客户" action:@"详情" evar:nil attributes:nil];
+    
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     _order = [_clientArray objectAtIndex:indexPath.row];
+    
     if ([_order.baseId isEqualToString:@""]) {
         [self performSegueWithIdentifier:@"offerInfo" sender:self];
     }else{
