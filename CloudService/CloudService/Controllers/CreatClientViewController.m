@@ -47,7 +47,8 @@
  *  设置青牛拨打号码
  */
 - (void)tfPhoneChanged:(NSNotification *)sender {
-    if (self.tfPhone.text.length == 11) {
+    if (self.tfPhone.text.length >= 11) {
+        self.tfPhone.text = [self.tfPhone.text substringToIndex:11];
         [[ButelHandle shareButelHandle] setPhoneNo:_tfPhone.text];
     }
     

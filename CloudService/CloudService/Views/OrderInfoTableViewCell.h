@@ -19,7 +19,7 @@
 @property (weak, nonatomic)IBOutlet UIButton *priceBtn;//报价
 @property (weak, nonatomic)IBOutlet UIButton *appointmentBtn;//预约
 @property (weak, nonatomic)IBOutlet UIButton *giftBtn;//投保礼
-@property (weak, nonatomic)IBOutlet UIButton *remarkBtn;//备注
+@property (weak, nonatomic)IBOutlet UILabel *lbComment;//备注
 @property (nonatomic, weak)IBOutlet UIButton *btnOrderInfo;//进入直客的订单详情
 
 

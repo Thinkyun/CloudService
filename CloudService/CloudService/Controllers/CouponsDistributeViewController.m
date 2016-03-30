@@ -83,7 +83,7 @@
 }
 //派发优惠券
 - (void)distributeClick:(UIButton *)sender {
-    [self resignKeyBoardInView:self.view];
+    [HelperUtil resignKeyBoardInView:self.view];
     isDistribute = NO;
     TeamMember *teamMember = [_teamMemberArray objectAtIndex:0];
     NSMutableString *couponStr = [NSMutableString string];
@@ -115,6 +115,7 @@
                         NSDictionary *dic = returnData;
                         if ([[dic objectForKey:@"flag"] isEqualToString:@"success"]) {
                             [MBProgressHUD showMessag:@"派发优惠券成功" toView:self.view];
+                            
                         }else {
                             [MBProgressHUD showMessag:[dic objectForKey:@"msg"] toView:self.view];
                         }
@@ -161,7 +162,8 @@
     }else {
         cell.tfMoney.text = [NSString stringWithFormat:@"%i",teamMember.moneyNum];
     }
-    cell.lbName.text = teamMember.userName;
+    
+    cell.lbName.text = teamMember.realName;
     return cell;
     
 }
@@ -223,28 +225,7 @@
     return YES;
 }
 
-/** 消失键盘*/
-- (void)resignKeyBoardInView:(UIView *)view
 
-{
-    
-    for (UIView *v in view.subviews) {
-        
-        if ([v.subviews count] > 0) {
-            
-            [self resignKeyBoardInView:v];
-            
-        }
-        
-        if ([v isKindOfClass:[UITextView class]] || [v isKindOfClass:[UITextField class]]) {
-            
-            [v resignFirstResponder];
-            
-        }
-        
-    }
-    
-}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -11,7 +11,7 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="375" height="99.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="375" height="99"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yb9-yD-EhD">
@@ -21,9 +21,10 @@
                                 <rect key="frame" x="0.0" y="0.0" width="359" height="89"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="有限期至2016-12-12" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3U6-oi-4xx">
-                                <rect key="frame" x="124" y="57" width="144" height="21"/>
+                                <rect key="frame" x="133" y="57" width="146" height="21"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="YoQ-i5-ZnJ"/>
+                                    <constraint firstAttribute="width" constant="146" id="bHd-pf-N4g"/>
+                                    <constraint firstAttribute="height" constant="21" id="hjG-pF-uAB"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -80,13 +81,13 @@
                         <constraints>
                             <constraint firstItem="7kI-eh-ohJ" firstAttribute="top" secondItem="Yb9-yD-EhD" secondAttribute="top" constant="14" id="3F4-9t-rZN"/>
                             <constraint firstItem="vcF-0o-sGj" firstAttribute="top" secondItem="Yb9-yD-EhD" secondAttribute="top" constant="34" id="3Wg-FZ-XeX"/>
+                            <constraint firstAttribute="trailing" secondItem="3U6-oi-4xx" secondAttribute="trailing" constant="80" id="9sX-dA-kxk"/>
                             <constraint firstItem="HNx-FH-Uab" firstAttribute="top" secondItem="Yb9-yD-EhD" secondAttribute="top" constant="21" id="AD6-wo-CUa"/>
-                            <constraint firstAttribute="bottom" secondItem="3U6-oi-4xx" secondAttribute="bottom" constant="11" id="C0h-Od-kuW"/>
-                            <constraint firstItem="3U6-oi-4xx" firstAttribute="leading" secondItem="Yb9-yD-EhD" secondAttribute="leading" constant="124" id="M1Y-rI-zqY"/>
                             <constraint firstItem="z6F-2g-Lhb" firstAttribute="leading" secondItem="Yb9-yD-EhD" secondAttribute="leading" id="OPM-sq-e1r"/>
                             <constraint firstItem="68G-Hc-4YW" firstAttribute="top" secondItem="Yb9-yD-EhD" secondAttribute="top" constant="33" id="PDG-V0-Iti"/>
                             <constraint firstAttribute="trailing" secondItem="z6F-2g-Lhb" secondAttribute="trailing" id="PEA-yU-yqA"/>
                             <constraint firstAttribute="trailing" secondItem="vcF-0o-sGj" secondAttribute="trailing" constant="15" id="baD-HB-BMv"/>
+                            <constraint firstItem="3U6-oi-4xx" firstAttribute="top" secondItem="fQQ-DU-lIP" secondAttribute="bottom" constant="13" id="c0m-ra-pgS"/>
                             <constraint firstItem="7kI-eh-ohJ" firstAttribute="leading" secondItem="Yb9-yD-EhD" secondAttribute="leading" constant="25" id="cxX-9T-g2W"/>
                             <constraint firstItem="fQQ-DU-lIP" firstAttribute="leading" secondItem="7kI-eh-ohJ" secondAttribute="trailing" constant="8" id="ghE-07-gdJ"/>
                             <constraint firstItem="z6F-2g-Lhb" firstAttribute="top" secondItem="Yb9-yD-EhD" secondAttribute="top" id="hCL-Vu-QWE"/>
@@ -95,7 +96,6 @@
                             <constraint firstItem="fQQ-DU-lIP" firstAttribute="top" secondItem="Yb9-yD-EhD" secondAttribute="top" constant="19" id="mbT-ZD-3QE"/>
                             <constraint firstAttribute="bottom" secondItem="z6F-2g-Lhb" secondAttribute="bottom" id="oBe-3X-Tfm"/>
                             <constraint firstItem="68G-Hc-4YW" firstAttribute="leading" secondItem="Yb9-yD-EhD" secondAttribute="leading" constant="12" id="odf-yr-alH"/>
-                            <constraint firstAttribute="trailing" secondItem="3U6-oi-4xx" secondAttribute="trailing" constant="91" id="yCe-UQ-LeP"/>
                         </constraints>
                     </view>
                 </subviews>

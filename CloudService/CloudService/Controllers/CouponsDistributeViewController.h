@@ -7,8 +7,13 @@
 //
 
 #import "BaseViewController.h"
+
+
 @class Coupons;
 @interface CouponsDistributeViewController : BaseViewController
 
 @property (nonatomic, strong)Coupons *coupons;
+
+
+
 @end

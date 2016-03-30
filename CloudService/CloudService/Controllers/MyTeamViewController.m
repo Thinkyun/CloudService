@@ -206,7 +206,10 @@ static NSString *cell_id = @"myTeamCell";
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     TeamMember *teamMember = [_teamMemberArray objectAtIndex:indexPath.row];
-    cell.lbName.text = teamMember.realName;
+    NSString *userName = nil;
+    userName = teamMember.realName.length > 0 ? teamMember.realName : teamMember.userName;
+
+    cell.lbName.text = userName;
     cell.lbIdCard.text = [NSString stringWithFormat:@"ID:%@",teamMember.userNum];
     [cell.phoneBtn setTitle:teamMember.phoneNo forState:UIControlStateNormal];
     [cell.chatName setTitle:teamMember.chatName forState:UIControlStateNormal];

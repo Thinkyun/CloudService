@@ -55,7 +55,7 @@
     OrderInfoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
     if (cell == nil) {
         NSArray *array = [[NSBundle mainBundle] loadNibNamed:@"OrderInfoTableViewCell" owner:self options:nil];
-        cell = [array objectAtIndex:2];
+        cell = [array objectAtIndex:0];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     cell.lbOrderNum.text = [NSString stringWithFormat:@"订单号:%@",_order.baseId];
@@ -63,10 +63,17 @@
     cell.lbPhoneNo.text = _order.phoneNo;
     cell.lbLicenseNo.text = _order.licenseNo;
     cell.lbEndCode.text = _order.endCode;
+    if ([_order.comment isEqualToString:@""]) {
+        cell.lbComment.text = @"暂无备注";
+    }else{
+        cell.lbComment.text = _order.comment;
+    }
+    
     [cell.callBtn addTarget:self action:@selector(callClick:) forControlEvents:UIControlEventTouchUpInside];
     [cell.priceBtn addTarget:self action:@selector(priceClick:) forControlEvents:UIControlEventTouchUpInside];
     [cell.appointmentBtn addTarget:self action:@selector(appointmentClick:) forControlEvents:UIControlEventTouchUpInside];
     [cell.btnOrderInfo addTarget:self action:@selector(zhiKeOrderInfo:) forControlEvents:UIControlEventTouchUpInside];
+    
     return cell;
 }
 

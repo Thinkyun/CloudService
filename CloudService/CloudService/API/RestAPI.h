@@ -68,6 +68,8 @@
 
 #define kassignTeamCoupon      @"/app/coupon/assignTeamCoupon"                 //团队优惠券下发
 
+//#define kZhiKe      @"http://10.136.98.146:81/zkyq-web/platform/getInfo"              //直客
+
 #define kZhiKe      @"http://139.198.1.22:80/zkyq-web/platform/getInfo"              //直客
 
 #define kZhiKeInfo      @"http://139.198.1.22:80/zkyq-web/platform/getInfo/unfinishedOrder/returnPage?baseId="   //直客订单详情
@@ -109,6 +111,7 @@ static NSString *const ExchangeIntegralSuccess = @"ExchangeIntegralSuccess";
 static NSString *const ReloadHomeData = @"ReloadHomeData";
 
 static NSString *const ChooseSaleCompany = @"ChooseSaleCompany";
+
 
 /**************************************************************************************/
 

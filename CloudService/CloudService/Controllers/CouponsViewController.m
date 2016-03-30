@@ -425,6 +425,7 @@
         // segue.destinationViewController：获取连线时所指的界面（VC）
         CouponsDistributeViewController *receive = segue.destinationViewController;
         receive.coupons = [_teamArray objectAtIndex:_teamIndexPath.row];
+        
     }
 }
 - (void)didReceiveMemoryWarning {

@@ -1002,7 +1002,7 @@
 				TargetAttributes = {
 					F0292BA91C7B00CD00A810A9 = {
 						CreatedOnToolsVersion = 7.2;
-						DevelopmentTeam = 482CWU5YCF;
+						DevelopmentTeam = 7PS2AH4H79;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -1376,7 +1376,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/CloudService/Venders",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.sinosig.zpc;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sinosig.EYunKeFu;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -1403,7 +1403,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/CloudService/Venders",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.sinosig.zpc;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sinosig.EYunKeFu;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
