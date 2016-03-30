@@ -19,7 +19,7 @@
     int _page;//当前页数
     int _pageSize;//每页加载数
     NSMutableArray *_clientArray;
-    NSString *_conditon;//模糊搜索
+    __block NSString *_conditon;//模糊搜索
     Order *_order;
 }
 @property (weak, nonatomic)IBOutlet UISearchBar *searchBar;
@@ -57,10 +57,10 @@
     [weakSelf setRightImageBarButtonItemWithFrame:CGRectMake(0, 0, 35, 35) image:@"head-add" selectImage:@"head-add" action:^(AYCButton *button) {
         [weakSelf performSegueWithIdentifier:@"creatClient" sender:weakSelf];
     }];
-    if (self.isSaveCarInfo) {
-        _conditon = @"";
-        [self.tableView.mj_header beginRefreshing];
-    }
+//    if (self.isSaveCarInfo) {
+//        _conditon = @"";
+//        [self.tableView.mj_header beginRefreshing];
+//    }
 }
 //添加mj
 - (void)addMjRefresh {
@@ -205,6 +205,13 @@
     if ([segue.identifier isEqualToString:@"offerInfo"]) {
         // segue.destinationViewController：获取连线时所指的界面（VC）
         OfferViewController *receive = segue.destinationViewController;
+        
+        // 刷新的 block
+        [receive refresh:^{
+             _conditon = @"";
+            [self.tableView.mj_header beginRefreshing];
+        }];
+        
         receive.order = _order;
     }
     if ([segue.identifier isEqualToString:@"clientOrder"]) {

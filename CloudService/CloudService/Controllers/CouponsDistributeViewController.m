@@ -123,7 +123,6 @@
                             [MBProgressHUD showMessag:@"派发优惠券成功" toView:self.view];
                             
                             if (self.refreshBlock) {
-                                
                                 // 刷新的block
                                 self.refreshBlock();
                             }

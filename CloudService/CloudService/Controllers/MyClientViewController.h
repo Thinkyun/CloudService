@@ -10,6 +10,5 @@
 
 @interface MyClientViewController : BaseViewController
 
-@property (nonatomic,assign)BOOL isSaveCarInfo;
 
 @end
