@@ -54,15 +54,9 @@
     NSString *cellId=@"cell";
     OrderInfoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
     if (cell == nil) {
-        NSArray *array = [[NSBundle mainBundle] loadNibNamed:@"OrderInfoTableViewCell" owner:self options:nil];
-        if ([self.order.orderStatus isEqualToString:@"未完成"]) {
-            cell = [array objectAtIndex:0];
-        } else if ([self.order.orderStatus isEqualToString:@"待支付"]) {
-            cell = [array objectAtIndex:2];
-        }else{
-            cell = [array objectAtIndex:1];
-        }
         
+        NSArray *array = [[NSBundle mainBundle] loadNibNamed:@"OrderInfoTableViewCell" owner:self options:nil];
+        cell = [array objectAtIndex:0];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     cell.lbOrderNum.text = [NSString stringWithFormat:@"订单号:%@",self.order.baseId];

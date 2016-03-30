@@ -287,9 +287,35 @@
         // 添加宽度（宽度跟右边按键一样）
         make.width.equalTo(_tfEnd);
     }];
+    [startBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        //添加高约束
+        make.height.mas_equalTo(34);
+        //添加上边距约束
+        make.top.equalTo(_tfCode.mas_bottom).offset(15);
+        // 添加左边距约束（距离当前主视图左边的距离）
+        make.left.equalTo(lbTime.mas_right).offset(15);
+        // 添加右边距约束（距离第二个按键左边的距离）
+        make.right.equalTo(_tfEnd.mas_left).with.offset(-20);
+        
+        // 添加宽度（宽度跟右边按键一样）
+        make.width.equalTo(_tfEnd);
+    }];
     
     
     [_tfEnd mas_makeConstraints:^(MASConstraintMaker *make) {
+        //添加高约束
+        make.height.mas_equalTo(34);
+        //添加上边距约束
+        make.top.equalTo(_tfCode.mas_bottom).offset(15);
+        // 添加左边距约束（距离左边按键的距离）
+        make.left.equalTo(_tfStart.mas_right).with.offset(20);
+        // 添加右边距约束（距离当前主视图右边的距离）
+        make.right.equalTo(self.view.mas_right).with.offset(-20);
+        
+        // 添加宽度（宽度跟右边按键一样）
+        make.width.equalTo(_tfStart);
+    }];
+    [endBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         //添加高约束
         make.height.mas_equalTo(34);
         //添加上边距约束
