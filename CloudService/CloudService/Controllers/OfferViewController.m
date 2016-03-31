@@ -135,17 +135,19 @@ static CGFloat headerHeight = 30;
                                    @"date":cell1.firstTime.text,
                                    @"vehicleModelName":cell1.engineType.text
                                    };
+    
+    __weak typeof(self) weakSelf = self;
     [MHNetworkManager postReqeustWithURL:[RequestEntity urlString:kEstablishCustBySelf] params:myServerDict
         successBlock:^(id returnData) {
-        MyClientViewController *VC = self.navigationController.viewControllers[1];
+        MyClientViewController *VC = weakSelf.navigationController.viewControllers[1];
 //        VC.isSaveCarInfo = YES;
             // 刷新的block
-            if (self.refreshBlock) {
+            if (weakSelf.refreshBlock) {
                 
-                self.refreshBlock();
+                weakSelf.refreshBlock();
             }
             
-        [self.navigationController popToViewController:VC animated:YES];
+        [weakSelf.navigationController popToViewController:VC animated:YES];
     } failureBlock:^(NSError *error) {
         
     } showHUD:YES];
@@ -239,7 +241,7 @@ static CGFloat headerHeight = 30;
             cliteVC.url = url;
             [weakSelf createOrderWithParam:myServerDict pushUrl:url];
         }else{
-            [MBProgressHUD showMessag:returnData[@"msg"] toView:self.view];
+            [MBProgressHUD showMessag:returnData[@"msg"] toView:weakSelf.view];
         }
         
     } failureBlock:^(NSError *error) {
@@ -258,7 +260,7 @@ static CGFloat headerHeight = 30;
             orderH5VC.url = url;
             [weakSelf.navigationController pushViewController:orderH5VC animated:YES];
         }else {
-            [MBProgressHUD showMessag:[returnData objectForKey:@"msg"] toView:self.view];
+            [MBProgressHUD showMessag:[returnData objectForKey:@"msg"] toView:weakSelf.view];
         }
         
     } failureBlock:^(NSError *error) {

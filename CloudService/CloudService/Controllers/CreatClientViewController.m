@@ -119,8 +119,9 @@
     
     __block ZQCityPickerView *cityPickerView = [[ZQCityPickerView alloc] initWithProvincesArray:nil cityArray:nil componentsCount:2];
     
+    __weak typeof(self) weakSelf = self;
     [cityPickerView showPickViewAnimated:^(NSString *province, NSString *city,NSString *cityCode,NSString *provinceCode) {
-        self.tfCarCity.text = [NSString stringWithFormat:@"%@ %@",province,city];
+        weakSelf.tfCarCity.text = [NSString stringWithFormat:@"%@ %@",province,city];
         _cityCode = cityCode;
         cityPickerView = nil;
     }];

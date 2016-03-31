@@ -99,23 +99,25 @@ static NSString *const select_CellID = @"selectCell";
     if (!dict) {
         return ;
     }
+    
+    __weak typeof(self) weakSelf = self;
     [MHNetworkManager postReqeustWithURL:[RequestEntity urlString:kResetUserInfoAPI] params:dict successBlock:^(id returnData) {
         
         if ([[returnData valueForKey:@"flag"] isEqualToString:@"success"]) {
-            [self saveUserInfo:dict];
-            if ([self.rightBtn.titleLabel.text isEqualToString:@"提交"]) {
+            [weakSelf saveUserInfo:dict];
+            if ([weakSelf.rightBtn.titleLabel.text isEqualToString:@"提交"]) {
                 [MBProgressHUD showMessag:@"提交成功,一个小时后生效" toView:nil];
             }else {
                 [MBProgressHUD showMessag:@"修改成功" toView:nil];
             }
-            UIViewController *VC = [self.navigationController.viewControllers firstObject];
+            UIViewController *VC = [weakSelf.navigationController.viewControllers firstObject];
             if ([[VC class] isSubclassOfClass:[LoginViewController class]]) {
                 [[NSNotificationCenter defaultCenter] postNotificationName:LoginToMenuViewNotice object:nil];
                 return ;
             }
             [[NSNotificationCenter defaultCenter] postNotificationName:ReloadHomeData object:nil];
 
-            [self.navigationController popToRootViewControllerAnimated:YES];
+            [weakSelf.navigationController popToRootViewControllerAnimated:YES];
         }else {
             [MBProgressHUD showMessag:[returnData valueForKey:@"msg"] toView:self.view];
         }
@@ -411,9 +413,11 @@ static NSString *const select_CellID = @"selectCell";
 //                        [self showPullDownViewWithRect:rect3];
                 
                 [[FireData sharedInstance] eventWithCategory:@"个人信息" action:@"原离职公司" evar:nil attributes:nil];
+                
+                        __weak typeof(self) weakSelf = self;
                         [PellTableViewSelect addPellTableViewSelectWithWindowFrame:rect3 selectData:_selectArray action:^(NSInteger index) {
                             _valueArray_User[_indexPath.row] = _selectArray[index];
-                            [self.tableView reloadData];
+                            [weakSelf.tableView reloadData];
                         } animated:YES];
                     }
                         break;
@@ -426,11 +430,11 @@ static NSString *const select_CellID = @"selectCell";
                         _selectArray = @[@"销售职",@"销售管理职",@"其他"];
                         CGRect rect4 = CGRectMake(tempRect.origin.x, CGRectGetMaxY(cellFrame) - self.tableView.contentOffset.y + 64, tempRect.size.width, 3 * 40);
 //                        [self showPullDownViewWithRect:rect4];
-                
+                __weak typeof(self) weakSelf = self;
                 [[FireData sharedInstance] eventWithCategory:@"个人信息" action:@"原职位" evar:nil attributes:nil];
                             [PellTableViewSelect addPellTableViewSelectWithWindowFrame:rect4 selectData:_selectArray action:^(NSInteger index) {
                                 _valueArray_User[_indexPath.row] = _selectArray[index];
-                                [self.tableView reloadData];
+                                [weakSelf.tableView reloadData];
                             } animated:YES];
                     }
                         break;
@@ -612,11 +616,12 @@ static NSString *const select_CellID = @"selectCell";
     [HelperUtil resignKeyBoardInView:self.view];
     __block ZQCityPickerView *cityPickerView = [[ZQCityPickerView alloc] initWithProvincesArray:nil cityArray:nil componentsCount:count];
     
+    __weak typeof(self) weakSelf = self;
     [cityPickerView showPickViewAnimated:^(NSString *province, NSString *city,NSString *cityCode,NSString *provinceCode) {
         if (_indexPath.section == 0)
         {
             if (_saleCityArray.count > 3) {
-                [MBProgressHUD showMessag:@"城市选择不能超过四个" toView:self.view];
+                [MBProgressHUD showMessag:@"城市选择不能超过四个" toView:weakSelf.view];
                 return ;
             }
             
@@ -630,14 +635,14 @@ static NSString *const select_CellID = @"selectCell";
             model.provinceName = province;
             model.provinceCode = provinceCode;
             [_saleCityArray addObject:model];
-            _valueArray_User[8] = [self changeStrArraytoTextString:_saleCityArray];
+            _valueArray_User[8] = [weakSelf changeStrArraytoTextString:_saleCityArray];
             
         }else
         {
             _valueArray_Bank[4] = province;
             _valueArray_Bank[5] = city;
         }
-        [self.tableView reloadData];
+        [weakSelf.tableView reloadData];
         cityPickerView = nil;
     }];
     

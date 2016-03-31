@@ -98,15 +98,16 @@
     _tableView1.delegate = self;
     _tableView1.dataSource = self;
     
+    __weak typeof(self) weakSelf = self;
     // 下拉刷新
     _tableView1.mj_header= [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         _page1 = 1;
-        [self requestTeamAchievement:@"未完成"];
+        [weakSelf requestTeamAchievement:@"未完成"];
     }];
     // 上拉刷新
     _tableView1.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
         
-        [self requestMoreTeamAchievement:@"未完成"];
+        [weakSelf requestMoreTeamAchievement:@"未完成"];
         
     }];
     // 设置自动切换透明度(在导航栏下面自动隐藏)
@@ -124,12 +125,12 @@
     // 下拉刷新
     _tableView2.mj_header= [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         _page2 = 1;
-        [self requestTeamAchievement:@"待支付"];
+        [weakSelf requestTeamAchievement:@"待支付"];
     }];
     // 上拉刷新
     _tableView2.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
         
-        [self requestMoreTeamAchievement:@"待支付"];
+        [weakSelf requestMoreTeamAchievement:@"待支付"];
         
     }];
     // 设置自动切换透明度(在导航栏下面自动隐藏)
@@ -146,7 +147,7 @@
     // 下拉刷新
     _tableView3.mj_header= [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         _page3 = 1;
-        [self requestTeamAchievement:@"已支付"];
+        [weakSelf requestTeamAchievement:@"已支付"];
     }];
     
     // 设置自动切换透明度(在导航栏下面自动隐藏)
@@ -155,7 +156,7 @@
     // 上拉刷新
     _tableView3.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
         
-        [self requestMoreTeamAchievement:@"已支付"];
+        [weakSelf requestMoreTeamAchievement:@"已支付"];
         
     }];
     [_pageView addTab:@"已支付" View:_tableView3 Info:nil];
@@ -304,6 +305,8 @@
     NSString *url = [NSString stringWithFormat:@"%@%@",BaseAPI,kfindMainOrder];
     AppDelegate *delegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
     delegate.isThird=NO;
+    
+    __weak typeof(self) weakSelf = self;
     [MHNetworkManager postReqeustWithURL:url params:paramsDic successBlock:^(id returnData) {
         NSLog(@"%@",returnData);
         
@@ -316,10 +319,10 @@
             int totalCount=[[[dataDic objectForKey:@"pageVO"] objectForKey:@"recordCount"] intValue];
             //如果有数据显示数据，如果没有数据则显示暂无数据
             if (totalCount>0) {
-                [self removeNoData];
+                [weakSelf removeNoData];
             }else{
-                [self.pageView addSubview:_noDataImg];
-                [self.pageView addSubview:_lbNoData];
+                [weakSelf.pageView addSubview:_noDataImg];
+                [weakSelf.pageView addSubview:_lbNoData];
             }
             if ([type isEqualToString:@"未完成"]) {
                 [_unfinishedArray removeAllObjects];
@@ -354,9 +357,9 @@
             }
             
         }else {
-            [MBProgressHUD showMessag:[dic objectForKey:@"msg"] toView:self.view];
-            [self.pageView addSubview:_noDataImg];
-            [self.pageView addSubview:_lbNoData];
+            [MBProgressHUD showMessag:[dic objectForKey:@"msg"] toView:weakSelf.view];
+            [weakSelf.pageView addSubview:_noDataImg];
+            [weakSelf.pageView addSubview:_lbNoData];
         }
         if ([type isEqualToString:@"未完成"]) {
             [_tableView1 reloadData];
@@ -374,8 +377,8 @@
         
         
     } failureBlock:^(NSError *error) {
-        [self.pageView addSubview:_noDataImg];
-        [self.pageView addSubview:_lbNoData];
+        [weakSelf.pageView addSubview:_noDataImg];
+        [weakSelf.pageView addSubview:_lbNoData];
         
         if ([type isEqualToString:@"未完成"]) {
             [_tableView1 reloadData];
@@ -412,6 +415,8 @@
     }
     
     NSString *url = [NSString stringWithFormat:@"%@%@",BaseAPI,kfindMainOrder];
+    
+    __weak typeof(self) weakSelf = self;
     [MHNetworkManager postReqeustWithURL:url params:paramsDic successBlock:^(id returnData) {
         NSLog(@"%@",returnData);
         
@@ -454,7 +459,7 @@
             }
             
         }else {
-            [MBProgressHUD showMessag:[dic objectForKey:@"msg"] toView:self.view];
+            [MBProgressHUD showMessag:[dic objectForKey:@"msg"] toView:weakSelf.view];
         }
         if ([type isEqualToString:@"未完成"]) {
             [_tableView1 reloadData];

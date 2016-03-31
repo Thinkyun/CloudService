@@ -39,11 +39,12 @@
         make.width.mas_equalTo(5);
     }];
     
+    __weak typeof(self) weakSelf = self;
     [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(lineView.mas_right).with.offset(10);
-        make.right.equalTo(self).with.offset(-15);
-        make.top.equalTo(self).with.offset(5);
-        make.bottom.equalTo(self).with.offset(-5);
+        make.right.equalTo(weakSelf).with.offset(-15);
+        make.top.equalTo(weakSelf).with.offset(5);
+        make.bottom.equalTo(weakSelf).with.offset(-5);
     }];
     
 }

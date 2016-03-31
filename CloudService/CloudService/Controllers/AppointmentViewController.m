@@ -55,12 +55,14 @@
 - (IBAction)codeAction:(id)sender {
     [[FireData sharedInstance] eventWithCategory:@"预约" action:@"选择结束码" evar:nil attributes:nil];
     [HelperUtil resignKeyBoardInView:self.view];
+    
+    __weak typeof(self) weakSelf = self;
     [PellTableViewSelect addPellTableViewSelectWithWindowFrame:CGRectMake(110, 135, 200, 200) selectData:
 
      [[SingleHandle shareSingleHandle] getEndCodeArray]
                                                         action:^(NSInteger index) {
                                                             
-                                                            self.tfCode.text = [[[SingleHandle shareSingleHandle] getEndCodeArray] objectAtIndex:index];
+                                                            weakSelf.tfCode.text = [[[SingleHandle shareSingleHandle] getEndCodeArray] objectAtIndex:index];
                                                         } animated:YES];
 }
 
@@ -144,14 +146,16 @@
                              @"comment":self.textView.text,
                              @"endCode":self.tfCode.text,
                              @"baseId":self.baseId};
+    
+    __weak typeof(self) weakSelf = self;
     [MHNetworkManager postReqeustWithURL:url params:params successBlock:^(id returnData) {
         
         if ([[returnData objectForKey:@"flag"] isEqualToString:@"success"]) {
             [MBProgressHUD showMessag:@"预约成功" toView:nil];
-            [self.navigationController popViewControllerAnimated:YES];
+            [weakSelf.navigationController popViewControllerAnimated:YES];
             
         }else {
-            [MBProgressHUD showMessag:[returnData objectForKey:@"msg"] toView:self.view];
+            [MBProgressHUD showMessag:[returnData objectForKey:@"msg"] toView:weakSelf.view];
         }
         
     } failureBlock:^(NSError *error) {

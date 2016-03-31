@@ -121,7 +121,7 @@
                 NSString *baseId = [returnData[@"data"] valueForKey:@"baseId"];
                 [weakSelf createOrderWithBaseId:baseId pushUrl:url];
             }else{
-                [MBProgressHUD showMessag:returnData[@"msg"] toView:self.view];
+                [MBProgressHUD showMessag:returnData[@"msg"] toView:weakSelf.view];
             }
             
         } failureBlock:^(NSError *error) {
@@ -148,7 +148,7 @@
             orderH5VC.url = url;
             [weakSelf.navigationController pushViewController:orderH5VC animated:YES];
         }else {
-            [MBProgressHUD showMessag:[returnData objectForKey:@"msg"] toView:self.view];
+            [MBProgressHUD showMessag:[returnData objectForKey:@"msg"] toView:weakSelf.view];
         }
         
     } failureBlock:^(NSError *error) {
@@ -179,8 +179,9 @@
     
     __block ZQCityPickerView *cityPickerView = [[ZQCityPickerView alloc] initWithProvincesArray:nil cityArray:nil componentsCount:2];
     
+    __weak typeof(self) weakSelf = self;
     [cityPickerView showPickViewAnimated:^(NSString *province, NSString *city,NSString *cityCode,NSString *provinceCode) {
-        self.tfCarCity.text = [NSString stringWithFormat:@"%@ %@",province,city];
+        weakSelf.tfCarCity.text = [NSString stringWithFormat:@"%@ %@",province,city];
         _cityCode = cityCode;
         cityPickerView = nil;
     }];

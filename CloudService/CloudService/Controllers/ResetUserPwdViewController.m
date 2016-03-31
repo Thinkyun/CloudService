@@ -56,12 +56,14 @@
         return;
     }
     NSDictionary *dict = @{@"phoneNo":self.phoneNum.text,@"code":self.codeTextFiled.text,@"password":[Utility sha256WithString:self.pwdTextFiled.text]};
+    
+    __weak typeof(self) weakSelf = self;
     [MHNetworkManager postReqeustWithURL:[RequestEntity urlString:kForgetPwdAPI] params:dict successBlock:^(id returnData) {
         
         if ([[returnData valueForKey:@"flag"] isEqualToString:@"success"]) {
-            [self.navigationController popViewControllerAnimated:YES];
+            [weakSelf.navigationController popViewControllerAnimated:YES];
         }else{
-            [MBProgressHUD showMessag:[returnData valueForKey:@"msg"] toView:self.view];
+            [MBProgressHUD showMessag:[returnData valueForKey:@"msg"] toView:weakSelf.view];
         }
         
     } failureBlock:^(NSError *error) {

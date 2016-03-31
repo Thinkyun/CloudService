@@ -69,13 +69,15 @@
     }
     
     User *user = [[SingleHandle shareSingleHandle] getUserInfo];
+    
+    __weak typeof(self) weakSelf = self;
     [MHNetworkManager postReqeustWithURL:[RequestEntity urlString:kGetExchangeIntergralAPI] params:@{@"userId":user.userId,@"cash":self.intergNumTextFiled.text}
                             successBlock:^(id returnData) {
         if ([[returnData valueForKey:@"flag"] isEqualToString:@"success"]) {
-            [self.navigationController popViewControllerAnimated:YES];
+            [weakSelf.navigationController popViewControllerAnimated:YES];
             [[NSNotificationCenter defaultCenter] postNotificationName:ExchangeIntegralSuccess object:nil];
         }else{
-            [MBProgressHUD showMessag:[returnData valueForKey:@"msg"] toView:self.view];
+            [MBProgressHUD showMessag:[returnData valueForKey:@"msg"] toView:weakSelf.view];
         }
     } failureBlock:^(NSError *error) {
         

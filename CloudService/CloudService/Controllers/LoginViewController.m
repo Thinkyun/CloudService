@@ -153,7 +153,7 @@
             /**
              *  火炬登陆信息
              */
-            [[FireData sharedInstance] loginWithUserid:user.userNum uvar:nil];
+//            [[FireData sharedInstance] loginWithUserid:user.userNum uvar:nil];
             if (weakSelf.choseBtn.selected) {
                 [Utility remberPassWord:YES];
             }else {

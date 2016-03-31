@@ -85,6 +85,8 @@
                               @"pageSize":[NSString stringWithFormat:@"%i",_pageSize],
                               @"pageNo":[NSString stringWithFormat:@"%i",_page]};
     NSString *url = [NSString stringWithFormat:@"%@%@",BaseAPI,kfindUserCreditsRecord];
+    
+    __weak typeof(self) weakSelf = self;
     [MHNetworkManager postReqeustWithURL:url params:paramsDic successBlock:^(id returnData) {
         NSDictionary *dic = returnData;
         if ([[dic objectForKey:@"flag"] isEqualToString:@"success"]) {
@@ -95,9 +97,9 @@
             int totalCount=[[[dataDic objectForKey:@"pageVO"] objectForKey:@"recordCount"] intValue];
     
             if (totalCount>0) {
-                [self removeNoData];
+                [weakSelf removeNoData];
             }else {
-                [self setupNoData];
+                [weakSelf setupNoData];
             }
             if (totalCount-_pageSize*_page<=0) {
                 //没有数据，直接提示没有更多数据
@@ -109,15 +111,15 @@
             NSArray *listArray = [dataDic objectForKey:@"list"];
             [_integralArray addObjectsFromArray:[Integral mj_objectArrayWithKeyValuesArray:listArray]];
         }else {
-        [MBProgressHUD showMessag:[dic objectForKey:@"msg"] toView:self.view];
-            [self setupNoData];
+        [MBProgressHUD showMessag:[dic objectForKey:@"msg"] toView:weakSelf.view];
+            [weakSelf setupNoData];
         }
 
-        [self.tableView reloadData];
-        [self.tableView.mj_header endRefreshing];
+        [weakSelf.tableView reloadData];
+        [weakSelf.tableView.mj_header endRefreshing];
     } failureBlock:^(NSError *error) {
-        [self setupNoData];
-        [self.tableView.mj_header endRefreshing];
+        [weakSelf setupNoData];
+        [weakSelf.tableView.mj_header endRefreshing];
     } showHUD:YES];
 
 }
@@ -127,6 +129,8 @@
     
     NSDictionary *paramsDic=@{@"userId":[[SingleHandle shareSingleHandle] getUserInfo].userId,@"pageSize":[NSString stringWithFormat:@"%i",_pageSize],@"pageNo":[NSString stringWithFormat:@"%i",_page]};
     NSString *url = [NSString stringWithFormat:@"%@%@",BaseAPI,kfindUserCreditsRecord];
+    
+    __weak typeof(self) weakSelf = self;
     [MHNetworkManager postReqeustWithURL:url params:paramsDic successBlock:^(id returnData) {
         
         NSDictionary *dic = returnData;
@@ -143,10 +147,10 @@
 
         NSArray *listArray = [dataDic objectForKey:@"list"];
         [_integralArray addObjectsFromArray:[Integral mj_objectArrayWithKeyValuesArray:listArray]];
-        [self.tableView reloadData];
+        [weakSelf.tableView reloadData];
      
     } failureBlock:^(NSError *error) {
-        [self.tableView.mj_footer endRefreshing];
+        [weakSelf.tableView.mj_footer endRefreshing];
     } showHUD:YES];
 
 }

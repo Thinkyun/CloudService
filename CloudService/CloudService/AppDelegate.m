@@ -68,12 +68,12 @@
 //    [JPUSHService setTags:[NSSet set] alias:@"" callbackSelector:nil target:self];
     
 
-    
+    __weak typeof(self) weakSelf = self;
     // 检查版本号
     [Utility checkNewVersion:^(BOOL hasNewVersion) {
         if (hasNewVersion) {
             [Utility saveVersion:hasNewVersion];
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"版本更新" message:@"系统检测有新版本" delegate:self cancelButtonTitle:nil otherButtonTitles:@"点击进入下载", nil];
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"版本更新" message:@"系统检测有新版本" delegate:weakSelf cancelButtonTitle:nil otherButtonTitles:@"点击进入下载", nil];
             [alertView show];
         }
     }];
@@ -200,7 +200,7 @@
     /**
      *  首页初始化青牛
      */
-    [[ButelHandle shareButelHandle] Init];
+//    [[ButelHandle shareButelHandle] Init];
     
 }
 

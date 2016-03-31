@@ -48,6 +48,8 @@
 - (void)requestMember {
     NSDictionary *paramsDic=@{@"userId":[[SingleHandle shareSingleHandle] getUserInfo].userId};
     NSString *url = [NSString stringWithFormat:@"%@%@",BaseAPI,kfindTeamMember];
+    
+    __weak typeof(self) weakSelf = self;
     [MHNetworkManager postReqeustWithURL:url params:paramsDic successBlock:^(id returnData) {
         
         NSDictionary *dic = returnData;
@@ -61,7 +63,7 @@
             }
             
         }else {
-            [MBProgressHUD showMessag:[dic objectForKey:@"msg"] toView:self.view];
+            [MBProgressHUD showMessag:[dic objectForKey:@"msg"] toView:weakSelf.view];
         }
         [self.tableView reloadData];
 
@@ -117,19 +119,21 @@
                 }else {
                     NSDictionary *paramsDic=@{@"teamId":teamMember.teamId,@"totalCouponNum":[NSString stringWithFormat:@"%i",_couponsCount],@"couponId":_coupons.couponId,@"coupon":[couponStr substringFromIndex:1],@"teamerId":[teamerIdStr substringFromIndex:1]};
                     NSString *url = [NSString stringWithFormat:@"%@%@",BaseAPI,kassignTeamCoupon];
+                    
+                    __weak typeof(self) weakSelf = self;
                     [MHNetworkManager postReqeustWithURL:url params:paramsDic successBlock:^(id returnData) {
                         
                         NSDictionary *dic = returnData;
                         if ([[dic objectForKey:@"flag"] isEqualToString:@"success"]) {
-                            [MBProgressHUD showMessag:@"派发优惠券成功" toView:self.view];
+                            [MBProgressHUD showMessag:@"派发优惠券成功" toView:weakSelf.view];
                             [[FireData sharedInstance] eventWithCategory:@"优惠券派发" action:@"派发优惠券" evar:nil attributes:nil];
-                            if (self.refreshBlock) {
+                            if (weakSelf.refreshBlock) {
                                 // 刷新的block
-                                self.refreshBlock();
+                                weakSelf.refreshBlock();
                             }
-                            [self.navigationController popViewControllerAnimated:YES];
+                            [weakSelf.navigationController popViewControllerAnimated:YES];
                         }else {
-                            [MBProgressHUD showMessag:[dic objectForKey:@"msg"] toView:self.view];
+                            [MBProgressHUD showMessag:[dic objectForKey:@"msg"] toView:weakSelf.view];
                         }
                         
                     } failureBlock:^(NSError *error) {

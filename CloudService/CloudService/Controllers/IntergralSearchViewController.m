@@ -416,6 +416,8 @@
                               @"startDate":_tfStart.text,
                               @"endData":_tfEnd.text};
     NSString *url = [NSString stringWithFormat:@"%@%@",BaseAPI,kfindUserCreditsRecord];
+    
+    __weak typeof(self) weakSelf = self;
     [MHNetworkManager postReqeustWithURL:url params:paramsDic successBlock:^(id returnData) {
         
         NSDictionary *dic = returnData;
@@ -432,10 +434,10 @@
         
         NSArray *listArray = [dataDic objectForKey:@"list"];
         [_integralArray addObjectsFromArray:[Integral mj_objectArrayWithKeyValuesArray:listArray]];
-        [self.tableView reloadData];
+        [weakSelf.tableView reloadData];
      
     } failureBlock:^(NSError *error) {
-        [self.tableView.mj_footer endRefreshing];
+        [weakSelf.tableView.mj_footer endRefreshing];
     } showHUD:YES];
     
 }

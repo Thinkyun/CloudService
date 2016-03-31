@@ -62,16 +62,18 @@
     NSDictionary *dict = @{@"password":[Utility sha256WithString:[Utility passWord]] ,
                            @"newPwd":[Utility sha256WithString:self.pwdTextFiled.text],
                            @"userId":user.userId};
+    
+    __weak typeof(self) weakSelf = self;
     [MHNetworkManager postReqeustWithURL:[RequestEntity urlString:kResetPwdAPI] params:dict successBlock:^(id returnData) {
         
         if ([[returnData valueForKey:@"flag"] isEqualToString:@"success"])
         {
-            [Utility saveUserName:[Utility userName] passWord:self.pwdTextFiled.text];
-            NSArray *VCArrary = self.navigationController.viewControllers;
-            [self.navigationController popToViewController:[VCArrary objectAtIndex:1] animated:YES];
+            [Utility saveUserName:[Utility userName] passWord:weakSelf.pwdTextFiled.text];
+            NSArray *VCArrary = weakSelf.navigationController.viewControllers;
+            [weakSelf.navigationController popToViewController:[VCArrary objectAtIndex:1] animated:YES];
         }else
         {
-            [MBProgressHUD showMessag:[returnData valueForKey:@"msg"] toView:self.view];
+            [MBProgressHUD showMessag:[returnData valueForKey:@"msg"] toView:weakSelf.view];
         }
         
     } failureBlock:^(NSError *error) {

@@ -106,10 +106,11 @@
     // 开始动画
     [self animationbegin:sender];
     
+    __weak typeof(self) weakSelf = self;
     [UIView animateWithDuration:0.3 animations:^{
-        self.alpha = 0;
+        weakSelf.alpha = 0;
     } completion:^(BOOL finished) {
-        [self removeFromSuperview];
+        [weakSelf removeFromSuperview];
     }];
 }
 
