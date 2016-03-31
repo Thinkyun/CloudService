@@ -19,10 +19,13 @@ static ButelHandle *singleHandle = nil;
     BOOL isCall;//是否拨号
    
     BOOL isCanCall;  // 拨号之前判断能否拨号
+    NSString *_deviceId;
+    NSString *_UUID;
+    NSString *_number;
 }
 
 @property (retain) ButelCommonConnectV1 *connect;
-@property (retain) NSString *deviceId;
+
 @property (nonatomic,strong)CallView *callView;
 @end
 
@@ -36,15 +39,51 @@ static ButelHandle *singleHandle = nil;
     });
     return singleHandle;
 }
+/**
+ *  青牛http登陆
+ */
+- (void)ButelHttpLogin {
+    //http登陆
+    __block AppDelegate *delegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
+    delegate.isThird=YES;
+    [MHNetworkManager postReqeustWithURL:@"http://221.4.250.108:8088/apHttpService/agent/login4Butel" params:@{@"entId":@"7593111023", @"agentId":@"1001",@"passWord":@"1001"} successBlock:^(NSDictionary *returnData) {
+        delegate.isThird = NO;
+        NSDictionary *dic = returnData;
+        if ([[dic objectForKey:@"code"] isEqualToString:@"000"]) {
+            NSDictionary *extDic = [dic objectForKey:@"ext"];
+            NSString *str = [extDic objectForKey:@"dn"];
+            NSArray *array = [str componentsSeparatedByString:@":"];
+            _deviceId = [extDic objectForKey:@"nubeUUID"];
+            _UUID = [extDic objectForKey:@"nubeAppKey"];
+            _number = [array objectAtIndex:1];
+            
+             [[NSNotificationCenter defaultCenter] postNotificationName:LoginToMenuViewNotice object:nil];
+            NSLog(@"%@",dic);
+            
+        }else {
+            [MBProgressHUD showError:[dic objectForKey:@"msg"] toView:nil];
+        }
+        
+    } failureBlock:^(NSError *error) {
+        delegate.isThird = NO;
+        NSLog(@"%@",error);
+    } showHUD:NO];
+}
 
 - (void)Init {
-    self.callView = nil;
-    //初始化青牛
-    self.connect = [ButelEventConnectSDK CreateButelCommonConn:self];
-    
-    if ([self.connect Init] == -50006) {
+    if (![_number isEqualToString:@""]&&![_UUID isEqualToString:@""]&&![_number isEqualToString:@""]) {
+        self.callView = nil;
+        //初始化青牛
+        self.connect = [ButelEventConnectSDK CreateButelCommonConn:self];
         
+        if ([self.connect Init] == -50006) {
+            
+        }
+    }else{
+        [MBProgressHUD showMessag:@"正在登陆青牛" toView:nil];
+    
     }
+    
 }
 
 - (void)logOut {
@@ -109,7 +148,7 @@ static ButelHandle *singleHandle = nil;
             }
             AppDelegate *delegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
             delegate.isThird=YES;
-            [MHNetworkManager postReqeustWithURL:@"http://221.4.250.108:8088/apHttpService/agent/makeCall" params:@{@"entId":@"7593111023", @"agentId":@"1001",@"number":phoneNo, @"ani":@"12345", @"uuid":self.deviceId, @"requestType":@"test" } successBlock:^(NSDictionary *returnData) {
+            [MHNetworkManager postReqeustWithURL:@"http://221.4.250.108:8088/apHttpService/agent/makeCall" params:@{@"entId":@"7593111023", @"agentId":@"1001",@"number":phoneNo, @"ani":@"12345", @"uuid":_deviceId, @"requestType":@"test" } successBlock:^(NSDictionary *returnData) {
                 NSDictionary *dic = returnData;
                 NSLog(@"%@",dic);
                 if ([[dic objectForKey:@"code"] isEqualToString:@"000"]) {
@@ -131,6 +170,7 @@ static ButelHandle *singleHandle = nil;
             isCall = !isCall;
         }else {
             [MBProgressHUD showMessag:@"正在集成中，请稍候" toView:[UIApplication sharedApplication].keyWindow];
+            [self loginWithLogin:_UUID number:_number deviceId:_deviceId nickname:@"CONNECT" userUniqueIdentifer:_deviceId];
         }
     }
     [self.callView callPhoneOrHangUp];
@@ -275,10 +315,10 @@ static ButelHandle *singleHandle = nil;
 
 
 
-//// 登陆
-//- (void)loginWithLogin:(NSString *)UUID number:(NSString *)number deviceId:(NSString *)deviceID nickname:(NSString *)nickName userUniqueIdentifer:(NSString *)userID {
-//    [self.connect Login:UUID number:number deviceId:deviceID nickname:nickName userUniqueIdentifer:userID];
-//}
+// 登陆
+- (void)loginWithLogin:(NSString *)UUID number:(NSString *)number deviceId:(NSString *)deviceID nickname:(NSString *)nickName userUniqueIdentifer:(NSString *)userID {
+    [self.connect Login:UUID number:number deviceId:deviceID nickname:nickName userUniqueIdentifer:userID];
+}
 
 
 @end

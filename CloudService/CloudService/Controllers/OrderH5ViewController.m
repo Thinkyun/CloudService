@@ -45,10 +45,11 @@
 
 - (void)webViewDidStartLoad:(UIWebView *)webView {
     NSLog(@"开始加载");
-    
+    [MBProgressHUD showHUDAddedTo:(UIView*)[[[UIApplication sharedApplication]delegate]window] animated:YES];
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
+    [MBProgressHUD hideHUDForView:(UIView*)[[[UIApplication sharedApplication]delegate]window] animated:YES];
     // 绑定 webView
     [self.fireDataApp bindWebView:webView
                    categoryPrefix:@"直客报价"

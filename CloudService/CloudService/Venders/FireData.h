@@ -38,9 +38,8 @@
 /*
  初始化设置
  */
-- (void)initWithHost:(NSString *)url                // 服务端host地址
-              appKey:(NSString *)appKey             // 用户APP的唯一标识
-        distributors:(NSString *)channelId;        // app 渠道
+- (void)initWithAppKey:(NSString *)appKey             // 用户APP的唯一标识
+          distributors:(NSString *)channelId;        // app 渠道
 
 ///---------------------------------------------------------------------------------------
 /// @name  事件

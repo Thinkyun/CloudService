@@ -43,7 +43,10 @@ static NSString *headerView_ID = @"headerView";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    /**
+     *  首页初始化青牛
+     */
+    [[ButelHandle shareButelHandle] Init];
 
     [self initData];
     [self setupViews];

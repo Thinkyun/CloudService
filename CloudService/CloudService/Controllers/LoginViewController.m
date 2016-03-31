@@ -14,7 +14,7 @@
 #import "MHNetwrok.h"
 #import "Utility.h"
 #import "User.h"
-//#import "ButelHandle.h"
+#import "ButelHandle.h"
 
 @interface LoginViewController ()<UITextFieldDelegate>{
     BOOL _isRemenberPwd;
@@ -143,13 +143,15 @@
         
         [dict setValue:@"北京市" forKey:@"address"];
     }
-
+    AppDelegate *delegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
+    delegate.isThird=NO;
     __weak typeof(self) weakSelf = self;
     [MHNetworkManager postReqeustWithURL:[RequestEntity urlString:kLoginAPI] params:dict successBlock:^(id returnData) {
         if ([[returnData valueForKey:@"flag"] isEqualToString:@"success"]) {
             User *user = [User mj_objectWithKeyValues:[returnData valueForKey:@"data"]];
             [[SingleHandle shareSingleHandle] saveUserInfo:user];
-            [Utility saveUserName:weakSelf.UserTextFiled.text passWord:weakSelf.pwdTextFiled.text];
+            [Utility saveUserName:self.UserTextFiled.text passWord:self.pwdTextFiled.text];
+            NSLog(@"%@",user.userNum);
             /**
              *  火炬登陆信息
              */
@@ -159,15 +161,19 @@
             }else {
                 [Utility remberPassWord:NO];
             }
-            
-            [[NSNotificationCenter defaultCenter] postNotificationName:LoginToMenuViewNotice object:nil];
+            [[ButelHandle shareButelHandle] ButelHttpLogin];
+           
         }else if([[returnData valueForKey:@"flag"] isEqualToString:@"error"]){
             [MBProgressHUD showMessag:[returnData valueForKey:@"msg"] toView:weakSelf.view];
         }
     } failureBlock:^(NSError *error) {
  
     } showHUD:YES];
+   
+    
+
 }
+
 
 /**
  *  检查输入状态

@@ -145,4 +145,22 @@ static User *user = nil;
     } showHUD:NO];
 }
 
++(void)saveButel:(NSString *)deviceId uuid:(NSString *)UUID num:(NSString *)number {
+    [[NSUserDefaults standardUserDefaults] setBool:deviceId forKey:@"deviceId"];
+    [[NSUserDefaults standardUserDefaults] setBool:UUID forKey:@"UUID"];
+    [[NSUserDefaults standardUserDefaults] setBool:number forKey:@"number"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
++(NSString *)deviceId {
+    return [[NSUserDefaults standardUserDefaults] valueForKey:@"deviceId"];
+}
+
++(NSString *)UUID {
+    return [[NSUserDefaults standardUserDefaults] valueForKey:@"UUID"];
+}
++(NSString *)number {
+    return [[NSUserDefaults standardUserDefaults] valueForKey:@"number"];
+}
+
+
 @end

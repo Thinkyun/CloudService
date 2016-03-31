@@ -138,7 +138,22 @@
 }
 
 - (IBAction)save:(id)sender {
-    [[FireData sharedInstance] eventWithCategory:@"预约" action:@"保存预约" evar:nil attributes:nil];
+     [[FireData sharedInstance] eventWithCategory:@"预约" action:@"保存预约" evar:nil attributes:nil];
+    if ([self.tfCode.text isEqualToString:@""]) {
+        [MBProgressHUD showMessag:@"请输入结束码" toView:nil];
+        return;
+    }
+    if ([self.tfCode.text isEqualToString:@"空错号"]||[self.tfCode.text isEqualToString:@"客户拒绝"]||[self.tfCode.text isEqualToString:@"无效数据"]) {
+        
+    }else {
+        if ([self.tfDate.text isEqualToString:@""]) {
+            [MBProgressHUD showMessag:@"请选择预约时间" toView:nil];
+            return;
+        }if ([self.textView.text isEqualToString:@""]) {
+            [MBProgressHUD showMessag:@"请输入备注" toView:nil];
+            return;
+        }
+    }
     NSString *url = [NSString stringWithFormat:@"%@%@",BaseAPI,kaddReserve];
     NSDictionary *params = @{@"userId":[[SingleHandle shareSingleHandle] getUserInfo].userId,
                              @"customerId":self.customerId,
@@ -161,6 +176,9 @@
     } failureBlock:^(NSError *error) {
         
     } showHUD:NO];
+
+   
+    
 }
 
 
