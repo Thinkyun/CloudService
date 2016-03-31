@@ -140,6 +140,7 @@
         [dict setValue:address forKey:@"address"];
     }else {
 //        [MBProgressHUD showMessag:@"无法获取定位信息,系统默认您的的登录城市为北京市" toView:self.view];
+        
         [dict setValue:@"北京市" forKey:@"address"];
     }
     AppDelegate *delegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
@@ -163,7 +164,7 @@
             [[ButelHandle shareButelHandle] ButelHttpLogin];
            
         }else if([[returnData valueForKey:@"flag"] isEqualToString:@"error"]){
-            [MBProgressHUD showMessag:[returnData valueForKey:@"msg"] toView:self.view];
+            [MBProgressHUD showMessag:[returnData valueForKey:@"msg"] toView:weakSelf.view];
         }
     } failureBlock:^(NSError *error) {
  
