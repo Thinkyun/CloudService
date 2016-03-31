@@ -8,7 +8,7 @@
 
 #import "BaseViewController.h"
 
-typedef void (^refreshBlock)();
+
 
 @class Order;
 
@@ -16,8 +16,5 @@ typedef void (^refreshBlock)();
 
 @property (nonatomic,strong)Order *order;
 
-@property (nonatomic , copy) refreshBlock refreshBlock;
-
-- (void) refresh:(refreshBlock)block;
 
 @end

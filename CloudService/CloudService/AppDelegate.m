@@ -90,7 +90,7 @@
     
     
 
-//    [self registerFireData];
+    [self registerFireData];
     return YES;
 }
 

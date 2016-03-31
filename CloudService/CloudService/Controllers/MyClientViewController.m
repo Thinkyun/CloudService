@@ -61,10 +61,11 @@
         [[FireData sharedInstance] eventWithCategory:@"我的客户" action:@"添加" evar:nil attributes:nil];
         [weakSelf performSegueWithIdentifier:@"creatClient" sender:weakSelf];
     }];
-//    if (self.isSaveCarInfo) {
-//        _conditon = @"";
-//        [self.tableView.mj_header beginRefreshing];
-//    }
+    if (self.isSaveCarInfo) {
+        self.isSaveCarInfo = NO;
+        _conditon = @"";
+        [self.tableView.mj_header beginRefreshing];
+    }
 }
 //添加mj
 - (void)addMjRefresh {
@@ -216,13 +217,6 @@
     if ([segue.identifier isEqualToString:@"offerInfo"]) {
         // segue.destinationViewController：获取连线时所指的界面（VC）
         OfferViewController *receive = segue.destinationViewController;
-        
-        // 刷新的 block
-        __weak typeof(self) weakSelf = self;
-        [receive refresh:^{
-             _conditon = @"";
-            [weakSelf.tableView.mj_header beginRefreshing];
-        }];
         
         receive.order = _order;
     }

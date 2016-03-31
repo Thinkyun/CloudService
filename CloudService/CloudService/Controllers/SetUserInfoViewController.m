@@ -303,7 +303,10 @@ static NSString *const select_CellID = @"selectCell";
     // 个人信息,带下拉框
     if (indexPath.section == 0 && isCell2) {
 
-        SetUserInfoCell2 *cell2 = [tableView dequeueReusableCellWithIdentifier:cell_Id2 forIndexPath:indexPath];
+        SetUserInfoCell2 *cell2 = [tableView dequeueReusableCellWithIdentifier:cell_Id2 ];
+        if (cell2 == nil) {
+            cell2 = [[SetUserInfoCell2 alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cell_Id2];
+        }
         cell2.titleLabelWidth.constant = 80;
         cell2.titleLabel.text = _keyArray_User[indexPath.row];
         cell2.delegate = self;

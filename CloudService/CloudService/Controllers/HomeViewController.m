@@ -101,12 +101,13 @@ static NSString *headerView_ID = @"headerView";
 
 
 - (void)viewWillAppear:(BOOL)animated {
+    //导航条滑动返回
+    [super viewWillAppear:animated];
     /**
      *  首页隐藏青牛拨打页面
      */
     [[ButelHandle shareButelHandle] hideCallView];
-    //导航条滑动返回
-    [super viewWillAppear:animated];
+    
     self.navigationController.interactivePopGestureRecognizer.delegate = (id)self;
     
     self.view.frame = CGRectMake(0, 0, KWidth, KHeight - 64);
