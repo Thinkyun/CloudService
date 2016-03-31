@@ -11,6 +11,7 @@
 #import "ZQCityPickerView.h"
 #import "Order.h"
 #import "ButelHandle.h"
+#import "MyClientViewController.h"
 
 @interface CreatClientViewController ()<UITextFieldDelegate>
 {
@@ -155,8 +156,10 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // segue.identifier：获取连线的ID
     if ([segue.identifier isEqualToString:@"offer"]) {
+       
         // segue.destinationViewController：获取连线时所指的界面（VC）
         OfferViewController *offerVC = segue.destinationViewController;
+      
         Order *order = [[Order alloc] init];
         if ([_tfLicenseNo.text isEqualToString:@""]) {
            order.licenseNo = @"";

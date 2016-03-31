@@ -94,11 +94,7 @@ static CGFloat headerHeight = 30;
     }];
 }
 
-#pragma mark 刷新的 block
-- (void) refresh:(refreshBlock)block{
-    
-    self.refreshBlock = block;
-}
+
 
 // 保存
 - (void)saveAction {
@@ -122,8 +118,8 @@ static CGFloat headerHeight = 30;
     AppDelegate *delegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
     delegate.isThird=NO;
     NSDictionary *myServerDict = @{@"userId":user.userId,
-                                   @"baseId":self.order.baseId<=0?@"":self.order.baseId,
-                                   @"id":self.order.customerId<=0?@"":self.order.customerId,
+                                   @"baseId":self.order.baseId.length<=0?@"":self.order.baseId,
+                                   @"id":self.order.customerId.length<=0?@"":self.order.customerId,
                                    @"orderType":@"",
                                    @"cityCode":self.order.cityCode,
                                    @"custName":cell2.carUserName.text,
@@ -138,13 +134,8 @@ static CGFloat headerHeight = 30;
     [MHNetworkManager postReqeustWithURL:[RequestEntity urlString:kEstablishCustBySelf] params:myServerDict
         successBlock:^(id returnData) {
         MyClientViewController *VC = self.navigationController.viewControllers[1];
-//        VC.isSaveCarInfo = YES;
-            // 刷新的block
-            if (self.refreshBlock) {
-                
-                self.refreshBlock();
-            }
-            
+        VC.isSaveCarInfo = YES;
+
         [self.navigationController popToViewController:VC animated:YES];
     } failureBlock:^(NSError *error) {
         
@@ -223,7 +214,7 @@ static CGFloat headerHeight = 30;
             NSDictionary *myServerDict = @{
                                            @"userId":user.userId,
                                            @"baseId":baseId,
-                                           @"id":self.order.customerId<=0?@"":self.order.customerId,
+                                           @"id":self.order.customerId.length<=0?@"":self.order.customerId,
                                            @"orderType":@"",
                                            @"cityCode":self.order.cityCode,
                                            @"custName":cell2.carUserName.text,
@@ -254,6 +245,10 @@ static CGFloat headerHeight = 30;
     [MHNetworkManager postReqeustWithURL:[RequestEntity urlString:ksaveOrder] params:param successBlock:^(id returnData) {
         
         if ([[returnData objectForKey:@"flag"] isEqualToString:@"success"]) {
+            
+            MyClientViewController *VC = self.navigationController.viewControllers[1];
+            VC.isSaveCarInfo = YES;
+            
             OrderH5ViewController *orderH5VC = [[OrderH5ViewController alloc] init];
             orderH5VC.url = url;
             [weakSelf.navigationController pushViewController:orderH5VC animated:YES];

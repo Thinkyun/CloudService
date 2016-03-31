@@ -79,9 +79,6 @@
 		63C07B9C1C7B14BB0084581F /* MHAsiNetworkItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 63C07B931C7B14BB0084581F /* MHAsiNetworkItem.m */; };
 		63C07B9D1C7B14BB0084581F /* MHNetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 63C07B961C7B14BB0084581F /* MHNetworkManager.m */; };
 		63C07B9E1C7B14BB0084581F /* MHUploadParam.m in Sources */ = {isa = PBXBuildFile; fileRef = 63C07B991C7B14BB0084581F /* MHUploadParam.m */; };
-		63C07BA81C7B15C10084581F /* NSArray+AYCUnicode.m in Sources */ = {isa = PBXBuildFile; fileRef = 63C07BA11C7B15C10084581F /* NSArray+AYCUnicode.m */; };
-		63C07BA91C7B15C10084581F /* NSDictionary+AYCUnicode.m in Sources */ = {isa = PBXBuildFile; fileRef = 63C07BA31C7B15C10084581F /* NSDictionary+AYCUnicode.m */; };
-		63C07BAA1C7B15C10084581F /* NSObject+AYCUnicode.m in Sources */ = {isa = PBXBuildFile; fileRef = 63C07BA51C7B15C10084581F /* NSObject+AYCUnicode.m */; };
 		63C07BAB1C7B15C10084581F /* HelperUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 63C07BA71C7B15C10084581F /* HelperUtil.m */; };
 		63C2FB941C7FEC9500D48B8C /* OrderInfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 63C2FB921C7FEC9500D48B8C /* OrderInfoTableViewCell.m */; };
 		63C2FB951C7FEC9500D48B8C /* OrderInfoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 63C2FB931C7FEC9500D48B8C /* OrderInfoTableViewCell.xib */; };
@@ -277,12 +274,6 @@
 		63C07B971C7B14BB0084581F /* MHNetwrok.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MHNetwrok.h; sourceTree = "<group>"; };
 		63C07B981C7B14BB0084581F /* MHUploadParam.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MHUploadParam.h; sourceTree = "<group>"; };
 		63C07B991C7B14BB0084581F /* MHUploadParam.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MHUploadParam.m; sourceTree = "<group>"; };
-		63C07BA01C7B15C10084581F /* NSArray+AYCUnicode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+AYCUnicode.h"; sourceTree = "<group>"; };
-		63C07BA11C7B15C10084581F /* NSArray+AYCUnicode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+AYCUnicode.m"; sourceTree = "<group>"; };
-		63C07BA21C7B15C10084581F /* NSDictionary+AYCUnicode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+AYCUnicode.h"; sourceTree = "<group>"; };
-		63C07BA31C7B15C10084581F /* NSDictionary+AYCUnicode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+AYCUnicode.m"; sourceTree = "<group>"; };
-		63C07BA41C7B15C10084581F /* NSObject+AYCUnicode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+AYCUnicode.h"; sourceTree = "<group>"; };
-		63C07BA51C7B15C10084581F /* NSObject+AYCUnicode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+AYCUnicode.m"; sourceTree = "<group>"; };
 		63C07BA61C7B15C10084581F /* HelperUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelperUtil.h; sourceTree = "<group>"; };
 		63C07BA71C7B15C10084581F /* HelperUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelperUtil.m; sourceTree = "<group>"; };
 		63C2FB911C7FEC9500D48B8C /* OrderInfoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderInfoTableViewCell.h; sourceTree = "<group>"; };
@@ -530,19 +521,6 @@
 				63C07B991C7B14BB0084581F /* MHUploadParam.m */,
 			);
 			path = NetwrokHandle;
-			sourceTree = "<group>";
-		};
-		63C07B9F1C7B15C00084581F /* AYCUnicode */ = {
-			isa = PBXGroup;
-			children = (
-				63C07BA01C7B15C10084581F /* NSArray+AYCUnicode.h */,
-				63C07BA11C7B15C10084581F /* NSArray+AYCUnicode.m */,
-				63C07BA21C7B15C10084581F /* NSDictionary+AYCUnicode.h */,
-				63C07BA31C7B15C10084581F /* NSDictionary+AYCUnicode.m */,
-				63C07BA41C7B15C10084581F /* NSObject+AYCUnicode.h */,
-				63C07BA51C7B15C10084581F /* NSObject+AYCUnicode.m */,
-			);
-			path = AYCUnicode;
 			sourceTree = "<group>";
 		};
 		63C54E2A1C7C2B41007CE8CA /* OrderManager(订单管理) */ = {
@@ -883,7 +861,6 @@
 		F0292BD91C7B015200A810A9 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
-				63C07B9F1C7B15C00084581F /* AYCUnicode */,
 				F0292BDA1C7B015200A810A9 /* Utility.h */,
 				F0292BDB1C7B015200A810A9 /* Utility.m */,
 				63C07BA61C7B15C10084581F /* HelperUtil.h */,
@@ -1176,9 +1153,7 @@
 				637533BB1C84321500A12932 /* OfferTableViewCell.m in Sources */,
 				63C2FB941C7FEC9500D48B8C /* OrderInfoTableViewCell.m in Sources */,
 				63C07B9A1C7B14BB0084581F /* MBProgressHUD+Add.m in Sources */,
-				63C07BA81C7B15C10084581F /* NSArray+AYCUnicode.m in Sources */,
 				634EE62B1C997F9400FB526D /* RuleViewController.m in Sources */,
-				63C07BAA1C7B15C10084581F /* NSObject+AYCUnicode.m in Sources */,
 				F019C9D91C7BFD8D00E73A2C /* RegisterViewController.m in Sources */,
 				63C54E411C7C35BA007CE8CA /* PersonalViewController.m in Sources */,
 				F06DDBB01C7DACDE00C862A1 /* OrderManagerViewController.m in Sources */,
@@ -1222,7 +1197,6 @@
 				F074D9321C93A756007A6A88 /* CodeNameModel.m in Sources */,
 				63C07B9E1C7B14BB0084581F /* MHUploadParam.m in Sources */,
 				F074D93C1C93F0F5007A6A88 /* OrderH5ViewController.m in Sources */,
-				63C07BA91C7B15C10084581F /* NSDictionary+AYCUnicode.m in Sources */,
 				637A624C1C8EC0020020AE5E /* CouponsDistributeCell.m in Sources */,
 				F094A8491C9F9D5900E89967 /* TagSelectItem.m in Sources */,
 				F019C9D61C7BFD7900E73A2C /* LoginViewController.m in Sources */,
