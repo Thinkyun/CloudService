@@ -198,11 +198,11 @@ static ButelHandle *singleHandle = nil;
                 NSDictionary *extDic = [dic objectForKey:@"ext"];
                 NSString *str = [extDic objectForKey:@"dn"];
                 NSArray *array = [str componentsSeparatedByString:@":"];
-                weakSelf.deviceId = [extDic objectForKey:@"nubeUUID"];
+                _deviceId = [extDic objectForKey:@"nubeUUID"];
                 NSString *UUID = [extDic objectForKey:@"nubeAppKey"];
                 NSLog(@"%@",dic);
                 
-                [weakSelf.connect Login:UUID number:[array objectAtIndex:1] deviceId:weakSelf.deviceId nickname:@"CONNECT" userUniqueIdentifer:weakSelf.deviceId];
+                [weakSelf.connect Login:UUID number:[array objectAtIndex:1] deviceId:_deviceId nickname:@"CONNECT" userUniqueIdentifer:_deviceId];
             }else {
                 [MBProgressHUD showError:[dic objectForKey:@"msg"] toView:nil];
             }
