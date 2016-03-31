@@ -52,7 +52,6 @@
 		63790FE91C93B19C006CB0E2 /* ActivityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63790FE81C93B19C006CB0E2 /* ActivityViewController.m */; };
 		63790FED1C93C03C006CB0E2 /* ActivityCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 63790FEB1C93C03C006CB0E2 /* ActivityCollectionCell.m */; };
 		63790FEE1C93C03C006CB0E2 /* ActivityCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 63790FEC1C93C03C006CB0E2 /* ActivityCollectionCell.xib */; };
-		6379B5D81CACB3EC0096CC18 /* libFireData.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6379B5D71CACB3EC0096CC18 /* libFireData.a */; };
 		637A62481C8EBEC60020AE5E /* CouponsDistributeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 637A62471C8EBEC60020AE5E /* CouponsDistributeViewController.m */; };
 		637A624C1C8EC0020020AE5E /* CouponsDistributeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 637A624A1C8EC0020020AE5E /* CouponsDistributeCell.m */; };
 		637A624D1C8EC0020020AE5E /* CouponsDistributeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 637A624B1C8EC0020020AE5E /* CouponsDistributeCell.xib */; };
@@ -229,9 +228,6 @@
 		63790FEA1C93C03C006CB0E2 /* ActivityCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityCollectionCell.h; sourceTree = "<group>"; };
 		63790FEB1C93C03C006CB0E2 /* ActivityCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityCollectionCell.m; sourceTree = "<group>"; };
 		63790FEC1C93C03C006CB0E2 /* ActivityCollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActivityCollectionCell.xib; sourceTree = "<group>"; };
-		6379B5D51CACB3EC0096CC18 /* FireData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FireData.h; sourceTree = "<group>"; };
-		6379B5D61CACB3EC0096CC18 /* FiredataApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FiredataApp.h; sourceTree = "<group>"; };
-		6379B5D71CACB3EC0096CC18 /* libFireData.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFireData.a; sourceTree = "<group>"; };
 		637A62461C8EBEC60020AE5E /* CouponsDistributeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CouponsDistributeViewController.h; sourceTree = "<group>"; };
 		637A62471C8EBEC60020AE5E /* CouponsDistributeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CouponsDistributeViewController.m; sourceTree = "<group>"; };
 		637A62491C8EC0020020AE5E /* CouponsDistributeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CouponsDistributeCell.h; sourceTree = "<group>"; };
@@ -1008,7 +1004,6 @@
 				TargetAttributes = {
 					F0292BA91C7B00CD00A810A9 = {
 						CreatedOnToolsVersion = 7.2;
-						DevelopmentTeam = 7PS2AH4H79;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -1316,7 +1311,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "1d845a3f-dc6f-487f-975f-4be95ad4ef10";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -1355,7 +1350,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "1d845a3f-dc6f-487f-975f-4be95ad4ef10";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1383,7 +1378,7 @@
 					"$(PROJECT_DIR)/CloudService/Venders",
 					"$(PROJECT_DIR)/CloudService/Models",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.sinosig.EYunKeFu;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sinosig.zpc;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -1411,7 +1406,7 @@
 					"$(PROJECT_DIR)/CloudService/Venders",
 					"$(PROJECT_DIR)/CloudService/Models",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.sinosig.EYunKeFu;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sinosig.zpc;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
