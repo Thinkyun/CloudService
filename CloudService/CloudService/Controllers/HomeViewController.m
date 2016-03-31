@@ -209,22 +209,23 @@ static NSString *headerView_ID = @"headerView";
         userName = user.realName.length > 0 ? user.realName : user.userName;
         [_headerView setDataWithDictionary:@{@"userName":userName}];
         // 轮播图开始轮播
+        __weak typeof(self) weakSelf = self;
         [_headerView playWithImageArray:_scrollImgArray clickAtIndex:^(NSInteger index) {
             if (index == 0) {
-                [self performSegueWithIdentifier:@"activity" sender:self];
+                [weakSelf performSegueWithIdentifier:@"activity" sender:weakSelf];
             }
             if (index == 1) {
                 UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
                 RuleViewController *vc = [storyBoard instantiateViewControllerWithIdentifier:@"RuleVC"];
                 vc.ruleStr = @"活动2";
-                [self.navigationController pushViewController:vc animated:YES];
+                [weakSelf.navigationController pushViewController:vc animated:YES];
 
             }
             if (index == 2) {
                 UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
                 RuleViewController *vc = [storyBoard instantiateViewControllerWithIdentifier:@"RuleVC"];
                 vc.ruleStr = @"活动3";
-                [self.navigationController pushViewController:vc animated:YES];
+                [weakSelf.navigationController pushViewController:vc animated:YES];
 
             }
         }];
@@ -334,6 +335,7 @@ static NSString *headerView_ID = @"headerView";
         NSDictionary *paramsDic=@{@"userId":[[SingleHandle shareSingleHandle] getUserInfo].userId};
         NSString *url = [NSString stringWithFormat:@"%@%@",BaseAPI,kapplyCustomerData];
         
+        __weak typeof(self) weakSelf = self;
         [MHNetworkManager postReqeustWithURL:url
                                       params:paramsDic
                                 successBlock:^(id returnData) {
@@ -342,10 +344,10 @@ static NSString *headerView_ID = @"headerView";
             if ([[dic objectForKey:@"flag"] isEqualToString:@"success"]) {
                 NSDictionary *dataDic = [dic objectForKey:@"data"];
                 _order = [Order mj_objectWithKeyValues:dataDic];
-                [self performSegueWithIdentifier:@"getData" sender:self];
+                [weakSelf performSegueWithIdentifier:@"getData" sender:weakSelf];
                 
             }else {
-                [MBProgressHUD showMessag:[dic objectForKey:@"msg"] toView:self.view];
+                [MBProgressHUD showMessag:[dic objectForKey:@"msg"] toView:weakSelf.view];
             }
             
         } failureBlock:^(NSError *error) {

@@ -77,13 +77,13 @@
         [MHNetworkManager postReqeustWithURL:[RequestEntity urlString:kRegisterAPI] params:dict successBlock:^(id returnData) {
             NSDictionary *dict = returnData;
             if ([dict[@"flag"] isEqualToString:@"success"]) {
-                [Utility saveUserName:self.phoneNum.text passWord:@""];
+                [Utility saveUserName:weakSelf.phoneNum.text passWord:@""];
                 User *user = [User mj_objectWithKeyValues:[returnData valueForKey:@"data"]];
                 [[SingleHandle shareSingleHandle] saveUserInfo:user];
 
                 [weakSelf performSegueWithIdentifier:RegisterSuccess sender:weakSelf];
             }else {
-                [MBProgressHUD showMessag:dict[@"msg"] toView:self.view];
+                [MBProgressHUD showMessag:dict[@"msg"] toView:weakSelf.view];
             }
         } failureBlock:^(NSError *error) {
 

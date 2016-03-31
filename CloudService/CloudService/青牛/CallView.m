@@ -183,15 +183,17 @@
 - (void)oneFingerSwipeUp:(UIPanGestureRecognizer *)recognizer{
     CGPoint translatedPoint = [recognizer translationInView:self];
     _isPop = !_isPop;
+    
+    __weak typeof(self) weakSelf = self;
     if (translatedPoint.x>0) {
         [UIView animateWithDuration:.5 animations:^{
-            self.frame = CGRectMake(KWidth-20, KHeight/2, 220, 80);
+            weakSelf.frame = CGRectMake(KWidth-20, KHeight/2, 220, 80);
         } completion:^(BOOL finished) {
             _btnCall.userInteractionEnabled = NO;
         }];
     }else{
         [UIView animateWithDuration:.5 animations:^{
-            self.frame = CGRectMake(KWidth-170, KHeight/2, 220, 80);
+            weakSelf.frame = CGRectMake(KWidth-170, KHeight/2, 220, 80);
         } completion:^(BOOL finished) {
             _btnCall.userInteractionEnabled = YES;
         }];
@@ -200,17 +202,20 @@
 }
 
 - (void)popCallView {
+    
+    __weak typeof(self) weakSelf = self;
     if (_isPop) {
         _isPop = !_isPop;
+        
         [UIView animateWithDuration:.5 animations:^{
-            self.frame = CGRectMake(KWidth-20, KHeight/2, 220, 80);
+            weakSelf.frame = CGRectMake(KWidth-20, KHeight/2, 220, 80);
         } completion:^(BOOL finished) {
             _btnCall.userInteractionEnabled = NO;
         }];
     }else {
         _isPop = !_isPop;
         [UIView animateWithDuration:.5 animations:^{
-            self.frame = CGRectMake(KWidth-170, KHeight/2, 220, 80);
+            weakSelf.frame = CGRectMake(KWidth-170, KHeight/2, 220, 80);
         } completion:^(BOOL finished) {
             _btnCall.userInteractionEnabled = YES;
         }];

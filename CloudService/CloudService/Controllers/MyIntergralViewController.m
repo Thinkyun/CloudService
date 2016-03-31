@@ -53,7 +53,7 @@
         }
         
     } failureBlock:^(NSError *error) {
-        [MBProgressHUD showMessag:@"数据刷新失败" toView:self.view];
+        [MBProgressHUD showMessag:@"数据刷新失败" toView:weakSelf.view];
     } showHUD:NO];
 }
 

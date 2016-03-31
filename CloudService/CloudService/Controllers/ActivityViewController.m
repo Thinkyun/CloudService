@@ -54,7 +54,7 @@ static NSString *cellID = @"cellID";
         vc.ruleStr = @"活动1";
         
         [[FireData sharedInstance] eventWithCategory:@"我的猴运" action:@"活动规则" evar:nil attributes:nil];
-        [self.navigationController pushViewController:vc animated:YES];
+        [weakSelf.navigationController pushViewController:vc animated:YES];
     }];
 
     [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"nav_bg"] forBarMetrics:UIBarMetricsCompact];
@@ -89,7 +89,7 @@ static NSString *cellID = @"cellID";
             _personInviteCode = [dataDic objectForKey:@"personInviteCode"];
             
         }else {
-            [MBProgressHUD showMessag:[returnData objectForKey:@"msg"] toView:self.view];
+            [MBProgressHUD showMessag:[returnData objectForKey:@"msg"] toView:weakSelf.view];
         }
     } failureBlock:^(NSError *error) {
         
@@ -298,12 +298,14 @@ static NSString *cellID = @"cellID";
     AppDelegate *delegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
     delegate.isThird=NO;
     User *user = [[SingleHandle shareSingleHandle] getUserInfo];
+    
+    __weak typeof(self) weakSelf = self;
     [MHNetworkManager postReqeustWithURL:[RequestEntity urlString:kActifityCouponAPI] params:@{@"userId":user.userId} successBlock:^(id returnData) {
         
         if ([returnData[@"flag"] isEqualToString:@"success"]) {
-            [MBProgressHUD showMessag:@"成功领取优惠券,请到个人中心查看" toView:self.view];
+            [MBProgressHUD showMessag:@"成功领取优惠券,请到个人中心查看" toView:weakSelf.view];
         }else {
-            [MBProgressHUD showMessag:@"你还没有集齐所有猴子，请再接再厉" toView:self.view];
+            [MBProgressHUD showMessag:@"你还没有集齐所有猴子，请再接再厉" toView:weakSelf.view];
         }
         
     } failureBlock:^(NSError *error) {
@@ -316,6 +318,7 @@ static NSString *cellID = @"cellID";
     delegate.isThird=NO;
     NSString *url = [NSString stringWithFormat:@"%@%@",BaseAPI,kfindInviteLink];
     
+    __weak typeof(self) weakSelf = self;
     [MHNetworkManager postReqeustWithURL:url params:nil successBlock:^(id returnData) {
         
         if ([[returnData objectForKey:@"flag"] isEqualToString:@"success"]) {
@@ -323,7 +326,7 @@ static NSString *cellID = @"cellID";
         
             
         }else {
-            [MBProgressHUD showMessag:[returnData objectForKey:@"msg"] toView:self.view];
+            [MBProgressHUD showMessag:[returnData objectForKey:@"msg"] toView:weakSelf.view];
         }
         
     } failureBlock:^(NSError *error) {

@@ -45,10 +45,12 @@ static NSString *cell_id = @"myTeamCell";
 - (void)addMjRefresh {
     _page=1;
     _pageSize=8;
+    
+    __weak typeof(self) weakSelf = self;
     // 下拉刷新
     _tableView.mj_header= [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         _page = 1;
-        [self requestTeamMemberData];
+        [weakSelf requestTeamMemberData];
         
     }];
     
@@ -59,7 +61,7 @@ static NSString *cell_id = @"myTeamCell";
     // 上拉刷新
     _tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
         
-        [self requestMoreTeamMemberData];
+        [weakSelf requestMoreTeamMemberData];
         
     }];
 
@@ -85,6 +87,8 @@ static NSString *cell_id = @"myTeamCell";
                               @"pageSize":[NSString stringWithFormat:@"%i",_pageSize],
                               @"pageNo":[NSString stringWithFormat:@"%i",_page]};
     NSString *url = [NSString stringWithFormat:@"%@%@",BaseAPI,kfindTeamMember];
+    
+    __weak typeof(self) weakSelf = self;
     [MHNetworkManager postReqeustWithURL:url params:paramsDic successBlock:^(id returnData) {
         NSLog(@"%@",returnData);
         
@@ -106,7 +110,7 @@ static NSString *cell_id = @"myTeamCell";
             [_teamMemberArray addObjectsFromArray:[TeamMember mj_objectArrayWithKeyValuesArray:listArray]];
             NSLog(@"%@",_teamMemberArray);
         }else {
-            [MBProgressHUD showMessag:[dic objectForKey:@"msg"] toView:self.view];
+            [MBProgressHUD showMessag:[dic objectForKey:@"msg"] toView:weakSelf.view];
         }
         
         [_tableView reloadData];
@@ -124,6 +128,8 @@ static NSString *cell_id = @"myTeamCell";
                               @"pageSize":[NSString stringWithFormat:@"%i",_pageSize],
                               @"pageNo":[NSString stringWithFormat:@"%i",_page]};
     NSString *url = [NSString stringWithFormat:@"%@%@",BaseAPI,kfindTeamMember];
+    
+    __weak typeof(self) weakSelf = self;
     [MHNetworkManager postReqeustWithURL:url params:paramsDic successBlock:^(id returnData) {
         NSLog(@"%@",returnData);
         
@@ -145,7 +151,7 @@ static NSString *cell_id = @"myTeamCell";
             [_teamMemberArray addObjectsFromArray:[TeamMember mj_objectArrayWithKeyValuesArray:listArray]];
             NSLog(@"%@",_teamMemberArray);
         }else {
-            [MBProgressHUD showMessag:[dic objectForKey:@"msg"] toView:self.view];
+            [MBProgressHUD showMessag:[dic objectForKey:@"msg"] toView:weakSelf.view];
         }
         [_tableView reloadData];
  
@@ -168,14 +174,15 @@ static NSString *cell_id = @"myTeamCell";
         [[FireData sharedInstance] eventWithCategory:@"我的团队" action:@"申请团队长" evar:nil attributes:nil];
         NSString *url = [NSString stringWithFormat:@"%@%@",BaseAPI,kapplyTeamLeader];
         
+        __weak typeof(self) weakSelf = self;
         [MHNetworkManager postReqeustWithURL:url params:@{@"userId":[[SingleHandle shareSingleHandle] getUserInfo].userId} successBlock:^(id returnData) {
             
             if ([[returnData objectForKey:@"flag"] isEqualToString:@"success"]) {
                 [MBProgressHUD showMessag:@"提交申请团队长成功" toView:nil];
-                [self.navigationController popViewControllerAnimated:YES];
+                [weakSelf.navigationController popViewControllerAnimated:YES];
                 
             }else {
-                [MBProgressHUD showMessag:[returnData objectForKey:@"msg"] toView:self.view];
+                [MBProgressHUD showMessag:[returnData objectForKey:@"msg"] toView:weakSelf.view];
             }
             
         } failureBlock:^(NSError *error) {

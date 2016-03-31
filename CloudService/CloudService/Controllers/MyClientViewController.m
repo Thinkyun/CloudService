@@ -98,6 +98,8 @@
                               @"pageNo":[NSString stringWithFormat:@"%i",_page],
                               @"condition":condition};
     NSString *url = [NSString stringWithFormat:@"%@%@",BaseAPI,kfindPersonCustList];
+    
+    __weak typeof(self) weakSelf = self;
     [MHNetworkManager postReqeustWithURL:url params:paramsDic successBlock:^(id returnData) {
         NSLog(@"%@",returnData);
         NSDictionary *dic = returnData;
@@ -118,16 +120,16 @@
             [_clientArray addObjectsFromArray:[Order mj_objectArrayWithKeyValuesArray:listArray]];
             NSLog(@"%@",_clientArray);
         }else {
-            [MBProgressHUD showMessag:[dic objectForKey:@"msg"] toView:self.view];
+            [MBProgressHUD showMessag:[dic objectForKey:@"msg"] toView:weakSelf.view];
             
         }
         
-        [self.tableView reloadData];
-        [self.tableView.mj_header endRefreshing];
+        [weakSelf.tableView reloadData];
+        [weakSelf.tableView.mj_header endRefreshing];
         
     } failureBlock:^(NSError *error) {
         
-        [self.tableView.mj_header endRefreshing];
+        [weakSelf.tableView.mj_header endRefreshing];
     } showHUD:YES];
     
 }
@@ -140,6 +142,8 @@
                               @"pageNo":[NSString stringWithFormat:@"%i",_page],
                               @"condition":condition};
     NSString *url = [NSString stringWithFormat:@"%@%@",BaseAPI,kfindPersonCustList];
+    
+    __weak typeof(self) weakSelf = self;
     [MHNetworkManager postReqeustWithURL:url params:paramsDic successBlock:^(id returnData) {
         NSLog(@"%@",returnData);
         
@@ -160,15 +164,15 @@
             [_clientArray addObjectsFromArray:[Order mj_objectArrayWithKeyValuesArray:listArray]];
             NSLog(@"%@",_clientArray);
         }else {
-            [MBProgressHUD showMessag:[dic objectForKey:@"msg"] toView:self.view];
+            [MBProgressHUD showMessag:[dic objectForKey:@"msg"] toView:weakSelf.view];
             
         }
 
-        [self.tableView reloadData];
+        [weakSelf.tableView reloadData];
         
     } failureBlock:^(NSError *error) {
         NSLog(@"%@",error);
-        [self.tableView.mj_footer endRefreshing];
+        [weakSelf.tableView.mj_footer endRefreshing];
     } showHUD:YES];
     
 }

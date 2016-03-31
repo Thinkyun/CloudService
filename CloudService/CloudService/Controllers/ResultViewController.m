@@ -101,15 +101,16 @@
     _tableView1.delegate = self;
     _tableView1.dataSource = self;
     
+    __weak typeof(self) weakSelf = self;
     // 下拉刷新
     _tableView1.mj_header= [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         _page1 = 1;
-        [self requestTeamAchievement:@"day"];
+        [weakSelf requestTeamAchievement:@"day"];
     }];
     // 上拉刷新
     _tableView1.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
         
-        [self requestMoreTeamAchievement:@"day"];
+        [weakSelf requestMoreTeamAchievement:@"day"];
         
     }];
     // 设置自动切换透明度(在导航栏下面自动隐藏)
@@ -127,12 +128,12 @@
     // 下拉刷新
     _tableView2.mj_header= [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         _page2 = 1;
-        [self requestTeamAchievement:@"week"];
+        [weakSelf requestTeamAchievement:@"week"];
     }];
     // 上拉刷新
     _tableView2.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
         
-        [self requestMoreTeamAchievement:@"week"];
+        [weakSelf requestMoreTeamAchievement:@"week"];
         
     }];
     // 设置自动切换透明度(在导航栏下面自动隐藏)
@@ -149,7 +150,7 @@
     // 下拉刷新
     _tableView3.mj_header= [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         _page3 = 1;
-        [self requestTeamAchievement:@"month"];
+        [weakSelf requestTeamAchievement:@"month"];
     }];
     
     // 设置自动切换透明度(在导航栏下面自动隐藏)
@@ -158,7 +159,7 @@
     // 上拉刷新
     _tableView3.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
         
-        [self requestMoreTeamAchievement:@"month"];
+        [weakSelf requestMoreTeamAchievement:@"month"];
         
     }];
     [_pageView addTab:@"本月业绩" View:_tableView3 Info:nil];
@@ -294,9 +295,11 @@
         _tableView.dataSource = self;
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _tableView.tag = 103;
+        
+        __weak typeof(self) weakSelf = self;
         // 下拉刷新
         _tableView.mj_header= [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-            [self requestUserAchievement];
+            [weakSelf requestUserAchievement];
 
         }];
         [_tableView.mj_header beginRefreshing];
@@ -314,6 +317,8 @@
     [self removeNoData];
     NSString *url = [NSString stringWithFormat:@"%@%@",BaseAPI,kfindUserAchievement];
     NSDictionary *params = @{@"userId":[[SingleHandle shareSingleHandle] getUserInfo].userId};
+    
+    __weak typeof(self) weakSelf = self;
     [MHNetworkManager postReqeustWithURL:url params:params successBlock:^(id returnData) {
         
         if ([[returnData objectForKey:@"flag"] isEqualToString:@"success"]) {
@@ -345,15 +350,15 @@
             
         }else {
             [_tableView.mj_header endRefreshing];
-            [MBProgressHUD showMessag:[returnData objectForKey:@"msg"] toView:self.view];
-            [self.tableView addSubview:_noDataImg];
-            [self.tableView addSubview:_lbNoData];
+            [MBProgressHUD showMessag:[returnData objectForKey:@"msg"] toView:weakSelf.view];
+            [weakSelf.tableView addSubview:_noDataImg];
+            [weakSelf.tableView addSubview:_lbNoData];
         }
         
     } failureBlock:^(NSError *error) {
         [_tableView.mj_header endRefreshing];
-        [self.tableView addSubview:_noDataImg];
-        [self.tableView addSubview:_lbNoData];
+        [weakSelf.tableView addSubview:_noDataImg];
+        [weakSelf.tableView addSubview:_lbNoData];
         
     } showHUD:NO];
 }
@@ -385,6 +390,8 @@
     AppDelegate *delegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
     delegate.isThird=NO;
     NSString *url = [NSString stringWithFormat:@"%@%@",BaseAPI,kfindTeamAchievement];
+    
+    __weak typeof(self) weakSelf = self;
     [MHNetworkManager postReqeustWithURL:url params:paramsDic successBlock:^(id returnData) {
         NSLog(@"%@",returnData);
         
@@ -397,10 +404,10 @@
             int totalCount=[[[dataDic objectForKey:@"pageVO"] objectForKey:@"recordCount"] intValue];
             //如果有数据显示数据，如果没有数据则显示暂无数据
             if (totalCount>0) {
-                [self removeNoData];
+                [weakSelf removeNoData];
             }else{
-                [self.pageView addSubview:_noDataImg];
-                [self.pageView addSubview:_lbNoData];
+                [weakSelf.pageView addSubview:_noDataImg];
+                [weakSelf.pageView addSubview:_lbNoData];
             }
             if ([type isEqualToString:@"day"]) {
                 [_dayArray removeAllObjects];
@@ -436,8 +443,8 @@
             
         }else {
             [MBProgressHUD showMessag:[dic objectForKey:@"msg"] toView:self.view];
-            [self.pageView addSubview:_noDataImg];
-            [self.pageView addSubview:_lbNoData];
+            [weakSelf.pageView addSubview:_noDataImg];
+            [weakSelf.pageView addSubview:_lbNoData];
         }
         if ([type isEqualToString:@"day"]) {
             [_tableView1 reloadData];
@@ -455,8 +462,8 @@
         
        
     } failureBlock:^(NSError *error) {
-        [self.pageView addSubview:_noDataImg];
-        [self.pageView addSubview:_lbNoData];
+        [weakSelf.pageView addSubview:_noDataImg];
+        [weakSelf.pageView addSubview:_lbNoData];
    
         if ([type isEqualToString:@"day"]) {
             [_tableView1 reloadData];

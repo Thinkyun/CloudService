@@ -89,11 +89,12 @@
     _tableView1 = [[UITableView alloc] init];
     _tableView1.backgroundColor = [HelperUtil colorWithHexString:@"F4F4F4"];
     _tableView1.separatorStyle = UITableViewCellSeparatorStyleNone;
-
+    
+    __weak typeof(self) weakSelf = self;
     // 下拉刷新
     _tableView1.mj_header= [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         _page1 = 1;
-        [self requestPersonalData];
+        [weakSelf requestPersonalData];
         
     }];
     
@@ -104,7 +105,7 @@
     // 上拉刷新
     _tableView1.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
         
-        [self requestMorePersonalData];
+        [weakSelf requestMorePersonalData];
         
     }];
     
@@ -118,7 +119,7 @@
     // 下拉刷新
     _tableView2.mj_header= [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         _page2 = 1;
-        [self requestGroupData];
+        [weakSelf requestGroupData];
         
 
     }];
@@ -131,7 +132,7 @@
     // 上拉刷新
     _tableView2.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
         
-        [self requestMoreGroupData];
+        [weakSelf requestMoreGroupData];
         
     }];
     _tableView2.tag = 101;
@@ -192,9 +193,11 @@
         _tableView1.dataSource = self;
         _tableView1.separatorStyle = UITableViewCellSeparatorStyleNone;
         _tableView1.tag = 103;
+        
+        __weak typeof(self) weakSelf = self;
         // 下拉刷新
         _tableView1.mj_header= [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-            [self requestPersonalData];
+            [weakSelf requestPersonalData];
             
         }];
         [_tableView1.mj_header beginRefreshing];
@@ -214,6 +217,8 @@
                               @"pageSize":[NSString stringWithFormat:@"%i",_pageSize1],
                               @"pageNo":[NSString stringWithFormat:@"%i",_page1]};
     NSString *url = [NSString stringWithFormat:@"%@%@",BaseAPI,kUserCouponsList];
+    
+    __weak typeof(self) weakSelf = self;
     [MHNetworkManager postReqeustWithURL:url params:paramsDic successBlock:^(id returnData) {
         
         NSDictionary *dic = returnData;
@@ -240,7 +245,7 @@
             NSArray *listArray = [dataDic objectForKey:@"list"];
             [_userArray addObjectsFromArray:[Coupons mj_objectArrayWithKeyValuesArray:listArray]];
         }else {
-            [MBProgressHUD showMessag:[dic objectForKey:@"msg"] toView:self.view];
+            [MBProgressHUD showMessag:[dic objectForKey:@"msg"] toView:weakSelf.view];
             [_tableView1 addSubview:_noDataImg];
             [_tableView1 addSubview:_lbNoData];
         }
@@ -262,6 +267,8 @@
                               @"pageSize":[NSString stringWithFormat:@"%i",_pageSize1],
                               @"pageNo":[NSString stringWithFormat:@"%i",_page1]};
     NSString *url = [NSString stringWithFormat:@"%@%@",BaseAPI,kUserCouponsList];
+    
+    __weak typeof(self) weakSelf = self;
     [MHNetworkManager postReqeustWithURL:url params:paramsDic successBlock:^(id returnData) {
         
         NSDictionary *dic = returnData;
@@ -281,7 +288,7 @@
         [_userArray addObjectsFromArray:[Coupons mj_objectArrayWithKeyValuesArray:listArray]];
 
         }else {
-            [MBProgressHUD showMessag:[dic objectForKey:@"msg"] toView:self.view];
+            [MBProgressHUD showMessag:[dic objectForKey:@"msg"] toView:weakSelf.view];
         }
         [_tableView1 reloadData];
  
@@ -298,6 +305,8 @@
                               @"pageSize":[NSString stringWithFormat:@"%i",_pageSize2],
                               @"pageNo":[NSString stringWithFormat:@"%i",_page2]};
     NSString *url = [NSString stringWithFormat:@"%@%@",BaseAPI,kTeamCouponsList];
+    
+    __weak typeof(self) weakSelf = self;
     [MHNetworkManager postReqeustWithURL:url params:paramsDic successBlock:^(id returnData) {
         
         NSDictionary *dic = returnData;
@@ -325,7 +334,7 @@
         NSArray *listArray = [dataDic objectForKey:@"list"];
         [_teamArray addObjectsFromArray:[Coupons mj_objectArrayWithKeyValuesArray:listArray]];
         }else {
-            [MBProgressHUD showMessag:[dic objectForKey:@"msg"] toView:self.view];
+            [MBProgressHUD showMessag:[dic objectForKey:@"msg"] toView:weakSelf.view];
             
             [_tableView2 addSubview:_noDataImg];
             [_tableView2 addSubview:_lbNoData];
@@ -347,6 +356,8 @@
                               @"pageSize":[NSString stringWithFormat:@"%i",_pageSize2],
                               @"pageNo":[NSString stringWithFormat:@"%i",_page2]};
     NSString *url = [NSString stringWithFormat:@"%@%@",BaseAPI,kTeamCouponsList];
+    
+    __weak typeof(self) weakSelf = self;
     [MHNetworkManager postReqeustWithURL:url params:paramsDic successBlock:^(id returnData) {
         
         NSDictionary *dic = returnData;
@@ -365,7 +376,7 @@
         NSArray *listArray = [dataDic objectForKey:@"list"];
         [_teamArray addObjectsFromArray:[Coupons mj_objectArrayWithKeyValuesArray:listArray]];
         }else {
-            [MBProgressHUD showMessag:[dic objectForKey:@"msg"] toView:self.view];
+            [MBProgressHUD showMessag:[dic objectForKey:@"msg"] toView:weakSelf.view];
         }
         [_tableView2 reloadData];
 

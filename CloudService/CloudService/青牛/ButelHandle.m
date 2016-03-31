@@ -186,9 +186,31 @@ static ButelHandle *singleHandle = nil;
     NSLog(@"APP::OnInit()...");
     
     if (reason == 0) {
+        //http登陆
+        AppDelegate *delegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
+        delegate.isThird=YES;
         
-     
-        [self loginWithLogin:_UUID number:_number deviceId:_deviceId nickname:@"CONNECT" userUniqueIdentifer:_deviceId];
+        __weak typeof(self) weakSelf = self;
+        [MHNetworkManager postReqeustWithURL:@"http://221.4.250.108:8088/apHttpService/agent/login4Butel" params:@{@"entId":@"7593111023", @"agentId":@"1001",@"passWord":@"1001"} successBlock:^(NSDictionary *returnData) {
+            delegate.isThird = NO;
+            NSDictionary *dic = returnData;
+            if ([[dic objectForKey:@"code"] isEqualToString:@"000"]) {
+                NSDictionary *extDic = [dic objectForKey:@"ext"];
+                NSString *str = [extDic objectForKey:@"dn"];
+                NSArray *array = [str componentsSeparatedByString:@":"];
+                _deviceId = [extDic objectForKey:@"nubeUUID"];
+                NSString *UUID = [extDic objectForKey:@"nubeAppKey"];
+                NSLog(@"%@",dic);
+                
+                [weakSelf.connect Login:UUID number:[array objectAtIndex:1] deviceId:_deviceId nickname:@"CONNECT" userUniqueIdentifer:_deviceId];
+            }else {
+                [MBProgressHUD showError:[dic objectForKey:@"msg"] toView:nil];
+            }
+            
+        } failureBlock:^(NSError *error) {
+            delegate.isThird = NO;
+            NSLog(@"%@",error);
+        } showHUD:NO];
         
     }
 }

@@ -35,6 +35,8 @@
 - (void)setUpInviteLink {
     NSString *url = [NSString stringWithFormat:@"%@%@",BaseAPI,kfindInviteLink];
     User *user = [[SingleHandle shareSingleHandle] getUserInfo];
+    
+    __weak typeof(self) weakSelf = self;
     [MHNetworkManager postReqeustWithURL:url params:@{@"userId":user.userId} successBlock:^(id returnData) {
         
         if ([[returnData objectForKey:@"flag"] isEqualToString:@"success"]) {
@@ -44,7 +46,7 @@
             _teamInviteCode = [dataDic objectForKey:@"teamInviteCode"];
             
         }else {
-            [MBProgressHUD showMessag:[returnData objectForKey:@"msg"] toView:self.view];
+            [MBProgressHUD showMessag:[returnData objectForKey:@"msg"] toView:weakSelf.view];
         }
         
     } failureBlock:^(NSError *error) {

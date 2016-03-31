@@ -546,6 +546,8 @@
                               @"licenseNo":_tfCar.text,
                               @"endCode":_tfCode.text};
     NSString *url = [NSString stringWithFormat:@"%@%@",BaseAPI,kfindOrderByCondition];
+    
+    __weak typeof(self) weakSelf = self;
     [MHNetworkManager postReqeustWithURL:url params:paramsDic successBlock:^(id returnData) {
         NSLog(@"%@",returnData);
         NSDictionary *dic = returnData;
@@ -555,9 +557,9 @@
             //取出总条数
             int totalCount=[[[dataDic objectForKey:@"pageVO"] objectForKey:@"recordCount"] intValue];
             if (totalCount>0) {
-                [self removeNoData];
+                [weakSelf removeNoData];
             }else {
-                [self setupNoData];
+                [weakSelf setupNoData];
             }
             if (totalCount-_pageSize*_page<=0) {
                 //没有数据，直接提示没有更多数据
@@ -570,18 +572,18 @@
             [_orderArray addObjectsFromArray:[Order mj_objectArrayWithKeyValuesArray:listArray]];
             NSLog(@"%@",_orderArray);
         }else {
-            [MBProgressHUD showMessag:[dic objectForKey:@"msg"] toView:self.view];
-            [self setupNoData];
+            [MBProgressHUD showMessag:[dic objectForKey:@"msg"] toView:weakSelf.view];
+            [weakSelf setupNoData];
             
         }
         
-        [self.tableView reloadData];
-        [self.tableView.mj_header endRefreshing];
+        [weakSelf.tableView reloadData];
+        [weakSelf.tableView.mj_header endRefreshing];
     
     } failureBlock:^(NSError *error) {
-        [self setupNoData];
-        [self.tableView reloadData];
-        [self.tableView.mj_header endRefreshing];
+        [weakSelf setupNoData];
+        [weakSelf.tableView reloadData];
+        [weakSelf.tableView.mj_header endRefreshing];
     } showHUD:YES];
     
 }
@@ -599,6 +601,8 @@
                               @"licenseNo":_tfCar.text,
                               @"endCode":_tfCode.text};
     NSString *url = [NSString stringWithFormat:@"%@%@",BaseAPI,kfindOrderByCondition];
+    
+    __weak typeof(self) weakSelf = self;
     [MHNetworkManager postReqeustWithURL:url params:paramsDic successBlock:^(id returnData) {
         NSLog(@"%@",returnData);
         
@@ -618,11 +622,11 @@
         NSArray *listArray = [dataDic objectForKey:@"list"];
         [_orderArray addObjectsFromArray:[Order mj_objectArrayWithKeyValuesArray:listArray]];
         NSLog(@"%@",_orderArray);
-        [self.tableView reloadData];
+        [weakSelf.tableView reloadData];
 
     } failureBlock:^(NSError *error) {
         NSLog(@"%@",error);
-        [self.tableView.mj_footer endRefreshing];
+        [weakSelf.tableView.mj_footer endRefreshing];
     } showHUD:YES];
     
 }
