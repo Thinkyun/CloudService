@@ -13,6 +13,10 @@
 + (ButelHandle *)shareButelHandle;
 
 /**
+ *  青牛http登陆
+ */
+- (void)ButelHttpLogin;
+/**
  *  初始化
  */
 - (void)Init;

@@ -93,4 +93,20 @@
  *  是否有最新版本
  */
 +(BOOL )isNewVersion;
+/**
+ *  保存青牛登陆信息 
+ */
++(void)saveButel:(NSString *)deviceId uuid:(NSString *)UUID num:(NSString *)number;
+/**
+ *  获取deviceId
+ */
++(NSString *)deviceId;
+/**
+ *  获取UUID
+ */
++(NSString *)UUID ;
+/**
+ *  获取number
+ */
++(NSString *)number;
 @end

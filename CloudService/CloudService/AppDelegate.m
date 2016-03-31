@@ -107,7 +107,7 @@
  */
 -(void)registerFireData {
     // 配置统计 SDK
-    [[FireData sharedInstance] initWithHost:@"139.198.0.125" appKey:@"YUNKFD3SXE" distributors:@"ios"];
+    [[FireData sharedInstance] initWithAppKey:@"YUNKFD3SXE" distributors:@"ios"];
     [FireData sharedInstance].debugMode = NO;
     [FireData sharedInstance].enableCrashReport = YES;
     [FireData sharedInstance].enableLocationReport = YES;
@@ -197,10 +197,7 @@
     UIViewController *oldVC = self.window.rootViewController;
     oldVC = nil;
     self.window.rootViewController = menuVC;
-    /**
-     *  首页初始化青牛
-     */
-    [[ButelHandle shareButelHandle] Init];
+  
     
 }
 

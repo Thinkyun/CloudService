@@ -234,7 +234,17 @@
         make.top.equalTo(_tfCar.mas_bottom).offset(15);
         
     }];
-    
+    [endCodeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        //添加高约束
+        make.height.mas_equalTo(34);
+        //添加左边距约束(距离左边label的距离)
+        make.left.mas_equalTo(90);
+        //添加右边距约束
+        make.right.mas_equalTo(-20);
+        //添加上边距约束
+        make.top.equalTo(_tfCar.mas_bottom).offset(15);
+        
+    }];
     
     
     UILabel *lbTime = [UILabel new];

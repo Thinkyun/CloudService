@@ -52,6 +52,7 @@
 		63790FE91C93B19C006CB0E2 /* ActivityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63790FE81C93B19C006CB0E2 /* ActivityViewController.m */; };
 		63790FED1C93C03C006CB0E2 /* ActivityCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 63790FEB1C93C03C006CB0E2 /* ActivityCollectionCell.m */; };
 		63790FEE1C93C03C006CB0E2 /* ActivityCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 63790FEC1C93C03C006CB0E2 /* ActivityCollectionCell.xib */; };
+		6379B5D81CACB3EC0096CC18 /* libFireData.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6379B5D71CACB3EC0096CC18 /* libFireData.a */; };
 		637A62481C8EBEC60020AE5E /* CouponsDistributeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 637A62471C8EBEC60020AE5E /* CouponsDistributeViewController.m */; };
 		637A624C1C8EC0020020AE5E /* CouponsDistributeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 637A624A1C8EC0020020AE5E /* CouponsDistributeCell.m */; };
 		637A624D1C8EC0020020AE5E /* CouponsDistributeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 637A624B1C8EC0020020AE5E /* CouponsDistributeCell.xib */; };
@@ -61,8 +62,6 @@
 		6383656C1C7DB8BA001A10C4 /* UIColor+HexString.m in Sources */ = {isa = PBXBuildFile; fileRef = 638365671C7DB8BA001A10C4 /* UIColor+HexString.m */; };
 		6392CFF11C8D235400D84F38 /* TeamMember.m in Sources */ = {isa = PBXBuildFile; fileRef = 6392CFF01C8D235400D84F38 /* TeamMember.m */; };
 		6392CFF41C8D8F8200D84F38 /* Achievement.m in Sources */ = {isa = PBXBuildFile; fileRef = 6392CFF31C8D8F8200D84F38 /* Achievement.m */; };
-		6395BE081CAB766800C51A75 /* libFireData.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6395BE071CAB766800C51A75 /* libFireData.a */; };
-		6395BE0C1CAB767D00C51A75 /* libFireData.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6395BE0B1CAB767D00C51A75 /* libFireData.a */; };
 		639CF6AD1C9FF0800086C72B /* UIViewController+AlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 639CF6AC1C9FF0800086C72B /* UIViewController+AlertView.m */; };
 		639D79951CA2A510002523E6 /* SelectCityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 639D79941CA2A510002523E6 /* SelectCityViewController.m */; };
 		63A2AB021CA13F440094B876 /* activity3.png in Resources */ = {isa = PBXBuildFile; fileRef = 63A2AB001CA13F440094B876 /* activity3.png */; };
@@ -229,6 +228,9 @@
 		63790FEA1C93C03C006CB0E2 /* ActivityCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityCollectionCell.h; sourceTree = "<group>"; };
 		63790FEB1C93C03C006CB0E2 /* ActivityCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityCollectionCell.m; sourceTree = "<group>"; };
 		63790FEC1C93C03C006CB0E2 /* ActivityCollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActivityCollectionCell.xib; sourceTree = "<group>"; };
+		6379B5D51CACB3EC0096CC18 /* FireData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FireData.h; sourceTree = "<group>"; };
+		6379B5D61CACB3EC0096CC18 /* FiredataApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FiredataApp.h; sourceTree = "<group>"; };
+		6379B5D71CACB3EC0096CC18 /* libFireData.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFireData.a; sourceTree = "<group>"; };
 		637A62461C8EBEC60020AE5E /* CouponsDistributeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CouponsDistributeViewController.h; sourceTree = "<group>"; };
 		637A62471C8EBEC60020AE5E /* CouponsDistributeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CouponsDistributeViewController.m; sourceTree = "<group>"; };
 		637A62491C8EC0020020AE5E /* CouponsDistributeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CouponsDistributeCell.h; sourceTree = "<group>"; };
@@ -245,12 +247,6 @@
 		6392CFF01C8D235400D84F38 /* TeamMember.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamMember.m; sourceTree = "<group>"; };
 		6392CFF21C8D8F8200D84F38 /* Achievement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Achievement.h; sourceTree = "<group>"; };
 		6392CFF31C8D8F8200D84F38 /* Achievement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Achievement.m; sourceTree = "<group>"; };
-		6395BE051CAB766800C51A75 /* FireData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FireData.h; path = CloudService/Venders/FireData.h; sourceTree = SOURCE_ROOT; };
-		6395BE061CAB766800C51A75 /* FiredataApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FiredataApp.h; path = CloudService/Venders/FiredataApp.h; sourceTree = SOURCE_ROOT; };
-		6395BE071CAB766800C51A75 /* libFireData.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFireData.a; path = CloudService/Venders/libFireData.a; sourceTree = SOURCE_ROOT; };
-		6395BE091CAB767D00C51A75 /* FireData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FireData.h; sourceTree = "<group>"; };
-		6395BE0A1CAB767D00C51A75 /* FiredataApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FiredataApp.h; sourceTree = "<group>"; };
-		6395BE0B1CAB767D00C51A75 /* libFireData.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFireData.a; sourceTree = "<group>"; };
 		639CF6AB1C9FF0800086C72B /* UIViewController+AlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+AlertView.h"; sourceTree = "<group>"; };
 		639CF6AC1C9FF0800086C72B /* UIViewController+AlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+AlertView.m"; sourceTree = "<group>"; };
 		639D79931CA2A510002523E6 /* SelectCityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectCityViewController.h; sourceTree = "<group>"; };
@@ -433,8 +429,7 @@
 			files = (
 				636CD92C1C880C4E0050935E /* AVFoundation.framework in Frameworks */,
 				9025D0FA1CA50B6500E3B43F /* ButelCommonConnectSDK.framework in Frameworks */,
-				6395BE081CAB766800C51A75 /* libFireData.a in Frameworks */,
-				6395BE0C1CAB767D00C51A75 /* libFireData.a in Frameworks */,
+				6379B5D81CACB3EC0096CC18 /* libFireData.a in Frameworks */,
 				636CD92A1C880C4A0050935E /* MediaPlayer.framework in Frameworks */,
 				636CD9281C880C440050935E /* AudioToolbox.framework in Frameworks */,
 				636CD9261C880C3D0050935E /* SystemConfiguration.framework in Frameworks */,
@@ -854,9 +849,6 @@
 		F0292BD41C7B015200A810A9 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				6395BE051CAB766800C51A75 /* FireData.h */,
-				6395BE061CAB766800C51A75 /* FiredataApp.h */,
-				6395BE071CAB766800C51A75 /* libFireData.a */,
 				F0292BD51C7B015200A810A9 /* User.h */,
 				F0292BD61C7B015200A810A9 /* User.m */,
 				F074D9301C93A756007A6A88 /* CodeNameModel.h */,
@@ -907,9 +899,9 @@
 		F0292BDC1C7B015200A810A9 /* Venders */ = {
 			isa = PBXGroup;
 			children = (
-				6395BE091CAB767D00C51A75 /* FireData.h */,
-				6395BE0A1CAB767D00C51A75 /* FiredataApp.h */,
-				6395BE0B1CAB767D00C51A75 /* libFireData.a */,
+				6379B5D51CACB3EC0096CC18 /* FireData.h */,
+				6379B5D61CACB3EC0096CC18 /* FiredataApp.h */,
+				6379B5D71CACB3EC0096CC18 /* libFireData.a */,
 			);
 			path = Venders;
 			sourceTree = "<group>";
