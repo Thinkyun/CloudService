@@ -52,7 +52,6 @@
 		63790FE91C93B19C006CB0E2 /* ActivityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63790FE81C93B19C006CB0E2 /* ActivityViewController.m */; };
 		63790FED1C93C03C006CB0E2 /* ActivityCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 63790FEB1C93C03C006CB0E2 /* ActivityCollectionCell.m */; };
 		63790FEE1C93C03C006CB0E2 /* ActivityCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 63790FEC1C93C03C006CB0E2 /* ActivityCollectionCell.xib */; };
-		6379B5D81CACB3EC0096CC18 /* libFireData.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6379B5D71CACB3EC0096CC18 /* libFireData.a */; };
 		637A62481C8EBEC60020AE5E /* CouponsDistributeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 637A62471C8EBEC60020AE5E /* CouponsDistributeViewController.m */; };
 		637A624C1C8EC0020020AE5E /* CouponsDistributeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 637A624A1C8EC0020020AE5E /* CouponsDistributeCell.m */; };
 		637A624D1C8EC0020020AE5E /* CouponsDistributeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 637A624B1C8EC0020020AE5E /* CouponsDistributeCell.xib */; };
@@ -73,7 +72,6 @@
 		63ADFBE61C7EAC52000D3164 /* ResultTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 63ADFBE41C7EAC52000D3164 /* ResultTableViewCell.m */; };
 		63ADFBE71C7EAC52000D3164 /* ResultTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 63ADFBE51C7EAC52000D3164 /* ResultTableViewCell.xib */; };
 		63ADFBEB1C7F0622000D3164 /* PellTableViewSelect.m in Sources */ = {isa = PBXBuildFile; fileRef = 63ADFBEA1C7F0622000D3164 /* PellTableViewSelect.m */; };
-		63B2F1151CA912EB001F2BD2 /* donghua.gif in Resources */ = {isa = PBXBuildFile; fileRef = 63B2F1141CA912EB001F2BD2 /* donghua.gif */; };
 		63C07B9A1C7B14BB0084581F /* MBProgressHUD+Add.m in Sources */ = {isa = PBXBuildFile; fileRef = 63C07B8C1C7B14BB0084581F /* MBProgressHUD+Add.m */; };
 		63C07B9B1C7B14BB0084581F /* MHAsiNetworkHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 63C07B911C7B14BB0084581F /* MHAsiNetworkHandler.m */; };
 		63C07B9C1C7B14BB0084581F /* MHAsiNetworkItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 63C07B931C7B14BB0084581F /* MHAsiNetworkItem.m */; };
@@ -226,9 +224,6 @@
 		63790FEA1C93C03C006CB0E2 /* ActivityCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityCollectionCell.h; sourceTree = "<group>"; };
 		63790FEB1C93C03C006CB0E2 /* ActivityCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityCollectionCell.m; sourceTree = "<group>"; };
 		63790FEC1C93C03C006CB0E2 /* ActivityCollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActivityCollectionCell.xib; sourceTree = "<group>"; };
-		6379B5D51CACB3EC0096CC18 /* FireData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FireData.h; sourceTree = "<group>"; };
-		6379B5D61CACB3EC0096CC18 /* FiredataApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FiredataApp.h; sourceTree = "<group>"; };
-		6379B5D71CACB3EC0096CC18 /* libFireData.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFireData.a; sourceTree = "<group>"; };
 		637A62461C8EBEC60020AE5E /* CouponsDistributeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CouponsDistributeViewController.h; sourceTree = "<group>"; };
 		637A62471C8EBEC60020AE5E /* CouponsDistributeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CouponsDistributeViewController.m; sourceTree = "<group>"; };
 		637A62491C8EC0020020AE5E /* CouponsDistributeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CouponsDistributeCell.h; sourceTree = "<group>"; };
@@ -261,7 +256,6 @@
 		63ADFBE51C7EAC52000D3164 /* ResultTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ResultTableViewCell.xib; sourceTree = "<group>"; };
 		63ADFBE91C7F0622000D3164 /* PellTableViewSelect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PellTableViewSelect.h; sourceTree = "<group>"; };
 		63ADFBEA1C7F0622000D3164 /* PellTableViewSelect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PellTableViewSelect.m; sourceTree = "<group>"; };
-		63B2F1141CA912EB001F2BD2 /* donghua.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = donghua.gif; sourceTree = "<group>"; };
 		63C07B8B1C7B14BB0084581F /* MBProgressHUD+Add.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD+Add.h"; sourceTree = "<group>"; };
 		63C07B8C1C7B14BB0084581F /* MBProgressHUD+Add.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MBProgressHUD+Add.m"; sourceTree = "<group>"; };
 		63C07B8E1C7B14BB0084581F /* MHAsiNetworkDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MHAsiNetworkDefine.h; sourceTree = "<group>"; };
@@ -670,7 +664,6 @@
 		F019C9DA1C7C05FD00E73A2C /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				63B2F1141CA912EB001F2BD2 /* donghua.gif */,
 				636A35CF1C9CFEB900540CD0 /* guize.png */,
 				F0AFC5481C9C0D2B00BC3CBC /* Default-568h@2x.png */,
 				F0AFC5491C9C0D2B00BC3CBC /* Default-667h@2x.png */,
@@ -985,7 +978,7 @@
 				TargetAttributes = {
 					F0292BA91C7B00CD00A810A9 = {
 						CreatedOnToolsVersion = 7.2;
-						DevelopmentTeam = 7PS2AH4H79;
+						DevelopmentTeam = LH28XA7T22;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -1022,7 +1015,6 @@
 				63ADFBE71C7EAC52000D3164 /* ResultTableViewCell.xib in Resources */,
 				F07531D21C8687BB00E71796 /* area.plist in Resources */,
 				63A2AB031CA13F440094B876 /* activity3@2X.png in Resources */,
-				63B2F1151CA912EB001F2BD2 /* donghua.gif in Resources */,
 				634EE6201C995A8D00FB526D /* activity2@2X.png in Resources */,
 				63A2AB051CA13F980094B876 /* rulebg2.png in Resources */,
 				63C54E331C7C2F96007CE8CA /* OrderManagerCell.xib in Resources */,

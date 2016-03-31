@@ -300,7 +300,7 @@
                                     <constraint firstAttribute="height" constant="30" id="ykz-PW-anS"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
                                 <connections>
                                     <outlet property="delegate" destination="-1" id="axq-xX-i0y"/>
                                 </connections>
