@@ -56,7 +56,14 @@
     if (cell == nil) {
         
         NSArray *array = [[NSBundle mainBundle] loadNibNamed:@"OrderInfoTableViewCell" owner:self options:nil];
-        cell = [array objectAtIndex:0];
+        if ([self.order.orderStatus isEqualToString:@"待支付"]) {
+            cell = [array objectAtIndex:2];
+        }else if ([self.order.orderStatus isEqualToString:@"已支付"]){
+            cell = [array objectAtIndex:1];
+        }else{
+             cell = [array objectAtIndex:0];
+        }
+       
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     cell.lbOrderNum.text = [NSString stringWithFormat:@"订单号:%@",self.order.baseId];
@@ -78,7 +85,14 @@
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 293;
+    if ([self.order.orderStatus isEqualToString:@"待支付"]) {
+        return 293;
+    }else if ([self.order.orderStatus isEqualToString:@"已支付"]){
+        return 364;
+    }else{
+        return 293;
+    }
+    
 }
 /** 拨打电话*/
 - (void)callClick:(UIButton *)sender {

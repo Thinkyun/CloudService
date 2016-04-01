@@ -25,7 +25,7 @@
 @property (weak, nonatomic  ) IBOutlet UIButton       *loginBtn;
 @property (weak, nonatomic  ) IBOutlet UITextField    *UserTextFiled;
 @property (weak, nonatomic  ) IBOutlet UITextField    *pwdTextFiled;
-@property (weak, nonatomic  ) IBOutlet UIImageView    *backImg;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomLayout;
 @property (weak, nonatomic  ) IBOutlet UIButton       *choseBtn;
 @property (strong, nonatomic) UIImageView    *eyeImg;
 
@@ -36,14 +36,22 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    if (KHeight == 736) {
+        self.bottomLayout.constant = 300.f;
+    }else if (KHeight == 667) {
+        self.bottomLayout.constant = 260.f;
+    }else {
+        self.bottomLayout.constant = 220.f;
+    }
     [self setNavigationBarTitleColor:[UIColor whiteColor]];
     [self setupView];
 }
 
 -(void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     //导航条滑动返回
     self.navigationController.interactivePopGestureRecognizer.delegate = (id)self;
-    [super viewWillAppear:animated];
+    
     [self.navigationController.navigationBar setBarTintColor:[HelperUtil colorWithHexString:@"277FD9"]];
     [self.navigationController setNavigationBarHidden:YES animated:YES];
 }
@@ -65,7 +73,7 @@
 
 - (void)setupView {
 
-    [self.view bringSubviewToFront:self.backImg];
+//    [self.view bringSubviewToFront:self.backImg];
     self.inputView.layer.cornerRadius = 3;
     self.inputView.clipsToBounds      = YES;
     self.inputView.backgroundColor    = [UIColor colorWithRed:0.918 green:0.917
@@ -103,7 +111,7 @@
     self.loginBtn.layer.cornerRadius = 3;
     self.loginBtn.clipsToBounds = YES;
     self.choseBtn.layer.cornerRadius = self.choseBtn.frame.size.width / 2.0;
-    [self.view sendSubviewToBack:self.backImg];
+//    [self.view sendSubviewToBack:self.backImg];
     
 }
 
@@ -155,7 +163,8 @@
             /**
              *  火炬登陆信息
              */
-//            [[FireData sharedInstance] loginWithUserid:user.userNum uvar:nil];
+            [[FireData sharedInstance] loginWithUserid:user.userNum uvar:nil];
+            
             if (weakSelf.choseBtn.selected) {
                 [Utility remberPassWord:YES];
             }else {
@@ -205,7 +214,7 @@
     _inputView = nil;
     _loginBtn = nil;
     _UserTextFiled = nil;
-    _backImg = nil;
+//    _backImg = nil;
     _pwdTextFiled = nil;
     _choseBtn = nil;
     _eyeImg = nil;
