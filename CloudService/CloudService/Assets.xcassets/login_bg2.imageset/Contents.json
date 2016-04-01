@@ -2,12 +2,12 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "shear-icon.png",
+      "filename" : "login_bg2.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "shear-icon@2X.png",
+      "filename" : "login_bg2@2X.png",
       "scale" : "2x"
     },
     {

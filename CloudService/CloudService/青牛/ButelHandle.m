@@ -67,7 +67,7 @@ static ButelHandle *singleHandle = nil;
     } failureBlock:^(NSError *error) {
         delegate.isThird = NO;
         NSLog(@"%@",error);
-    } showHUD:NO];
+    } showHUD:YES];
 }
 
 - (void)Init {
@@ -142,9 +142,13 @@ static ButelHandle *singleHandle = nil;
         
     }else {
         if (isCanCall) {
+            User *user = [[SingleHandle shareSingleHandle] getUserInfo];
             if (![HelperUtil checkTelNumber:phoneNo]) {
                 [MBProgressHUD showError:@"手机号格式不正确" toView:nil];
                 return;
+            }if ([user.roleName isEqualToString:@"普通用户"] || user.roleName.length <= 0) {
+                [MBProgressHUD showError:@"当前用户为普通用户,不能拨打电话" toView:nil];
+                return ;
             }
             AppDelegate *delegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
             delegate.isThird=YES;
