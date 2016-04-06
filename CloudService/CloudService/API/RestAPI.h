@@ -85,6 +85,12 @@
 #define kCheckVersionAPI        @"/app/system/getVersion"                         // 版本检测
 
 #define agentCode               @"CLOUD_SERVICE"                         //agentCode
+
+#define kSaveTape             @"/app/tape/saveTape"                         // 保存录音流水号
+
+#define kSendPayMessage        @"/app/order/sendPayMessage"                         // 下发支付短信
+
+#define kSaveOrderGift        @"/app/order/saveOrderGift"                         // 保存投保礼
 //   常量
 /**************************************************************************************/
 

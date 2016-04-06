@@ -52,20 +52,12 @@
     }
     //JAppKey : 是你在极光推送申请下来的appKey Jchannel : 可以直接设置默认值即可 Publish channel
     [JPUSHService setupWithOption:launchOptions appKey:JAppKey
-                          channel:Jchannel apsForProduction:NO]; //如果是生产环境应该设置为YES
+                          channel:Jchannel apsForProduction:YES]; //如果是生产环境应该设置为Y                                                                                                                                                                                                                                                                                                                                                                            ES
     
     //检测网络状态
     if ([[HelperUtil getNetWorkStates] isEqualToString:@"2G"]) {
         [MBProgressHUD showMessag:@"当前处于2G网络，您当前所有操作可能会有延迟！" toView:nil];
     }
-    
-//    //用于绑定Tag的 根据自己想要的Tag加入，值得注意的是这里Tag需要用到NSSet
-//    [JPUSHService setTags:[NSSet set]callbackSelector:nil object:self];
-//    //用于绑定Alias的  使用NSString 即可
-//    [JPUSHService setAlias:@"" callbackSelector:nil object:self];
-//    
-//    //用于同时绑定Tag与Alias的
-//    [JPUSHService setTags:[NSSet set] alias:@"" callbackSelector:nil target:self];
     
 
     __weak typeof(self) weakSelf = self;
@@ -232,6 +224,7 @@
             _isSetCity = YES;
         }
     }];
+    
     //如果不需要实时定位，使用完即使关闭定位服务
     [self.locateManager stopUpdatingLocation];
 }
@@ -245,10 +238,10 @@
 }
 
 #pragma mark JPush
-- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {    // Required
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+    // Required
     [JPUSHService registerDeviceToken:deviceToken];
-    //    //用于绑定Alias的  使用NSString 即可
-        [JPUSHService setAlias:@"123" callbackSelector:nil object:self];
+   
 }
 
 -(void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo{
@@ -281,9 +274,7 @@
 }
 
 #pragma mark AppDelegate
-//-(BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
-//    return [application ];
-//}
+
 
 
 - (void)applicationWillResignActive:(UIApplication *)application {

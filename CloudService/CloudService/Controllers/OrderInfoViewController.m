@@ -13,6 +13,7 @@
 #import "AppDelegate.h"
 #import "OrderH5ViewController.h"
 #import "ButelHandle.h"
+#import "EYPopupViewHeader.h"
 
 
 @interface OrderInfoViewController ()<UITableViewDataSource,UITableViewDelegate>
@@ -68,7 +69,14 @@
     }
     cell.lbOrderNum.text = [NSString stringWithFormat:@"订单号:%@",self.order.baseId];
     cell.lbCustName.text = self.order.customerName;
-    cell.lbPhoneNo.text = self.order.phoneNo;
+    if ([self.order.type isEqualToString:@"自建"]) {
+        cell.lbPhoneNo.text = self.order.phoneNo;
+    }else{
+        NSMutableString *phone = [[NSMutableString alloc] initWithString:self.order.phoneNo];
+        [phone replaceCharactersInRange:NSMakeRange(3, 4) withString:@"****"];
+        cell.lbPhoneNo.text = phone;
+    }
+    
     cell.lbLicenseNo.text = self.order.licenseNo;
     cell.lbEndCode.text = self.order.endCode;
     if ([self.order.comment isEqualToString:@""]) {
@@ -76,10 +84,17 @@
     }else{
         cell.lbComment.text = self.order.comment;
     }
+    if ([self.order.reserveTime isEqualToString:@""]) {
+        cell.lbReserveTime.text = @"";
+    }else{
+        cell.lbReserveTime.text = [HelperUtil timeFormat:self.order.reserveTime format:@"yyyy-MM-dd HH:mm"];
+    }
     
     [cell.callBtn addTarget:self action:@selector(callClick:) forControlEvents:UIControlEventTouchUpInside];
     [cell.priceBtn addTarget:self action:@selector(priceClick:) forControlEvents:UIControlEventTouchUpInside];
     [cell.appointmentBtn addTarget:self action:@selector(appointmentClick:) forControlEvents:UIControlEventTouchUpInside];
+    [cell.sendPayBtn addTarget:self action:@selector(sendPayMessageClick:) forControlEvents:UIControlEventTouchUpInside];
+    [cell.giftBtn addTarget:self action:@selector(giftClick:) forControlEvents:UIControlEventTouchUpInside];
         return cell;
 }
 
@@ -90,7 +105,7 @@
     }else if ([self.order.orderStatus isEqualToString:@"已支付"]){
         return 364;
     }else{
-        return 293;
+        return 325;
     }
     
 }
@@ -108,50 +123,7 @@
     orderH5VC.url = [NSString stringWithFormat:@"%@%@",kZhiKeInfo,self.order.baseId];
     NSLog(@"%@",[NSString stringWithFormat:@"%@%@",kZhiKeInfo,self.order.baseId]);
     [self.navigationController pushViewController:orderH5VC animated:YES];
-//    User *user = [[SingleHandle shareSingleHandle] getUserInfo];
-//    AppDelegate *delegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
-//    delegate.isThird=YES;
-//    /**
-//     *  dataType 01:创建订单,获取新数据 02:创建客户
-//     */
-//    NSDictionary *params = @{@"operType":@"",
-//                             @"msg":@"",
-//                             @"sendTime":@"",
-//                             @"sign":@"",
-//                             @"data":@{@"proportion":@"0.8",
-//                                       @"customerName":self.order.customerName,
-//                                       @"phoneNo":self.order.phoneNo,
-//                                       @"dataType":@"01",
-//                                       @"activeType":@"1",
-//                                       @"macAdress":@"02:00:00:00:00:00",
-//                                       @"agentCode":agentCode,
-//                                       @"engineNo":self.order.engineNo,
-//                                       @"vehicleFrameNo":self.order.frameNo,
-//                                       @"licenseNo":self.order.licenseNo,
-//                                       @"vehicleModelName":self.order.vehicleModelName,
-//                                       @"userId":user.userId,
-//                                       @"accountType":@"3",
-//                                       @"cityCode":self.order.cityCode}
-//                             };
-//    
-//    __weak typeof(self) weakSelf = self;
-//    [MHNetworkManager postReqeustWithURL:kZhiKe params:params successBlock:^(id returnData) {
-//        
-//        delegate.isThird=NO;
-//        if ([returnData[@"state"] isEqualToString:@"0"]) {
-//            NSString *url = [returnData[@"data"] valueForKey:@"retPage"];
-//            OrderH5ViewController *orderH5VC = [[OrderH5ViewController alloc] init];
-//            orderH5VC.url = url;
-//            [weakSelf.navigationController pushViewController:orderH5VC animated:YES];
-//            
-//        }else {
-//            [MBProgressHUD showMessag:returnData[@"msg"] toView:self.view];
-//        }
-//        
-//    } failureBlock:^(NSError *error) {
-//        delegate.isThird=NO;
-//        
-//    } showHUD:YES];
+
 }
 
 
@@ -167,16 +139,100 @@
         AppointmentViewController *receive = segue.destinationViewController;
         receive.customerId = self.order.customerId;
         receive.baseId = self.order.baseId;
+        [receive refreshTableview:^(NSString *endCode, NSString *time, NSString *comment) {
+            self.order.endCode = endCode;
+            self.order.reserveTime = time;
+            self.order.comment = comment;
+            [self.tableView reloadData];
+        }];
     }
 }
 
-/** */
-/** */
+/**
+ *  下发支付短信
+ */
+- (void)sendPayMessageClick:(UIButton *)sender {
+    if ([self.order.gift isEqualToString:@""]) {
+        [EYInputPopupView popViewWithTitle:@"请填写投保礼"
+                               contentText:self.order.gift
+                                      type:EYInputPopupView_Type_multi_line
+                               cancelBlock:^{
+                                   
+                               } confirmBlock:^(UIView *view, NSString *text) {
+                                   if ([text isEqualToString:@""]) {
+                                       text = @"无";
+                                   }
+                                   [self saveOrderGift:text];
+                               } dismissBlock:^{
+                                   
+                               }];
+    }else {
+        NSString *url = [NSString stringWithFormat:@"%@%@",BaseAPI,kSendPayMessage];
+        NSDictionary *params = @{@"baseId":self.order.baseId,
+                                 @"phoneNo":self.order.phoneNo,
+                                 @"userNum":[[SingleHandle shareSingleHandle] getUserInfo].userNum};
+        [MHNetworkManager postReqeustWithURL:url params:params successBlock:^(id returnData) {
+            if ([[returnData objectForKey:@"flag"] isEqualToString:@"success"]) {
+                [MBProgressHUD showMessag:@"下发支付短信成功" toView:nil];
+                
+            }else {
+                [MBProgressHUD showMessag:[returnData objectForKey:@"msg"] toView:nil];
+            }
+        } failureBlock:^(NSError *error) {
+            
+        } showHUD:NO];
+    }
+    
+}   
+
+/**
+ *  投保礼
+ */
+- (void)giftClick:(UIButton *)sender {
+    [EYInputPopupView popViewWithTitle:@"请填写投保礼"
+                           contentText:self.order.gift
+                                  type:EYInputPopupView_Type_multi_line
+                           cancelBlock:^{
+                               
+                           } confirmBlock:^(UIView *view, NSString *text) {
+                               
+                               [self saveOrderGift:text];
+                           } dismissBlock:^{
+                               
+                           }];
+
+}
+/**
+ *  保存投保礼
+ */
+- (void)saveOrderGift:(NSString *)text {
+    NSString *url = [NSString stringWithFormat:@"%@%@",BaseAPI,kSaveOrderGift];
+    NSDictionary *params = @{@"baseId":self.order.baseId,
+                             @"gift":text};
+    [MHNetworkManager postReqeustWithURL:url params:params successBlock:^(id returnData) {
+        if ([[returnData objectForKey:@"flag"] isEqualToString:@"success"]) {
+            
+            self.order.gift = text;
+           
+            
+            [MBProgressHUD showMessag:@"保存投保礼成功" toView:nil];
+        }else {
+            [MBProgressHUD showMessag:[returnData objectForKey:@"msg"] toView:nil];
+        }
+        
+    } failureBlock:^(NSError *error) {
+        
+    } showHUD:NO];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+- (void)dealloc
+{
+    NSLog(@"订单详情销毁");
+}
 /*
 #pragma mark - Navigation
 

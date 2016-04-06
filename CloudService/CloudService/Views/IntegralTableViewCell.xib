@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
@@ -12,7 +12,7 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="96"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="375" height="95.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="375" height="95"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="list-icon1" translatesAutoresizingMaskIntoConstraints="NO" id="qcO-I5-v9U">
@@ -34,7 +34,8 @@
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2015-11-11  12:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a84-OJ-eLt">
                         <rect key="frame" x="97" y="48" width="126" height="21"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="21" id="vFC-O7-1gD"/>
+                            <constraint firstAttribute="height" constant="21" id="Rxz-Gr-Tlp"/>
+                            <constraint firstAttribute="width" constant="126" id="k4x-1B-aBf"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -62,15 +63,14 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="qcO-I5-v9U" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="13" id="1XB-ui-2Zn"/>
-                    <constraint firstItem="SL9-Aw-iOa" firstAttribute="leading" secondItem="a84-OJ-eLt" secondAttribute="trailing" constant="26" id="4Pg-1n-cul"/>
+                    <constraint firstItem="a84-OJ-eLt" firstAttribute="leading" secondItem="qcO-I5-v9U" secondAttribute="trailing" constant="16" id="Clp-7e-rfb"/>
+                    <constraint firstItem="a84-OJ-eLt" firstAttribute="top" secondItem="FvA-WT-JEm" secondAttribute="bottom" id="F2a-pw-Cdy"/>
                     <constraint firstItem="FvA-WT-JEm" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="19" id="G8u-Q6-Pv0"/>
-                    <constraint firstItem="a84-OJ-eLt" firstAttribute="leading" secondItem="qcO-I5-v9U" secondAttribute="trailing" constant="16" id="GpC-Ho-oMV"/>
                     <constraint firstItem="lWG-Fd-gtf" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="19" id="TqU-07-GXD"/>
                     <constraint firstItem="lWG-Fd-gtf" firstAttribute="leading" secondItem="FvA-WT-JEm" secondAttribute="trailing" constant="2" id="YiO-vC-Sry"/>
                     <constraint firstItem="SL9-Aw-iOa" firstAttribute="top" secondItem="lWG-Fd-gtf" secondAttribute="bottom" id="YpA-EL-bKR"/>
                     <constraint firstAttribute="trailingMargin" secondItem="SL9-Aw-iOa" secondAttribute="trailing" constant="6" id="bZ5-Ve-5Bq"/>
                     <constraint firstItem="FvA-WT-JEm" firstAttribute="leading" secondItem="qcO-I5-v9U" secondAttribute="trailing" constant="16" id="owJ-M1-Bmu"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="a84-OJ-eLt" secondAttribute="bottom" constant="18" id="qzb-jp-yyZ"/>
                     <constraint firstAttribute="trailingMargin" secondItem="lWG-Fd-gtf" secondAttribute="trailing" constant="6" id="sXO-cT-Nei"/>
                     <constraint firstItem="qcO-I5-v9U" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="8" id="tvg-Gq-7UG"/>
                 </constraints>

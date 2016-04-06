@@ -20,6 +20,10 @@
 		630EF1A51C8579630059CB34 /* IntergralChangeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 630EF1A21C8579630059CB34 /* IntergralChangeViewController.m */; };
 		630EF1A61C8579630059CB34 /* MyIntergralViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 630EF1A41C8579630059CB34 /* MyIntergralViewController.m */; };
 		6320B73C1C89A2CE0076FC7E /* Coupons.m in Sources */ = {isa = PBXBuildFile; fileRef = 6320B73B1C89A2CE0076FC7E /* Coupons.m */; };
+		634647C31CB49EAF004A064E /* EYInputPopupView.m in Sources */ = {isa = PBXBuildFile; fileRef = 634647BB1CB49EAF004A064E /* EYInputPopupView.m */; };
+		634647C41CB49EAF004A064E /* EYPopupView.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 634647BC1CB49EAF004A064E /* EYPopupView.bundle */; };
+		634647C51CB49EAF004A064E /* EYPopupView.m in Sources */ = {isa = PBXBuildFile; fileRef = 634647BE1CB49EAF004A064E /* EYPopupView.m */; };
+		634647C61CB49EAF004A064E /* EYTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 634647C21CB49EAF004A064E /* EYTextField.m */; };
 		634EE61F1C995A8D00FB526D /* activity2.png in Resources */ = {isa = PBXBuildFile; fileRef = 634EE61D1C995A8D00FB526D /* activity2.png */; };
 		634EE6201C995A8D00FB526D /* activity2@2X.png in Resources */ = {isa = PBXBuildFile; fileRef = 634EE61E1C995A8D00FB526D /* activity2@2X.png */; };
 		634EE6271C997F0000FB526D /* rulebg3.png in Resources */ = {isa = PBXBuildFile; fileRef = 634EE6251C997F0000FB526D /* rulebg3.png */; };
@@ -49,6 +53,9 @@
 		637533BB1C84321500A12932 /* OfferTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 637533B91C84321500A12932 /* OfferTableViewCell.m */; };
 		637533BC1C84321500A12932 /* OfferTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 637533BA1C84321500A12932 /* OfferTableViewCell.xib */; };
 		637565741CAE056E004566BA /* Default-736h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 637565731CAE056E004566BA /* Default-736h@2x.png */; };
+		6375657C1CAE62FD004566BA /* NSArray+AYCUnicode.m in Sources */ = {isa = PBXBuildFile; fileRef = 637565771CAE62FD004566BA /* NSArray+AYCUnicode.m */; };
+		6375657D1CAE62FD004566BA /* NSDictionary+AYCUnicode.m in Sources */ = {isa = PBXBuildFile; fileRef = 637565791CAE62FD004566BA /* NSDictionary+AYCUnicode.m */; };
+		6375657E1CAE62FD004566BA /* NSObject+AYCUnicode.m in Sources */ = {isa = PBXBuildFile; fileRef = 6375657B1CAE62FD004566BA /* NSObject+AYCUnicode.m */; };
 		63790FE61C93B12B006CB0E2 /* HoriCardFlowLayout2.m in Sources */ = {isa = PBXBuildFile; fileRef = 63790FE51C93B12B006CB0E2 /* HoriCardFlowLayout2.m */; };
 		63790FE91C93B19C006CB0E2 /* ActivityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63790FE81C93B19C006CB0E2 /* ActivityViewController.m */; };
 		63790FED1C93C03C006CB0E2 /* ActivityCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 63790FEB1C93C03C006CB0E2 /* ActivityCollectionCell.m */; };
@@ -179,6 +186,15 @@
 		630EF1A41C8579630059CB34 /* MyIntergralViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyIntergralViewController.m; sourceTree = "<group>"; };
 		6320B73A1C89A2CE0076FC7E /* Coupons.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Coupons.h; sourceTree = "<group>"; };
 		6320B73B1C89A2CE0076FC7E /* Coupons.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Coupons.m; sourceTree = "<group>"; };
+		634647BA1CB49EAF004A064E /* EYInputPopupView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EYInputPopupView.h; sourceTree = "<group>"; };
+		634647BB1CB49EAF004A064E /* EYInputPopupView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EYInputPopupView.m; sourceTree = "<group>"; };
+		634647BC1CB49EAF004A064E /* EYPopupView.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = EYPopupView.bundle; sourceTree = "<group>"; };
+		634647BD1CB49EAF004A064E /* EYPopupView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EYPopupView.h; sourceTree = "<group>"; };
+		634647BE1CB49EAF004A064E /* EYPopupView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EYPopupView.m; sourceTree = "<group>"; };
+		634647BF1CB49EAF004A064E /* EYPopupViewHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EYPopupViewHeader.h; sourceTree = "<group>"; };
+		634647C01CB49EAF004A064E /* EYPopupViewMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EYPopupViewMacro.h; sourceTree = "<group>"; };
+		634647C11CB49EAF004A064E /* EYTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EYTextField.h; sourceTree = "<group>"; };
+		634647C21CB49EAF004A064E /* EYTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EYTextField.m; sourceTree = "<group>"; };
 		634EE61D1C995A8D00FB526D /* activity2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = activity2.png; sourceTree = "<group>"; };
 		634EE61E1C995A8D00FB526D /* activity2@2X.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "activity2@2X.png"; sourceTree = "<group>"; };
 		634EE6251C997F0000FB526D /* rulebg3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rulebg3.png; sourceTree = "<group>"; };
@@ -217,6 +233,12 @@
 		637533B91C84321500A12932 /* OfferTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OfferTableViewCell.m; sourceTree = "<group>"; };
 		637533BA1C84321500A12932 /* OfferTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OfferTableViewCell.xib; sourceTree = "<group>"; };
 		637565731CAE056E004566BA /* Default-736h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-736h@2x.png"; sourceTree = "<group>"; };
+		637565761CAE62FD004566BA /* NSArray+AYCUnicode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+AYCUnicode.h"; sourceTree = "<group>"; };
+		637565771CAE62FD004566BA /* NSArray+AYCUnicode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+AYCUnicode.m"; sourceTree = "<group>"; };
+		637565781CAE62FD004566BA /* NSDictionary+AYCUnicode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+AYCUnicode.h"; sourceTree = "<group>"; };
+		637565791CAE62FD004566BA /* NSDictionary+AYCUnicode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+AYCUnicode.m"; sourceTree = "<group>"; };
+		6375657A1CAE62FD004566BA /* NSObject+AYCUnicode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+AYCUnicode.h"; sourceTree = "<group>"; };
+		6375657B1CAE62FD004566BA /* NSObject+AYCUnicode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+AYCUnicode.m"; sourceTree = "<group>"; };
 		63790FE41C93B12B006CB0E2 /* HoriCardFlowLayout2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HoriCardFlowLayout2.h; sourceTree = "<group>"; };
 		63790FE51C93B12B006CB0E2 /* HoriCardFlowLayout2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HoriCardFlowLayout2.m; sourceTree = "<group>"; };
 		63790FE71C93B19C006CB0E2 /* ActivityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityViewController.h; sourceTree = "<group>"; };
@@ -465,6 +487,19 @@
 				637533BA1C84321500A12932 /* OfferTableViewCell.xib */,
 			);
 			name = OfferCell;
+			sourceTree = "<group>";
+		};
+		637565751CAE62FD004566BA /* AYCUnicode */ = {
+			isa = PBXGroup;
+			children = (
+				637565761CAE62FD004566BA /* NSArray+AYCUnicode.h */,
+				637565771CAE62FD004566BA /* NSArray+AYCUnicode.m */,
+				637565781CAE62FD004566BA /* NSDictionary+AYCUnicode.h */,
+				637565791CAE62FD004566BA /* NSDictionary+AYCUnicode.m */,
+				6375657A1CAE62FD004566BA /* NSObject+AYCUnicode.h */,
+				6375657B1CAE62FD004566BA /* NSObject+AYCUnicode.m */,
+			);
+			path = AYCUnicode;
 			sourceTree = "<group>";
 		};
 		6383655E1C7DB8BA001A10C4 /* HZQDatePickerView */ = {
@@ -855,6 +890,7 @@
 		F0292BD91C7B015200A810A9 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				637565751CAE62FD004566BA /* AYCUnicode */,
 				F0292BDA1C7B015200A810A9 /* Utility.h */,
 				F0292BDB1C7B015200A810A9 /* Utility.m */,
 				63C07BA61C7B15C10084581F /* HelperUtil.h */,
@@ -863,6 +899,15 @@
 				F057320A1C859D2400D88B78 /* SingleHandle.m */,
 				639CF6AB1C9FF0800086C72B /* UIViewController+AlertView.h */,
 				639CF6AC1C9FF0800086C72B /* UIViewController+AlertView.m */,
+				634647BA1CB49EAF004A064E /* EYInputPopupView.h */,
+				634647BB1CB49EAF004A064E /* EYInputPopupView.m */,
+				634647BC1CB49EAF004A064E /* EYPopupView.bundle */,
+				634647BD1CB49EAF004A064E /* EYPopupView.h */,
+				634647BE1CB49EAF004A064E /* EYPopupView.m */,
+				634647BF1CB49EAF004A064E /* EYPopupViewHeader.h */,
+				634647C01CB49EAF004A064E /* EYPopupViewMacro.h */,
+				634647C11CB49EAF004A064E /* EYTextField.h */,
+				634647C21CB49EAF004A064E /* EYTextField.m */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -1013,6 +1058,7 @@
 				63A2AB031CA13F440094B876 /* activity3@2X.png in Resources */,
 				634EE6201C995A8D00FB526D /* activity2@2X.png in Resources */,
 				63A2AB051CA13F980094B876 /* rulebg2.png in Resources */,
+				634647C41CB49EAF004A064E /* EYPopupView.bundle in Resources */,
 				63C54E331C7C2F96007CE8CA /* OrderManagerCell.xib in Resources */,
 				63A2AB021CA13F440094B876 /* activity3.png in Resources */,
 				630EF18B1C8530940059CB34 /* MyClientTableViewCell.xib in Resources */,
@@ -1146,6 +1192,7 @@
 				63C07B9A1C7B14BB0084581F /* MBProgressHUD+Add.m in Sources */,
 				634EE62B1C997F9400FB526D /* RuleViewController.m in Sources */,
 				F019C9D91C7BFD8D00E73A2C /* RegisterViewController.m in Sources */,
+				6375657C1CAE62FD004566BA /* NSArray+AYCUnicode.m in Sources */,
 				63C54E411C7C35BA007CE8CA /* PersonalViewController.m in Sources */,
 				F06DDBB01C7DACDE00C862A1 /* OrderManagerViewController.m in Sources */,
 				6383656A1C7DB8BA001A10C4 /* HZQDatePickerView.m in Sources */,
@@ -1164,6 +1211,7 @@
 				63C07B9B1C7B14BB0084581F /* MHAsiNetworkHandler.m in Sources */,
 				F0906A7E1C964FD2007C3BBC /* ActifityModel.m in Sources */,
 				F094B5991C7FF8D600A2312D /* ZQScrollPageView.m in Sources */,
+				634647C51CB49EAF004A064E /* EYPopupView.m in Sources */,
 				F09A5F8F1A55BEDD008D4963 /* HomeHeaderView.m in Sources */,
 				F01A616D1C7D860E008CBBD5 /* LoginInputView.m in Sources */,
 				F090DEE01C896B1800168BF8 /* RequestManager.m in Sources */,
@@ -1172,7 +1220,9 @@
 				637A62481C8EBEC60020AE5E /* CouponsDistributeViewController.m in Sources */,
 				63C07B9D1C7B14BB0084581F /* MHNetworkManager.m in Sources */,
 				F0292BE11C7B015200A810A9 /* BaseTabBarViewController.m in Sources */,
+				6375657E1CAE62FD004566BA /* NSObject+AYCUnicode.m in Sources */,
 				63ADFBEB1C7F0622000D3164 /* PellTableViewSelect.m in Sources */,
+				6375657D1CAE62FD004566BA /* NSDictionary+AYCUnicode.m in Sources */,
 				F06DDBAA1C7DAB7400C862A1 /* UIViewController+AYCNavigationItem.m in Sources */,
 				F09A5F931A55F0AA008D4963 /* InviteFriendViewController.m in Sources */,
 				63C54E3E1C7C35AA007CE8CA /* ResultViewController.m in Sources */,
@@ -1191,6 +1241,7 @@
 				637A624C1C8EC0020020AE5E /* CouponsDistributeCell.m in Sources */,
 				F094A8491C9F9D5900E89967 /* TagSelectItem.m in Sources */,
 				F019C9D61C7BFD7900E73A2C /* LoginViewController.m in Sources */,
+				634647C61CB49EAF004A064E /* EYTextField.m in Sources */,
 				6392CFF11C8D235400D84F38 /* TeamMember.m in Sources */,
 				F0292BB21C7B00CD00A810A9 /* AppDelegate.m in Sources */,
 				F057320B1C859D2400D88B78 /* SingleHandle.m in Sources */,
@@ -1201,6 +1252,7 @@
 				F0DF32121C87E612008D098F /* ResetUserPwdViewController.m in Sources */,
 				F0FED91D1C96D38B008186C3 /* AboutAppViewController.m in Sources */,
 				63C07B9C1C7B14BB0084581F /* MHAsiNetworkItem.m in Sources */,
+				634647C31CB49EAF004A064E /* EYInputPopupView.m in Sources */,
 				F0292BAF1C7B00CD00A810A9 /* main.m in Sources */,
 				F06DDBA21C7DAAE900C862A1 /* CreatOrderViewController.m in Sources */,
 				F01A61641C7D456B008CBBD5 /* SetUserInfoHeaderView.m in Sources */,
@@ -1253,8 +1305,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_BITCODE = NO;
@@ -1299,8 +1351,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_BITCODE = NO;
@@ -1388,7 +1440,7 @@
 				F0292BC01C7B00CD00A810A9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		F0292BC11C7B00CD00A810A9 /* Build configuration list for PBXNativeTarget "CloudService" */ = {
 			isa = XCConfigurationList;
@@ -1397,7 +1449,7 @@
 				F0292BC31C7B00CD00A810A9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
 	};

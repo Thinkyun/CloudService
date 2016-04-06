@@ -8,8 +8,13 @@
 
 #import "BaseViewController.h"
 
+typedef void (^refreshBlock)(NSString *endCode,NSString *time,NSString *comment);
 @interface AppointmentViewController : BaseViewController
 
 @property (nonatomic, strong)NSString *customerId;
 @property (nonatomic, strong) NSString *baseId;
+
+@property (nonatomic , copy) refreshBlock refreshBlock;
+
+- (void)refreshTableview:(refreshBlock)block;
 @end

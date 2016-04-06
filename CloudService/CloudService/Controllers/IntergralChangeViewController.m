@@ -53,7 +53,7 @@
     }else {
         self.intergTotalLabel.text = [NSString stringWithFormat:@"%@",user.totalNum];
     }
-    self.maxChangeLabel.text = [NSString stringWithFormat:@"最多可兑换%.0f元",[user.totalNum floatValue] / 100];
+//    self.maxChangeLabel.text = [NSString stringWithFormat:@"最多可兑换%.0f元",[user.totalNum floatValue] / 100];
     
 }
 

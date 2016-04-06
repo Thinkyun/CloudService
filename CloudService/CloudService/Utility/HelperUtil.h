@@ -110,5 +110,9 @@
  *  mac地址
  */
 + (NSString *) macaddress;
+/**
+ *  生成uuid
+ */
++ (NSString *)uuidString;
 
 @end

@@ -20,7 +20,8 @@
 @property (weak, nonatomic)IBOutlet UIButton *appointmentBtn;//预约
 @property (weak, nonatomic)IBOutlet UIButton *giftBtn;//投保礼
 @property (weak, nonatomic)IBOutlet UILabel *lbComment;//备注
-
+@property (nonatomic, weak) IBOutlet UIButton *sendPayBtn;//下发支付短信
+@property (nonatomic, weak) IBOutlet UILabel *lbReserveTime;//预约时间
 
 
 @end
