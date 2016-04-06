@@ -135,10 +135,10 @@ static CGFloat headerHeight = 30;
     __weak typeof(self) weakSelf = self;
     [MHNetworkManager postReqeustWithURL:[RequestEntity urlString:kEstablishCustBySelf] params:myServerDict
         successBlock:^(id returnData) {
-        MyClientViewController *VC = weakSelf.navigationController.viewControllers[1];
+        MyClientViewController *VC = self.navigationController.viewControllers[1];
         VC.isSaveCarInfo = YES;
-        
-        [weakSelf.navigationController popToViewController:VC animated:YES];
+
+        [self.navigationController popToViewController:VC animated:YES];
     } failureBlock:^(NSError *error) {
         
     } showHUD:YES];

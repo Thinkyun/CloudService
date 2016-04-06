@@ -3587,9 +3587,9 @@
         <image name="youhuiquan-checkbox" width="22" height="22"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="hk9-Xv-JLY"/>
-        <segue reference="i3c-Qa-Pxq"/>
+        <segue reference="S4h-y3-d1W"/>
         <segue reference="fDp-sc-Hby"/>
         <segue reference="KaR-KU-zbk"/>
+        <segue reference="i3c-Qa-Pxq"/>
     </inferredMetricsTieBreakers>
 </document>
