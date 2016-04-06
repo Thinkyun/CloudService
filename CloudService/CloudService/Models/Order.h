@@ -28,5 +28,8 @@
 @property (nonatomic, copy) NSString *vehicleModelName;
 @property (nonatomic, copy) NSString *primaryDate;
 @property (nonatomic, copy) NSString *baseId;
+@property (nonatomic, copy) NSString *type;
+@property (nonatomic, copy) NSString *reserveTime;
+@property (nonatomic, copy) NSString *gift;
 @end
 

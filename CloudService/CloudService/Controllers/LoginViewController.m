@@ -37,9 +37,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     if (KHeight == 736) {
-        self.bottomLayout.constant = 300.f;
+        self.bottomLayout.constant = 320.f;
     }else if (KHeight == 667) {
-        self.bottomLayout.constant = 260.f;
+        self.bottomLayout.constant = 270.f;
     }else {
         self.bottomLayout.constant = 220.f;
     }

@@ -177,6 +177,7 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="UserTextFiled" destination="iJO-FG-2Ad" id="Tul-Cg-2zy"/>
+                        <outlet property="bottomLayout" destination="0xZ-iY-Svi" id="CU9-yH-q2D"/>
                         <outlet property="choseBtn" destination="ZGG-YC-mkw" id="19R-gg-j17"/>
                         <outlet property="inputView" destination="vHH-zz-iXo" id="zkz-c9-ufw"/>
                         <outlet property="loginBtn" destination="KW6-Fn-8rL" id="rtH-yA-4HD"/>
@@ -1022,7 +1023,7 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aDM-IS-xYF">
                                 <rect key="frame" x="167" y="443" width="115" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <state key="normal" title="《云客服服务条款》"/>
+                                <state key="normal" title="《点点云服服务条款》"/>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1895,7 +1896,7 @@
                         <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="download-icon2" translatesAutoresizingMaskIntoConstraints="NO" id="jZj-0W-ztj">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="download-icon2" translatesAutoresizingMaskIntoConstraints="NO" id="jZj-0W-ztj">
                                 <rect key="frame" x="108" y="88" width="160" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="160" id="9Zm-IN-5wc"/>
@@ -1916,30 +1917,13 @@
                                     <constraint firstAttribute="width" secondItem="qc0-ZZ-hAA" secondAttribute="height" multiplier="1:1" id="F7d-xD-iq3"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="扫描二维码,你的朋友也可下载E云客服客户端" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iVM-qo-2kd">
-                                <rect key="frame" x="20" y="416" width="335" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="扫描二维码,你的朋友也可下载点点云服客户端" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iVM-qo-2kd">
+                                <rect key="frame" x="35" y="413" width="305" height="21"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="2Kl-1s-Kr3"/>
-                                    <constraint firstAttribute="height" constant="21" id="uuh-3J-Eq7"/>
+                                    <constraint firstAttribute="width" constant="305" id="OVu-at-d4w"/>
+                                    <constraint firstAttribute="height" constant="21" id="ocd-dS-nCU"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <color key="textColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="2Kl-1s-Kr3"/>
-                                    </mask>
-                                </variation>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KZs-dh-O30">
-                                <rect key="frame" x="20" y="475" width="335" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fBY-Cu-fY7">
-                                <rect key="frame" x="20" y="496" width="335" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -1948,11 +1932,10 @@
                         <constraints>
                             <constraint firstItem="dwy-GI-TYw" firstAttribute="top" secondItem="jZj-0W-ztj" secondAttribute="bottom" constant="30" id="7JD-Xx-Ky2"/>
                             <constraint firstItem="qc0-ZZ-hAA" firstAttribute="centerX" secondItem="qvR-5K-1Q9" secondAttribute="centerX" id="Agx-fL-bm7"/>
-                            <constraint firstAttribute="trailing" secondItem="iVM-qo-2kd" secondAttribute="trailing" constant="20" id="EEU-Vp-IGg"/>
                             <constraint firstAttribute="trailing" secondItem="dwy-GI-TYw" secondAttribute="trailing" constant="20" id="Kac-gh-fe8"/>
+                            <constraint firstItem="iVM-qo-2kd" firstAttribute="centerX" secondItem="qvR-5K-1Q9" secondAttribute="centerX" id="S2D-zi-Y64"/>
+                            <constraint firstItem="iVM-qo-2kd" firstAttribute="top" secondItem="qc0-ZZ-hAA" secondAttribute="bottom" constant="27" id="WE2-qD-piq"/>
                             <constraint firstItem="qc0-ZZ-hAA" firstAttribute="top" secondItem="dwy-GI-TYw" secondAttribute="bottom" constant="30" id="WSK-xv-O7f"/>
-                            <constraint firstItem="iVM-qo-2kd" firstAttribute="leading" secondItem="qvR-5K-1Q9" secondAttribute="leading" constant="20" id="Wl7-M5-jXV"/>
-                            <constraint firstItem="iVM-qo-2kd" firstAttribute="top" secondItem="qc0-ZZ-hAA" secondAttribute="bottom" constant="30" id="cs6-Bs-lne"/>
                             <constraint firstItem="qc0-ZZ-hAA" firstAttribute="centerY" secondItem="qvR-5K-1Q9" secondAttribute="centerY" id="lef-5V-bqL"/>
                             <constraint firstItem="dwy-GI-TYw" firstAttribute="leading" secondItem="qvR-5K-1Q9" secondAttribute="leading" constant="20" id="m04-kJ-fsQ"/>
                             <constraint firstItem="jZj-0W-ztj" firstAttribute="centerX" secondItem="qvR-5K-1Q9" secondAttribute="centerX" id="oO7-2g-dOW"/>
@@ -1961,8 +1944,6 @@
                     <navigationItem key="navigationItem" id="baa-xC-eQG"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
-                        <outlet property="copyrightLabel1" destination="KZs-dh-O30" id="lGC-EY-k1S"/>
-                        <outlet property="copyrightLabel2" destination="fBY-Cu-fY7" id="A2h-W6-dZL"/>
                         <outlet property="versionLabel" destination="dwy-GI-TYw" id="ezs-mm-2Kc"/>
                     </connections>
                 </viewController>
@@ -2193,7 +2174,7 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="guize.png" translatesAutoresizingMaskIntoConstraints="NO" id="HdB-j2-hSa">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                             </imageView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ya0-qo-TJc">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ya0-qo-TJc">
                                 <rect key="frame" x="50" y="150" width="275" height="349"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -3222,7 +3203,7 @@
                                     <action selector="changeIntergralAction:" destination="LbM-Pr-T9T" eventType="touchUpInside" id="Inw-g3-yVr"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="最多可兑换12元" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eU5-Gu-w6x">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eU5-Gu-w6x">
                                 <rect key="frame" x="10" y="240" width="355" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="nqA-Er-bSf"/>

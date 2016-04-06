@@ -38,7 +38,7 @@
                                  NSParagraphStyleAttributeName:paragraphStyle
                                  };
 
-    self.tvContent.attributedText = [[NSAttributedString alloc] initWithString:@"【优惠券使用规则】\n单张车险保费每满1500元即可使用50元优惠券。\n2.出单时保费每满1500元系统会自动将优惠券转换为积分打到用户积分账户内（积分转换比例为：1:100）。\n3.优惠券到期日期以单张优惠券标注时间为准。\n4.优惠券扣除规则按到期时间优先扣除。" attributes:attributes];
+    self.tvContent.attributedText = [[NSAttributedString alloc] initWithString:@"【优惠券使用规则】\n1.单张车险保费每满1500元即可使用50元优惠券。\n2.出单时保费每满1500元系统会自动将优惠券转换为积分打到用户积分账户内（积分转换比例为：1:100）。\n3.优惠券到期日期以单张优惠券标注时间为准。\n4.优惠券扣除规则按到期时间优先扣除。" attributes:attributes];
     
     // Do any additional setup after loading the view.
 }

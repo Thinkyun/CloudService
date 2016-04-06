@@ -22,6 +22,8 @@ static ButelHandle *singleHandle = nil;
     NSString *_deviceId;
     NSString *_UUID;
     NSString *_number;
+    NSString *_phoneNo;
+    NSString *_requestId;
 }
 
 @property (retain) ButelCommonConnectV1 *connect;
@@ -100,16 +102,12 @@ static ButelHandle *singleHandle = nil;
     }else {
         [MBProgressHUD showMessag:@"青牛正在登陆，请稍候" toView:nil];
     }
-   
-   
-    
 
 }
 
 // 扬声器
 - (void)openSpeaker:(BOOL )isSpeaker {
     [self.connect OpenSpeaker:isSpeaker];
-    
 }
 
 // 静音
@@ -146,22 +144,27 @@ static ButelHandle *singleHandle = nil;
             if (![HelperUtil checkTelNumber:phoneNo]) {
                 [MBProgressHUD showError:@"手机号格式不正确" toView:nil];
                 return;
-            }if ([user.roleName isEqualToString:@"普通用户"] || user.roleName.length <= 0) {
+            }
+            if ([user.roleName isEqualToString:@"普通用户"] || user.roleName.length <= 0) {
                 [MBProgressHUD showError:@"当前用户为普通用户,不能拨打电话" toView:nil];
                 return ;
             }
             AppDelegate *delegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
             delegate.isThird=YES;
-            [MHNetworkManager postReqeustWithURL:@"http://221.4.250.108:8088/apHttpService/agent/makeCall" params:@{@"entId":@"7593111023", @"agentId":@"1001",@"number":phoneNo, @"ani":@"12345", @"uuid":_deviceId, @"requestType":@"test" } successBlock:^(NSDictionary *returnData) {
+            _requestId = [HelperUtil uuidString];
+            NSLog(@"----------------------------------%@",_requestId);
+            [MHNetworkManager postReqeustWithURL:@"http://221.4.250.108:8088/apHttpService/agent/makeCall" params:@{@"entId":@"7593111023", @"agentId":@"1001",@"number":phoneNo, @"ani":@"12345", @"uuid":_requestId, @"requestType":@"test" } successBlock:^(NSDictionary *returnData) {
                 NSDictionary *dic = returnData;
                 NSLog(@"%@",dic);
                 if ([[dic objectForKey:@"code"] isEqualToString:@"000"]) {
+                    _phoneNo = phoneNo;
                     NSLog(@"拨打电话成功");
                 }else {
                     if ([[dic objectForKey:@"msg"] isEqual:[NSNull null]]) {
                         [MBProgressHUD showError:@"服务器异常" toView:nil];
                         
                     }else{
+                     
                         [MBProgressHUD showError:[dic objectForKey:@"msg"] toView:nil];
                     }
                     
@@ -174,7 +177,9 @@ static ButelHandle *singleHandle = nil;
             isCall = !isCall;
         }else {
             [MBProgressHUD showMessag:@"正在集成中，请稍候" toView:[UIApplication sharedApplication].keyWindow];
-            [self loginWithLogin:_UUID number:_number deviceId:_deviceId nickname:@"CONNECT" userUniqueIdentifer:_deviceId];
+          
+            return;
+
         }
     }
     [self.callView callPhoneOrHangUp];
@@ -190,31 +195,7 @@ static ButelHandle *singleHandle = nil;
     NSLog(@"APP::OnInit()...");
     
     if (reason == 0) {
-        //http登陆
-        AppDelegate *delegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
-        delegate.isThird=YES;
-        
-        __weak typeof(self) weakSelf = self;
-        [MHNetworkManager postReqeustWithURL:@"http://221.4.250.108:8088/apHttpService/agent/login4Butel" params:@{@"entId":@"7593111023", @"agentId":@"1001",@"passWord":@"1001"} successBlock:^(NSDictionary *returnData) {
-            delegate.isThird = NO;
-            NSDictionary *dic = returnData;
-            if ([[dic objectForKey:@"code"] isEqualToString:@"000"]) {
-                NSDictionary *extDic = [dic objectForKey:@"ext"];
-                NSString *str = [extDic objectForKey:@"dn"];
-                NSArray *array = [str componentsSeparatedByString:@":"];
-                _deviceId = [extDic objectForKey:@"nubeUUID"];
-                NSString *UUID = [extDic objectForKey:@"nubeAppKey"];
-                NSLog(@"%@",dic);
-                
-                [weakSelf.connect Login:UUID number:[array objectAtIndex:1] deviceId:_deviceId nickname:@"CONNECT" userUniqueIdentifer:_deviceId];
-            }else {
-                [MBProgressHUD showError:[dic objectForKey:@"msg"] toView:nil];
-            }
-            
-        } failureBlock:^(NSError *error) {
-            delegate.isThird = NO;
-            NSLog(@"%@",error);
-        } showHUD:NO];
+       [self loginWithLogin:_UUID number:_number deviceId:_deviceId nickname:@"CONNECT" userUniqueIdentifer:_deviceId];
         
     }
 }
@@ -250,6 +231,10 @@ static ButelHandle *singleHandle = nil;
 - (void)OnDisconnect:(int) nReason Sid:(NSString*)Sid{
     isCall = !isCall;
     [self.callView OnDisconnect];
+    /**
+     *  挂断电话后向后台传录音流水号
+     */
+    [self sendTape:_requestId];
     
 }
 -(void)OnCdrNotify:(NSString *)cdrInfo {
@@ -312,11 +297,8 @@ static ButelHandle *singleHandle = nil;
             NSLog(@"%@",[[exception callStackSymbols] componentsJoinedByString:@"\n"]);
         }
     }
-   
-    
+
 }
-
-
 
 
 // 登陆
@@ -324,5 +306,21 @@ static ButelHandle *singleHandle = nil;
     [self.connect Login:UUID number:number deviceId:deviceID nickname:nickName userUniqueIdentifer:userID];
 }
 
-
+/**
+ *  往后台服务器传录音流水号
+ */
+- (void)sendTape:(NSString *)sid {
+    NSDictionary *params = @{@"userId":[[SingleHandle shareSingleHandle] getUserInfo].userId,
+                             @"requestId":sid,
+                             @"phoneNo":_phoneNo};
+    [MHNetworkManager postReqeustWithURL:[NSString stringWithFormat:@"%@%@",BaseAPI,kSaveTape] params:params successBlock:^(id returnData) {
+        
+        if ([[returnData valueForKey:@"flag"] isEqualToString:@"success"]) {
+            
+        }
+        
+    } failureBlock:^(NSError *error) {
+        
+    } showHUD:NO];
+}
 @end

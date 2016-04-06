@@ -167,6 +167,7 @@
         
         if ([[returnData objectForKey:@"flag"] isEqualToString:@"success"]) {
             [MBProgressHUD showMessag:@"预约成功" toView:nil];
+            self.refreshBlock(self.tfCode.text,[HelperUtil getDateWithDateStr:self.tfDate.text],self.textView.text);
             [weakSelf.navigationController popViewControllerAnimated:YES];
             
         }else {
@@ -181,7 +182,9 @@
     
 }
 
-
+- (void)refreshTableview:(refreshBlock)block {
+    self.refreshBlock = block;
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

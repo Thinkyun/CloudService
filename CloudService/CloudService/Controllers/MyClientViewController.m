@@ -21,6 +21,8 @@
     NSMutableArray *_clientArray;
     __block NSString *_conditon;//模糊搜索
     Order *_order;
+    UIImageView *_noDataImg;
+    UILabel *_lbNoData;
 }
 @property (weak, nonatomic)IBOutlet UISearchBar *searchBar;
 @property (weak, nonatomic)IBOutlet UITableView *tableView;
@@ -67,6 +69,21 @@
         [self.tableView.mj_header beginRefreshing];
     }
 }
+
+- (void)setupNoData {
+    _noDataImg = [[UIImageView alloc] initWithFrame:CGRectMake(KWidth/2-30, KHeight/2-80, 75, 85)];
+    _noDataImg.image = [UIImage imageNamed:@"pix2"];
+    _lbNoData = [[UILabel alloc] initWithFrame:CGRectMake(KWidth/2-20, KHeight/2+10, 60, 25)];
+    _lbNoData.text = @"暂无数据";
+    _lbNoData.font = [UIFont systemFontOfSize:14];
+    _lbNoData.textColor = [UIColor lightGrayColor];
+    [self.tableView addSubview:_noDataImg];
+    [self.tableView addSubview:_lbNoData];
+}
+- (void)removeNoData {
+    [_noDataImg removeFromSuperview];
+    [_lbNoData removeFromSuperview];
+}
 //添加mj
 - (void)addMjRefresh {
     _page=1;
@@ -91,6 +108,7 @@
 }
 
 - (void)requestData:(NSString *)condition{
+    [self removeNoData];
     AppDelegate *delegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
     delegate.isThird=NO;
     NSDictionary *paramsDic=@{@"userId":[[SingleHandle shareSingleHandle] getUserInfo].userId,
@@ -108,7 +126,11 @@
             [_clientArray removeAllObjects];
             //取出总条数
             int totalCount=[[[dataDic objectForKey:@"pageVO"] objectForKey:@"recordCount"] intValue];
-    
+            if (totalCount>0) {
+                [self removeNoData];
+            }else {
+                [self setupNoData];
+            }
             if (totalCount-_pageSize*_page<=0) {
                 //没有数据，直接提示没有更多数据
                 [_tableView.mj_footer endRefreshingWithNoMoreData];
@@ -121,14 +143,15 @@
             NSLog(@"%@",_clientArray);
         }else {
             [MBProgressHUD showMessag:[dic objectForKey:@"msg"] toView:weakSelf.view];
-            
+            [self setupNoData];
         }
         
         [weakSelf.tableView reloadData];
         [weakSelf.tableView.mj_header endRefreshing];
         
     } failureBlock:^(NSError *error) {
-        
+        [self setupNoData];
+        [self.tableView reloadData];
         [weakSelf.tableView.mj_header endRefreshing];
     } showHUD:YES];
     

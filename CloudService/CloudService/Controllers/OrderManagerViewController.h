@@ -11,4 +11,5 @@
 
 @interface OrderManagerViewController : BaseViewController
 @property (strong, nonatomic) IBOutlet LazyPageScrollView *pageView;
+
 @end
