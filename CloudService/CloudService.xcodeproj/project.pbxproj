@@ -21,7 +21,6 @@
 		630EF1A61C8579630059CB34 /* MyIntergralViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 630EF1A41C8579630059CB34 /* MyIntergralViewController.m */; };
 		6320B73C1C89A2CE0076FC7E /* Coupons.m in Sources */ = {isa = PBXBuildFile; fileRef = 6320B73B1C89A2CE0076FC7E /* Coupons.m */; };
 		634647C31CB49EAF004A064E /* EYInputPopupView.m in Sources */ = {isa = PBXBuildFile; fileRef = 634647BB1CB49EAF004A064E /* EYInputPopupView.m */; };
-		634647C41CB49EAF004A064E /* EYPopupView.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 634647BC1CB49EAF004A064E /* EYPopupView.bundle */; };
 		634647C51CB49EAF004A064E /* EYPopupView.m in Sources */ = {isa = PBXBuildFile; fileRef = 634647BE1CB49EAF004A064E /* EYPopupView.m */; };
 		634647C61CB49EAF004A064E /* EYTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 634647C21CB49EAF004A064E /* EYTextField.m */; };
 		634EE61F1C995A8D00FB526D /* activity2.png in Resources */ = {isa = PBXBuildFile; fileRef = 634EE61D1C995A8D00FB526D /* activity2.png */; };
@@ -96,6 +95,7 @@
 		63C54E3E1C7C35AA007CE8CA /* ResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63C54E3D1C7C35AA007CE8CA /* ResultViewController.m */; };
 		63C54E411C7C35BA007CE8CA /* PersonalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63C54E401C7C35BA007CE8CA /* PersonalViewController.m */; };
 		63E9BFDD1C9659B200FFE0BA /* Order.m in Sources */ = {isa = PBXBuildFile; fileRef = 63E9BFDC1C9659B200FFE0BA /* Order.m */; };
+		900B29761CB4F73C00A9FBD7 /* EYPopupView.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 900B29751CB4F73C00A9FBD7 /* EYPopupView.bundle */; };
 		901984E91CACB2C400AF6721 /* libFireData.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 901984E81CACB2C400AF6721 /* libFireData.a */; };
 		9025D0F91CA50B6500E3B43F /* ButelCommonConnectSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 9025D0F71CA50B6500E3B43F /* ButelCommonConnectSDK.bundle */; };
 		9025D0FA1CA50B6500E3B43F /* ButelCommonConnectSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9025D0F81CA50B6500E3B43F /* ButelCommonConnectSDK.framework */; };
@@ -188,7 +188,6 @@
 		6320B73B1C89A2CE0076FC7E /* Coupons.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Coupons.m; sourceTree = "<group>"; };
 		634647BA1CB49EAF004A064E /* EYInputPopupView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EYInputPopupView.h; sourceTree = "<group>"; };
 		634647BB1CB49EAF004A064E /* EYInputPopupView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EYInputPopupView.m; sourceTree = "<group>"; };
-		634647BC1CB49EAF004A064E /* EYPopupView.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = EYPopupView.bundle; sourceTree = "<group>"; };
 		634647BD1CB49EAF004A064E /* EYPopupView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EYPopupView.h; sourceTree = "<group>"; };
 		634647BE1CB49EAF004A064E /* EYPopupView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EYPopupView.m; sourceTree = "<group>"; };
 		634647BF1CB49EAF004A064E /* EYPopupViewHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EYPopupViewHeader.h; sourceTree = "<group>"; };
@@ -312,6 +311,7 @@
 		63E9BFDB1C9659B200FFE0BA /* Order.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Order.h; sourceTree = "<group>"; };
 		63E9BFDC1C9659B200FFE0BA /* Order.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Order.m; sourceTree = "<group>"; };
 		8080CD2CAEE01D9CB60C40F6 /* Pods-CloudService.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CloudService.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CloudService/Pods-CloudService.debug.xcconfig"; sourceTree = "<group>"; };
+		900B29751CB4F73C00A9FBD7 /* EYPopupView.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = EYPopupView.bundle; sourceTree = "<group>"; };
 		901984E61CACB2C400AF6721 /* FireData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FireData.h; sourceTree = "<group>"; };
 		901984E71CACB2C400AF6721 /* FiredataApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FiredataApp.h; sourceTree = "<group>"; };
 		901984E81CACB2C400AF6721 /* libFireData.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFireData.a; sourceTree = "<group>"; };
@@ -901,7 +901,7 @@
 				639CF6AC1C9FF0800086C72B /* UIViewController+AlertView.m */,
 				634647BA1CB49EAF004A064E /* EYInputPopupView.h */,
 				634647BB1CB49EAF004A064E /* EYInputPopupView.m */,
-				634647BC1CB49EAF004A064E /* EYPopupView.bundle */,
+				900B29751CB4F73C00A9FBD7 /* EYPopupView.bundle */,
 				634647BD1CB49EAF004A064E /* EYPopupView.h */,
 				634647BE1CB49EAF004A064E /* EYPopupView.m */,
 				634647BF1CB49EAF004A064E /* EYPopupViewHeader.h */,
@@ -1058,7 +1058,7 @@
 				63A2AB031CA13F440094B876 /* activity3@2X.png in Resources */,
 				634EE6201C995A8D00FB526D /* activity2@2X.png in Resources */,
 				63A2AB051CA13F980094B876 /* rulebg2.png in Resources */,
-				634647C41CB49EAF004A064E /* EYPopupView.bundle in Resources */,
+				900B29761CB4F73C00A9FBD7 /* EYPopupView.bundle in Resources */,
 				63C54E331C7C2F96007CE8CA /* OrderManagerCell.xib in Resources */,
 				63A2AB021CA13F440094B876 /* activity3.png in Resources */,
 				630EF18B1C8530940059CB34 /* MyClientTableViewCell.xib in Resources */,
