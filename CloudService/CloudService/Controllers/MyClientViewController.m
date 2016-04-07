@@ -119,7 +119,7 @@
     
     __weak typeof(self) weakSelf = self;
     [MHNetworkManager postReqeustWithURL:url params:paramsDic successBlock:^(id returnData) {
-        NSLog(@"%@",returnData);
+        AYCLog(@"%@",returnData);
         NSDictionary *dic = returnData;
          NSDictionary *dataDic = [dic objectForKey:@"data"];
         if ([[dic objectForKey:@"flag"] isEqualToString:@"success"]) {
@@ -140,7 +140,7 @@
            
             NSArray *listArray = [dataDic objectForKey:@"list"];
             [_clientArray addObjectsFromArray:[Order mj_objectArrayWithKeyValuesArray:listArray]];
-            NSLog(@"%@",_clientArray);
+            AYCLog(@"%@",_clientArray);
         }else {
             [MBProgressHUD showMessag:[dic objectForKey:@"msg"] toView:weakSelf.view];
             [self setupNoData];
@@ -168,7 +168,7 @@
     
     __weak typeof(self) weakSelf = self;
     [MHNetworkManager postReqeustWithURL:url params:paramsDic successBlock:^(id returnData) {
-        NSLog(@"%@",returnData);
+        AYCLog(@"%@",returnData);
         
         NSDictionary *dic = returnData;
         if ([[dic objectForKey:@"flag"] isEqualToString:@"success"]) {
@@ -185,7 +185,7 @@
             
             NSArray *listArray = [dataDic objectForKey:@"list"];
             [_clientArray addObjectsFromArray:[Order mj_objectArrayWithKeyValuesArray:listArray]];
-            NSLog(@"%@",_clientArray);
+            AYCLog(@"%@",_clientArray);
         }else {
             [MBProgressHUD showMessag:[dic objectForKey:@"msg"] toView:weakSelf.view];
             
@@ -194,7 +194,7 @@
         [weakSelf.tableView reloadData];
         
     } failureBlock:^(NSError *error) {
-        NSLog(@"%@",error);
+        AYCLog(@"%@",error);
         [weakSelf.tableView.mj_footer endRefreshing];
     } showHUD:YES];
     

@@ -37,7 +37,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     if (KHeight == 736) {
-        self.bottomLayout.constant = 320.f;
+        self.bottomLayout.constant = 310.f;
     }else if (KHeight == 667) {
         self.bottomLayout.constant = 270.f;
     }else {
@@ -147,7 +147,6 @@
     if (address) {
         [dict setValue:address forKey:@"address"];
     }else {
-//        [MBProgressHUD showMessag:@"无法获取定位信息,系统默认您的的登录城市为北京市" toView:self.view];
         
         [dict setValue:@"北京市" forKey:@"address"];
     }
@@ -159,7 +158,7 @@
             User *user = [User mj_objectWithKeyValues:[returnData valueForKey:@"data"]];
             [[SingleHandle shareSingleHandle] saveUserInfo:user];
             [Utility saveUserName:self.UserTextFiled.text passWord:self.pwdTextFiled.text];
-            NSLog(@"%@",user.userNum);
+            AYCLog(@"%@",user.userNum);
             /**
              *  火炬登陆信息
              */

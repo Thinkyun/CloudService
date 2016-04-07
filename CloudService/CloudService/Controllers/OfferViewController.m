@@ -106,15 +106,15 @@ static CGFloat headerHeight = 30;
 
     NSIndexPath *path2 = [NSIndexPath indexPathForRow:0 inSection:1];
     OfferTableViewCell *cell2 = [self.tableView cellForRowAtIndexPath:path2];
-    NSLog(@"%@%@",cell2.carUserCard.text,cell2.carUserName.text);
+    AYCLog(@"%@%@",cell2.carUserCard.text,cell2.carUserName.text);
 
     
     
     
     User *user = [[SingleHandle shareSingleHandle] getUserInfo];
-    NSLog(@"%@,%@%@%@",self.order.baseId,self.order.customerId,self.order.cityCode,self.order.phoneNo);
+    AYCLog(@"%@,%@%@%@",self.order.baseId,self.order.customerId,self.order.cityCode,self.order.phoneNo);
     
-    NSLog(@"%@",cell1.carCode.text);
+    AYCLog(@"%@",cell1.carCode.text);
     AppDelegate *delegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
     delegate.isThird=NO;
     NSDictionary *myServerDict = @{@"userId":user.userId,
@@ -153,7 +153,7 @@ static CGFloat headerHeight = 30;
 
     NSIndexPath *path2 = [NSIndexPath indexPathForRow:0 inSection:1];
     OfferTableViewCell *cell2 = [self.tableView cellForRowAtIndexPath:path2];
-    NSLog(@"%@%@",cell2.carUserCard.text,cell2.carUserName.text);
+    AYCLog(@"%@%@",cell2.carUserCard.text,cell2.carUserName.text);
 
     
     AppDelegate *delegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
@@ -187,7 +187,7 @@ static CGFloat headerHeight = 30;
                              @"msg":@"",
                              @"sendTime":@"",
                              @"sign":@"",
-                             @"data":@{@"proportion":@"0.8",
+                             @"data":@{@"proportion":user.proportion,
                                        @"customerName":cell2.carUserName.text,
                                        @"phoneNo":cell2.carUserPhone.text,
                                        @"dataType":@"02",
@@ -208,7 +208,7 @@ static CGFloat headerHeight = 30;
     __weak typeof(self) weakSelf = self;
     [MHNetworkManager postReqeustWithURL:kZhiKe params:params successBlock:^(id returnData) {
         
-        NSLog(@"%@",returnData);
+        AYCLog(@"%@",returnData);
         delegate.isThird=NO;
         if ([returnData[@"state"] isEqualToString:@"0"]) {
             NSString *url = [returnData[@"data"] valueForKey:@"retPage"];
@@ -291,7 +291,7 @@ static CGFloat headerHeight = 30;
                 cell.engine.text = self.order.engineNo;
                 cell.carFrameCode.text = self.order.frameNo;
                 cell.engineType.text = self.order.vehicleModelName;
-                NSLog(@"%@",self.order.primaryDate);
+                AYCLog(@"%@",self.order.primaryDate);
                 if (self.order.primaryDate.length>0) {
                     cell.firstTime.text = [HelperUtil timeFormat:self.order.primaryDate format:@"yyyy-MM-dd"];
                 }

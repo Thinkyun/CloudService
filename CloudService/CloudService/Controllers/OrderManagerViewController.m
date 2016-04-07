@@ -202,18 +202,18 @@
         }
     }
 
-    NSLog(@"之前下标：%ld 当前下标：%ld",preIndex,index);
+    AYCLog(@"之前下标：%ld 当前下标：%ld",preIndex,index);
 }
 
 -(void)LazyPageScrollViewEdgeSwipe:(LazyPageScrollView *)pageScrollView Left:(BOOL)bLeft
 {
     if(bLeft)
     {
-        NSLog(@"left");
+        AYCLog(@"left");
     }
     else
     {
-        NSLog(@"right");
+        AYCLog(@"right");
     }
 }
 #pragma mark tableView
@@ -277,7 +277,7 @@
         // segue.destinationViewController：获取连线时所指的界面（VC）
         OrderInfoViewController *receive = segue.destinationViewController;
         receive.order = _order;
-        NSLog(@"%@",receive.order);
+        AYCLog(@"%@",receive.order);
     }
 }
 #pragma mark 加载订单
@@ -309,7 +309,7 @@
     
     __weak typeof(self) weakSelf = self;
     [MHNetworkManager postReqeustWithURL:url params:paramsDic successBlock:^(id returnData) {
-        NSLog(@"%@",returnData);
+        AYCLog(@"%@",returnData);
         
         NSDictionary *dic = returnData;
         if ([[dic objectForKey:@"flag"] isEqualToString:@"success"]) {
@@ -419,14 +419,14 @@
     
     __weak typeof(self) weakSelf = self;
     [MHNetworkManager postReqeustWithURL:url params:paramsDic successBlock:^(id returnData) {
-        NSLog(@"%@",returnData);
+        AYCLog(@"%@",returnData);
         
         NSDictionary *dic = returnData;
         if ([[dic objectForKey:@"flag"] isEqualToString:@"success"]) {
             NSDictionary *dataDic = [dic objectForKey:@"data"];
             //取出总条数
             int totalCount=[[[dataDic objectForKey:@"pageVO"] objectForKey:@"recordCount"] intValue];
-            NSLog(@"总条数：%i",totalCount);
+            AYCLog(@"总条数：%i",totalCount);
             if ([type isEqualToString:@"未完成"]) {
                 if (totalCount-_pageSize1*_page1<=0) {
                     //没有数据，直接提示没有更多数据

@@ -44,12 +44,12 @@
 }
 
 - (void)webViewDidStartLoad:(UIWebView *)webView {
-    NSLog(@"开始加载");
-    [MBProgressHUD showHUDAddedTo:(UIView*)[[[UIApplication sharedApplication]delegate]window] animated:YES];
+    AYCLog(@"开始加载");
+//    [MBProgressHUD showHUDAddedTo:(UIView*)[[[UIApplication sharedApplication]delegate]window] animated:YES];
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
-    [MBProgressHUD hideHUDForView:(UIView*)[[[UIApplication sharedApplication]delegate]window] animated:YES];
+//    [MBProgressHUD hideHUDForView:(UIView*)[[[UIApplication sharedApplication]delegate]window] animated:YES];
     // 绑定 webView
     [self.fireDataApp bindWebView:webView
                    categoryPrefix:@"直客报价"
@@ -58,7 +58,7 @@
                              evar:nil
                         contentId:nil
                        contentCat:nil];
-    NSLog(@"结束加载");
+    AYCLog(@"结束加载");
 }
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(nullable NSError *)error {

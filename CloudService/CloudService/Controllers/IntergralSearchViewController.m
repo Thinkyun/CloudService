@@ -473,7 +473,7 @@
 
 
 -(void)dealloc {
-    NSLog(@"搜索界面已销毁");
+    
 }
 
 - (void)didReceiveMemoryWarning {

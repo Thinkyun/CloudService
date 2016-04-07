@@ -19,4 +19,5 @@ typedef void (^refreshBlock)();
 
 - (void)refresh:(refreshBlock)block;
 
+
 @end

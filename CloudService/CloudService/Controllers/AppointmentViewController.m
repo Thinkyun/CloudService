@@ -89,7 +89,7 @@
 - (void)getSelectDate:(NSDate *)date type:(DateType)type {
 
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm"];
     NSString *currentOlderOneDateStr = [dateFormatter stringFromDate:date];
     switch (type) {
         case DateTypeOfStart:
@@ -157,17 +157,18 @@
     NSString *url = [NSString stringWithFormat:@"%@%@",BaseAPI,kaddReserve];
     NSDictionary *params = @{@"userId":[[SingleHandle shareSingleHandle] getUserInfo].userId,
                              @"customerId":self.customerId,
-                             @"time":self.tfDate.text,
+                             @"time":[NSString stringWithFormat:@"%@:00",self.tfDate.text],
                              @"comment":self.textView.text,
                              @"endCode":self.tfCode.text,
-                             @"baseId":self.baseId};
+                             @"baseId":self.baseId,
+                             @"phoneNo":self.phoneNo};
     
     __weak typeof(self) weakSelf = self;
     [MHNetworkManager postReqeustWithURL:url params:params successBlock:^(id returnData) {
         
         if ([[returnData objectForKey:@"flag"] isEqualToString:@"success"]) {
             [MBProgressHUD showMessag:@"预约成功" toView:nil];
-            self.refreshBlock(self.tfCode.text,[HelperUtil getDateWithDateStr:self.tfDate.text],self.textView.text);
+            self.refreshBlock(self.tfCode.text,[HelperUtil getDateWithDateStr:self.tfDate.text dateFormatter:@"yyyy-MM-dd HH:mm"],self.textView.text);
             [weakSelf.navigationController popViewControllerAnimated:YES];
             
         }else {

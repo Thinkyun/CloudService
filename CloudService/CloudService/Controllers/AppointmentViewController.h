@@ -13,6 +13,7 @@ typedef void (^refreshBlock)(NSString *endCode,NSString *time,NSString *comment)
 
 @property (nonatomic, strong)NSString *customerId;
 @property (nonatomic, strong) NSString *baseId;
+@property (nonatomic, strong) NSString *phoneNo;
 
 @property (nonatomic , copy) refreshBlock refreshBlock;
 

@@ -165,15 +165,7 @@
 
 -(void)LazyPageScrollViewEdgeSwipe:(LazyPageScrollView *)pageScrollView Left:(BOOL)bLeft
 {
-    if(bLeft)
-    {
-        NSLog(@"left");
-      
-    }
-    else
-    {
-        NSLog(@"right");
-    }
+    
 }
 
 //懒加载

@@ -182,7 +182,7 @@
     NSString *path = [[NSBundle mainBundle] pathForResource:@"province" ofType:@"sqlite"];
     FMDatabase *db = [FMDatabase databaseWithPath:path];
     if (![db open]) {
-        NSLog(@"数据库打开失败!");
+        AYCLog(@"数据库打开失败!");
         return;
     }
     NSString *sqlStr = [NSString stringWithFormat:@"SELECT * FROM city where cityCode like '%@%%'",provinceCode];

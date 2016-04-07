@@ -97,7 +97,7 @@
 /**
  *  字符串转时间戳
  */
-+(NSString *)getDateWithDateStr:(NSString *)dateStr;
++(NSString *)getDateWithDateStr:(NSString *)dateStr dateFormatter:(NSString *)formatter;
 /**
  *  消失键盘
  */

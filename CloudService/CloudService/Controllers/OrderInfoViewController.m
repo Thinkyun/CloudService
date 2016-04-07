@@ -120,8 +120,8 @@
     [[FireData sharedInstance] eventWithCategory:@"订单详情" action:@"报价按钮" evar:nil attributes:nil];
 
     OrderH5ViewController *orderH5VC = [[OrderH5ViewController alloc] init];
-    orderH5VC.url = [NSString stringWithFormat:@"%@%@",kZhiKeInfo,self.order.baseId];
-    NSLog(@"%@",[NSString stringWithFormat:@"%@%@",kZhiKeInfo,self.order.baseId]);
+    orderH5VC.url = [NSString stringWithFormat:@"%@%@&isCloud=%i",kZhiKeInfo,self.order.baseId,1];
+    AYCLog(@"%@",[NSString stringWithFormat:@"%@%@",kZhiKeInfo,self.order.baseId]);
     [self.navigationController pushViewController:orderH5VC animated:YES];
 
 }
@@ -139,6 +139,7 @@
         AppointmentViewController *receive = segue.destinationViewController;
         receive.customerId = self.order.customerId;
         receive.baseId = self.order.baseId;
+        receive.phoneNo = self.order.phoneNo;
         [receive refreshTableview:^(NSString *endCode, NSString *time, NSString *comment) {
             self.order.endCode = endCode;
             self.order.reserveTime = time;
@@ -231,7 +232,7 @@
 }
 - (void)dealloc
 {
-    NSLog(@"订单详情销毁");
+    AYCLog(@"订单详情销毁");
 }
 /*
 #pragma mark - Navigation

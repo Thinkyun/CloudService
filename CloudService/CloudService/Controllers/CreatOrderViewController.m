@@ -96,7 +96,7 @@
                                  @"msg":@"",
                                  @"sendTime":@"",
                                  @"sign":@"",
-                                 @"data":@{@"proportion":@"0.8",
+                                 @"data":@{@"proportion":user.proportion,
                                            @"customerName":_tfName.text,
                                            @"phoneNo":_tfPhone.text,
                                            @"dataType":@"01",

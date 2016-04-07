@@ -549,7 +549,7 @@
     
     __weak typeof(self) weakSelf = self;
     [MHNetworkManager postReqeustWithURL:url params:paramsDic successBlock:^(id returnData) {
-        NSLog(@"%@",returnData);
+        AYCLog(@"%@",returnData);
         NSDictionary *dic = returnData;
         if ([[dic objectForKey:@"flag"] isEqualToString:@"success"]) {
             [_orderArray removeAllObjects];
@@ -570,7 +570,7 @@
             
             NSArray *listArray = [dataDic objectForKey:@"list"];
             [_orderArray addObjectsFromArray:[Order mj_objectArrayWithKeyValuesArray:listArray]];
-            NSLog(@"%@",_orderArray);
+            AYCLog(@"%@",_orderArray);
         }else {
             [MBProgressHUD showMessag:[dic objectForKey:@"msg"] toView:weakSelf.view];
             [weakSelf setupNoData];
@@ -604,13 +604,13 @@
     
     __weak typeof(self) weakSelf = self;
     [MHNetworkManager postReqeustWithURL:url params:paramsDic successBlock:^(id returnData) {
-        NSLog(@"%@",returnData);
+        AYCLog(@"%@",returnData);
         
         NSDictionary *dic = returnData;
         NSDictionary *dataDic = [dic objectForKey:@"data"];
         //取出总条数
         int totalCount=[[[dataDic objectForKey:@"pageVO"] objectForKey:@"recordCount"] intValue];
-        NSLog(@"总条数：%i",totalCount);
+        AYCLog(@"总条数：%i",totalCount);
         if (totalCount-_pageSize*_page<=0) {
             //没有数据，直接提示没有更多数据
             [_tableView.mj_footer endRefreshingWithNoMoreData];
@@ -621,11 +621,11 @@
         
         NSArray *listArray = [dataDic objectForKey:@"list"];
         [_orderArray addObjectsFromArray:[Order mj_objectArrayWithKeyValuesArray:listArray]];
-        NSLog(@"%@",_orderArray);
+        AYCLog(@"%@",_orderArray);
         [weakSelf.tableView reloadData];
 
     } failureBlock:^(NSError *error) {
-        NSLog(@"%@",error);
+        AYCLog(@"%@",error);
         [weakSelf.tableView.mj_footer endRefreshing];
     } showHUD:YES];
     
@@ -672,14 +672,14 @@
         // segue.destinationViewController：获取连线时所指的界面（VC）
         OrderInfoViewController *receive = segue.destinationViewController;
         receive.order = _order;
-        NSLog(@"%@",receive.order);
+        AYCLog(@"%@",receive.order);
     }
 
 }
 
 
 -(void)dealloc {
-    NSLog(@"搜索界面已销毁");
+    AYCLog(@"搜索界面已销毁");
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

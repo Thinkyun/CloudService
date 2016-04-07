@@ -230,7 +230,6 @@
     _imgCall.hidden = YES;
     self.timerForDuration =nil;
     if (!self.timerForDuration) {
-        NSLog(@"开启通话时长计时");
         self.timerForDuration = [NSTimer timerWithTimeInterval:1 target:self selector:@selector(setCallDurationDisp) userInfo:nil repeats:YES];
         [[NSRunLoop mainRunLoop] addTimer:self.timerForDuration forMode:NSDefaultRunLoopMode];
     }
@@ -241,6 +240,10 @@
  */
 - (void)setCallDurationDisp
 {
+    [_btnCall setBackgroundImage:[UIImage imageNamed:@"pop2-btn1_"] forState:UIControlStateNormal];
+    _imgCall.hidden = NO;
+    _lbCall.text = @"挂断";
+    
     NSString *timeStr = @"00:00";
     NSInteger hour = 0;
     NSInteger minute = 0;
@@ -278,10 +281,7 @@
     }
     return retStr;
 }
-//
-//- (void)OnNewcall:(NSString*)szCallerNum szCallerNickname:(NSString*)szCallerNickname Sid:(NSString*)Sid  nCallType:(int) nCallType  szExtendSignalInfo:(NSString*)szExtendSignalInfo{
-//    NSLog(@"%@",szCallerNum);
-//}
+
 //挂断回调
 - (void)OnDisconnect{
     _labelCallDuration.hidden = YES;
@@ -290,7 +290,7 @@
     _lbCall.text = @"拨号";
    
     if (self.timerForDuration) {
-        NSLog(@"取消通话计时器");
+      
         _callDuration = 0;
         
         _labelCallDuration.text = @"00:00";
@@ -300,9 +300,6 @@
 }
 
 
-//-(void)OnCdrNotify:(NSString *)cdrInfo {
-//    
-//}
 /*
  // Only override drawRect: if you perform custom drawing.
  // An empty implementation adversely affects performance during animation.
