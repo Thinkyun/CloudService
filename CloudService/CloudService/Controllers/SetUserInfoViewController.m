@@ -721,7 +721,7 @@ static NSString *const select_CellID = @"selectCell";
 - (void)saveUserInfo:(NSDictionary *)dict {
     User *user = [[SingleHandle shareSingleHandle] getUserInfo];
     [user setValuesForKeysWithDictionary:dict];
-    user.workStartDate = [HelperUtil getDateWithDateStr:user.workStartDate];
+    user.workStartDate = [HelperUtil getDateWithDateStr:user.workStartDate dateFormatter:@"yyyy-MM-dd"];
     user.saleCityValue = [self changeStrArraytoTextString:_saleCityArray];
     [[SingleHandle shareSingleHandle] saveUserInfo:user];
 }

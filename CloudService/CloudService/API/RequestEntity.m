@@ -33,7 +33,7 @@
         
     }
     @catch (NSException *exception) {
-        NSLog(@"%@",[[exception callStackSymbols] componentsJoinedByString:@"\n"]);
+        AYCLog(@"%@",[[exception callStackSymbols] componentsJoinedByString:@"\n"]);
     }
 }
 
@@ -60,7 +60,7 @@
         
     }
     @catch (NSException *exception) {
-        NSLog(@"%@",[[exception callStackSymbols] componentsJoinedByString:@"\n"]);
+        AYCLog(@"%@",[[exception callStackSymbols] componentsJoinedByString:@"\n"]);
     }
 }
 
@@ -81,7 +81,7 @@
         
     }
     @catch (NSException *exception) {
-        NSLog(@"%@",[[exception callStackSymbols] componentsJoinedByString:@"\n"]);
+        AYCLog(@"%@",[[exception callStackSymbols] componentsJoinedByString:@"\n"]);
     }
 }
 
@@ -102,7 +102,7 @@
         
     }
     @catch (NSException *exception) {
-        NSLog(@"%@",[[exception callStackSymbols] componentsJoinedByString:@"\n"]);
+        AYCLog(@"%@",[[exception callStackSymbols] componentsJoinedByString:@"\n"]);
     }
 }
 
@@ -121,7 +121,7 @@
         
     }
     @catch (NSException *exception) {
-        NSLog(@"%@",[[exception callStackSymbols] componentsJoinedByString:@"\n"]);
+        AYCLog(@"%@",[[exception callStackSymbols] componentsJoinedByString:@"\n"]);
     }
 }
 
@@ -144,12 +144,12 @@
         
     }
     @catch (NSException *exception) {
-        NSLog(@"%@",[[exception callStackSymbols] componentsJoinedByString:@"\n"]);
+        AYCLog(@"%@",[[exception callStackSymbols] componentsJoinedByString:@"\n"]);
     }
 }
 
 +(NSString *)urlString:(NSString *)kString {
-    NSLog(@"%@",[NSString stringWithFormat:@"%@%@",BaseAPI,kString]);
+    AYCLog(@"%@",[NSString stringWithFormat:@"%@%@",BaseAPI,kString]);
     return [NSString stringWithFormat:@"%@%@",BaseAPI,kString];
 }
 @end

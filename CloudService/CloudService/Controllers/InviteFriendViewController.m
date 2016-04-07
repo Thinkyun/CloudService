@@ -42,7 +42,7 @@
         if ([[returnData objectForKey:@"flag"] isEqualToString:@"success"]) {
             NSDictionary *dataDic = [returnData objectForKey:@"data"];
             _linkUrl = [dataDic objectForKey:@"inviteLink"];
-            NSLog(@"%@",_linkUrl);
+            AYCLog(@"%@",_linkUrl);
             _personInviteCode = [dataDic objectForKey:@"personInviteCode"];
             _teamInviteCode = [dataDic objectForKey:@"teamInviteCode"];
             

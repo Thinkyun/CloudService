@@ -41,7 +41,7 @@
     
     User *user = [[SingleHandle shareSingleHandle] getUserInfo];
     __weak typeof(self) weakSelf = self;
-    NSLog(@"%@",user.userId);
+  
     [MHNetworkManager postReqeustWithURL:[RequestEntity urlString:kGetuserIntergralAPI] params:@{@"userId":user.userId} successBlock:^(id returnData) {
         NSDictionary *dict = [returnData valueForKey:@"data"];
         if ([[returnData valueForKey:@"flag"] isEqualToString:@"success"]) {

@@ -18,8 +18,8 @@
 #import "ButelHandle.h"
 
 #define MObAppKey     @"100082c56c5c0"
-#define WXAppID       @"wx125bcc153468cc36"
-#define WXAppSecret   @"5d792862f07b6ff0b27eaced2ffbd01d"
+#define WXAppID       @"wx5ba999122c08bd76"
+#define WXAppSecret   @"64865cd279891a0929b1343ef63c7412"
 #define JAppKey       @"f8500a8c6752cafab40e7daf"
 #define Jchannel      @"Publish channel"
 @interface AppDelegate ()<CLLocationManagerDelegate,UIAlertViewDelegate,FireDataDelegate> {
@@ -79,10 +79,21 @@
     
     //设置状态栏为白色
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-    
-    
 
+    /**
+     *  火炬统计
+     */
     [self registerFireData];
+    
+    /**
+     *  判断是否免登陆
+     */
+//    if ([Utility passWord]) {
+//        [self loginToLogin];
+//    }else {
+//        [self exemptLogin];
+//    }
+   
     return YES;
 }
 
@@ -90,7 +101,7 @@
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex NS_DEPRECATED_IOS(2_0, 9_0) {
     
     if(buttonIndex == 0) {
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://www.eyunkf.com/html/download.html"]];
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://www.ddyunf.com/html/download.html"]];
     }
 }
 
@@ -151,13 +162,18 @@
          }
      }];
 }
-
+/**
+ *  注册通知
+ */
 - (void)registerNotifications {
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loginToMenu) name:LoginToMenuViewNotice object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(logOut) name:LogOutViewNotice object:nil];
     
 }
+/**
+ *  注册定位
+ */
 - (void)registerLocation {
     
     self.locateManager = [[CLLocationManager alloc] init];
@@ -189,11 +205,17 @@
     UIViewController *oldVC = self.window.rootViewController;
     oldVC = nil;
     self.window.rootViewController = menuVC;
-    /**
-     *  首页初始化青牛
-     */
-//    [[ButelHandle shareButelHandle] Init];
+
     
+}
+
+- (void)loginToLogin {
+    UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    UIViewController *loginVC = [storyBoard instantiateViewControllerWithIdentifier:@"loginNavi"];
+    UIViewController *oldVC = [UIApplication sharedApplication].keyWindow.rootViewController;
+    oldVC = nil;
+    
+    [UIApplication sharedApplication].keyWindow.rootViewController = loginVC;
 }
 
 - (void)logOut {
@@ -204,7 +226,45 @@
     
     
 }
+/**
+ *  免登陆操作
+ */
 
+- (void)exemptLogin {
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    [dict setValue:[Utility userName] forKey:@"userName"];
+    [dict setValue:[Utility sha256WithString:[Utility passWord]] forKey:@"password"];
+    NSString *address = [Utility location];
+    if (address) {
+        [dict setValue:address forKey:@"address"];
+    }else {
+        
+        [dict setValue:@"北京市" forKey:@"address"];
+    }
+    AppDelegate *delegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
+    delegate.isThird=NO;
+    
+    [MHNetworkManager postReqeustWithURL:[RequestEntity urlString:kLoginAPI] params:dict successBlock:^(id returnData) {
+        if ([[returnData valueForKey:@"flag"] isEqualToString:@"success"]) {
+            User *user = [User mj_objectWithKeyValues:[returnData valueForKey:@"data"]];
+            [[SingleHandle shareSingleHandle] saveUserInfo:user];
+            AYCLog(@"%@",user.userNum);
+            /**
+             *  火炬登陆信息
+             */
+            [[FireData sharedInstance] loginWithUserid:user.userNum uvar:nil];
+            
+            [[ButelHandle shareButelHandle] ButelHttpLogin];
+            
+        }else if([[returnData valueForKey:@"flag"] isEqualToString:@"error"]){
+            [MBProgressHUD showMessag:[returnData valueForKey:@"msg"] toView:nil];
+        }
+    } failureBlock:^(NSError *error) {
+        
+    } showHUD:YES];
+    
+
+}
 #pragma mark -- CLLocationManagerDelegate
 
 -(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations{
@@ -270,7 +330,7 @@
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
     
     //Optional
-    NSLog(@"did Fail To Register For Remote Notifications With Error: %@", error);
+    AYCLog(@"did Fail To Register For Remote Notifications With Error: %@", error);
 }
 
 #pragma mark AppDelegate

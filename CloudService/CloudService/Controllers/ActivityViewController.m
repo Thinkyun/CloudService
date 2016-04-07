@@ -210,7 +210,6 @@ static NSString *cellID = @"cellID";
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
 
-    NSLog(@"%.2f",scrollView.contentOffset.x);
     if (scrollView.contentOffset.x == 0.00f) {
         self.button1.layer.borderColor = [[UIColor redColor] CGColor];
         self.button2.layer.borderColor = [[UIColor clearColor] CGColor];

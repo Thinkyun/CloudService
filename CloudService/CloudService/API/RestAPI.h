@@ -13,8 +13,9 @@
 
 //#define BaseAPI                 @"http://10.136.97.140:8080/cloudSales-action"  // 11服务器 
 //#define BaseAPI                 @"http://10.136.96.139:8889/cloudSales-action"  // kaiqiang阳光服务器
-//#define BaseAPI                 @"http://139.198.1.102"  // 测试服务器
-#define BaseAPI                     @"http://www.eyunkf.com" //生产服务器
+//#define BaseAPI                 @"http://192.168.4.116:8889/cloudSales-action"  // 测试服务器
+//#define BaseAPI                     @"http://www.eyunkf.com" //生产服务器
+#define BaseAPI                     @"http://www.ddyunf.com" //生产服务器
 
 #define kRegisterAPI            @"/app/user/register"                     //注册
 
@@ -58,6 +59,8 @@
 
 #define kfindTeamMember           @"/app/team/findTeamMember"                    //查询团队成员
 
+#define kfindTeamInfoByMemberId          @"/app/team/findTeamInfoByMemberId"                 //查询团队信息
+
 #define ksaveOrder           @"/app/order/saveOrder"                    //同步至可数据
 
 #define kfindInviteLink           @"/app/dic/findInviteLink"                    //邀请链接
@@ -70,9 +73,12 @@
 
 //#define kZhiKe      @"http://10.136.98.146:81/zkyq-web/platform/getInfo"              //直客
 
-#define kZhiKe      @"http://139.198.1.22:80/zkyq-web/platform/getInfo"              //直客
+//#define kZhiKe      @"http://139.198.1.22:80/zkyq-web/platform/getInfo"              //直客
+//
+//#define kZhiKeInfo      @"http://139.198.1.22:80/zkyq-web/unfinishedOrder/returnPage?baseId="   //直客订单详情
+#define kZhiKe      @"http://139.198.0.29:80/zkyq-web/platform/getInfo"              //直客
 
-#define kZhiKeInfo      @"http://139.198.1.22:80/zkyq-web/unfinishedOrder/returnPage?baseId="   //直客订单详情
+#define kZhiKeInfo      @"http://139.198.0.29:80/zkyq-web/unfinishedOrder/returnPage?baseId="   //直客订单详情
 
 #define kfindOrderByCondition     @"/app/order/findOrderByCondition"             //订单条件查询
 
@@ -91,6 +97,9 @@
 #define kSendPayMessage        @"/app/order/sendPayMessage"                         // 下发支付短信
 
 #define kSaveOrderGift        @"/app/order/saveOrderGift"                         // 保存投保礼
+
+
+#define kButelUrl       @"http://221.4.250.108:8088/apHttpService/agent/login4Butel"           // 青牛URl
 //   常量
 /**************************************************************************************/
 

@@ -11,6 +11,8 @@
 #import "AppDelegate.h"
 #import <ButelCommonConnectSDK/ButelCommonConnectSDK.h>
 #import <ButelCommonConnectSDK/ButelRecordConnect.h>
+#import "Utility.h"
+
 
 static ButelHandle *singleHandle = nil;
 
@@ -48,7 +50,10 @@ static ButelHandle *singleHandle = nil;
     //http登陆
     __block AppDelegate *delegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
     delegate.isThird=YES;
-    [MHNetworkManager postReqeustWithURL:@"http://221.4.250.108:8088/apHttpService/agent/login4Butel" params:@{@"entId":@"7593111023", @"agentId":@"1001",@"passWord":@"1001"} successBlock:^(NSDictionary *returnData) {
+    [MHNetworkManager postReqeustWithURL:kButelUrl params:@{@"entId":@"7593111023",
+                                                            @"agentId":@"1001",
+                                                            @"passWord":@"1001"}
+                            successBlock:^(NSDictionary *returnData) {
         delegate.isThird = NO;
         NSDictionary *dic = returnData;
         if ([[dic objectForKey:@"code"] isEqualToString:@"000"]) {
@@ -60,7 +65,6 @@ static ButelHandle *singleHandle = nil;
             _number = [array objectAtIndex:1];
             
              [[NSNotificationCenter defaultCenter] postNotificationName:LoginToMenuViewNotice object:nil];
-            NSLog(@"%@",dic);
             
         }else {
             [MBProgressHUD showError:[dic objectForKey:@"msg"] toView:nil];
@@ -68,7 +72,7 @@ static ButelHandle *singleHandle = nil;
         
     } failureBlock:^(NSError *error) {
         delegate.isThird = NO;
-        NSLog(@"%@",error);
+   
     } showHUD:YES];
 }
 
@@ -92,7 +96,12 @@ static ButelHandle *singleHandle = nil;
     if (isCanCall) {
         [self.connect Logout];
          self.callView = nil;
-        
+        /**
+         *  退出登录时清除账号信息
+         */
+//        User *user = [[SingleHandle shareSingleHandle] getUserInfo];
+//        
+//        [Utility saveUserName:user.phoneNo passWord:nil];
         UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         UIViewController *loginVC = [storyBoard instantiateViewControllerWithIdentifier:@"loginNavi"];
         UIViewController *oldVC = [UIApplication sharedApplication].keyWindow.rootViewController;
@@ -151,14 +160,19 @@ static ButelHandle *singleHandle = nil;
             }
             AppDelegate *delegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
             delegate.isThird=YES;
+            
             _requestId = [HelperUtil uuidString];
-            NSLog(@"----------------------------------%@",_requestId);
-            [MHNetworkManager postReqeustWithURL:@"http://221.4.250.108:8088/apHttpService/agent/makeCall" params:@{@"entId":@"7593111023", @"agentId":@"1001",@"number":phoneNo, @"ani":@"12345", @"uuid":_requestId, @"requestType":@"test" } successBlock:^(NSDictionary *returnData) {
+            [MHNetworkManager postReqeustWithURL:@"http://221.4.250.108:8088/apHttpService/agent/makeCall"
+                                          params:@{@"entId":@"7593111023",
+                                                   @"agentId":@"1001",
+                                                   @"number":phoneNo,
+                                                   @"ani":@"12345",
+                                                   @"uuid":_requestId,
+                                                   @"requestType":@"test" }
+                                    successBlock:^(NSDictionary *returnData) {
                 NSDictionary *dic = returnData;
-                NSLog(@"%@",dic);
                 if ([[dic objectForKey:@"code"] isEqualToString:@"000"]) {
                     _phoneNo = phoneNo;
-                    NSLog(@"拨打电话成功");
                 }else {
                     if ([[dic objectForKey:@"msg"] isEqual:[NSNull null]]) {
                         [MBProgressHUD showError:@"服务器异常" toView:nil];
@@ -172,7 +186,6 @@ static ButelHandle *singleHandle = nil;
                 delegate.isThird = NO;
             } failureBlock:^(NSError *error) {
                 delegate.isThird = NO;
-                NSLog(@"%@",error);
             } showHUD:NO];
             isCall = !isCall;
         }else {
@@ -192,7 +205,7 @@ static ButelHandle *singleHandle = nil;
 /****************************************************回调实现****************************************************************/
 - (void)OnInit:(int)reason
 {
-    NSLog(@"APP::OnInit()...");
+    AYCLog(@"APP::OnInit()...");
     
     if (reason == 0) {
        [self loginWithLogin:_UUID number:_number deviceId:_deviceId nickname:@"CONNECT" userUniqueIdentifer:_deviceId];
@@ -202,29 +215,29 @@ static ButelHandle *singleHandle = nil;
 
 - (void)OnLogin:(int)reason
 {
-    NSLog(@"APP::OnLogin()...");
+    AYCLog(@"APP::OnLogin()...");
     
     if (reason == 0) {
         isCanCall = YES;
         //        [RedAlertUtil showAlertWithText:@"登录成功..."];
-        NSLog(@"denglu chengg");
+        AYCLog(@"denglu chengg");
         
     }
 }
 - (void)OnRing:(NSString*)Sid {
-    NSLog(@"%@",Sid);
+    AYCLog(@"%@",Sid);
     
 }
 //打电话成功回调
 - (void)OnConnect:(int)mediaFormat Sid:(NSString*)Sid {
     
     [self.callView OnConnectSuccess];
-    NSLog(@"%i,%@",mediaFormat,Sid);
+    AYCLog(@"%i,%@",mediaFormat,Sid);
 }
 
 
 - (void)OnNewcall:(NSString*)szCallerNum szCallerNickname:(NSString*)szCallerNickname Sid:(NSString*)Sid  nCallType:(int) nCallType  szExtendSignalInfo:(NSString*)szExtendSignalInfo{
-    NSLog(@"%@",szCallerNum);
+    AYCLog(@"%@",szCallerNum);
 }
 
 //挂断回调
@@ -247,7 +260,7 @@ static ButelHandle *singleHandle = nil;
             //释放青牛sdk
             [ButelEventConnectSDK destroyButelCommonConn:self.connect];
         } @catch (NSException *exception) {
-            NSLog(@"%@",[[exception callStackSymbols] componentsJoinedByString:@"\n"]);
+            AYCLog(@"%@",[[exception callStackSymbols] componentsJoinedByString:@"\n"]);
 
         }
         
@@ -291,10 +304,10 @@ static ButelHandle *singleHandle = nil;
     if (reason == 0) {
         @try {
             ButelStatus status = [self.connect GetButelConnStatus];
-            NSLog(@"%i",status.curConnStatus);
+            AYCLog(@"%i",status.curConnStatus);
             [self.connect Uninit];
         } @catch (NSException *exception) {
-            NSLog(@"%@",[[exception callStackSymbols] componentsJoinedByString:@"\n"]);
+            AYCLog(@"%@",[[exception callStackSymbols] componentsJoinedByString:@"\n"]);
         }
     }
 
@@ -317,6 +330,8 @@ static ButelHandle *singleHandle = nil;
         
         if ([[returnData valueForKey:@"flag"] isEqualToString:@"success"]) {
             
+        }else{
+            [MBProgressHUD showMessag:[returnData valueForKey:@"msg"] toView:nil];
         }
         
     } failureBlock:^(NSError *error) {

@@ -447,10 +447,10 @@
     return [idCord substringWithRange:range];
 }
 
-+(NSString *)getDateWithDateStr:(NSString *)dateStr {
++(NSString *)getDateWithDateStr:(NSString *)dateStr dateFormatter:(NSString *)formatter{
 
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];//格式化
-    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+    [dateFormatter setDateFormat:formatter];
     NSDate *date = [dateFormatter dateFromString:dateStr];
     
     NSTimeInterval time = [date timeIntervalSince1970];
@@ -564,10 +564,6 @@
     sdl = (struct sockaddr_dl *)(ifm + 1);
     ptr = (unsigned char *)LLADDR(sdl);
     NSString *outstring = [NSString stringWithFormat:@"%02x:%02x:%02x:%02x:%02x:%02x", *ptr, *(ptr+1), *(ptr+2), *(ptr+3), *(ptr+4), *(ptr+5)];
-    
-    //    NSString *outstring = [NSString stringWithFormat:@"%02x%02x%02x%02x%02x%02x", *ptr, *(ptr+1), *(ptr+2), *(ptr+3), *(ptr+4), *(ptr+5)];
-    
-    NSLog(@"outString:%@", outstring);
     
     free(buf);
     

@@ -91,9 +91,9 @@
     AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
     NSURLSessionUploadTask *uploadTask = [manager uploadTaskWithStreamedRequest:request progress:nil completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
         if (error) {
-            NSLog(@"Error: %@", error);
+            AYCLog(@"Error: %@", error);
         } else {
-            NSLog(@"%@ %@", response, responseObject);
+            AYCLog(@"%@ %@", response, responseObject);
         }
     }];
     [uploadTask resume];
@@ -111,7 +111,7 @@
 //        return [documentsDirectoryURL URLByAppendingPathComponent:[response suggestedFilename]];
 //        
 //    } completionHandler:^(NSURLResponse *response, NSURL *filePath, NSError *error) {
-//        NSLog(@"File downloaded to: %@", filePath);
+//        AYCLog(@"File downloaded to: %@", filePath);
 //    }];
 //    
 //    [manager setDownloadTaskDidWriteDataBlock:^(NSURLSession * _Nonnull session, NSURLSessionDownloadTask * _Nonnull downloadTask, int64_t bytesWritten, int64_t totalBytesWritten, int64_t totalBytesExpectedToWrite) {

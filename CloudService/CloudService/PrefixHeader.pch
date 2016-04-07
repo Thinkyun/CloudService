@@ -20,12 +20,12 @@
 #import "FireData.h"
 #import "AppDelegate.h"
 
+// 日志输出
 #ifdef DEBUG
-#define ZQLog(...) NSLog(__VA_ARGS__)
+#define AYCLog(...) NSLog(__VA_ARGS__)
 #else
-#define ZQLog(...)
+#define AYCLog(...)
 #endif
-
 /**
  *  屏幕宽高
  */

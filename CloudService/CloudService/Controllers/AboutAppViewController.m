@@ -22,9 +22,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"关于";
-    NSArray *array = [UIFont familyNames];
-    self.iconLabel.font = [UIFont fontWithName:@"Didot" size:20];
-    NSLog(@"%@",array);
     NSDictionary *infoDict = [[NSBundle mainBundle] infoDictionary];
     double currentVersion = [[infoDict objectForKey:@"CFBundleShortVersionString"] doubleValue];
     self.versionLabel.text = [NSString stringWithFormat:@"版本号 V%.2f",currentVersion];
