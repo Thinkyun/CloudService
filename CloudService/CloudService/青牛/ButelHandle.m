@@ -178,7 +178,7 @@ static ButelHandle *singleHandle = nil;
                         [MBProgressHUD showError:@"服务器异常" toView:nil];
                         
                     }else{
-                     
+                        [self loginWithLogin:_UUID number:_number deviceId:_deviceId nickname:@"CONNECT" userUniqueIdentifer:_deviceId];
                         [MBProgressHUD showError:[dic objectForKey:@"msg"] toView:nil];
                     }
                     
