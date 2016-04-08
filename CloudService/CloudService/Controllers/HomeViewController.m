@@ -196,7 +196,7 @@ static NSString *headerView_ID = @"headerView";
         [_headerView.headImg addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapHeaderAction)]];
         [_headerView.sginBtn addTarget:self action:@selector(signAction:) forControlEvents:(UIControlEventTouchUpInside)];
         if ([_integral floatValue] >= 100000) {
-            _headerView.integralLabel.text = [NSString stringWithFormat:@"%.1lf万",[_integral floatValue] / 10000.0];
+            _headerView.integralLabel.text = [NSString stringWithFormat:@"%.0lf",[_integral floatValue]];
         }else {
             if (_integral.length <= 0) {
                 _headerView.integralLabel.text = [NSString stringWithFormat:@"%@",@""];
