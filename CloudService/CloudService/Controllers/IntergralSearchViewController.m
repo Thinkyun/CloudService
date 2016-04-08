@@ -298,7 +298,7 @@
     _pickerView = [HZQDatePickerView instanceDatePickerView];
     _pickerView.frame = CGRectMake(0, 0, KWidth, KHeight + 20);
     [_pickerView setBackgroundColor:[UIColor clearColor]];
-    [_pickerView.datePickerView setDatePickerMode:UIDatePickerModeDateAndTime];
+    [_pickerView.datePickerView setDatePickerMode:UIDatePickerModeDate];
     _pickerView.delegate = self;
     _pickerView.type = type;
     [self.view addSubview:_pickerView];

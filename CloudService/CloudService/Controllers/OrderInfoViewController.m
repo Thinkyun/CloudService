@@ -14,9 +14,11 @@
 #import "OrderH5ViewController.h"
 #import "ButelHandle.h"
 #import "EYPopupViewHeader.h"
+#import <ShareSDK/ShareSDK.h>
+#import <ShareSDKUI/ShareSDK+SSUI.h>
 
 
-@interface OrderInfoViewController ()<UITableViewDataSource,UITableViewDelegate>
+@interface OrderInfoViewController ()<UITableViewDataSource,UITableViewDelegate,UIActionSheetDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property(nonatomic,strong) UIView *footView;
 
@@ -168,23 +170,31 @@
                                    
                                }];
     }else {
-        NSString *url = [NSString stringWithFormat:@"%@%@",BaseAPI,kSendPayMessage];
-        NSDictionary *params = @{@"baseId":self.order.baseId,
-                                 @"phoneNo":self.order.phoneNo,
-                                 @"userNum":[[SingleHandle shareSingleHandle] getUserInfo].userNum};
-        [MHNetworkManager postReqeustWithURL:url params:params successBlock:^(id returnData) {
-            if ([[returnData objectForKey:@"flag"] isEqualToString:@"success"]) {
-                [MBProgressHUD showMessag:@"下发支付短信成功" toView:nil];
-                
-            }else {
-                [MBProgressHUD showMessag:[returnData objectForKey:@"msg"] toView:nil];
-            }
-        } failureBlock:^(NSError *error) {
-            
-        } showHUD:NO];
+        UIActionSheet *actionSheet=[[UIActionSheet alloc] initWithTitle:@"请选择支付方式" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"短信支付",@"微信分享", nil];
+        [actionSheet showInView:[UIApplication sharedApplication].keyWindow];
+       
     }
-    
-}   
+}
+/**
+ *  下发支付短信
+ */
+- (void)sendPayMessage:(NSString *)phoneNo{
+    NSString *url = [NSString stringWithFormat:@"%@%@",BaseAPI,kSendPayMessage];
+    NSDictionary *params = @{@"baseId":self.order.baseId,
+                             @"phoneNo":phoneNo,
+                             @"userNum":[[SingleHandle shareSingleHandle] getUserInfo].userNum};
+    [MHNetworkManager postReqeustWithURL:url params:params successBlock:^(id returnData) {
+        if ([[returnData objectForKey:@"flag"] isEqualToString:@"success"]) {
+            [MBProgressHUD showMessag:@"下发支付短信成功" toView:nil];
+            
+        }else {
+            [MBProgressHUD showMessag:[returnData objectForKey:@"msg"] toView:nil];
+        }
+    } failureBlock:^(NSError *error) {
+        
+    } showHUD:NO];
+
+}
 
 /**
  *  投保礼
@@ -224,6 +234,97 @@
     } failureBlock:^(NSError *error) {
         
     } showHUD:NO];
+}
+/**
+ *  分享支付连接
+ */
+- (void)sharePayMessage{
+    User *user = [[SingleHandle shareSingleHandle] getUserInfo];
+    NSString *url = [NSString stringWithFormat:@"%@%@",BaseAPI,ksharePayMessage];
+    NSDictionary *params = @{@"baseId":self.order.baseId,
+                             @"userNum":user.userNum};
+    [MHNetworkManager postReqeustWithURL:url params:params successBlock:^(id returnData) {
+        if ([[returnData objectForKey:@"flag"] isEqualToString:@"success"]) {
+            NSString *payMessage = [returnData valueForKey:@"data"];
+            [self weixinPay:payMessage];
+        }else {
+            [MBProgressHUD showMessag:[returnData objectForKey:@"msg"] toView:nil];
+        }
+        
+    } failureBlock:^(NSError *error) {
+        
+    } showHUD:NO];
+}
+/**
+ *  微信分享支付
+ */
+- (void)weixinPay:(NSString *)payMessage {
+    //1、创建分享参数
+
+        
+        NSMutableDictionary *shareParams = [NSMutableDictionary dictionary];
+        [shareParams SSDKSetupShareParamsByText:payMessage
+                                         images:nil
+                                            url:nil
+                                          title:@"点点云服"
+                                           type:SSDKContentTypeAuto];
+        //2、分享（可以弹出我们的分享菜单和编辑界面）
+        [ShareSDK showShareActionSheet:nil //要显示菜单的视图, iPad版中此参数作为弹出菜单的参照视图，只有传这个才可以弹出我们的分享菜单，可以传分享的按钮对象或者自己创建小的view 对象，iPhone可以传nil不会影响
+                                 items:nil
+                           shareParams:shareParams
+                   onShareStateChanged:^(SSDKResponseState state, SSDKPlatformType platformType, NSDictionary *userData, SSDKContentEntity *contentEntity, NSError *error, BOOL end) {
+                       
+                       switch (state) {
+                           case SSDKResponseStateSuccess:
+                           {
+                               UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"分享成功"
+                                                                                   message:nil
+                                                                                  delegate:nil
+                                                                         cancelButtonTitle:@"确定"
+                                                                         otherButtonTitles:nil];
+                               [alertView show];
+                               break;
+                           }
+                           case SSDKResponseStateFail:
+                           {
+                               UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"分享失败"
+                                                                               message:[NSString stringWithFormat:@"%@",error]
+                                                                              delegate:nil
+                                                                     cancelButtonTitle:@"OK"
+                                                                     otherButtonTitles:nil, nil];
+                               [alert show];
+                               break;
+                           }
+                           default:
+                               break;
+                       }
+                   }];
+        
+    
+
+}
+#pragma mark UIActionSheetDelegate
+- (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex{
+    if (buttonIndex==0) {
+        AYCLog(@"短信支付");
+        [EYInputPopupView popViewWithTitle:@"请填写支付手机号"
+                               contentText:self.order.phoneNo
+                                      type:EYInputPopupView_Type_multi_line
+                               cancelBlock:^{
+                                   
+                               } confirmBlock:^(UIView *view, NSString *text) {
+                                   
+                                   [self sendPayMessage:text];
+                               } dismissBlock:^{
+                                   
+                               }];
+        
+    }
+    if (buttonIndex==1) {
+        AYCLog(@"微信分享");
+        
+        [self sharePayMessage];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
