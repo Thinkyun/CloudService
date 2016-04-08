@@ -169,8 +169,9 @@
             }else {
                 [Utility remberPassWord:NO];
             }
+            
             [[ButelHandle shareButelHandle] ButelHttpLogin];
-           
+           [[NSNotificationCenter defaultCenter] postNotificationName:LoginToMenuViewNotice object:nil];
         }else if([[returnData valueForKey:@"flag"] isEqualToString:@"error"]){
             [MBProgressHUD showMessag:[returnData valueForKey:@"msg"] toView:weakSelf.view];
         }
