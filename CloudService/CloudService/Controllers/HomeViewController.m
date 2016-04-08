@@ -43,16 +43,7 @@ static NSString *headerView_ID = @"headerView";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    /**
-     *  首页初始化青牛
-     */
-    User *user = [[SingleHandle shareSingleHandle] getUserInfo];
-    if ([user.roleName isEqualToString:@"普通用户"] || user.roleName.length <= 0) {
-        
-        
-    }else{
-         [[ButelHandle shareButelHandle] Init];
-    }
+   
 
    
 
@@ -327,6 +318,8 @@ static NSString *headerView_ID = @"headerView";
             NSString *str = [returnData[@"data"] valueForKey:@"totalNum"];
             _integral = [NSString stringWithFormat:@"%@",str];
             [weakSelf.collectionView reloadData];
+        }else {
+            [MBProgressHUD showMessag:[returnData objectForKey:@"msg"] toView:weakSelf.view];
         }
         
     } failureBlock:^(NSError *error) {

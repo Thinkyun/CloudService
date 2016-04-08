@@ -26,6 +26,7 @@ static ButelHandle *singleHandle = nil;
     NSString *_number;
     NSString *_phoneNo;
     NSString *_requestId;
+    BOOL _isLogin;//是否登陆状态
     
 }
 
@@ -69,17 +70,21 @@ static ButelHandle *singleHandle = nil;
             _deviceId = [extDic objectForKey:@"nubeUUID"];
             _UUID = [extDic objectForKey:@"nubeAppKey"];
             _number = [array objectAtIndex:1];
-            
-             [[NSNotificationCenter defaultCenter] postNotificationName:LoginToMenuViewNotice object:nil];
+            _isLogin = YES;
+            /**
+             *  初始化青牛
+             */
+            [[ButelHandle shareButelHandle] Init];
             
         }else {
             [MBProgressHUD showError:[dic objectForKey:@"msg"] toView:nil];
+            _isLogin = NO;
         }
         
     } failureBlock:^(NSError *error) {
         delegate.isThird = NO;
    
-    } showHUD:YES];
+    } showHUD:NO];
 }
 
 - (void)Init {
@@ -108,6 +113,16 @@ static ButelHandle *singleHandle = nil;
         
         [UIApplication sharedApplication].keyWindow.rootViewController = loginVC;
         return ;
+    }
+    if (!_isLogin) {
+        UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        UIViewController *loginVC = [storyBoard instantiateViewControllerWithIdentifier:@"loginNavi"];
+        UIViewController *oldVC = [UIApplication sharedApplication].keyWindow.rootViewController;
+        oldVC = nil;
+        
+        [UIApplication sharedApplication].keyWindow.rootViewController = loginVC;
+        return;
+        
     }
     if (isCanCall) {
         [self.connect Logout];
@@ -167,8 +182,13 @@ static ButelHandle *singleHandle = nil;
     }else {
         User *user = [[SingleHandle shareSingleHandle] getUserInfo];
         if ([user.roleName isEqualToString:@"普通用户"] || user.roleName.length <= 0) {
-            [MBProgressHUD showError:@"当前用户为普通用户,不能拨打电话" toView:nil];
+            [MBProgressHUD showMessag:@"当前用户为普通用户,不能拨打电话" toView:nil];
             return ;
+        }
+        if (!_isLogin) {
+            [MBProgressHUD showMessag:@"青牛登陆失败" toView:nil];
+            return;
+            
         }
         if (isCanCall) {
             
@@ -238,6 +258,7 @@ static ButelHandle *singleHandle = nil;
     
     if (reason == 0) {
         isCanCall = YES;
+       
         //        [RedAlertUtil showAlertWithText:@"登录成功..."];
         AYCLog(@"denglu chengg");
         
