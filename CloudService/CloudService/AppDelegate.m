@@ -89,9 +89,10 @@
      *  判断是否免登陆
      */
 //    if ([Utility passWord]) {
-//        [self loginToLogin];
-//    }else {
 //        [self exemptLogin];
+//    }else {
+//        
+//        [self loginToLogin];
 //    }
    
     return YES;

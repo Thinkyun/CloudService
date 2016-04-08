@@ -92,17 +92,17 @@
 - (void)reloadViews {
     User *user = [[SingleHandle shareSingleHandle] getUserInfo];
     if ([user.totalNum floatValue] >= 100000) {
-        self.intergTotalLabel.text = [NSString stringWithFormat:@"%.1lf万",[user.totalNum floatValue] / 10000.0];
+        self.intergTotalLabel.text = [NSString stringWithFormat:@"%.0lf",[user.totalNum floatValue]];
     }else {
         self.intergTotalLabel.text = [NSString stringWithFormat:@"%@",user.totalNum];
     }
     if ([user.usableNum floatValue] >= 100000) {
-        self.intergUseLabel.text = [NSString stringWithFormat:@"%.1lf万",[user.usableNum floatValue] / 10000.0];
+        self.intergUseLabel.text = [NSString stringWithFormat:@"%.0lf",[user.usableNum floatValue]];
     }else {
         self.intergUseLabel.text = [NSString stringWithFormat:@"%@",user.usableNum];
     }
     if ([user.frozenNum floatValue] >= 100000) {
-        self.intergUnuseLabel.text = [NSString stringWithFormat:@"%.1lf万",[user.frozenNum floatValue] / 10000.0];
+        self.intergUnuseLabel.text = [NSString stringWithFormat:@"%.0lf",[user.frozenNum floatValue]];
     }else {
         self.intergUnuseLabel.text = [NSString stringWithFormat:@"%@",user.frozenNum];
     }
