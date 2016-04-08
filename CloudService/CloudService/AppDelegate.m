@@ -258,6 +258,7 @@
             [[ButelHandle shareButelHandle] ButelHttpLogin];
             
         }else if([[returnData valueForKey:@"flag"] isEqualToString:@"error"]){
+            
             [MBProgressHUD showMessag:[returnData valueForKey:@"msg"] toView:nil];
         }
     } failureBlock:^(NSError *error) {
