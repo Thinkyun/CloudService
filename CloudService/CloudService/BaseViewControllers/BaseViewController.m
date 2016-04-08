@@ -33,6 +33,9 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+-(void)dealloc {
+    AYCLog(@"dealloc");
+}
 
 /*
 #pragma mark - Navigation

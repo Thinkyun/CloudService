@@ -27,6 +27,7 @@ static ButelHandle *singleHandle = nil;
     NSString *_phoneNo;
     NSString *_requestId;
     BOOL _isLogin;//是否登陆状态
+    NSString *_butelMsg;
     
 }
 
@@ -77,7 +78,8 @@ static ButelHandle *singleHandle = nil;
             [[ButelHandle shareButelHandle] Init];
             
         }else {
-            [MBProgressHUD showError:[dic objectForKey:@"msg"] toView:nil];
+
+            _butelMsg = [dic objectForKey:@"msg"];
             _isLogin = NO;
         }
         
@@ -106,6 +108,7 @@ static ButelHandle *singleHandle = nil;
 - (void)logOut {
     User *user = [[SingleHandle shareSingleHandle] getUserInfo];
     if ([user.roleName isEqualToString:@"普通用户"] || user.roleName.length <= 0) {
+        self.callView = nil;
         UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         UIViewController *loginVC = [storyBoard instantiateViewControllerWithIdentifier:@"loginNavi"];
         UIViewController *oldVC = [UIApplication sharedApplication].keyWindow.rootViewController;
@@ -115,6 +118,7 @@ static ButelHandle *singleHandle = nil;
         return ;
     }
     if (!_isLogin) {
+        self.callView = nil;
         UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         UIViewController *loginVC = [storyBoard instantiateViewControllerWithIdentifier:@"loginNavi"];
         UIViewController *oldVC = [UIApplication sharedApplication].keyWindow.rootViewController;
@@ -186,7 +190,7 @@ static ButelHandle *singleHandle = nil;
             return ;
         }
         if (!_isLogin) {
-            [MBProgressHUD showMessag:@"青牛登陆失败" toView:nil];
+            [MBProgressHUD showMessag:_butelMsg toView:nil];
             return;
             
         }

@@ -240,9 +240,9 @@
  */
 - (void)setCallDurationDisp
 {
-    [_btnCall setBackgroundImage:[UIImage imageNamed:@"pop2-btn1_"] forState:UIControlStateNormal];
-    _imgCall.hidden = NO;
-    _lbCall.text = @"挂断";
+//    [_btnCall setBackgroundImage:[UIImage imageNamed:@"pop2-btn1_"] forState:UIControlStateNormal];
+//    _imgCall.hidden = NO;
+//    _lbCall.text = @"挂断";
     
     NSString *timeStr = @"00:00";
     NSInteger hour = 0;

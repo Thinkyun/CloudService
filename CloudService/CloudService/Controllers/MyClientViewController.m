@@ -81,8 +81,11 @@
     [self.tableView addSubview:_lbNoData];
 }
 - (void)removeNoData {
+
     [_noDataImg removeFromSuperview];
     [_lbNoData removeFromSuperview];
+    _noDataImg = nil;
+    _lbNoData = nil;
 }
 //添加mj
 - (void)addMjRefresh {

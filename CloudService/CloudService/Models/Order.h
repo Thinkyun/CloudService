@@ -31,5 +31,6 @@
 @property (nonatomic, copy) NSString *type;
 @property (nonatomic, copy) NSString *reserveTime;
 @property (nonatomic, copy) NSString *gift;
+@property (nonatomic, copy) NSString *payUrl;
 @end
 

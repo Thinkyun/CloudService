@@ -98,6 +98,8 @@
 
 #define kSaveOrderGift        @"/app/order/saveOrderGift"                         // 保存投保礼
 
+#define ksharePayMessage        @"/app/order/sharePayMessage"                         // 分享支付链接
+
 
 #define kButelUrl       @"http://221.4.250.108:8088/apHttpService/agent/login4Butel"           // 青牛URl
 //   常量

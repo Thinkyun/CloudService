@@ -298,7 +298,7 @@
     _pickerView = [HZQDatePickerView instanceDatePickerView];
     _pickerView.frame = CGRectMake(0, 0, KWidth, KHeight + 20);
     [_pickerView setBackgroundColor:[UIColor clearColor]];
-    [_pickerView.datePickerView setDatePickerMode:UIDatePickerModeDateAndTime];
+    [_pickerView.datePickerView setDatePickerMode:UIDatePickerModeDate];
     _pickerView.delegate = self;
     _pickerView.type = type;
     [self.view addSubview:_pickerView];
@@ -368,7 +368,7 @@
                               @"pageSize":[NSString stringWithFormat:@"%i",_pageSize],
                               @"pageNo":[NSString stringWithFormat:@"%i",_page],
                               @"startDate":_tfStart.text,
-                              @"endData":_tfEnd.text};
+                              @"endDate":_tfEnd.text};
     NSString *url = [NSString stringWithFormat:@"%@%@",BaseAPI,kfindUserCreditsRecord];
     [MHNetworkManager postReqeustWithURL:url params:paramsDic successBlock:^(id returnData) {
         NSDictionary *dic = returnData;
