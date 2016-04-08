@@ -49,7 +49,7 @@
     User *user = [[SingleHandle shareSingleHandle] getUserInfo];
     self.intergTotalLabel.font = [UIFont systemFontOfSize:45 * KWidth / 414.0];
     if ([user.totalNum floatValue] >= 100000) {
-        self.intergTotalLabel.text = [NSString stringWithFormat:@"%.1lf万",[user.totalNum floatValue] / 10000.0];
+        self.intergTotalLabel.text = [NSString stringWithFormat:@"%.0lf",[user.totalNum floatValue]];
     }else {
         self.intergTotalLabel.text = [NSString stringWithFormat:@"%@",user.totalNum];
     }

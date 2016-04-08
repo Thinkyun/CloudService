@@ -389,7 +389,7 @@
                 [_tableView.mj_footer endRefreshing];
             }
             
-            NSArray *listArray = [dataDic objectForKey:@"list"];
+            NSMutableArray *listArray = [dataDic objectForKey:@"list"];
             [_integralArray addObjectsFromArray:[Integral mj_objectArrayWithKeyValuesArray:listArray]];
         }else {
             [MBProgressHUD showMessag:[dic objectForKey:@"msg"] toView:self.view];
@@ -414,7 +414,7 @@
                               @"pageSize":[NSString stringWithFormat:@"%i",_pageSize],
                               @"pageNo":[NSString stringWithFormat:@"%i",_page],
                               @"startDate":_tfStart.text,
-                              @"endData":_tfEnd.text};
+                              @"endDate":_tfEnd.text};
     NSString *url = [NSString stringWithFormat:@"%@%@",BaseAPI,kfindUserCreditsRecord];
     
     __weak typeof(self) weakSelf = self;
