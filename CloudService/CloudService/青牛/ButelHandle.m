@@ -109,6 +109,7 @@ static ButelHandle *singleHandle = nil;
        
         [UIApplication sharedApplication].keyWindow.rootViewController = loginVC;
     }else {
+        
         [MBProgressHUD showMessag:@"青牛正在登陆，请稍候" toView:nil];
     }
 
