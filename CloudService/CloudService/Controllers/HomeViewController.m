@@ -46,7 +46,15 @@ static NSString *headerView_ID = @"headerView";
     /**
      *  首页初始化青牛
      */
-    [[ButelHandle shareButelHandle] Init];
+    User *user = [[SingleHandle shareSingleHandle] getUserInfo];
+    if ([user.roleName isEqualToString:@"普通用户"] || user.roleName.length <= 0) {
+        
+        
+    }else{
+         [[ButelHandle shareButelHandle] Init];
+    }
+
+   
 
     [self initData];
     [self setupViews];
