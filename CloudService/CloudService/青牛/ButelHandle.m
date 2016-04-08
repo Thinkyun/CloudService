@@ -92,7 +92,6 @@ static ButelHandle *singleHandle = nil;
             
         }
     }else{
-        
         [MBProgressHUD showMessag:@"正在登陆青牛" toView:nil];    
     }
     
