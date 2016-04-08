@@ -13,7 +13,7 @@
 #import <ButelCommonConnectSDK/ButelRecordConnect.h>
 #import "Utility.h"
 
-
+#define EntId  @"7593111023"
 static ButelHandle *singleHandle = nil;
 
 @interface ButelHandle()<ButelCommonConnectDelegateV1>
@@ -26,6 +26,7 @@ static ButelHandle *singleHandle = nil;
     NSString *_number;
     NSString *_phoneNo;
     NSString *_requestId;
+    
 }
 
 @property (retain) ButelCommonConnectV1 *connect;
@@ -47,12 +48,17 @@ static ButelHandle *singleHandle = nil;
  *  青牛http登陆
  */
 - (void)ButelHttpLogin {
+    User *user = [[SingleHandle shareSingleHandle] getUserInfo];
+    if ([user.roleName isEqualToString:@"普通用户"] || user.roleName.length <= 0) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:LoginToMenuViewNotice object:nil];
+        return;
+    }
     //http登陆
     __block AppDelegate *delegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
     delegate.isThird=YES;
-    [MHNetworkManager postReqeustWithURL:kButelUrl params:@{@"entId":@"7593111023",
-                                                            @"agentId":@"1001",
-                                                            @"passWord":@"1001"}
+    [MHNetworkManager postReqeustWithURL:kButelUrl params:@{@"entId":EntId,
+                                                            @"agentId":user.userNum,
+                                                            @"passWord":user.userNum}
                             successBlock:^(NSDictionary *returnData) {
         delegate.isThird = NO;
         NSDictionary *dic = returnData;
@@ -92,6 +98,16 @@ static ButelHandle *singleHandle = nil;
 }
 
 - (void)logOut {
+    User *user = [[SingleHandle shareSingleHandle] getUserInfo];
+    if ([user.roleName isEqualToString:@"普通用户"] || user.roleName.length <= 0) {
+        UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        UIViewController *loginVC = [storyBoard instantiateViewControllerWithIdentifier:@"loginNavi"];
+        UIViewController *oldVC = [UIApplication sharedApplication].keyWindow.rootViewController;
+        oldVC = nil;
+        
+        [UIApplication sharedApplication].keyWindow.rootViewController = loginVC;
+        return ;
+    }
     if (isCanCall) {
         [self.connect Logout];
          self.callView = nil;
@@ -148,23 +164,25 @@ static ButelHandle *singleHandle = nil;
         [self.connect HangupCall:0];
         
     }else {
+        User *user = [[SingleHandle shareSingleHandle] getUserInfo];
+        if ([user.roleName isEqualToString:@"普通用户"] || user.roleName.length <= 0) {
+            [MBProgressHUD showError:@"当前用户为普通用户,不能拨打电话" toView:nil];
+            return ;
+        }
         if (isCanCall) {
-            User *user = [[SingleHandle shareSingleHandle] getUserInfo];
+            
             if (![HelperUtil checkTelNumber:phoneNo]) {
                 [MBProgressHUD showError:@"手机号格式不正确" toView:nil];
                 return;
             }
-            if ([user.roleName isEqualToString:@"普通用户"] || user.roleName.length <= 0) {
-                [MBProgressHUD showError:@"当前用户为普通用户,不能拨打电话" toView:nil];
-                return ;
-            }
+            
             AppDelegate *delegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
             delegate.isThird=YES;
             
             _requestId = [HelperUtil uuidString];
             [MHNetworkManager postReqeustWithURL:@"http://221.4.250.108:8088/apHttpService/agent/makeCall"
-                                          params:@{@"entId":@"7593111023",
-                                                   @"agentId":@"1001",
+                                          params:@{@"entId":EntId,
+                                                   @"agentId":user.userNum,
                                                    @"number":phoneNo,
                                                    @"ani":@"12345",
                                                    @"uuid":_requestId,
