@@ -43,13 +43,13 @@ static NSString *cell_id = @"myTeamCell";
 }
 
 - (void)addMjRefresh {
-    _page=1;
+    
     _pageSize=8;
     
     __weak typeof(self) weakSelf = self;
     // 下拉刷新
     _tableView.mj_header= [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        _page = 1;
+     
         [weakSelf requestTeamMemberData];
         
     }];
@@ -72,6 +72,7 @@ static NSString *cell_id = @"myTeamCell";
     self.title = @"我的团队";
     __weak typeof(self) weakSelf = self;
     [self setLeftImageBarButtonItemWithFrame:CGRectMake(0, 0, 35, 35) image:@"title-back" selectImage:@"" action:^(AYCButton *button) {
+        NSLog(@"Retain count is %ld", CFGetRetainCount((__bridge CFTypeRef)weakSelf));
         [weakSelf.navigationController popViewControllerAnimated:YES];
     }];
     
@@ -82,7 +83,7 @@ static NSString *cell_id = @"myTeamCell";
 
 #pragma mark 加载个人优惠券
 - (void)requestTeamMemberData {
-  
+    _page=1;
     NSDictionary *paramsDic=@{@"userId":[[SingleHandle shareSingleHandle] getUserInfo].userId,
                               @"pageSize":[NSString stringWithFormat:@"%i",_pageSize],
                               @"pageNo":[NSString stringWithFormat:@"%i",_page]};

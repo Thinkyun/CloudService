@@ -53,16 +53,19 @@
     [self.tableView addSubview:_lbNoData];
 }
 - (void)removeNoData {
+    
     [_noDataImg removeFromSuperview];
     [_lbNoData removeFromSuperview];
+    _noDataImg = nil;
+    _lbNoData = nil;
 }
 
 - (void)addMjRefresh {
-    _page=1;
+ 
     _pageSize=7;
     // 下拉刷新
     self.tableView.mj_header= [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        _page = 1;
+        
         [self requestData];
         
     }];
@@ -74,13 +77,58 @@
     // 上拉刷新
     self.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
         
-        [self requestMoreData];
+//        [self requestMoreData];
         
     }];
 }
 - (void)requestData {
+//    _page = 1;
+//    [self removeNoData];
+//
+//    NSDictionary *paramsDic=@{@"userId":[[SingleHandle shareSingleHandle] getUserInfo].userId,
+//                              @"pageSize":[NSString stringWithFormat:@"%i",_pageSize],
+//                              @"pageNo":[NSString stringWithFormat:@"%i",_page]};
+//    NSString *url = [NSString stringWithFormat:@"%@%@",BaseAPI,kfindUserCreditsRecord];
+//    
+//    __weak typeof(self) weakSelf = self;
+//    [MHNetworkManager postReqeustWithURL:url params:paramsDic successBlock:^(id returnData) {
+//        NSDictionary *dic = returnData;
+//        if ([[dic objectForKey:@"flag"] isEqualToString:@"success"]) {
+//           
+//            [_integralArray removeAllObjects];
+//            NSDictionary *dataDic = [dic objectForKey:@"data"];
+//            //取出总条数
+//            int totalCount=[[[dataDic objectForKey:@"pageVO"] objectForKey:@"recordCount"] intValue];
+//    
+//            if (totalCount>0) {
+//                [weakSelf removeNoData];
+//            }else {
+//                [weakSelf setupNoData];
+//            }
+//            if (totalCount-_pageSize*_page<=0) {
+//                //没有数据，直接提示没有更多数据
+//                [_tableView.mj_footer endRefreshingWithNoMoreData];
+//            }else{
+//                [_tableView.mj_footer endRefreshing];
+//            }
+//
+//            NSArray *listArray = [dataDic objectForKey:@"list"];
+//            [_integralArray addObjectsFromArray:[Integral mj_objectArrayWithKeyValuesArray:listArray]];
+//        }else {
+//        [MBProgressHUD showMessag:[dic objectForKey:@"msg"] toView:weakSelf.view];
+//            [weakSelf setupNoData];
+//        }
+//
+//        [weakSelf.tableView reloadData];
+//        [weakSelf.tableView.mj_header endRefreshing];
+//    } failureBlock:^(NSError *error) {
+//        [weakSelf setupNoData];
+//        [weakSelf.tableView.mj_header endRefreshing];
+//    } showHUD:YES];
+    
+    _page = 1;
     [self removeNoData];
-
+    
     NSDictionary *paramsDic=@{@"userId":[[SingleHandle shareSingleHandle] getUserInfo].userId,
                               @"pageSize":[NSString stringWithFormat:@"%i",_pageSize],
                               @"pageNo":[NSString stringWithFormat:@"%i",_page]};
@@ -88,39 +136,42 @@
     
     __weak typeof(self) weakSelf = self;
     [MHNetworkManager postReqeustWithURL:url params:paramsDic successBlock:^(id returnData) {
+        
         NSDictionary *dic = returnData;
         if ([[dic objectForKey:@"flag"] isEqualToString:@"success"]) {
-           
             [_integralArray removeAllObjects];
             NSDictionary *dataDic = [dic objectForKey:@"data"];
             //取出总条数
             int totalCount=[[[dataDic objectForKey:@"pageVO"] objectForKey:@"recordCount"] intValue];
-    
+            //如果有数据显示数据，如果没有数据则显示暂无数据
             if (totalCount>0) {
-                [weakSelf removeNoData];
-            }else {
+                [self removeNoData];
+            }else{
                 [weakSelf setupNoData];
             }
+            
             if (totalCount-_pageSize*_page<=0) {
                 //没有数据，直接提示没有更多数据
                 [_tableView.mj_footer endRefreshingWithNoMoreData];
             }else{
                 [_tableView.mj_footer endRefreshing];
             }
-
+            
             NSArray *listArray = [dataDic objectForKey:@"list"];
             [_integralArray addObjectsFromArray:[Integral mj_objectArrayWithKeyValuesArray:listArray]];
         }else {
-        [MBProgressHUD showMessag:[dic objectForKey:@"msg"] toView:weakSelf.view];
+            [MBProgressHUD showMessag:[dic objectForKey:@"msg"] toView:weakSelf.view];
             [weakSelf setupNoData];
         }
-
-        [weakSelf.tableView reloadData];
-        [weakSelf.tableView.mj_header endRefreshing];
+        
+        [_tableView reloadData];
+        [_tableView.mj_header endRefreshing];
+        
     } failureBlock:^(NSError *error) {
         [weakSelf setupNoData];
-        [weakSelf.tableView.mj_header endRefreshing];
+        [_tableView.mj_header endRefreshing];
     } showHUD:YES];
+
 
 }
 

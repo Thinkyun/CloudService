@@ -79,9 +79,9 @@
 
 #pragma mark pageView
 - (void)initPageView {
-    _page1=1;
+  
     _pageSize1=6;
-    _page2=1;
+
     _pageSize2=6;
     [self.view addSubview:self.pageView];
     _pageView.delegate=self;
@@ -93,7 +93,7 @@
     __weak typeof(self) weakSelf = self;
     // 下拉刷新
     _tableView1.mj_header= [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        _page1 = 1;
+      
         [weakSelf requestPersonalData];
         
     }];
@@ -118,7 +118,7 @@
     _tableView2.separatorStyle = UITableViewCellSeparatorStyleNone;
     // 下拉刷新
     _tableView2.mj_header= [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        _page2 = 1;
+       
         [weakSelf requestGroupData];
         
 
@@ -178,6 +178,8 @@
 }
 - (UITableView *)tableView {
     if (!_tableView1) {
+
+        _pageSize1=6;
         _tableView1 = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, KWidth, KHeight-64)];
         _tableView1.backgroundColor = [HelperUtil colorWithHexString:@"F4F4F4"];
         _tableView1.showsHorizontalScrollIndicator = NO;
@@ -186,16 +188,25 @@
         _tableView1.separatorStyle = UITableViewCellSeparatorStyleNone;
         _tableView1.tag = 103;
         
+
         __weak typeof(self) weakSelf = self;
         // 下拉刷新
         _tableView1.mj_header= [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+
             [weakSelf requestPersonalData];
             
         }];
-        [_tableView1.mj_header beginRefreshing];
+        
         // 设置自动切换透明度(在导航栏下面自动隐藏)
         _tableView1.mj_header.automaticallyChangeAlpha = YES;
+        [_tableView1.mj_header beginRefreshing];
         
+        // 上拉刷新
+        _tableView1.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+            
+            [weakSelf requestMorePersonalData];
+            
+        }];
         
     }
     return _tableView1;
@@ -203,6 +214,7 @@
 
 #pragma mark 加载个人优惠券
 - (void)requestPersonalData {
+    _page1 = 1;
     [self removeNoData];
   
     NSDictionary *paramsDic=@{@"userId":[[SingleHandle shareSingleHandle] getUserInfo].userId,
@@ -291,6 +303,7 @@
 }
 #pragma mark 加载团队优惠券
 - (void)requestGroupData {
+    _page2 = 2;
     [self removeNoData];
     
     NSDictionary *paramsDic=@{@"userId":[[SingleHandle shareSingleHandle] getUserInfo].userId,

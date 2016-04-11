@@ -89,84 +89,87 @@
 }
 //添加mj
 - (void)addMjRefresh {
-    _page=1;
     _pageSize=7;
+     __weak typeof(self) weakSelf = self;
     // 下拉刷新
-    self.tableView.mj_header= [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        _page = 1;
-        [self requestData:_conditon];
+    weakSelf.tableView.mj_header= [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+
+        [weakSelf requestData];
         
     }];
     
     // 设置自动切换透明度(在导航栏下面自动隐藏)
-    self.tableView.mj_header.automaticallyChangeAlpha = YES;
-    [self.tableView.mj_header beginRefreshing];
+    weakSelf.tableView.mj_header.automaticallyChangeAlpha = YES;
+    [weakSelf.tableView.mj_header beginRefreshing];
     
     // 上拉刷新
-    self.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+    weakSelf.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
         
-        [self requestMoreData:_conditon];
+        [weakSelf requestMoreData];
         
     }];
 }
 
-- (void)requestData:(NSString *)condition{
+- (void)requestData{
+
+    _page = 1;
     [self removeNoData];
+    
     AppDelegate *delegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
     delegate.isThird=NO;
     NSDictionary *paramsDic=@{@"userId":[[SingleHandle shareSingleHandle] getUserInfo].userId,
                               @"pageSize":[NSString stringWithFormat:@"%i",_pageSize],
                               @"pageNo":[NSString stringWithFormat:@"%i",_page],
-                              @"condition":condition};
+                              @"condition":_conditon};
     NSString *url = [NSString stringWithFormat:@"%@%@",BaseAPI,kfindPersonCustList];
+
     
     __weak typeof(self) weakSelf = self;
     [MHNetworkManager postReqeustWithURL:url params:paramsDic successBlock:^(id returnData) {
-        AYCLog(@"%@",returnData);
+        
         NSDictionary *dic = returnData;
-         NSDictionary *dataDic = [dic objectForKey:@"data"];
         if ([[dic objectForKey:@"flag"] isEqualToString:@"success"]) {
             [_clientArray removeAllObjects];
+            NSDictionary *dataDic = [dic objectForKey:@"data"];
             //取出总条数
             int totalCount=[[[dataDic objectForKey:@"pageVO"] objectForKey:@"recordCount"] intValue];
+            //如果有数据显示数据，如果没有数据则显示暂无数据
             if (totalCount>0) {
                 [self removeNoData];
-            }else {
-                [self setupNoData];
+            }else{
+               [weakSelf setupNoData];
             }
+            
             if (totalCount-_pageSize*_page<=0) {
-                //没有数据，直接提示没有更多数据
+                //没有数据，直接提示没有更多数据
                 [_tableView.mj_footer endRefreshingWithNoMoreData];
             }else{
                 [_tableView.mj_footer endRefreshing];
             }
-           
+            
             NSArray *listArray = [dataDic objectForKey:@"list"];
             [_clientArray addObjectsFromArray:[Order mj_objectArrayWithKeyValuesArray:listArray]];
-            AYCLog(@"%@",_clientArray);
         }else {
             [MBProgressHUD showMessag:[dic objectForKey:@"msg"] toView:weakSelf.view];
-            [self setupNoData];
+           [weakSelf setupNoData];
         }
         
-        [weakSelf.tableView reloadData];
-        [weakSelf.tableView.mj_header endRefreshing];
+        [_tableView reloadData];
+        [_tableView.mj_header endRefreshing];
         
     } failureBlock:^(NSError *error) {
-        [self setupNoData];
-        [self.tableView reloadData];
-        [weakSelf.tableView.mj_header endRefreshing];
+        [weakSelf setupNoData];
+        [_tableView.mj_header endRefreshing];
     } showHUD:YES];
-    
 }
 
-- (void)requestMoreData:(NSString *)condition{
+- (void)requestMoreData{
     _page++;
     
     NSDictionary *paramsDic=@{@"userId":[[SingleHandle shareSingleHandle] getUserInfo].userId,
                               @"pageSize":[NSString stringWithFormat:@"%i",_pageSize],
                               @"pageNo":[NSString stringWithFormat:@"%i",_page],
-                              @"condition":condition};
+                              @"condition":_conditon};
     NSString *url = [NSString stringWithFormat:@"%@%@",BaseAPI,kfindPersonCustList];
     
     __weak typeof(self) weakSelf = self;
@@ -269,6 +272,7 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 
 /*
 #pragma mark - Navigation

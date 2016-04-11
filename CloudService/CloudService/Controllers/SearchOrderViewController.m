@@ -33,6 +33,7 @@
     UILabel *_lbNoData;
     NSMutableArray *_orderArray;
     Order *_order;
+    NSDate *_startDate;
 
 }
 @property (weak, nonatomic)IBOutlet UITableView *tableView;
@@ -47,6 +48,10 @@
     __weak typeof(self) weakSelf = self;
     [weakSelf setLeftImageBarButtonItemWithFrame:CGRectMake(0, 0, 35, 35) image:@"title-back" selectImage:@"back" action:^(AYCButton *button) {
         [[FireData sharedInstance] eventWithCategory:@"订单搜索" action:@"返回订单管理" evar:nil attributes:nil];
+  
+        CFRelease((__bridge CFTypeRef)weakSelf);
+    
+    
         [weakSelf.navigationController popViewControllerAnimated:YES];
     }];
     
@@ -469,7 +474,13 @@
     [_pickerView setBackgroundColor:[UIColor clearColor]];
     _pickerView.delegate = self;
     _pickerView.type = type;
-    [_pickerView.datePickerView setMinimumDate:[NSDate date]];
+    if (type == DateTypeOfStart) {
+        [_pickerView.datePickerView setMaximumDate:[NSDate date]];
+    }else {
+        [_pickerView.datePickerView setMinimumDate:_startDate];
+        [_pickerView.datePickerView setMaximumDate:[NSDate date]];
+    }
+    
     [self.view addSubview:_pickerView];
     
 }
@@ -483,7 +494,7 @@
     switch (type) {
         case DateTypeOfStart:
             _tfStart.text = currentOlderOneDateStr;
-
+            _startDate = date;
             break;
             
         case DateTypeOfEnd:
@@ -513,27 +524,30 @@
 }
 
 - (void)addMjRefresh {
-    _page=1;
+    
     _pageSize=7;
+    __weak typeof(self) weakSelf = self;
+
     // 下拉刷新
-    self.tableView.mj_header= [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        _page = 1;
-        [self requestData];
+    weakSelf.tableView.mj_header= [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+       
+        [weakSelf requestData];
         
     }];
     
     // 设置自动切换透明度(在导航栏下面自动隐藏)
-    self.tableView.mj_header.automaticallyChangeAlpha = YES;
+    weakSelf.tableView.mj_header.automaticallyChangeAlpha = YES;
     
     
     // 上拉刷新
-    self.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+    weakSelf.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
         
-        [self requestMoreData];
+        [weakSelf requestMoreData];
         
     }];
 }
 - (void)requestData {
+    _page=1;
     [self removeNoData];
     
     NSDictionary *paramsDic=@{@"userId":[[SingleHandle shareSingleHandle] getUserInfo].userId,
@@ -683,6 +697,7 @@
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+   
     // Dispose of any resources that can be recreated.
 }
 

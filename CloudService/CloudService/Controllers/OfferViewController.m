@@ -138,7 +138,7 @@ static CGFloat headerHeight = 30;
         MyClientViewController *VC = self.navigationController.viewControllers[1];
         VC.isSaveCarInfo = YES;
 
-        [self.navigationController popToViewController:VC animated:YES];
+        [weakSelf.navigationController popToViewController:VC animated:YES];
     } failureBlock:^(NSError *error) {
         
     } showHUD:YES];

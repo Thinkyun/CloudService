@@ -27,6 +27,7 @@
     self.versionLabel.text = [NSString stringWithFormat:@"版本号 V%.2f",currentVersion];
     __weak typeof(self) weakSelf = self;
     [self setLeftImageBarButtonItemWithFrame:CGRectMake(0, 0, 35, 35) image:@"title-back" selectImage:@"" action:^(AYCButton *button) {
+//        NSLog(@"Retain count is %ld", CFGetRetainCount((__bridge CFTypeRef)self));
         [weakSelf.navigationController popViewControllerAnimated:YES];
     }];
     // Do any additional setup after loading the view.

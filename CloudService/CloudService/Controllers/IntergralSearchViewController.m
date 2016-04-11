@@ -20,12 +20,12 @@
     UITextField *_tfStart;//开始时间
     UITextField *_tfEnd;
     HZQDatePickerView *_pickerView;//时间选择器
-    int _page;//当前页数
+    __block int _page;//当前页数
     int _pageSize;//每页加载数
     NSMutableArray *_integralArray;
     UIImageView *_noDataImg;
     UILabel *_lbNoData;
-
+    NSDate *_startDate;
 }
 
 @property (weak, nonatomic)IBOutlet UITableView *tableView;
@@ -38,7 +38,8 @@
     _integralArray = [NSMutableArray array];
     __weak typeof(self) weakSelf = self;
     [weakSelf setLeftImageBarButtonItemWithFrame:CGRectMake(0, 0, 35, 35) image:@"title-back" selectImage:@"back" action:^(AYCButton *button) {
-        
+        CFRelease((__bridge CFTypeRef)weakSelf);
+         NSLog(@"Retain count is %ld", CFGetRetainCount((__bridge CFTypeRef)weakSelf));
         [[FireData sharedInstance] eventWithCategory:@"积分搜索" action:@"返回" evar:nil attributes:nil];
         [weakSelf.navigationController popViewControllerAnimated:YES];
     }];
@@ -83,6 +84,8 @@
 - (void)removeNoData {
     [_noDataImg removeFromSuperview];
     [_lbNoData removeFromSuperview];
+    _noDataImg = nil;
+    _lbNoData = nil;
 }
 
 
@@ -301,6 +304,12 @@
     [_pickerView.datePickerView setDatePickerMode:UIDatePickerModeDate];
     _pickerView.delegate = self;
     _pickerView.type = type;
+    if (type == DateTypeOfStart) {
+        [_pickerView.datePickerView setMaximumDate:[NSDate date]];
+    }else {
+        [_pickerView.datePickerView setMinimumDate:_startDate];
+        [_pickerView.datePickerView setMaximumDate:[NSDate date]];
+    }
     [self.view addSubview:_pickerView];
     
 }
@@ -314,7 +323,7 @@
     switch (type) {
         case DateTypeOfStart:
             _tfStart.text = currentOlderOneDateStr;
-            
+            _startDate = date;
             break;
             
         case DateTypeOfEnd:
@@ -341,11 +350,11 @@
 }
 
 - (void)addMjRefresh {
-    _page=1;
+  
     _pageSize=7;
     // 下拉刷新
     self.tableView.mj_header= [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        _page = 1;
+        
         [self requestData];
         
     }];
@@ -362,25 +371,30 @@
     }];
 }
 - (void)requestData {
+    
+    _page=1;
     [self removeNoData];
-  
+    
     NSDictionary *paramsDic=@{@"userId":[[SingleHandle shareSingleHandle] getUserInfo].userId,
                               @"pageSize":[NSString stringWithFormat:@"%i",_pageSize],
                               @"pageNo":[NSString stringWithFormat:@"%i",_page],
                               @"startDate":_tfStart.text,
                               @"endDate":_tfEnd.text};
     NSString *url = [NSString stringWithFormat:@"%@%@",BaseAPI,kfindUserCreditsRecord];
+    
+    __weak typeof(self) weakSelf = self;
     [MHNetworkManager postReqeustWithURL:url params:paramsDic successBlock:^(id returnData) {
+        AYCLog(@"%@",returnData);
         NSDictionary *dic = returnData;
         if ([[dic objectForKey:@"flag"] isEqualToString:@"success"]) {
             [_integralArray removeAllObjects];
             NSDictionary *dataDic = [dic objectForKey:@"data"];
             //取出总条数
-            int totalCount=[[[dataDic objectForKey:@"pageVO"] objectForKey:@"recordCount"] intValue];
+            __block int totalCount=[[[dataDic objectForKey:@"pageVO"] objectForKey:@"recordCount"] intValue];
             if (totalCount>0) {
-                [self removeNoData];
+                [weakSelf removeNoData];
             }else {
-                [self setupNoData];
+                [weakSelf setupNoData];
             }
             if (totalCount-_pageSize*_page<=0) {
                 //没有数据，直接提示没有更多数据
@@ -388,22 +402,27 @@
             }else{
                 [_tableView.mj_footer endRefreshing];
             }
-            
-            NSMutableArray *listArray = [dataDic objectForKey:@"list"];
+
+            NSArray *listArray = [dataDic objectForKey:@"list"];
             [_integralArray addObjectsFromArray:[Integral mj_objectArrayWithKeyValuesArray:listArray]];
+            AYCLog(@"%@",_integralArray);
         }else {
-            [MBProgressHUD showMessag:[dic objectForKey:@"msg"] toView:self.view];
-            [self setupNoData];
+            [MBProgressHUD showMessag:[dic objectForKey:@"msg"] toView:weakSelf.view];
+            [weakSelf setupNoData];
             
         }
         
-        [self.tableView reloadData];
-        [self.tableView.mj_header endRefreshing];
+        [weakSelf.tableView reloadData];
+        [weakSelf.tableView.mj_header endRefreshing];
+        
     } failureBlock:^(NSError *error) {
-        [self setupNoData];
-        [self.tableView reloadData];
-        [self.tableView.mj_header endRefreshing];
+        [weakSelf setupNoData];
+        [weakSelf.tableView reloadData];
+        [weakSelf.tableView.mj_header endRefreshing];
     } showHUD:YES];
+
+   
+  
     
 }
 

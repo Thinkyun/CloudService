@@ -118,7 +118,6 @@
 - (void)eyeTap:(UITapGestureRecognizer *)sender {
     
     [[FireData sharedInstance] eventWithCategory:@"登录页面" action:@"显示密码" evar:nil attributes:nil];
-    
     _isEye = !_isEye;
     if (_isEye) {
 
