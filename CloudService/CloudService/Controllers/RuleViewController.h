@@ -6,9 +6,8 @@
 //  Copyright © 2016年 zhangqiang. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "BaseViewController.h"
 
-@interface RuleViewController : UIViewController
-
+@interface RuleViewController : BaseViewController
 @property (nonatomic, copy)NSString *ruleStr;
 @end

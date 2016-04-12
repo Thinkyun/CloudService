@@ -73,12 +73,12 @@
 
 //#define kZhiKe      @"http://10.136.98.146:81/zkyq-web/platform/getInfo"              //直客
 
-//#define kZhiKe      @"http://139.198.1.22:80/zkyq-web/platform/getInfo"              //直客
-//
-//#define kZhiKeInfo      @"http://139.198.1.22:80/zkyq-web/unfinishedOrder/returnPage?baseId="   //直客订单详情
-#define kZhiKe      @"http://139.198.0.29:80/zkyq-web/platform/getInfo"              //直客
+#define kZhiKe      @"http://139.198.1.22:80/zkyq-web/platform/getInfo"              //直客
 
-#define kZhiKeInfo      @"http://139.198.0.29:80/zkyq-web/unfinishedOrder/returnPage?baseId="   //直客订单详情
+#define kZhiKeInfo      @"http://139.198.1.22:80/zkyq-web/unfinishedOrder/returnPage?baseId="   //直客订单详情
+//#define kZhiKe      @"http://139.198.0.29:80/zkyq-web/platform/getInfo"              //直客
+//
+//#define kZhiKeInfo      @"http://139.198.0.29:80/zkyq-web/unfinishedOrder/returnPage?baseId="   //直客订单详情
 
 #define kfindOrderByCondition     @"/app/order/findOrderByCondition"             //订单条件查询
 

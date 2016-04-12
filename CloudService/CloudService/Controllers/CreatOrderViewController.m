@@ -153,7 +153,7 @@
         
     } failureBlock:^(NSError *error) {
         
-    } showHUD:NO];
+    } showHUD:YES];
 }
 - (IBAction)newCarAction:(id)sender {
     if (self.isNewCarBtn.selected)

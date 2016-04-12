@@ -115,7 +115,7 @@
     [FireData sharedInstance].debugMode = NO;
     [FireData sharedInstance].enableCrashReport = YES;
     [FireData sharedInstance].enableLocationReport = YES;
-    [FireData sharedInstance].sendTimeInterval = 2;
+    [FireData sharedInstance].sendTimeInterval = 10;
     [FireData sharedInstance].enableIDFA = NO;
     [FireData sharedInstance].delegate = self;
     

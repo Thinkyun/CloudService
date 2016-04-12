@@ -6,10 +6,10 @@
 //  Copyright © 2016年 zhangqiang. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "BaseViewController.h"
 
 
-@interface ChooseCompanyViewController : UIViewController
+@interface ChooseCompanyViewController : BaseViewController
 
 @property(nonatomic,strong)NSMutableArray *selectArray;
 @property(nonatomic,strong)NSMutableArray *dataArray;
