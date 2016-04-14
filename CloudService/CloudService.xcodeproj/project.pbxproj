@@ -95,9 +95,9 @@
 		63C54E3B1C7C359A007CE8CA /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63C54E3A1C7C359A007CE8CA /* HomeViewController.m */; };
 		63C54E3E1C7C35AA007CE8CA /* ResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63C54E3D1C7C35AA007CE8CA /* ResultViewController.m */; };
 		63C54E411C7C35BA007CE8CA /* PersonalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63C54E401C7C35BA007CE8CA /* PersonalViewController.m */; };
+		63E547AE1CBB89BC00703321 /* libFireData.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 63E547AD1CBB89BC00703321 /* libFireData.a */; };
 		63E9BFDD1C9659B200FFE0BA /* Order.m in Sources */ = {isa = PBXBuildFile; fileRef = 63E9BFDC1C9659B200FFE0BA /* Order.m */; };
 		900B29761CB4F73C00A9FBD7 /* EYPopupView.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 900B29751CB4F73C00A9FBD7 /* EYPopupView.bundle */; };
-		901984E91CACB2C400AF6721 /* libFireData.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 901984E81CACB2C400AF6721 /* libFireData.a */; };
 		9025D0F91CA50B6500E3B43F /* ButelCommonConnectSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 9025D0F71CA50B6500E3B43F /* ButelCommonConnectSDK.bundle */; };
 		9025D0FA1CA50B6500E3B43F /* ButelCommonConnectSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9025D0F81CA50B6500E3B43F /* ButelCommonConnectSDK.framework */; };
 		91A97CA728DD2D371997D3F7 /* libPods-CloudService.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D96943D8DC951CBCC61FF495 /* libPods-CloudService.a */; };
@@ -310,13 +310,13 @@
 		63C54E3D1C7C35AA007CE8CA /* ResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResultViewController.m; sourceTree = "<group>"; };
 		63C54E3F1C7C35BA007CE8CA /* PersonalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalViewController.h; sourceTree = "<group>"; };
 		63C54E401C7C35BA007CE8CA /* PersonalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalViewController.m; sourceTree = "<group>"; };
+		63E547AB1CBB89BC00703321 /* FireData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FireData.h; sourceTree = "<group>"; };
+		63E547AC1CBB89BC00703321 /* FiredataApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FiredataApp.h; sourceTree = "<group>"; };
+		63E547AD1CBB89BC00703321 /* libFireData.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFireData.a; sourceTree = "<group>"; };
 		63E9BFDB1C9659B200FFE0BA /* Order.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Order.h; sourceTree = "<group>"; };
 		63E9BFDC1C9659B200FFE0BA /* Order.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Order.m; sourceTree = "<group>"; };
 		8080CD2CAEE01D9CB60C40F6 /* Pods-CloudService.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CloudService.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CloudService/Pods-CloudService.debug.xcconfig"; sourceTree = "<group>"; };
 		900B29751CB4F73C00A9FBD7 /* EYPopupView.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = EYPopupView.bundle; sourceTree = "<group>"; };
-		901984E61CACB2C400AF6721 /* FireData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FireData.h; sourceTree = "<group>"; };
-		901984E71CACB2C400AF6721 /* FiredataApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FiredataApp.h; sourceTree = "<group>"; };
-		901984E81CACB2C400AF6721 /* libFireData.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFireData.a; sourceTree = "<group>"; };
 		9025D0F71CA50B6500E3B43F /* ButelCommonConnectSDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ButelCommonConnectSDK.bundle; sourceTree = "<group>"; };
 		9025D0F81CA50B6500E3B43F /* ButelCommonConnectSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ButelCommonConnectSDK.framework; sourceTree = "<group>"; };
 		AA863A4D44EB33149F738225 /* Pods-CloudService.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CloudService.release.xcconfig"; path = "Pods/Target Support Files/Pods-CloudService/Pods-CloudService.release.xcconfig"; sourceTree = "<group>"; };
@@ -440,7 +440,7 @@
 			files = (
 				636CD92C1C880C4E0050935E /* AVFoundation.framework in Frameworks */,
 				9025D0FA1CA50B6500E3B43F /* ButelCommonConnectSDK.framework in Frameworks */,
-				901984E91CACB2C400AF6721 /* libFireData.a in Frameworks */,
+				63E547AE1CBB89BC00703321 /* libFireData.a in Frameworks */,
 				636CD92A1C880C4A0050935E /* MediaPlayer.framework in Frameworks */,
 				636CD9281C880C440050935E /* AudioToolbox.framework in Frameworks */,
 				636CD9261C880C3D0050935E /* SystemConfiguration.framework in Frameworks */,
@@ -918,9 +918,9 @@
 		F0292BDC1C7B015200A810A9 /* Venders */ = {
 			isa = PBXGroup;
 			children = (
-				901984E61CACB2C400AF6721 /* FireData.h */,
-				901984E71CACB2C400AF6721 /* FiredataApp.h */,
-				901984E81CACB2C400AF6721 /* libFireData.a */,
+				63E547AB1CBB89BC00703321 /* FireData.h */,
+				63E547AC1CBB89BC00703321 /* FiredataApp.h */,
+				63E547AD1CBB89BC00703321 /* libFireData.a */,
 			);
 			path = Venders;
 			sourceTree = "<group>";

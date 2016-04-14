@@ -93,4 +93,17 @@
  *  是否有最新版本
  */
 +(BOOL )isNewVersion;
+/**
+ *  保存uuid
+ *
+ *  @param UUID
+ */
++(void)saveUUID:(NSString *)UUID;
+/**
+ *  取出uuid
+ *
+ *  @return
+ */
++(NSString *)UUID;
+
 @end

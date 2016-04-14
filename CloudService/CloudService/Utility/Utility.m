@@ -145,5 +145,16 @@ static User *user = nil;
     } showHUD:NO];
 }
 
++(void)saveUUID:(NSString *)UUID{
+
+    [[NSUserDefaults standardUserDefaults] setValue:UUID forKey:@"UUID"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+}
+
++(NSString *)UUID {
+    return [[NSUserDefaults standardUserDefaults] valueForKey:@"UUID"];
+}
+
 
 @end

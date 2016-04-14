@@ -6,12 +6,16 @@
 //  Copyright © 2016年 zhangqiang. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "BaseViewController.h"
+typedef enum{
+    chooseCompany,
+    chooseCity
+}chooseType;
 
-
-@interface ChooseCompanyViewController : UIViewController
+@interface ChooseCompanyViewController : BaseViewController
 
 @property(nonatomic,strong)NSMutableArray *selectArray;
 @property(nonatomic,strong)NSMutableArray *dataArray;
+@property (nonatomic, assign) chooseType type;
 
 @end

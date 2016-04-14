@@ -84,11 +84,11 @@
 #pragma mark pageView
 - (void)initPageView {
     
-    _page1     = 1;
+
     _pageSize1 = 6;
-    _page2     = 1;
+
     _pageSize2 = 6;
-    _page3     = 1;
+
     _pageSize3 = 6;
     [self.view addSubview:self.pageView];
     _pageView.delegate=self;
@@ -104,7 +104,7 @@
     __weak typeof(self) weakSelf = self;
     // 下拉刷新
     _tableView1.mj_header= [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        _page1 = 1;
+      
         [weakSelf requestTeamAchievement:@"day"];
     }];
     // 上拉刷新
@@ -127,7 +127,7 @@
     _tableView2.dataSource = self;
     // 下拉刷新
     _tableView2.mj_header= [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        _page2 = 1;
+   
         [weakSelf requestTeamAchievement:@"week"];
     }];
     // 上拉刷新
@@ -149,7 +149,7 @@
     _tableView3.dataSource = self;
     // 下拉刷新
     _tableView3.mj_header= [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        _page3 = 1;
+   
         [weakSelf requestTeamAchievement:@"month"];
     }];
     
@@ -312,6 +312,7 @@
 }
 //获取个人业绩
 - (void)requestUserAchievement {
+    
     AppDelegate *delegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
     delegate.isThird=NO;
     [self removeNoData];
@@ -367,19 +368,19 @@
 - (void)requestTeamAchievement:(NSString *)type {
     NSDictionary *paramsDic;
     if ([type isEqualToString:@"day"]) {
-     
+        _page1 = 1;
         paramsDic=@{@"userId":[[SingleHandle shareSingleHandle] getUserInfo].userId,
                     @"pageSize":[NSString stringWithFormat:@"%i",_pageSize1],
                     @"pageNo":[NSString stringWithFormat:@"%i",_page1],
                     @"type":type};
     }if ([type isEqualToString:@"week"]) {
-    
+        _page2 = 1;
         paramsDic=@{@"userId":[[SingleHandle shareSingleHandle] getUserInfo].userId,
                     @"pageSize":[NSString stringWithFormat:@"%i",_pageSize2],@
                     "pageNo":[NSString stringWithFormat:@"%i",_page2],
                     @"type":type};
     }if ([type isEqualToString:@"month"]) {
-     
+        _page3 = 1;
         paramsDic=@{@"userId":[[SingleHandle shareSingleHandle] getUserInfo].userId,
                     @"pageSize":[NSString stringWithFormat:@"%i",_pageSize3],
                     @"pageNo":[NSString stringWithFormat:@"%i",_page3],

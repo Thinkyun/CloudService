@@ -49,6 +49,7 @@
  */
 +(NSDictionary *)provinceCodeDict;
 
+
 /**
  *  编码转汉字
  */

@@ -81,12 +81,11 @@
 
 #pragma mark pageView
 - (void)initPageView {
-    
-    _page1=1;
+
     _pageSize1=4;
-    _page2=1;
+
     _pageSize2=4;
-    _page3=1;
+
     _pageSize3=4;
     [self.view addSubview:self.pageView];
     _pageView.delegate=self;
@@ -102,7 +101,7 @@
     __weak typeof(self) weakSelf = self;
     // 下拉刷新
     _tableView1.mj_header= [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        _page1 = 1;
+     
         [weakSelf requestTeamAchievement:@"未完成"];
     }];
     // 上拉刷新
@@ -125,7 +124,7 @@
     _tableView2.dataSource = self;
     // 下拉刷新
     _tableView2.mj_header= [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        _page2 = 1;
+      
         [weakSelf requestTeamAchievement:@"待支付"];
     }];
     // 上拉刷新
@@ -147,7 +146,7 @@
     _tableView3.dataSource = self;
     // 下拉刷新
     _tableView3.mj_header= [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        _page3 = 1;
+        
         [weakSelf requestTeamAchievement:@"已支付"];
     }];
     
@@ -282,20 +281,24 @@
 }
 #pragma mark 加载订单
 - (void)requestTeamAchievement:(NSString *)type {
+    
+    
+    
     NSDictionary *paramsDic;
     if ([type isEqualToString:@"未完成"]) {
-        
+        _page1 = 1;
         paramsDic=@{@"userId":[[SingleHandle shareSingleHandle] getUserInfo].userId,
                     @"pageSize":[NSString stringWithFormat:@"%i",_pageSize1],
                     @"pageNo":[NSString stringWithFormat:@"%i",_page1],
                     @"orderStatus":type};
     }if ([type isEqualToString:@"待支付"]) {
-
+        _page2 = 1;
         paramsDic=@{@"userId":[[SingleHandle shareSingleHandle] getUserInfo].userId,
                     @"pageSize":[NSString stringWithFormat:@"%i",_pageSize2],@
                     "pageNo":[NSString stringWithFormat:@"%i",_page2],
                     @"orderStatus":type};
     }if ([type isEqualToString:@"已支付"]) {
+        _page3 = 1;
         paramsDic=@{@"userId":[[SingleHandle shareSingleHandle] getUserInfo].userId,
                     @"pageSize":[NSString stringWithFormat:@"%i",_pageSize3],
                     @"pageNo":[NSString stringWithFormat:@"%i",_page3],
@@ -485,6 +488,7 @@
             [_tableView3.mj_footer endRefreshing];
         }
     } showHUD:YES];
+
 }
 
 
