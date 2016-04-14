@@ -176,7 +176,7 @@
 }
 
 - (void)tapMaskView {
-    [self hidePickerViewWithEnsure:YES];
+    [self hidePickerViewWithEnsure:NO];
 }
 
 /**

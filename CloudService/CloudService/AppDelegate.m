@@ -227,46 +227,7 @@
     
     
 }
-/**
- *  免登陆操作
- */
 
-- (void)exemptLogin {
-    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
-    [dict setValue:[Utility userName] forKey:@"userName"];
-    [dict setValue:[Utility sha256WithString:[Utility passWord]] forKey:@"password"];
-    NSString *address = [Utility location];
-    if (address) {
-        [dict setValue:address forKey:@"address"];
-    }else {
-        
-        [dict setValue:@"北京市" forKey:@"address"];
-    }
-    AppDelegate *delegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
-    delegate.isThird=NO;
-    
-    [MHNetworkManager postReqeustWithURL:[RequestEntity urlString:kLoginAPI] params:dict successBlock:^(id returnData) {
-        if ([[returnData valueForKey:@"flag"] isEqualToString:@"success"]) {
-            User *user = [User mj_objectWithKeyValues:[returnData valueForKey:@"data"]];
-            [[SingleHandle shareSingleHandle] saveUserInfo:user];
-            AYCLog(@"%@",user.userNum);
-            /**
-             *  火炬登陆信息
-             */
-            [[FireData sharedInstance] loginWithUserid:user.userNum uvar:nil];
-            
-            [[ButelHandle shareButelHandle] ButelHttpLogin];
-            
-        }else if([[returnData valueForKey:@"flag"] isEqualToString:@"error"]){
-            
-            [MBProgressHUD showMessag:[returnData valueForKey:@"msg"] toView:nil];
-        }
-    } failureBlock:^(NSError *error) {
-        
-    } showHUD:YES];
-    
-
-}
 #pragma mark -- CLLocationManagerDelegate
 
 -(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations{

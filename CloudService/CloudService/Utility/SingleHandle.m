@@ -8,6 +8,8 @@
 
 #import "SingleHandle.h"
 #import "Utility.h"
+#import "ButelHandle.h"
+#import <JPUSHService.h>
 
 static SingleHandle *singleHandle = nil;
 @implementation SingleHandle
@@ -51,6 +53,47 @@ static SingleHandle *singleHandle = nil;
                        @"成交"];
 
     return array;
+}
+
+- (void)loginAppDic:(NSMutableDictionary *)paramDic{
+
+    /**
+     *  获取
+     */
+    NSString *uuid = [Utility UUID];
+    if (!uuid) {
+        uuid = [HelperUtil uuidString];
+        [Utility saveUUID:uuid];
+    }
+    [paramDic setObject:uuid forKey:@"imei"];
+    
+    AppDelegate *delegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
+    delegate.isThird=NO;
+  
+    [MHNetworkManager postReqeustWithURL:[RequestEntity urlString:kLoginAPI] params:paramDic successBlock:^(id returnData) {
+        if ([[returnData valueForKey:@"flag"] isEqualToString:@"success"]) {
+            User *user = [User mj_objectWithKeyValues:[returnData valueForKey:@"data"]];
+            [[SingleHandle shareSingleHandle] saveUserInfo:user];
+            AYCLog(@"%@",user.userNum);
+            /**
+             *  火炬登陆信息
+             */
+            [[FireData sharedInstance] loginWithUserid:user.userNum uvar:nil];
+            /**
+             *  注册极光推送标签别名
+             */
+            
+            [JPUSHService setTags:[NSSet setWithObject:user.roleName] alias:user.userName callbackSelector:nil target:nil];
+            
+            [[ButelHandle shareButelHandle] ButelHttpLogin];
+            [[NSNotificationCenter defaultCenter] postNotificationName:LoginToMenuViewNotice object:nil];
+        }else if([[returnData valueForKey:@"flag"] isEqualToString:@"error"]){
+            [MBProgressHUD showMessag:[returnData valueForKey:@"msg"] toView:nil];
+        }
+    } failureBlock:^(NSError *error) {
+        
+    } showHUD:YES];
+
 }
 
 @end

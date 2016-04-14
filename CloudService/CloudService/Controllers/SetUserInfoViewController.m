@@ -145,6 +145,7 @@ static NSString *const select_CellID = @"selectCell";
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyBoardDidHidden) name:UIKeyboardDidHideNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTableView) name:ChooseSaleCompany object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadSaleCity) name:ChooseSaleCity object:nil];
 }
 
 - (void)initData {
@@ -205,7 +206,14 @@ static NSString *const select_CellID = @"selectCell";
 
 - (void)reloadTableView {
     _valueArray_User[_indexPath.row] = [self changeStrArraytoTextString:_companyArray];
-    [self.tableView reloadData];
+    [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:_indexPath,nil] withRowAnimation:UITableViewRowAnimationNone];
+}
+
+- (void)reloadSaleCity {
+    _valueArray_User[_indexPath.row] = [self changeStrArraytoTextString:_saleCityArray];
+
+    [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:_indexPath,nil] withRowAnimation:UITableViewRowAnimationNone];
+    
 }
 
 #pragma mark -- HZQDatePickerViewDelegate
@@ -323,7 +331,7 @@ static NSString *const select_CellID = @"selectCell";
         if (indexPath.row == 8) {
             cell2.titleLabelWidth.constant = 120;
             if (cell2.contentLabel.text.length > 0) {
-                [cell2 setDeleteImage:YES];
+                [cell2 setDeleteImage:NO];
             }else{
                 [cell2 setDeleteImage:NO];
             }
@@ -444,8 +452,11 @@ static NSString *const select_CellID = @"selectCell";
             case 7:{
                 
                 ChooseCompanyViewController *chooseVC = [[ChooseCompanyViewController alloc] init];
+                chooseVC.type = chooseCompany;
                 chooseVC.selectArray = _companyArray;
-                [self getChooseDataArray];
+                for (CodeNameModel *code in _companyArray) {
+                    NSLog(@"--------selectArray-------------%@",code.companyName);
+                }
                 chooseVC.dataArray = [NSMutableArray arrayWithArray:[self getChooseDataArray]];
                 
                 [[FireData sharedInstance] eventWithCategory:@"个人信息" action:@"申请销售保险公司" evar:nil attributes:nil];
@@ -471,11 +482,21 @@ static NSString *const select_CellID = @"selectCell";
 //                            } animated:YES];
                         break;
                     }
-            case 8:
-                [[FireData sharedInstance] eventWithCategory:@"个人信息" action:@"销售数据城市" evar:nil attributes:nil];
-                [self showCityPickerViewWithCount:1];
-//                [self performSegueWithIdentifier:@"selectCity" sender:self];
-                        break;
+            case 8:{
+                ChooseCompanyViewController *chooseVC = [[ChooseCompanyViewController alloc] init];
+                chooseVC.type = chooseCity;
+                chooseVC.selectArray = _saleCityArray;
+                
+                chooseVC.dataArray = [NSMutableArray arrayWithArray:[self getChooseCityArray]];
+                
+                [[FireData sharedInstance] eventWithCategory:@"个人信息" action:@"申请销售保险公司" evar:nil attributes:nil];
+                [self.navigationController pushViewController:chooseVC animated:YES];
+//                [[FireData sharedInstance] eventWithCategory:@"个人信息" action:@"销售数据城市" evar:nil attributes:nil];
+//                [self showCityPickerViewWithCount:1];
+                //                [self performSegueWithIdentifier:@"selectCity" sender:self];
+                break;
+            }
+ 
             default:
                 break;
         }
@@ -583,6 +604,25 @@ static NSString *const select_CellID = @"selectCell";
         CodeNameModel *model = [[CodeNameModel alloc] init];
         model.companyCode = [DataSource changeCompanyTextToCode:companyName];
         model.companyName = companyName;
+        [dataArray addObject:model];
+    }
+    return dataArray;
+}
+
+/**
+ *  获取未选中的销售城市
+ */
+- (NSArray *)getChooseCityArray {
+    
+    NSMutableArray *dataArray = [NSMutableArray array];
+    for (NSString *provinceName in [DataSource provinceArray]) {
+        
+        if ([_valueArray_User[8] containsString:provinceName]) {
+            continue;
+        }
+        CodeNameModel *model = [[CodeNameModel alloc] init];
+        model.provinceCode = [[DataSource provinceCodeDict] valueForKey:provinceName];
+        model.provinceName = provinceName;
         [dataArray addObject:model];
     }
     return dataArray;

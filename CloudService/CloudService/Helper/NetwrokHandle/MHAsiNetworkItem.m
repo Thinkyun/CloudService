@@ -101,29 +101,7 @@
                 [weakSelf removewItem];
 
             }];
-//            [manager GET:url parameters:params success:^(NSURLSessionDataTask * _Nonnull task, id responseObject) {
-//                [MBProgressHUD hideAllHUDsForView:nil animated:YES];
-//                DTLog(@"\n\n----请求的返回结果 %@\n",responseObject);
-//                if (successBlock) {
-//                    successBlock(responseObject);
-//                }
-//                if ([weakSelf.delegate respondsToSelector:@selector(requestDidFinishLoading:)]) {
-//                    [weakSelf.delegate requestDidFinishLoading:responseObject];
-//                }
-//                [weakSelf performSelector:@selector(finishedRequest: didFaild:) withObject:responseObject withObject:nil];
-//                [weakSelf removewItem];
-//            } failure:^(NSURLSessionDataTask * _Nonnull task, NSError * _Nonnull error) {
-//                [MBProgressHUD hideAllHUDsForView:nil animated:YES];
-//                DTLog(@"---error==%@\n",error.localizedDescription);
-//                if (failureBlock) {
-//                    failureBlock(error);
-//                }
-//                if ([weakSelf.delegate respondsToSelector:@selector(requestdidFailWithError:)]) {
-//                    [weakSelf.delegate requestdidFailWithError:error];
-//                }
-//                [weakSelf performSelector:@selector(finishedRequest: didFaild:) withObject:nil withObject:error];
-//                [weakSelf removewItem];
-//            }];
+
             
         }else{
             [manager POST:url parameters:params progress:^(NSProgress * _Nonnull uploadProgress) {
@@ -131,13 +109,19 @@
             } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
                 [MBProgressHUD hideHUDForView:(UIView*)[[[UIApplication sharedApplication]delegate]window] animated:YES];
                 DTLog(@"\n\n----请求的返回结果 %@\n",responseObject);
-                if (successBlock) {
-                    successBlock(responseObject);
+                if ([[responseObject objectForKey:@"flag"] isEqualToString:@"userConflict"]) {
+                    [[NSNotificationCenter defaultCenter] postNotificationName:LogOutViewNotice object:nil];
+                    [MBProgressHUD showMessag:[responseObject objectForKey:@"msg"] toView:nil];
+                }else{
+                    if (successBlock) {
+                        successBlock(responseObject);
+                    }
+                    if ([weakSelf.delegate respondsToSelector:@selector(requestDidFinishLoading:)]) {
+                        [weakSelf.delegate requestDidFinishLoading:responseObject];
+                    }
+                    [weakSelf performSelector:@selector(finishedRequest: didFaild:) withObject:responseObject withObject:nil];
                 }
-                if ([weakSelf.delegate respondsToSelector:@selector(requestDidFinishLoading:)]) {
-                    [weakSelf.delegate requestDidFinishLoading:responseObject];
-                }
-                [weakSelf performSelector:@selector(finishedRequest: didFaild:) withObject:responseObject withObject:nil];
+                
                 [weakSelf removewItem];
             } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
                 [MBProgressHUD hideAllHUDsForView:(UIView*)[[[UIApplication sharedApplication]delegate]window] animated:YES];
@@ -154,29 +138,7 @@
 
             }];
             
-//            [manager POST:url parameters:params success:^(NSURLSessionDataTask * _Nonnull task, id responseObject) {
-//                [MBProgressHUD hideHUDForView:nil animated:YES];
-//                DTLog(@"\n\n----请求的返回结果 %@\n",responseObject);
-//                if (successBlock) {
-//                    successBlock(responseObject);
-//                }
-//                if ([weakSelf.delegate respondsToSelector:@selector(requestDidFinishLoading:)]) {
-//                    [weakSelf.delegate requestDidFinishLoading:responseObject];
-//                }
-//                [weakSelf performSelector:@selector(finishedRequest: didFaild:) withObject:responseObject withObject:nil];
-//                [weakSelf removewItem];
-//            } failure:^(NSURLSessionDataTask * _Nonnull task, NSError * _Nonnull error) {
-//                [MBProgressHUD hideAllHUDsForView:nil animated:YES];
-//                DTLog(@"---error==%@\n",error.localizedDescription);
-//                if (failureBlock) {
-//                    failureBlock(error);
-//                }
-//                if ([weakSelf.delegate respondsToSelector:@selector(requestdidFailWithError:)]) {
-//                    [weakSelf.delegate requestdidFailWithError:error];
-//                }
-//                [weakSelf performSelector:@selector(finishedRequest: didFaild:) withObject:nil withObject:error];
-//                [weakSelf removewItem];
-//            }];
+
         }
     }
     return self;

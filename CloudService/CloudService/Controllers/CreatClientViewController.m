@@ -13,9 +13,10 @@
 #import "ButelHandle.h"
 #import "MyClientViewController.h"
 
-@interface CreatClientViewController ()<UITextFieldDelegate>
+@interface CreatClientViewController ()<UITextFieldDelegate,UIAlertViewDelegate>
 {
     NSString *_cityCode;
+    Order *_order;
 }
 @property (weak, nonatomic)IBOutlet UITextField *tfName;
 @property (weak, nonatomic)IBOutlet UITextField *tfPhone;
@@ -86,9 +87,49 @@
         [MBProgressHUD showMessag:@"车牌号格式不正确" toView:self.view];
         return ;
     }
+    User *user = [[SingleHandle shareSingleHandle] getUserInfo];
+    NSDictionary *dict = @{@"userId":user.userId,
+                                   @"custName":self.tfName.text,
+                                   @"phoneNo":self.tfPhone.text,
+                                   @"licenseNo":self.tfLicenseNo.text};
+    
+    __weak typeof(self) weakSelf = self;
+    [MHNetworkManager postReqeustWithURL:[RequestEntity urlString:kVerifyCusRepeat] params:dict
+                            successBlock:^(id returnData) {
+                    AYCLog (@"%@",returnData);
+                    if ([[returnData valueForKey:@"flag"] isEqualToString:@"success"]) {
+                        _order = [[Order alloc] init];
+                        if ([_tfLicenseNo.text isEqualToString:@""]) {
+                            _order.licenseNo = @"";
+                        }else {
+                            _order.licenseNo = _tfLicenseNo.text;
+                        }
+                        _order.phoneNo = _tfPhone.text;
+                        _order.customerName = _tfName.text;
+                        _order.cityCode = _cityCode;
 
+                        [weakSelf performSegueWithIdentifier:@"offer" sender:self];
+                        return ;
+                    }
+                    if ([[returnData valueForKey:@"flag"] isEqualToString:@"conflict"]) {
+                        NSDictionary *dataDic = [returnData valueForKey:@"data"];
+                        _order = [Order mj_objectWithKeyValues:dataDic];
+                        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"客户已创建过，您想继续？" delegate:self cancelButtonTitle:@"返回" otherButtonTitles:@"继续", nil];
+                        [alertView show];
+                    }
+                          
+                   if ([[returnData valueForKey:@"flag"] isEqualToString:@"error"]) {
+                       [MBProgressHUD showMessag:[returnData objectForKey:@"msg"] toView:weakSelf.view];
 
-    [self performSegueWithIdentifier:@"offer" sender:self];
+                    }
+                                
+                } failureBlock:^(NSError *error) {
+                                
+                } showHUD:YES];
+
+    
+    
+//    [self performSegueWithIdentifier:@"offer" sender:self];
 }
 
 - (IBAction)newCarAction:(id)sender {
@@ -160,20 +201,20 @@
        
         // segue.destinationViewController：获取连线时所指的界面（VC）
         OfferViewController *offerVC = segue.destinationViewController;
-      
-        Order *order = [[Order alloc] init];
-        if ([_tfLicenseNo.text isEqualToString:@""]) {
-           order.licenseNo = @"";
-        }else {
-           order.licenseNo = _tfLicenseNo.text;
-        }
-        order.phoneNo = _tfPhone.text;
-        order.customerName = _tfName.text;
-        order.cityCode = _cityCode;
-        offerVC.order = order;
+        offerVC.order = _order;
+        
     }
 }
 
+#pragma alertView
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex NS_DEPRECATED_IOS(2_0, 9_0){
+    if(buttonIndex == 0){
+        AYCLog(@"fanhui");
+    }else {
+        [self performSegueWithIdentifier:@"offer" sender:self];
+        AYCLog(@"jixu");
+    }
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

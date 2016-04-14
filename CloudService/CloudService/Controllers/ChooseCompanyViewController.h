@@ -7,11 +7,15 @@
 //
 
 #import "BaseViewController.h"
-
+typedef enum{
+    chooseCompany,
+    chooseCity
+}chooseType;
 
 @interface ChooseCompanyViewController : BaseViewController
 
 @property(nonatomic,strong)NSMutableArray *selectArray;
 @property(nonatomic,strong)NSMutableArray *dataArray;
+@property (nonatomic, assign) chooseType type;
 
 @end

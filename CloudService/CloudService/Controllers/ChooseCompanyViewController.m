@@ -24,11 +24,39 @@ static NSString *header_Id = @"header_Id";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"选择公司";
+    switch (self.type) {
+        case chooseCompany:
+            self.title = @"选择公司";
+            break;
+        case chooseCity:
+            self.title = @"选择销售城市";
+            break;
+        default:
+            break;
+    }
+    for (CodeNameModel *code in _dataArray) {
+        NSLog(@"--dataArray------%@",code.companyName);
+    }
+    
+    for (CodeNameModel *code in _selectArray) {
+        NSLog(@"--------selectArray-------------%@",code.companyCode);
+    }
+
+    
     __weak typeof(self) weakSelf             = self;
     [self setLeftImageBarButtonItemWithFrame:CGRectMake(0, 0, 25, 25) image:@"title-back" selectImage:@"" action:^(AYCButton *button) {
         [weakSelf.navigationController popViewControllerAnimated:YES];
-        [[NSNotificationCenter defaultCenter] postNotificationName:ChooseSaleCompany object:nil];
+        switch (weakSelf.type) {
+            case chooseCompany:
+               [[NSNotificationCenter defaultCenter] postNotificationName:ChooseSaleCompany object:nil];
+                break;
+            case chooseCity:
+                [[NSNotificationCenter defaultCenter] postNotificationName:ChooseSaleCity object:nil];
+                break;
+            default:
+                break;
+        }
+        
     }];
 
     CGFloat inset                            = 4;
@@ -60,7 +88,17 @@ static NSString *header_Id = @"header_Id";
     
     TagSelectItem *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cell_Id forIndexPath:indexPath];
     CodeNameModel *model = indexPath.section == 0 ? _selectArray[indexPath.row] : _dataArray[indexPath.row];
-    cell.titleLabel.text = model.companyName;
+    switch (self.type) {
+        case chooseCompany:
+            cell.titleLabel.text = model.companyName;
+            break;
+        case chooseCity:
+            cell.titleLabel.text = model.provinceName;
+            break;
+        default:
+            break;
+    }
+    
   
     return cell;
 }
@@ -68,7 +106,18 @@ static NSString *header_Id = @"header_Id";
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
     
     HeaderCompanyView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:header_Id forIndexPath:indexPath];
-    NSString *str = indexPath.section == 0 ? @"销售保险公司" : @"未添加保险公司";
+    NSString *str;
+    switch (self.type) {
+        case chooseCompany:
+            str = indexPath.section == 0 ? @"销售保险公司" : @"未添加保险公司";
+            break;
+        case chooseCity:
+            str = indexPath.section == 0 ? @"销售数据城市" : @"未添加销售城市";
+            break;
+        default:
+            break;
+    }
+    
     headerView.backgroundColor= [HelperUtil colorWithHexString:@"#DBDBDB"];
     headerView.title = str;
     

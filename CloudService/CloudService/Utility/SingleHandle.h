@@ -26,5 +26,13 @@
  *  获取结束码
  */
 - (NSArray *)getEndCodeArray;
+/**
+ *  获取登陆信息
+ *
+ *  @param userName 用户名
+ *  @param password 用户密码
+ *  @param location 定位信息
+ */
+- (void)loginAppDic:(NSMutableDictionary *)paramDic;
 
 @end

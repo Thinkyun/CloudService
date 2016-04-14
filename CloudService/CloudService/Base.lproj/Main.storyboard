@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="moG-sH-JKE">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="moG-sH-JKE">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
@@ -1473,7 +1473,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FjV-52-9y1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2096.5" y="572.5"/>
+            <point key="canvasLocation" x="2294.5" y="488.5"/>
         </scene>
         <!--预约-->
         <scene sceneID="iZT-ts-OBf">
@@ -2780,7 +2780,7 @@
                                             <constraint firstAttribute="height" constant="1" id="4re-ec-bkw"/>
                                         </constraints>
                                     </view>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="行驶省市" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1sv-BL-byc">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="投保城市" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1sv-BL-byc">
                                         <rect key="frame" x="17" y="186" width="78" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="21" id="7JT-x5-uQ6"/>
@@ -2790,7 +2790,7 @@
                                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入汽车行驶省市" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bo8-hR-XTU">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入汽车投保城市" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bo8-hR-XTU">
                                         <rect key="frame" x="115" y="181" width="217" height="30"/>
                                         <gestureRecognizers/>
                                         <constraints>
@@ -2799,7 +2799,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SjI-bg-N7p">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SjI-bg-N7p">
                                         <rect key="frame" x="115" y="182" width="217" height="30"/>
                                         <connections>
                                             <action selector="showCityPickerView:" destination="azA-T9-zXt" eventType="touchUpInside" id="fat-30-H66"/>
@@ -2821,6 +2821,7 @@
                                     <constraint firstItem="wih-Fj-OuT" firstAttribute="leading" secondItem="xeK-uh-QZb" secondAttribute="leading" constant="15" id="DKD-DD-euq"/>
                                     <constraint firstAttribute="trailing" secondItem="pOe-iP-xPQ" secondAttribute="trailing" constant="43" id="ESk-YG-rtg"/>
                                     <constraint firstItem="kqN-XN-Wi2" firstAttribute="leading" secondItem="apE-tZ-AEA" secondAttribute="trailing" constant="20" id="EZc-n5-muB"/>
+                                    <constraint firstItem="kvL-bt-rHk" firstAttribute="top" secondItem="SjI-bg-N7p" secondAttribute="bottom" constant="14" id="Ebi-2U-kQr"/>
                                     <constraint firstAttribute="trailing" secondItem="kvL-bt-rHk" secondAttribute="trailing" id="Ggw-Ej-P9F"/>
                                     <constraint firstItem="BIr-mf-7Mh" firstAttribute="leading" secondItem="p8l-uu-r1c" secondAttribute="trailing" constant="20" id="H6b-v9-yQf"/>
                                     <constraint firstItem="wih-Fj-OuT" firstAttribute="top" secondItem="pOe-iP-xPQ" secondAttribute="bottom" constant="15" id="HAM-Hi-cgd"/>
@@ -2838,6 +2839,7 @@
                                     <constraint firstItem="BIr-mf-7Mh" firstAttribute="top" secondItem="wih-Fj-OuT" secondAttribute="bottom" constant="11" id="dbN-I9-5Cv"/>
                                     <constraint firstItem="p8l-uu-r1c" firstAttribute="leading" secondItem="xeK-uh-QZb" secondAttribute="leading" constant="17" id="dcJ-Wq-s29"/>
                                     <constraint firstItem="1sv-BL-byc" firstAttribute="top" secondItem="5GW-pT-a9l" secondAttribute="bottom" constant="17" id="eOJ-hl-PM0"/>
+                                    <constraint firstAttribute="trailing" secondItem="SjI-bg-N7p" secondAttribute="trailing" constant="43" id="eRz-rU-yPG"/>
                                     <constraint firstItem="pOe-iP-xPQ" firstAttribute="top" secondItem="Yga-7i-mew" secondAttribute="bottom" constant="11" id="gcW-eb-Yae"/>
                                     <constraint firstItem="5GW-pT-a9l" firstAttribute="top" secondItem="BIr-mf-7Mh" secondAttribute="bottom" constant="15" id="iCF-dc-mLk"/>
                                     <constraint firstItem="1sv-BL-byc" firstAttribute="leading" secondItem="xeK-uh-QZb" secondAttribute="leading" constant="17" id="l7G-W9-qyA"/>
@@ -2845,9 +2847,11 @@
                                     <constraint firstItem="apE-tZ-AEA" firstAttribute="leading" secondItem="xeK-uh-QZb" secondAttribute="leading" constant="17" id="q1f-aD-FSi"/>
                                     <constraint firstItem="Ov7-6y-IXe" firstAttribute="top" secondItem="xeK-uh-QZb" secondAttribute="top" id="s0p-FW-RTR"/>
                                     <constraint firstItem="kvL-bt-rHk" firstAttribute="leading" secondItem="xeK-uh-QZb" secondAttribute="leading" id="uLC-H2-jVQ"/>
+                                    <constraint firstItem="SjI-bg-N7p" firstAttribute="top" secondItem="5GW-pT-a9l" secondAttribute="bottom" constant="13" id="xaL-n3-Dl1"/>
                                     <constraint firstAttribute="trailing" secondItem="5GW-pT-a9l" secondAttribute="trailing" id="xfT-gk-YaM"/>
                                     <constraint firstItem="kqN-XN-Wi2" firstAttribute="top" secondItem="Ov7-6y-IXe" secondAttribute="bottom" constant="10" id="xlo-pY-hHg"/>
                                     <constraint firstItem="Yga-7i-mew" firstAttribute="top" secondItem="kqN-XN-Wi2" secondAttribute="bottom" constant="13" id="ywL-tv-tp2"/>
+                                    <constraint firstItem="SjI-bg-N7p" firstAttribute="leading" secondItem="1sv-BL-byc" secondAttribute="trailing" constant="20" id="zV9-fG-9je"/>
                                 </constraints>
                                 <variation key="default">
                                     <mask key="constraints">
@@ -3398,7 +3402,7 @@
                                             <constraint firstAttribute="height" constant="1" id="NxC-M1-bt9"/>
                                         </constraints>
                                     </view>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="行驶省市" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nIe-EE-mJj">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="投保城市" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nIe-EE-mJj">
                                         <rect key="frame" x="17" y="186" width="78" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="21" id="0ac-zY-zvw"/>
@@ -3408,7 +3412,7 @@
                                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入汽车行驶省市" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="J78-As-faK">
+                                    <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入汽车投保城市" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="J78-As-faK">
                                         <rect key="frame" x="115" y="181" width="250" height="30"/>
                                         <gestureRecognizers/>
                                         <constraints>
@@ -3535,6 +3539,7 @@
                         <outlet property="tfLicenseNo" destination="EJE-b5-QWH" id="Ljc-Jp-v23"/>
                         <outlet property="tfName" destination="Wsf-Uz-RpB" id="DQx-Ik-l8B"/>
                         <outlet property="tfPhone" destination="3cm-Z1-KyK" id="Mty-gy-h45"/>
+                        <segue destination="g2Q-wk-WsR" kind="push" identifier="oldOrderInfo" id="zAa-Im-zuA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gqw-dP-Por" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -3571,6 +3576,6 @@
         <segue reference="S4h-y3-d1W"/>
         <segue reference="fDp-sc-Hby"/>
         <segue reference="KaR-KU-zbk"/>
-        <segue reference="i3c-Qa-Pxq"/>
+        <segue reference="zAa-Im-zuA"/>
     </inferredMetricsTieBreakers>
 </document>
