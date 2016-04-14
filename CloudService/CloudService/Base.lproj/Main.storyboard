@@ -694,7 +694,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DSv-2H-jig" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-119.5" y="1939.5"/>
+            <point key="canvasLocation" x="-58.5" y="1975.5"/>
         </scene>
         <!--注册-->
         <scene sceneID="Alk-RV-aEW">
@@ -1882,7 +1882,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aH7-vn-Ake" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="762.5" y="1928.5"/>
+            <point key="canvasLocation" x="516.5" y="1893.5"/>
         </scene>
         <!--About App View Controller-->
         <scene sceneID="ZhI-u9-L9c">
@@ -3573,7 +3573,7 @@
         <image name="youhuiquan-checkbox" width="22" height="22"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="S4h-y3-d1W"/>
+        <segue reference="hk9-Xv-JLY"/>
         <segue reference="fDp-sc-Hby"/>
         <segue reference="KaR-KU-zbk"/>
         <segue reference="zAa-Im-zuA"/>

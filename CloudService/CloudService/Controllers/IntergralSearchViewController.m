@@ -37,7 +37,7 @@
     [super viewDidLoad];
     _integralArray = [NSMutableArray array];
     __weak typeof(self) weakSelf = self;
-    [weakSelf setLeftImageBarButtonItemWithFrame:CGRectMake(0, 0, 35, 35) image:@"title-back" selectImage:@"back" action:^(AYCButton *button) {
+    [weakSelf setLeftImageBarButtonItemWithFrame:CGRectMake(0, 0, 30, 30) image:@"title-back" selectImage:@"back" action:^(AYCButton *button) {
         CFRelease((__bridge CFTypeRef)weakSelf);
          NSLog(@"Retain count is %ld", CFGetRetainCount((__bridge CFTypeRef)weakSelf));
         [[FireData sharedInstance] eventWithCategory:@"积分搜索" action:@"返回" evar:nil attributes:nil];

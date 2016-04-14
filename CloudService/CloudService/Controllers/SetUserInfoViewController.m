@@ -99,13 +99,16 @@ static NSString *const select_CellID = @"selectCell";
     if (!dict) {
         return ;
     }
+    //保存填写的用户信息
+    [self saveUserInfo:dict];
     
     __weak typeof(self) weakSelf = self;
     [MHNetworkManager postReqeustWithURL:[RequestEntity urlString:kResetUserInfoAPI] params:dict successBlock:^(id returnData) {
         
         if ([[returnData valueForKey:@"flag"] isEqualToString:@"success"]) {
-            [weakSelf saveUserInfo:dict];
+            
             if ([weakSelf.rightBtn.titleLabel.text isEqualToString:@"提交"]) {
+                
                 [MBProgressHUD showMessag:@"提交成功,一个小时后生效" toView:nil];
             }else {
                 [MBProgressHUD showMessag:@"修改成功" toView:nil];
@@ -133,7 +136,7 @@ static NSString *const select_CellID = @"selectCell";
     
     self.title = @"填写个人资料";
     __weak typeof(self) weakSelf = self;
-    [self setLeftImageBarButtonItemWithFrame:CGRectMake(0, 0, 25, 25) image:@"title-back" selectImage:@"" action:^(AYCButton *button) {
+    [self setLeftImageBarButtonItemWithFrame:CGRectMake(0, 0, 30, 30) image:@"title-back" selectImage:@"" action:^(AYCButton *button) {
         
         [[FireData sharedInstance] eventWithCategory:@"个人信息" action:@"返回" evar:nil attributes:nil];
         [weakSelf.navigationController popViewControllerAnimated:YES];
@@ -161,15 +164,15 @@ static NSString *const select_CellID = @"selectCell";
                        @"开户银行",@"支行名称",
                        @"开户省份",@"开户城市"];
     
-    _valueArray_User = [NSMutableArray arrayWithArray:@[@"",@"",@"",@"",@"销售职",@"2015-01-01",@"",@"",@""]];
+    _valueArray_User = [NSMutableArray arrayWithArray:@[@"",@"",@"",@"",@"",@"",@"",@"",@""]];
     User *user = [[SingleHandle shareSingleHandle] getUserInfo];
     _valueArray_User[0] = user.realName;
     _valueArray_User[1] = user.idCard;
     _valueArray_User[2] = user.roleName.length <= 0 ? @"普通用户" : user.roleName;
     
     _valueArray_User[3] = [DataSource changeCompanyCodeToText:user.oldCompany];
-    _valueArray_User[4] = user.oldPost.length > 0 ? user.oldPost : @"销售职";
-    NSString *workDate = user.workStartDate.length > 0 ? [HelperUtil timeFormat:user.workStartDate format:@"yyyy-MM-dd"] : @"2015-01-01";
+    _valueArray_User[4] = user.oldPost.length > 0 ? user.oldPost : @"";
+    NSString *workDate = user.workStartDate.length > 0 ? [HelperUtil timeFormat:user.workStartDate format:@"yyyy-MM-dd"] : @"";
     _valueArray_User[5] = workDate;
     _valueArray_User[6] = user.chatName;
     // 编码汉字
@@ -440,7 +443,7 @@ static NSString *const select_CellID = @"selectCell";
             case 4:{
                         _selectArray = @[@"销售职",@"销售管理职",@"其他"];
                         CGRect rect4 = CGRectMake(tempRect.origin.x, CGRectGetMaxY(cellFrame) - self.tableView.contentOffset.y + 64, tempRect.size.width, 3 * 40);
-//                        [self showPullDownViewWithRect:rect4];
+
                 __weak typeof(self) weakSelf = self;
                 [[FireData sharedInstance] eventWithCategory:@"个人信息" action:@"原职位" evar:nil attributes:nil];
                             [PellTableViewSelect addPellTableViewSelectWithWindowFrame:rect4 selectData:_selectArray action:^(NSInteger index) {
@@ -462,24 +465,6 @@ static NSString *const select_CellID = @"selectCell";
                 [[FireData sharedInstance] eventWithCategory:@"个人信息" action:@"申请销售保险公司" evar:nil attributes:nil];
                 [self.navigationController pushViewController:chooseVC animated:YES];
                 
-//                        _selectArray = [DataSource insureCommpanyNameArray];
-//                        CGRect rect7 = CGRectMake(tempRect.origin.x, CGRectGetMaxY(cellFrame) - self.tableView.contentOffset.y + 64, tempRect.size.width, 4 * 40);
-////                        [self showPullDownViewWithRect:rect7];
-//                            [PellTableViewSelect addPellTableViewSelectWithWindowFrame:rect7 selectData:_selectArray action:^(NSInteger index) {
-//                                NSString *code = [[DataSource insureCommpanyCodeArray] objectAtIndex:index];
-//                                // 可以用二分查找
-//                                for (CodeNameModel *model in _companyArray) {
-//                                    if ([model.companyCode isEqualToString:code]) {
-//                                        return;
-//                                    }
-//                                }
-//                                CodeNameModel *model = [[CodeNameModel alloc] init];
-//                                model.companyName = _selectArray[index];
-//                                model.companyCode = code;
-//                                [_companyArray addObject:model];
-//                                _valueArray_User[_indexPath.row] = [self changeStrArraytoTextString:_companyArray];
-//                                [self.tableView reloadData];
-//                            } animated:YES];
                         break;
                     }
             case 8:{

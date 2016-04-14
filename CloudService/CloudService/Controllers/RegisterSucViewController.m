@@ -32,7 +32,7 @@
     
     self.title = @"注册成功";
     __weak typeof(self) weakSelf = self;
-    [self setLeftImageBarButtonItemWithFrame:CGRectMake(0, 0, 25, 25) image:@"title-back" selectImage:@"" action:^(AYCButton *button) {
+    [self setLeftImageBarButtonItemWithFrame:CGRectMake(0, 0, 30, 30) image:@"title-back" selectImage:@"" action:^(AYCButton *button) {
         [[FireData sharedInstance] eventWithCategory:@"注册成功" action:@"返回" evar:nil attributes:nil];
 
         [weakSelf.navigationController popViewControllerAnimated:YES];

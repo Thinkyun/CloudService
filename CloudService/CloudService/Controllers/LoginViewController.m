@@ -64,11 +64,13 @@
     if (self.choseBtn.selected) {
         [self.choseBtn setBackgroundImage:[UIImage imageNamed:@"login-choose_"] forState:(UIControlStateNormal)];
         _isRemenberPwd = YES;
+        
     }else {
         
         _isRemenberPwd = NO;
         [self.choseBtn setBackgroundImage:nil forState:(UIControlStateNormal)];
     }
+    [Utility remberPassWord:_isRemenberPwd];
 }
 
 - (void)setupView {
@@ -102,6 +104,7 @@
                                                attributes:@{NSForegroundColorAttributeName:color}];
     
     self.UserTextFiled.text = [Utility userName];
+
     if ([Utility isRemberPassWord]) {
         self.pwdTextFiled.text = [Utility passWord];
         self.choseBtn.selected = YES;
@@ -138,7 +141,10 @@
     if (![self checkInputMode]) {
         return;
     }
-
+    /**
+     *  保存用户名密码
+     */
+    [Utility saveUserName:self.UserTextFiled.text passWord:self.pwdTextFiled.text];
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     [dict setValue:self.UserTextFiled.text forKey:@"userName"];
     [dict setValue:[Utility sha256WithString:self.pwdTextFiled.text] forKey:@"password"];
