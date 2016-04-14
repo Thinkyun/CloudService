@@ -30,7 +30,7 @@
     
     self.title = @"修改密码";
     __weak typeof(self) weakSelf = self;
-    [self setLeftImageBarButtonItemWithFrame:CGRectMake(0, 0, 25, 25) image:@"title-back" selectImage:@"" action:^(AYCButton *button) {
+    [self setLeftImageBarButtonItemWithFrame:CGRectMake(0, 0, 30, 30) image:@"title-back" selectImage:@"" action:^(AYCButton *button) {
         
         [[FireData sharedInstance] eventWithCategory:@"修改密码" action:@"返回" evar:nil attributes:nil];
         [weakSelf.navigationController popViewControllerAnimated:YES];

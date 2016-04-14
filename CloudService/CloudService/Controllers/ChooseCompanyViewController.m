@@ -34,17 +34,10 @@ static NSString *header_Id = @"header_Id";
         default:
             break;
     }
-    for (CodeNameModel *code in _dataArray) {
-        NSLog(@"--dataArray------%@",code.companyName);
-    }
-    
-    for (CodeNameModel *code in _selectArray) {
-        NSLog(@"--------selectArray-------------%@",code.companyCode);
-    }
-
+ 
     
     __weak typeof(self) weakSelf             = self;
-    [self setLeftImageBarButtonItemWithFrame:CGRectMake(0, 0, 25, 25) image:@"title-back" selectImage:@"" action:^(AYCButton *button) {
+    [self setLeftImageBarButtonItemWithFrame:CGRectMake(0, 0, 30, 30) image:@"title-back" selectImage:@"" action:^(AYCButton *button) {
         [weakSelf.navigationController popViewControllerAnimated:YES];
         switch (weakSelf.type) {
             case chooseCompany:
@@ -135,6 +128,10 @@ static NSString *header_Id = @"header_Id";
         [_selectArray removeObjectAtIndex:indexPath.row];
         [_dataArray addObject:selectObject];
     }else {
+        if (_selectArray.count >= 4) {
+            [MBProgressHUD showMessag:@"销售保险城市不能超过4个!" toView:nil];
+            return;
+        }
         toIndexPath = [NSIndexPath indexPathForItem:_selectArray.count inSection:0];
         selectObject = _dataArray[indexPath.row];
         [_dataArray removeObjectAtIndex:indexPath.row];

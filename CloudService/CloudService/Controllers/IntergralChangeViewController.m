@@ -39,7 +39,7 @@
     
     self.title = @"积分兑换";
     __weak typeof(self) weakSelf = self;
-    [self setLeftImageBarButtonItemWithFrame:CGRectMake(0, 0, 35, 35) image:@"title-back" selectImage:@"" action:^(AYCButton *button) {
+    [self setLeftImageBarButtonItemWithFrame:CGRectMake(0, 0, 30, 30) image:@"title-back" selectImage:@"" action:^(AYCButton *button) {
         
         [[FireData sharedInstance] eventWithCategory:@"积分兑换" action:@"返回" evar:nil attributes:nil];
         [weakSelf.navigationController popViewControllerAnimated:YES];

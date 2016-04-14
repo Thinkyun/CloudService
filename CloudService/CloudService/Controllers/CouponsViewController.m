@@ -39,7 +39,7 @@
     _teamArray = [NSMutableArray array];
     [self setupNoData];
     __weak typeof(self) weakSelf = self;
-    [weakSelf setLeftImageBarButtonItemWithFrame:CGRectMake(0, 0, 35, 35) image:@"title-back" selectImage:@"back" action:^(AYCButton *button) {
+    [weakSelf setLeftImageBarButtonItemWithFrame:CGRectMake(0, 0, 30, 30) image:@"title-back" selectImage:@"back" action:^(AYCButton *button) {
         [weakSelf.navigationController popViewControllerAnimated:YES];
     }];
     [weakSelf setRightTextBarButtonItemWithFrame:CGRectMake(0, 0, 80, 30) title:@"使用规则" titleColor:[UIColor whiteColor] backImage:@"" selectBackImage:@"" action:^(AYCButton *button) {
@@ -303,7 +303,7 @@
 }
 #pragma mark 加载团队优惠券
 - (void)requestGroupData {
-    _page2 = 2;
+    _page2 = 1;
     [self removeNoData];
     
     NSDictionary *paramsDic=@{@"userId":[[SingleHandle shareSingleHandle] getUserInfo].userId,

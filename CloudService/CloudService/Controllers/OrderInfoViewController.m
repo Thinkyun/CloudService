@@ -36,7 +36,7 @@
     
     self.tableView.backgroundColor = [HelperUtil colorWithHexString:@"F4F4F4"];
     __weak typeof(self) weakSelf = self;
-    [weakSelf setLeftImageBarButtonItemWithFrame:CGRectMake(0, 0, 35, 35) image:@"title-back" selectImage:@"back" action:^(AYCButton *button) {
+    [weakSelf setLeftImageBarButtonItemWithFrame:CGRectMake(0, 0, 30, 30) image:@"title-back" selectImage:@"back" action:^(AYCButton *button) {
       [[FireData sharedInstance] eventWithCategory:@"订单搜索" action:@"返回上一页" evar:nil attributes:nil];
         [weakSelf.navigationController popViewControllerAnimated:YES];
     }];
