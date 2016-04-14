@@ -14,7 +14,7 @@
 //#define BaseAPI                 @"http://10.136.97.140:8080/cloudSales-action"  // 11服务器 
 //#define BaseAPI                 @"http://10.136.96.139:8889/cloudSales-action"  // kaiqiang阳光服务器
 //#define BaseAPI                 @"http://192.168.4.116:8889/cloudSales-action"  // 测试服务器
-#define BaseAPI                     @"http://www.eyunkf.com" //生产服务器
+#define BaseAPI                     @"http://www.eyunkf.com" //测试服务器
 //#define BaseAPI                     @"http://www.ddyunf.com" //生产服务器
 
 #define kRegisterAPI            @"/app/user/register"                     //注册
@@ -73,10 +73,10 @@
 
 //#define kZhiKe      @"http://10.136.98.146:81/zkyq-web/platform/getInfo"              //直客
 
-//#define kZhiKe      @"http://139.198.1.22:80/zkyq-web/platform/getInfo"              //直客
+#define kZhiKe      @"http://139.198.1.22:80/zkyq-web/platform/getInfo"              //直客
 //
 //#define kZhiKeInfo      @"http://139.198.1.22:80/zkyq-web/unfinishedOrder/returnPage?baseId="   //直客订单详情
-#define kZhiKe      @"http://139.198.0.29:80/zkyq-web/platform/getInfo"              //直客
+//#define kZhiKe      @"http://139.198.0.29:80/zkyq-web/platform/getInfo"              //直客
 
 #define kZhiKeInfo      @"http://139.198.0.29:80/zkyq-web/unfinishedOrder/returnPage?baseId="   //直客订单详情
 
