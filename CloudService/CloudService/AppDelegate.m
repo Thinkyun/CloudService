@@ -152,7 +152,7 @@
      {
          
          switch (platformType)
-         {                 
+         {
              case SSDKPlatformTypeWechat:
                  [appInfo SSDKSetupWeChatByAppId:WXAppID
                                        appSecret:WXAppSecret];
