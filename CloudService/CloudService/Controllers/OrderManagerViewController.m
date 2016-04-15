@@ -105,7 +105,13 @@
         [weakSelf requestTeamAchievement:@"未完成"];
     }];
     // 上拉刷新
-    _tableView1.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+//    _tableView1.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+//        
+//        [weakSelf requestMoreTeamAchievement:@"未完成"];
+//        
+//    }];
+    
+    _tableView1.mj_footer = [MJRefreshAutoFooter footerWithRefreshingBlock:^{
         
         [weakSelf requestMoreTeamAchievement:@"未完成"];
         

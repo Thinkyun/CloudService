@@ -8,10 +8,10 @@
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
-        <!--Navigation Controller-->
+        <!--Base Navi View Controller-->
         <scene sceneID="Od2-UD-XWg">
             <objects>
-                <navigationController storyboardIdentifier="loginNavi" id="moG-sH-JKE" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="loginNavi" id="moG-sH-JKE" customClass="BaseNaviViewController" sceneMemberID="viewController">
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="OcS-xo-06j">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -2637,7 +2637,7 @@
         <!--首页导航条-->
         <scene sceneID="HDM-0L-Ee9">
             <objects>
-                <navigationController storyboardIdentifier="MenuNavi" automaticallyAdjustsScrollViewInsets="NO" id="ynK-X6-WEz" userLabel="首页导航条" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="MenuNavi" automaticallyAdjustsScrollViewInsets="NO" id="ynK-X6-WEz" userLabel="首页导航条" customClass="BaseNaviViewController" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="首页" id="Y9X-9z-fDx"/>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="IjO-9i-zMK"/>
@@ -2653,7 +2653,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nbz-iM-kPv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="152.5" y="315.5"/>
+            <point key="canvasLocation" x="127.5" y="203.5"/>
         </scene>
         <!--创建客户-->
         <scene sceneID="bQL-Ao-Mxf">
@@ -3031,7 +3031,7 @@
                             <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tEI-e1-eG5">
                                 <rect key="frame" x="217" y="260" width="108" height="30"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="point2" translatesAutoresizingMaskIntoConstraints="NO" id="5Qp-rF-ITq">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="point2" translatesAutoresizingMaskIntoConstraints="NO" id="5Qp-rF-ITq">
                                         <rect key="frame" x="0.0" y="10" width="15" height="15"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="5Qp-rF-ITq" secondAttribute="height" id="QqV-Bo-Vz3"/>
