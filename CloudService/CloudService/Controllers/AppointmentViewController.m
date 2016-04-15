@@ -143,7 +143,7 @@
         [MBProgressHUD showMessag:@"请输入结束码" toView:nil];
         return;
     }
-    if ([self.tfCode.text isEqualToString:@"空错号"]||[self.tfCode.text isEqualToString:@"客户拒绝"]||[self.tfCode.text isEqualToString:@"无效数据"]) {
+    if ([self.tfCode.text isEqualToString:@"空错号"]||[self.tfCode.text isEqualToString:@"客户拒绝"]||[self.tfCode.text isEqualToString:@"无效数据"]||[self.tfCode.text isEqualToString:@"成交"]) {
         
     }else {
         if ([self.tfDate.text isEqualToString:@""]) {

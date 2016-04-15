@@ -15,6 +15,8 @@
 #import "ButelHandle.h"
 #import "OrderInfoViewController.h"
 
+#define ThreeDay    86400*3
+
 @interface SearchOrderViewController ()<HZQDatePickerViewDelegate,UITableViewDataSource,UITableViewDelegate>
 {
     UIView *_searchView;//搜索菜单页面
@@ -34,6 +36,7 @@
     NSMutableArray *_orderArray;
     Order *_order;
     NSDate *_startDate;
+    NSDate *_endDate;
 
 }
 @property (weak, nonatomic)IBOutlet UITableView *tableView;
@@ -50,8 +53,7 @@
         [[FireData sharedInstance] eventWithCategory:@"订单搜索" action:@"返回订单管理" evar:nil attributes:nil];
   
         CFRelease((__bridge CFTypeRef)weakSelf);
-    
-    
+
         [weakSelf.navigationController popViewControllerAnimated:YES];
     }];
     
@@ -475,10 +477,10 @@
     _pickerView.delegate = self;
     _pickerView.type = type;
     if (type == DateTypeOfStart) {
-        [_pickerView.datePickerView setMaximumDate:[NSDate date]];
+  
     }else {
         [_pickerView.datePickerView setMinimumDate:_startDate];
-        [_pickerView.datePickerView setMaximumDate:[NSDate date]];
+      
     }
     
     [self.view addSubview:_pickerView];
@@ -499,7 +501,7 @@
             
         case DateTypeOfEnd:
             _tfEnd.text = currentOlderOneDateStr;
-  
+            _endDate = date;
             break;
             
         default:

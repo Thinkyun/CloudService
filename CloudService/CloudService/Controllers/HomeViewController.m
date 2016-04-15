@@ -188,6 +188,7 @@ static NSString *headerView_ID = @"headerView";
             [_headerView.sginBtn setBackgroundImage:[UIImage imageNamed:@"home-icon7_"] forState:(UIControlStateNormal)];
             [_headerView.sginBtn setTitle:@"已签到" forState:(UIControlStateNormal)];
             _headerView.sginBtn.enabled = NO;
+            
         }
         
         User *user = [[SingleHandle shareSingleHandle] getUserInfo];
@@ -329,9 +330,15 @@ static NSString *headerView_ID = @"headerView";
 
 /** 获取数据*/
 - (void)getData {
+    User *user = [[SingleHandle shareSingleHandle] getUserInfo];
+    if ([user.roleName isEqualToString:@"普通用户"] || user.roleName.length <= 0) {
+        
+        [MBProgressHUD showMessag:@"普通用户不能获取数据!" toView:nil];
+        return ;
+    }
     AppDelegate *delegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
     delegate.isThird=NO;
-    if ([[[SingleHandle shareSingleHandle] getUserInfo].sign isEqualToString:@"1"]) {
+    if ([user.sign isEqualToString:@"1"]) {
         
         NSDictionary *paramsDic=@{@"userId":[[SingleHandle shareSingleHandle] getUserInfo].userId};
         NSString *url = [NSString stringWithFormat:@"%@%@",BaseAPI,kapplyCustomerData];
@@ -355,7 +362,7 @@ static NSString *headerView_ID = @"headerView";
             
         } showHUD:YES];
     }else {
-        [MBProgressHUD showMessag:@"您还未签到，不能获取数据" toView:self.view];
+        [MBProgressHUD showMessag:@"签到后才能获取数据!" toView:nil];
     }
     
 

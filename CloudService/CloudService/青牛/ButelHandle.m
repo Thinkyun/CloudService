@@ -205,7 +205,7 @@ static ButelHandle *singleHandle = nil;
             delegate.isThird=YES;
             
             _requestId = [HelperUtil uuidString];
-            [MHNetworkManager postReqeustWithURL:@"http://221.4.250.108:8088/apHttpService/agent/makeCall"
+            [MHNetworkManager postReqeustWithURL:kButelMakeCall
                                           params:@{@"entId":EntId,
                                                    @"agentId":user.userNum,
                                                    @"number":phoneNo,

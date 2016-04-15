@@ -142,7 +142,7 @@
         return;
     }
     /**
-     *  保存用户名密码
+     *  保存用户名密码 
      */
     [Utility saveUserName:self.UserTextFiled.text passWord:self.pwdTextFiled.text];
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
