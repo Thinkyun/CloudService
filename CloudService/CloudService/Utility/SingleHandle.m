@@ -10,6 +10,7 @@
 #import "Utility.h"
 #import "ButelHandle.h"
 #import <JPUSHService.h>
+#import "ProvinceModel.h"
 
 static SingleHandle *singleHandle = nil;
 @implementation SingleHandle
@@ -69,7 +70,8 @@ static SingleHandle *singleHandle = nil;
     
     AppDelegate *delegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
     delegate.isThird=NO;
-  
+    
+    __weak typeof(self) weakSelf = self;
     [MHNetworkManager postReqeustWithURL:[RequestEntity urlString:kLoginAPI] params:paramDic successBlock:^(id returnData) {
         if ([[returnData valueForKey:@"flag"] isEqualToString:@"success"]) {
             User *user = [User mj_objectWithKeyValues:[returnData valueForKey:@"data"]];
@@ -87,6 +89,27 @@ static SingleHandle *singleHandle = nil;
             
             [[ButelHandle shareButelHandle] ButelHttpLogin];
             [[NSNotificationCenter defaultCenter] postNotificationName:LoginToMenuViewNotice object:nil];
+            [weakSelf getAreas];
+         
+        }else if([[returnData valueForKey:@"flag"] isEqualToString:@"error"]){
+            [MBProgressHUD showMessag:[returnData valueForKey:@"msg"] toView:nil];
+        }
+    } failureBlock:^(NSError *error) {
+        
+    } showHUD:YES];
+
+}
+
+- (void)getAreas {
+    AppDelegate *delegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
+    delegate.isThird=NO;
+   
+    [MHNetworkManager postReqeustWithURL:[RequestEntity urlString:kGetAreas] params:nil successBlock:^(id returnData) {
+        if ([[returnData valueForKey:@"flag"] isEqualToString:@"success"]) {
+            
+            NSArray *provinceArray = [ProvinceModel mj_objectWithKeyValues:[returnData valueForKey:@"data"]];
+            
+            
         }else if([[returnData valueForKey:@"flag"] isEqualToString:@"error"]){
             [MBProgressHUD showMessag:[returnData valueForKey:@"msg"] toView:nil];
         }

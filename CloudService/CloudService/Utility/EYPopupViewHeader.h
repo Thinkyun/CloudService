@@ -25,6 +25,7 @@ typedef enum{
 
 #import "EYPopupView.h"
 #import "EYInputPopupView.h"
+#import "EYTextPopupView.h"
 
 
 

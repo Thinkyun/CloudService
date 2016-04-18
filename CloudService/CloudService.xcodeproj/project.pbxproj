@@ -20,6 +20,8 @@
 		630EF1A51C8579630059CB34 /* IntergralChangeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 630EF1A21C8579630059CB34 /* IntergralChangeViewController.m */; };
 		630EF1A61C8579630059CB34 /* MyIntergralViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 630EF1A41C8579630059CB34 /* MyIntergralViewController.m */; };
 		6320B73C1C89A2CE0076FC7E /* Coupons.m in Sources */ = {isa = PBXBuildFile; fileRef = 6320B73B1C89A2CE0076FC7E /* Coupons.m */; };
+		6339A3F91CC4B2CD007305DE /* ProvinceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6339A3F81CC4B2CD007305DE /* ProvinceModel.m */; };
+		6339A3FC1CC4D6B7007305DE /* EYTextPopupView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6339A3FB1CC4D6B7007305DE /* EYTextPopupView.m */; };
 		6339B0DD1CB6637C0045F7E0 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 6339B0DC1CB6637C0045F7E0 /* Default.png */; };
 		634647C31CB49EAF004A064E /* EYInputPopupView.m in Sources */ = {isa = PBXBuildFile; fileRef = 634647BB1CB49EAF004A064E /* EYInputPopupView.m */; };
 		634647C51CB49EAF004A064E /* EYPopupView.m in Sources */ = {isa = PBXBuildFile; fileRef = 634647BE1CB49EAF004A064E /* EYPopupView.m */; };
@@ -187,6 +189,10 @@
 		630EF1A41C8579630059CB34 /* MyIntergralViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyIntergralViewController.m; sourceTree = "<group>"; };
 		6320B73A1C89A2CE0076FC7E /* Coupons.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Coupons.h; sourceTree = "<group>"; };
 		6320B73B1C89A2CE0076FC7E /* Coupons.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Coupons.m; sourceTree = "<group>"; };
+		6339A3F71CC4B2CD007305DE /* ProvinceModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProvinceModel.h; sourceTree = "<group>"; };
+		6339A3F81CC4B2CD007305DE /* ProvinceModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProvinceModel.m; sourceTree = "<group>"; };
+		6339A3FA1CC4D6B7007305DE /* EYTextPopupView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EYTextPopupView.h; sourceTree = "<group>"; };
+		6339A3FB1CC4D6B7007305DE /* EYTextPopupView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EYTextPopupView.m; sourceTree = "<group>"; };
 		6339B0DC1CB6637C0045F7E0 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		634647BA1CB49EAF004A064E /* EYInputPopupView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EYInputPopupView.h; sourceTree = "<group>"; };
 		634647BB1CB49EAF004A064E /* EYInputPopupView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EYInputPopupView.m; sourceTree = "<group>"; };
@@ -877,6 +883,8 @@
 				637A624F1C8ED5A00020AE5E /* CouponsDistributed.m */,
 				63E9BFDB1C9659B200FFE0BA /* Order.h */,
 				63E9BFDC1C9659B200FFE0BA /* Order.m */,
+				6339A3F71CC4B2CD007305DE /* ProvinceModel.h */,
+				6339A3F81CC4B2CD007305DE /* ProvinceModel.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -911,6 +919,8 @@
 				634647C01CB49EAF004A064E /* EYPopupViewMacro.h */,
 				634647C11CB49EAF004A064E /* EYTextField.h */,
 				634647C21CB49EAF004A064E /* EYTextField.m */,
+				6339A3FA1CC4D6B7007305DE /* EYTextPopupView.h */,
+				6339A3FB1CC4D6B7007305DE /* EYTextPopupView.m */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -1023,7 +1033,7 @@
 				TargetAttributes = {
 					F0292BA91C7B00CD00A810A9 = {
 						CreatedOnToolsVersion = 7.2;
-						DevelopmentTeam = 7PS2AH4H79;
+						DevelopmentTeam = LH28XA7T22;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -1186,6 +1196,7 @@
 				636CD9881C884E9A0050935E /* IntergralSearchViewController.m in Sources */,
 				F094B5A31C80223400A2312D /* PersonalViewCell.m in Sources */,
 				F06DDBA41C7DAAE900C862A1 /* SearchOrderViewController.m in Sources */,
+				6339A3FC1CC4D6B7007305DE /* EYTextPopupView.m in Sources */,
 				F07FF9E31C8189E200EB1BB1 /* UserInfoViewController.m in Sources */,
 				F019C9E51C7C7BB700E73A2C /* SetUserInfoViewController.m in Sources */,
 				63588FE41CA4CEA4002C6857 /* ButelHandle.m in Sources */,
@@ -1230,6 +1241,7 @@
 				6375657D1CAE62FD004566BA /* NSDictionary+AYCUnicode.m in Sources */,
 				F06DDBAA1C7DAB7400C862A1 /* UIViewController+AYCNavigationItem.m in Sources */,
 				F09A5F931A55F0AA008D4963 /* InviteFriendViewController.m in Sources */,
+				6339A3F91CC4B2CD007305DE /* ProvinceModel.m in Sources */,
 				63C54E3E1C7C35AA007CE8CA /* ResultViewController.m in Sources */,
 				63588FE51CA4CEA4002C6857 /* CallView.m in Sources */,
 				630EF1A61C8579630059CB34 /* MyIntergralViewController.m in Sources */,
@@ -1384,8 +1396,8 @@
 			baseConfigurationReference = 8080CD2CAEE01D9CB60C40F6 /* Pods-CloudService.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1412,8 +1424,8 @@
 			baseConfigurationReference = AA863A4D44EB33149F738225 /* Pods-CloudService.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

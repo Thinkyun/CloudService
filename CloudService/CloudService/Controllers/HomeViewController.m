@@ -20,6 +20,7 @@
 #import "SetUserInfoViewController.h"
 #import "ButelHandle.h"
 #import "AppDelegate.h"
+#import "EYPopupViewHeader.h"
 
 @interface HomeViewController ()<UICollectionViewDataSource,UICollectionViewDelegate,UIAlertViewDelegate>
 {
@@ -135,9 +136,25 @@ static NSString *headerView_ID = @"headerView";
     User *user = [[SingleHandle shareSingleHandle] getUserInfo];
     if ([user.roleName isEqualToString:@"普通用户"] || user.roleName.length <= 0) {
         
-        UIAlertView *alterView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"当前用户为普通用户,不能签到,请到个人中心认证" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"去认证", nil];
-    
-        [alterView show];
+//        UIAlertView *alterView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"当前用户为普通用户,不能签到,请到个人中心认证" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"去认证", nil];
+//    
+//        [alterView show];
+        __weak typeof(self) weakSelf = self;
+        [EYTextPopupView popViewWithTitle:@"温馨提示" contentText:@"当前用户为普通用户,不能获取数据,请到个人中心认证"
+                          leftButtonTitle:EYLOCALSTRING(@"下次再说")
+                         rightButtonTitle:EYLOCALSTRING(@"马上认证")
+                                leftBlock:^() {
+                                }
+                               rightBlock:^() {
+                                   UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+                                   SetUserInfoViewController *setUserInfoVC = [storyBoard instantiateViewControllerWithIdentifier:@"setUserInfo"];
+                                   setUserInfoVC.rightBtnTitle = @"提交";
+                                   [weakSelf.navigationController pushViewController:setUserInfoVC animated:YES];
+                               }
+                             dismissBlock:^() {
+                                 
+                             }];
+        
         return ;
     }
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
@@ -162,15 +179,15 @@ static NSString *headerView_ID = @"headerView";
     } showHUD:YES];
     
 }
-//UIAlertViewDelegate
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex NS_DEPRECATED_IOS(2_0, 9_0) {
-    if (buttonIndex == 1) {
-        UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-        SetUserInfoViewController *setUserInfoVC = [storyBoard instantiateViewControllerWithIdentifier:@"setUserInfo"];
-        setUserInfoVC.rightBtnTitle = @"提交";
-        [self.navigationController pushViewController:setUserInfoVC animated:YES];
-    }
-}
+////UIAlertViewDelegate
+//- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex NS_DEPRECATED_IOS(2_0, 9_0) {
+//    if (buttonIndex == 1) {
+//        UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+//        SetUserInfoViewController *setUserInfoVC = [storyBoard instantiateViewControllerWithIdentifier:@"setUserInfo"];
+//        setUserInfoVC.rightBtnTitle = @"提交";
+//        [self.navigationController pushViewController:setUserInfoVC animated:YES];
+//    }
+//}
 -(void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
 }
@@ -332,8 +349,27 @@ static NSString *headerView_ID = @"headerView";
 - (void)getData {
     User *user = [[SingleHandle shareSingleHandle] getUserInfo];
     if ([user.roleName isEqualToString:@"普通用户"] || user.roleName.length <= 0) {
+//        UIAlertView *alterView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"当前用户为普通用户,不能获取数据,请到个人中心认证" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"去认证", nil];
+//        
+//        [alterView show];
         
-        [MBProgressHUD showMessag:@"普通用户不能获取数据!" toView:nil];
+        __weak typeof(self) weakSelf = self;
+        [EYTextPopupView popViewWithTitle:@"温馨提示" contentText:@"当前用户为普通用户,不能获取数据,请到个人中心认证"
+                          leftButtonTitle:EYLOCALSTRING(@"下次再说")
+                         rightButtonTitle:EYLOCALSTRING(@"马上认证")
+                                leftBlock:^() {
+                                }
+                               rightBlock:^() {
+                                   UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+                                   SetUserInfoViewController *setUserInfoVC = [storyBoard instantiateViewControllerWithIdentifier:@"setUserInfo"];
+                                   setUserInfoVC.rightBtnTitle = @"提交";
+                                   [weakSelf.navigationController pushViewController:setUserInfoVC animated:YES];
+                               }
+                             dismissBlock:^() {
+                                 
+                             }];
+
+
         return ;
     }
     AppDelegate *delegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];

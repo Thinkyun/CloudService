@@ -642,7 +642,7 @@ static NSString *const select_CellID = @"selectCell";
 - (void)showCityPickerViewWithCount:(NSInteger )count {
     
     [HelperUtil resignKeyBoardInView:self.view];
-    __block ZQCityPickerView *cityPickerView = [[ZQCityPickerView alloc] initWithProvincesArray:nil cityArray:nil componentsCount:count];
+    __block ZQCityPickerView *cityPickerView = [[ZQCityPickerView alloc] initWithProvincesArray:[DataSource provinceArray1] codeDic:[DataSource provinceCodeDict1] componentsCount:count];
     
     __weak typeof(self) weakSelf = self;
     [cityPickerView showPickViewAnimated:^(NSString *province, NSString *city,NSString *cityCode,NSString *provinceCode) {

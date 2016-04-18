@@ -12,6 +12,8 @@
 #import "Order.h"
 #import "ButelHandle.h"
 #import "MyClientViewController.h"
+#import "DataSource.h"
+#import "EYPopupViewHeader.h"
 
 @interface CreatClientViewController ()<UITextFieldDelegate,UIAlertViewDelegate>
 {
@@ -61,23 +63,26 @@
     
     [[FireData sharedInstance] eventWithCategory:@"创建客户" action:@"下一步" evar:nil attributes:nil];
     if ([_tfName.text isEqualToString:@""]) {
-        [MBProgressHUD showMessag:@"请输入客户姓名" toView:self.view];
+        [MBProgressHUD showMessag:@"车主姓名不能为空" toView:self.view];
         return ;
     }
     if ([_tfPhone.text isEqualToString:@""]){
-        [MBProgressHUD showMessag:@"请输入客户手机号" toView:self.view];
+        [MBProgressHUD showMessag:@"车主手机号不能为空" toView:self.view];
         return ;
     }
     if (!self.isNewCarBtn.selected && [_tfLicenseNo.text isEqualToString:@""]){
-            [MBProgressHUD showMessag:@"请输入车牌号" toView:self.view];
+            [MBProgressHUD showMessag:@"车牌号不能为空" toView:self.view];
         return ;
     }
     if ([_tfCarCity.text isEqualToString:@""]){
-        [MBProgressHUD showMessag:@"请输入汽车所在城市" toView:self.view];
+        [MBProgressHUD showMessag:@"汽车所在城市不能为空" toView:self.view];
         return ;
     }
     
-    
+    if (![HelperUtil checkName:_tfName.text]) {
+        [MBProgressHUD showMessag:@"车主姓名不合法" toView:nil];
+        return;
+    }
     if (![_tfPhone.text isEqualToString:@""] &&![HelperUtil checkTelNumber:_tfPhone.text]){
         [MBProgressHUD showMessag:@"手机号格式不正确" toView:self.view];
         return ;
@@ -114,8 +119,20 @@
                     if ([[returnData valueForKey:@"flag"] isEqualToString:@"conflict"]) {
                         NSDictionary *dataDic = [returnData valueForKey:@"data"];
                         _order = [Order mj_objectWithKeyValues:dataDic];
-                        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"客户已创建过，您想继续？" delegate:self cancelButtonTitle:@"返回" otherButtonTitles:@"继续", nil];
-                        [alertView show];
+//                        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"客户已创建过，您想继续？" delegate:self cancelButtonTitle:@"返回" otherButtonTitles:@"继续", nil];
+//                        [alertView show];
+                        __weak typeof(self) weakSelf = self;
+                        [EYTextPopupView popViewWithTitle:@"温馨提示" contentText:@"客户已创建过，您想继续？"
+                                          leftButtonTitle:EYLOCALSTRING(@"返回")
+                                         rightButtonTitle:EYLOCALSTRING(@"继续")
+                                                leftBlock:^() {
+                                                }
+                                               rightBlock:^() {
+                                                   [weakSelf performSegueWithIdentifier:@"offer" sender:self];
+                                               }
+                                             dismissBlock:^() {
+                                                 
+                                             }];
                     }
                           
                    if ([[returnData valueForKey:@"flag"] isEqualToString:@"error"]) {
@@ -159,7 +176,7 @@
 
     [HelperUtil resignKeyBoardInView:self.view];
     
-    __block ZQCityPickerView *cityPickerView = [[ZQCityPickerView alloc] initWithProvincesArray:nil cityArray:nil componentsCount:2];
+     __block ZQCityPickerView *cityPickerView = [[ZQCityPickerView alloc] initWithProvincesArray:[DataSource provinceArray] codeDic:[DataSource provinceCodeDict] componentsCount:2];
     
     __weak typeof(self) weakSelf = self;
     [cityPickerView showPickViewAnimated:^(NSString *province, NSString *city,NSString *cityCode,NSString *provinceCode) {
@@ -172,9 +189,9 @@
 }
 - (void)textFieldDidEndEditing:(UITextField *)textField {
     if ([textField isEqual:self.tfLicenseNo]) {
-
+        self.tfLicenseNo.text = [self.tfLicenseNo.text uppercaseString];
         if (![_tfLicenseNo.text isEqualToString:@""] && ![HelperUtil validateCarNo:_tfLicenseNo.text]){
-            self.tfLicenseNo.text = [self.tfLicenseNo.text uppercaseString];
+            
             [MBProgressHUD showMessag:@"车牌号格式不正确" toView:self.view];
             return ;
         }
@@ -207,14 +224,14 @@
 }
 
 #pragma alertView
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex NS_DEPRECATED_IOS(2_0, 9_0){
-    if(buttonIndex == 0){
-        AYCLog(@"fanhui");
-    }else {
-        [self performSegueWithIdentifier:@"offer" sender:self];
-        AYCLog(@"jixu");
-    }
-}
+//- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex NS_DEPRECATED_IOS(2_0, 9_0){
+//    if(buttonIndex == 0){
+//        AYCLog(@"fanhui");
+//    }else {
+//        [self performSegueWithIdentifier:@"offer" sender:self];
+//        AYCLog(@"jixu");
+//    }
+//}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

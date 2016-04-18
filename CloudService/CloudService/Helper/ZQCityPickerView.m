@@ -34,13 +34,13 @@
 
 @implementation ZQCityPickerView
 
-- (instancetype)initWithProvincesArray:(NSArray *)provinceArray cityArray:(NSArray *)cityArray componentsCount:(NSInteger )count{
+- (instancetype)initWithProvincesArray:(NSArray *)provinceArray codeDic:(NSDictionary *)provinceCodeDict componentsCount:(NSInteger )count{
     
     if (self = [super initWithFrame:[UIScreen mainScreen].bounds]) {
     
         _ComponentsCount = count;
-        _provinceArray = [DataSource provinceArray];
-        _provinceCodeDict = [DataSource provinceCodeDict];
+        _provinceArray = provinceArray;
+        _provinceCodeDict = provinceCodeDict;
         _provinceCode = [_provinceCodeDict valueForKey:_provinceArray[0]];
         self.province = [_provinceArray firstObject];
         

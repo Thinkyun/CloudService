@@ -16,7 +16,7 @@ typedef void(^hidePickerViewBlock)(NSString *province,NSString *city,NSString *c
 @property (nonatomic,copy)NSString *province;
 @property (nonatomic,copy)NSString *cityCode;
 
-- (instancetype)initWithProvincesArray:(NSArray *)provinceArray cityArray:(NSArray *)cityArray componentsCount:(NSInteger )count;
+- (instancetype)initWithProvincesArray:(NSArray *)provinceArray codeDic:(NSDictionary *)provinceCodeDict componentsCount:(NSInteger )count;
 
 /**
  *  显示

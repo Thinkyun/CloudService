@@ -10,6 +10,7 @@
 #import "RestAPI.h"
 #import "Utility.h"
 #import "ZQCityPickerView.h"
+#import "DataSource.h"
 
 @interface RegisterViewController ()
 
@@ -98,7 +99,7 @@
 
     [self resignKeyBoardInView:self.view];
     
-    __block ZQCityPickerView *cityPickerView = [[ZQCityPickerView alloc] initWithProvincesArray:nil cityArray:nil componentsCount:2];
+    __block ZQCityPickerView *cityPickerView = [[ZQCityPickerView alloc] initWithProvincesArray:[DataSource provinceArray1] codeDic:[DataSource provinceCodeDict1] componentsCount:2];
     [cityPickerView showPickViewAnimated:^(NSString *province, NSString *city, NSString *cityCode, NSString *provinceCode) {
         
         self.locateBtn.selected = !self.locateBtn.selected;
