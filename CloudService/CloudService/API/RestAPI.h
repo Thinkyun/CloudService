@@ -12,8 +12,8 @@
 
 
 //#define BaseAPI                 @"http://10.136.96.139:8889/cloudSales-action"  // 11服务器
-//#define BaseAPI                 @"http://192.168.4.117:8889/cloudSales-action"  // 测试服务器
-#define BaseAPI                     @"http://www.eyunkf.com" //测试服务器
+#define BaseAPI                 @"http://192.168.4.117:8889/cloudSales-action"  // 测试服务器
+//#define BaseAPI                     @"http://www.eyunkf.com" //测试服务器
 //#define BaseAPI                     @"http://www.ddyunf.com" //生产服务器
 
 #define kRegisterAPI            @"/app/user/register"                     //注册
