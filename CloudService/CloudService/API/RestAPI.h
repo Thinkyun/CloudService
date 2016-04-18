@@ -12,9 +12,9 @@
 
 
 //#define BaseAPI                 @"http://10.136.96.139:8889/cloudSales-action"  // 11服务器
-#define BaseAPI                 @"http://192.168.4.117:8889/cloudSales-action"  // 测试服务器
+//#define BaseAPI                 @"http://192.168.4.117:8889/cloudSales-action"  // 测试服务器
 //#define BaseAPI                     @"http://www.eyunkf.com" //测试服务器
-//#define BaseAPI                     @"http://www.ddyunf.com" //生产服务器
+#define BaseAPI                     @"http://www.ddyunf.com" //生产服务器
 
 #define kRegisterAPI            @"/app/user/register"                     //注册
 
@@ -71,12 +71,16 @@
 #define kassignTeamCoupon      @"/app/coupon/assignTeamCoupon"                 //团队优惠券下发
 
 
-#define kZhiKe      @"http://139.198.1.73:8081/zkyq-web/platform/getInfo"              //直客测试
-
-#define kZhiKeInfo      @"http://139.198.1.73:8081/zkyq-web/unfinishedOrder/returnPage?baseId="   //直客测试订单详情
-//#define kZhiKe      @"http://139.198.0.29:80/zkyq-web/platform/getInfo"              //直客
+//#define kZhiKe      @"http://139.198.1.73:8081/zkyq-web/platform/getInfo"              //直客测试
 //
-//#define kZhiKeInfo      @"http://139.198.0.29:80/zkyq-web/unfinishedOrder/returnPage?baseId="   //直客订单详情
+//#define kZhiKeUnfinishInfo      @"http://139.198.1.73:8081/zkyq-web/unfinishedOrder/returnPage?baseId="   //直客测试订单详情
+//
+//#define kZhiKeFinishInfo      @"http://139.198.1.73:8081/zkyq-web/insure/returnPage?baseId="   //直客测试订单详情
+#define kZhiKe      @"http://139.198.0.29:80/zkyq-web/platform/getInfo"              //直客
+
+#define kZhiKeUnfinishInfo      @"http://139.198.0.29:80/zkyq-web/unfinishedOrder/returnPage?baseId="   //直客订单详情
+
+#define kZhiKeFinishInfo      @"http://139.198.0.29:80/zkyq-web/insure/returnPage?baseId="   //直客订单详情
 
 #define kfindOrderByCondition     @"/app/order/findOrderByCondition"             //订单条件查询
 
@@ -96,6 +100,9 @@
 
 #define kSaveOrderGift        @"/app/order/saveOrderGift"                         // 保存投保礼
 
+
+#define kGetAreas            @"/app/area/getOnlineProvince"                             // 获取机构列表
+
 #define ksharePayMessage        @"/app/order/sharePayMessage"                         // 分享支付链接
 
 #define kVerifyCusRepeat        @"/app/customerData/verifyCustRepeat"                         // 客户信息重复校验
@@ -105,6 +112,7 @@
 
 
 #define kButelMakeCall     @"http://221.4.250.108:8088/apHttpService/agent/makeCall"           // 青牛拨打电话
+
 //   常量
 /**************************************************************************************/
 

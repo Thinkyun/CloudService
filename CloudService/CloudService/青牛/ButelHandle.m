@@ -12,6 +12,7 @@
 #import <ButelCommonConnectSDK/ButelCommonConnectSDK.h>
 #import <ButelCommonConnectSDK/ButelRecordConnect.h>
 #import "Utility.h"
+#import <JPUSHService.h>
 
 #define EntId  @"7593111023"
 static ButelHandle *singleHandle = nil;
@@ -134,6 +135,7 @@ static ButelHandle *singleHandle = nil;
         /**
          *  退出登录时清除账号信息
          */
+        [JPUSHService setTags:[NSSet set] alias:@"" callbackSelector:nil target:nil];
 //        User *user = [[SingleHandle shareSingleHandle] getUserInfo];
 //        
 //        [Utility saveUserName:user.phoneNo passWord:nil];

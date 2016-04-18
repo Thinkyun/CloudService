@@ -42,6 +42,16 @@
 /**
  *  所有省
  */
++(NSArray *)provinceArray1;
+
+/**
+ *  省对应编码
+ */
++(NSDictionary *)provinceCodeDict1;
+
+/**
+ *  所有省
+ */
 +(NSArray *)provinceArray;
 
 /**

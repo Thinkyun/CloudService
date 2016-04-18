@@ -13,6 +13,8 @@
 #import "ButelHandle.h"
 #import "Order.h"
 #import "OrderInfoViewController.h"
+#import "DataSource.h"
+#import "EYPopupViewHeader.h"
 
 // baseId 25961588
 @interface CreatOrderViewController ()<UITextFieldDelegate>
@@ -59,20 +61,24 @@
 }
 - (IBAction)nextAction:(id)sender {
     if ([_tfName.text isEqualToString:@""]) {
-        [MBProgressHUD showMessag:@"请输入客户姓名" toView:self.view];
+        [MBProgressHUD showMessag:@"车主姓名不能为空" toView:self.view];
         return ;
     }
     if ([_tfPhone.text isEqualToString:@""]){
-        [MBProgressHUD showMessag:@"请输入客户手机号" toView:self.view];
+        [MBProgressHUD showMessag:@"车主手机号不能为空" toView:self.view];
         return ;
     }
     if (!self.isNewCarBtn.selected && [_tfLicenseNo.text isEqualToString:@""]){
-        [MBProgressHUD showMessag:@"请输入车牌号" toView:self.view];
+        [MBProgressHUD showMessag:@"车牌号不能为空" toView:self.view];
         return ;
     }
     if ([_tfCarCity.text isEqualToString:@""]){
-        [MBProgressHUD showMessag:@"请输入汽车所在城市" toView:self.view];
+        [MBProgressHUD showMessag:@"汽车所在城市不能为空" toView:self.view];
         return ;
+    }
+    if (![HelperUtil checkName:_tfName.text]) {
+        [MBProgressHUD showMessag:@"车主姓名不合法" toView:nil];
+        return;
     }
     if (![HelperUtil checkTelNumber:self.tfPhone.text]){
         [MBProgressHUD showMessag:@"手机号格式不正确" toView:self.view];
@@ -103,8 +109,22 @@
                                     NSDictionary *dataDic = [returnData valueForKey:@"data"];
                                     _order = [Order mj_objectWithKeyValues:dataDic];
                                     NSString *msgStr = [NSString stringWithFormat:@"您之前有给%@报过价想跳转原单子么?",_order.customerName];
-                                    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:msgStr delegate:self cancelButtonTitle:@"找原单" otherButtonTitles:@"新建", nil];
-                                    [alertView show];
+//                                    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:msgStr delegate:self cancelButtonTitle:@"找原单" otherButtonTitles:@"新建", nil];
+//                                    [alertView show];
+                                    
+                                    __weak typeof(self) weakSelf = self;
+                                    [EYTextPopupView popViewWithTitle:@"温馨提示" contentText:msgStr
+                                                      leftButtonTitle:EYLOCALSTRING(@"找原单")
+                                                     rightButtonTitle:EYLOCALSTRING(@"新建")
+                                                            leftBlock:^() {
+                                                                 [weakSelf performSegueWithIdentifier:@"oldOrderInfo" sender:self];
+                                                            }
+                                                           rightBlock:^() {
+                                                              [weakSelf linkZhiKe];
+                                                           }
+                                                         dismissBlock:^() {
+                                                             
+                                                         }];
                                 }
                                 
                                 if ([[returnData valueForKey:@"flag"] isEqualToString:@"error"]) {
@@ -216,7 +236,7 @@
     [[FireData sharedInstance] eventWithCategory:@"创建订单" action:@"选择行驶省市" evar:nil attributes:nil];
     [HelperUtil resignKeyBoardInView:self.view];
     
-    __block ZQCityPickerView *cityPickerView = [[ZQCityPickerView alloc] initWithProvincesArray:nil cityArray:nil componentsCount:2];
+     __block ZQCityPickerView *cityPickerView = [[ZQCityPickerView alloc] initWithProvincesArray:[DataSource provinceArray] codeDic:[DataSource provinceCodeDict] componentsCount:2];
     
     __weak typeof(self) weakSelf = self;
     [cityPickerView showPickViewAnimated:^(NSString *province, NSString *city,NSString *cityCode,NSString *provinceCode) {
@@ -265,17 +285,17 @@
 }
 
 #pragma alertView
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex NS_DEPRECATED_IOS(2_0, 9_0){
-    if(buttonIndex == 0){
-        AYCLog(@"找原单");
-        
-        [self performSegueWithIdentifier:@"oldOrderInfo" sender:self];
-    }else {
-       
-        AYCLog(@"新建");
-         [self linkZhiKe];
-    }
-}
+//- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex NS_DEPRECATED_IOS(2_0, 9_0){
+//    if(buttonIndex == 0){
+//        AYCLog(@"找原单");
+//        
+//        [self performSegueWithIdentifier:@"oldOrderInfo" sender:self];
+//    }else {
+//       
+//        AYCLog(@"新建");
+//         [self linkZhiKe];
+//    }
+//}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

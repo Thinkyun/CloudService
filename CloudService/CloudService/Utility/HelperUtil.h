@@ -49,6 +49,11 @@
 /** 正则匹配用户姓名,20位的中文或英文
  */
 + (BOOL)checkUserName : (NSString *) userName;
+/**
+ *  正则匹配姓名
+ *
+ */
++ (BOOL)checkName : (NSString *)name;
 
 /** 正则匹配用户身份证号
  */

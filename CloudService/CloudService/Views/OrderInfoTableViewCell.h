@@ -22,6 +22,7 @@
 @property (weak, nonatomic)IBOutlet UILabel *lbComment;//备注
 @property (nonatomic, weak) IBOutlet UIButton *sendPayBtn;//下发支付短信
 @property (nonatomic, weak) IBOutlet UILabel *lbReserveTime;//预约时间
-
+@property (nonatomic, weak) IBOutlet UILabel *lbInsureComName;//销售保险公司
+@property (nonatomic, weak) IBOutlet UILabel *lbAgentName;//数据来源
 
 @end

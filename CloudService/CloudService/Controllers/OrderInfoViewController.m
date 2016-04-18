@@ -91,6 +91,8 @@
     }else{
         cell.lbReserveTime.text = [HelperUtil timeFormat:self.order.reserveTime format:@"yyyy-MM-dd HH:mm"];
     }
+    cell.lbAgentName.text = self.order.agentName;
+    cell.lbInsureComName.text = self.order.insureComName;
     
     [cell.callBtn addTarget:self action:@selector(callClick:) forControlEvents:UIControlEventTouchUpInside];
     [cell.priceBtn addTarget:self action:@selector(priceClick:) forControlEvents:UIControlEventTouchUpInside];
@@ -103,11 +105,11 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if ([self.order.orderStatus isEqualToString:@"待支付"]) {
-        return 293;
+        return 352;
     }else if ([self.order.orderStatus isEqualToString:@"已支付"]){
-        return 364;
+        return 420;
     }else{
-        return 325;
+        return 382;
     }
     
 }
@@ -120,10 +122,18 @@
 /** 报价*/
 - (void)priceClick:(UIButton *)sender {
     [[FireData sharedInstance] eventWithCategory:@"订单详情" action:@"报价按钮" evar:nil attributes:nil];
-
+    NSString *url = @"";
+    if ([self.order.orderStatus isEqualToString:@"未完成"]) {
+        url = [NSString stringWithFormat:@"%@%@&isCloud=%i",kZhiKeUnfinishInfo,self.order.baseId,1];
+    }else{
+        url = [NSString stringWithFormat:@"%@%@&isCloud=%i",kZhiKeFinishInfo,self.order.baseId,1];
+    }
+    
+    AYCLog(@"%@",[NSString stringWithFormat:@"%@",url]);
+    
     OrderH5ViewController *orderH5VC = [[OrderH5ViewController alloc] init];
-    orderH5VC.url = [NSString stringWithFormat:@"%@%@&isCloud=%i",kZhiKeInfo,self.order.baseId,1];
-    AYCLog(@"%@",[NSString stringWithFormat:@"%@%@",kZhiKeInfo,self.order.baseId]);
+    orderH5VC.url = url;
+    
     [self.navigationController pushViewController:orderH5VC animated:YES];
 
 }

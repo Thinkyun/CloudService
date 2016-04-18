@@ -324,7 +324,12 @@
     
 }
 
-
++ (BOOL)checkName : (NSString *)name {
+    NSString *pattern = @"^[\u4E00-\u9FA5]{1,15}[.]{0,1}[\u4E00-\u9FA5]{1,15}$";
+    NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", pattern];
+    BOOL isMatch = [pred evaluateWithObject:name];
+    return isMatch;
+}
 
 + (BOOL)checkUserIdCard: (NSString *) value
 {
