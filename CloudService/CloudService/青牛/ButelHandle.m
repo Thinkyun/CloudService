@@ -289,6 +289,7 @@ static ButelHandle *singleHandle = nil;
 //挂断回调
 - (void)OnDisconnect:(int) nReason Sid:(NSString*)Sid{
     isCall = !isCall;
+    _phoneNo = @"";
     [self.callView OnDisconnect];
     /**
      *  挂断电话后向后台传录音流水号

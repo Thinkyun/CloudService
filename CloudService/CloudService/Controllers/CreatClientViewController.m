@@ -14,6 +14,7 @@
 #import "MyClientViewController.h"
 #import "DataSource.h"
 #import "EYPopupViewHeader.h"
+#import "OrderInfoViewController.h"
 
 @interface CreatClientViewController ()<UITextFieldDelegate,UIAlertViewDelegate>
 {
@@ -119,20 +120,26 @@
                     if ([[returnData valueForKey:@"flag"] isEqualToString:@"conflict"]) {
                         NSDictionary *dataDic = [returnData valueForKey:@"data"];
                         _order = [Order mj_objectWithKeyValues:dataDic];
-//                        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"客户已创建过，您想继续？" delegate:self cancelButtonTitle:@"返回" otherButtonTitles:@"继续", nil];
-//                        [alertView show];
-                        __weak typeof(self) weakSelf = self;
-                        [EYTextPopupView popViewWithTitle:@"温馨提示" contentText:@"客户已创建过，您想继续？"
-                                          leftButtonTitle:EYLOCALSTRING(@"返回")
-                                         rightButtonTitle:EYLOCALSTRING(@"继续")
-                                                leftBlock:^() {
-                                                }
-                                               rightBlock:^() {
-                                                   [weakSelf performSegueWithIdentifier:@"offer" sender:self];
-                                               }
-                                             dismissBlock:^() {
-                                                 
-                                             }];
+                        if ([_order.baseId isEqualToString:@""]) {
+                            [weakSelf performSegueWithIdentifier:@"offer" sender:self];
+
+                        }else{
+                            
+                            [weakSelf performSegueWithIdentifier:@"clientOrderInfo" sender:self];
+                        }
+                        
+//                        __weak typeof(self) weakSelf = self;
+//                        [EYTextPopupView popViewWithTitle:@"温馨提示" contentText:@"客户已创建过，您想继续？"
+//                                          leftButtonTitle:EYLOCALSTRING(@"返回")
+//                                         rightButtonTitle:EYLOCALSTRING(@"继续")
+//                                                leftBlock:^() {
+//                                                }
+//                                               rightBlock:^() {
+//                                                   [weakSelf performSegueWithIdentifier:@"offer" sender:self];
+//                                               }
+//                                             dismissBlock:^() {
+//                                                 
+//                                             }];
                     }
                           
                    if ([[returnData valueForKey:@"flag"] isEqualToString:@"error"]) {
@@ -176,7 +183,7 @@
 
     [HelperUtil resignKeyBoardInView:self.view];
     
-     __block ZQCityPickerView *cityPickerView = [[ZQCityPickerView alloc] initWithProvincesArray:[DataSource provinceArray] codeDic:[DataSource provinceCodeDict] componentsCount:2];
+     __block ZQCityPickerView *cityPickerView = [[ZQCityPickerView alloc] initWithCount:2];
     
     __weak typeof(self) weakSelf = self;
     [cityPickerView showPickViewAnimated:^(NSString *province, NSString *city,NSString *cityCode,NSString *provinceCode) {
@@ -220,6 +227,10 @@
         OfferViewController *offerVC = segue.destinationViewController;
         offerVC.order = _order;
         
+    }
+    if ([segue.identifier isEqualToString:@"clientOrderInfo"]) {
+        OrderInfoViewController *offerVC = segue.destinationViewController;
+        offerVC.order = _order;
     }
 }
 

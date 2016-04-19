@@ -140,7 +140,7 @@ static NSString *headerView_ID = @"headerView";
 //    
 //        [alterView show];
         __weak typeof(self) weakSelf = self;
-        [EYTextPopupView popViewWithTitle:@"温馨提示" contentText:@"当前用户为普通用户,不能获取数据,请到个人中心认证"
+        [EYTextPopupView popViewWithTitle:@"温馨提示" contentText:@"当前用户为普通用户,不能签到,请到个人中心认证"
                           leftButtonTitle:EYLOCALSTRING(@"下次再说")
                          rightButtonTitle:EYLOCALSTRING(@"马上认证")
                                 leftBlock:^() {

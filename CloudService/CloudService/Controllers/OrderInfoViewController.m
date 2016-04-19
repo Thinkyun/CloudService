@@ -123,7 +123,7 @@
 - (void)priceClick:(UIButton *)sender {
     [[FireData sharedInstance] eventWithCategory:@"订单详情" action:@"报价按钮" evar:nil attributes:nil];
     NSString *url = @"";
-    if ([self.order.orderStatus isEqualToString:@"未完成"]) {
+    if ([self.order.orderStatus isEqualToString:@"未完成"]||[self.order.orderStatus isEqualToString:@""]) {
         url = [NSString stringWithFormat:@"%@%@&isCloud=%i",kZhiKeUnfinishInfo,self.order.baseId,1];
     }else{
         url = [NSString stringWithFormat:@"%@%@&isCloud=%i",kZhiKeFinishInfo,self.order.baseId,1];

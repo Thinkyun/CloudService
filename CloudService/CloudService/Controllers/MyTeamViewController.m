@@ -72,7 +72,7 @@ static NSString *cell_id = @"myTeamCell";
     self.title = @"我的团队";
     __weak typeof(self) weakSelf = self;
     [self setLeftImageBarButtonItemWithFrame:CGRectMake(0, 0, 30, 30) image:@"title-back" selectImage:@"" action:^(AYCButton *button) {
-        NSLog(@"Retain count is %ld", CFGetRetainCount((__bridge CFTypeRef)weakSelf));
+        AYCLog(@"Retain count is %ld", CFGetRetainCount((__bridge CFTypeRef)weakSelf));
         [weakSelf.navigationController popViewControllerAnimated:YES];
     }];
     

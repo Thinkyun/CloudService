@@ -56,6 +56,7 @@
     if (self.tfPhone.text.length >= 11) {
         self.tfPhone.text = [self.tfPhone.text substringToIndex:11];
         [[ButelHandle shareButelHandle] setPhoneNo:_tfPhone.text];
+        AYCLog(@"%@",_tfPhone);
     }
     
 }
@@ -236,7 +237,7 @@
     [[FireData sharedInstance] eventWithCategory:@"创建订单" action:@"选择行驶省市" evar:nil attributes:nil];
     [HelperUtil resignKeyBoardInView:self.view];
     
-     __block ZQCityPickerView *cityPickerView = [[ZQCityPickerView alloc] initWithProvincesArray:[DataSource provinceArray] codeDic:[DataSource provinceCodeDict] componentsCount:2];
+     __block ZQCityPickerView *cityPickerView = [[ZQCityPickerView alloc] initWithCount:2];
     
     __weak typeof(self) weakSelf = self;
     [cityPickerView showPickViewAnimated:^(NSString *province, NSString *city,NSString *cityCode,NSString *provinceCode) {

@@ -16,6 +16,7 @@
 #import "FireData.h"
 #import <JPUSHService.h>
 #import "ButelHandle.h"
+#import "SingleHandle.h"
 
 #define MObAppKey     @"100082c56c5c0"
 #define WXAppID       @"wx5ba999122c08bd76"
@@ -60,6 +61,14 @@
     }
     
 
+    /**
+     *  获取省份列表
+     *
+     */
+    
+    [[SingleHandle shareSingleHandle] getAreas];
+    
+    
     __weak typeof(self) weakSelf = self;
     // 检查版本号
     [Utility checkNewVersion:^(BOOL hasNewVersion) {
@@ -277,6 +286,18 @@
         [alertView show];
     }
     [application setApplicationIconBadgeNumber:0];
+
+    
+    // 取得 APNs 标准信息内容
+    NSDictionary *aps = [userInfo valueForKey:@"aps"];
+    NSString *content = [aps valueForKey:@"alert"]; //推送显示的内容
+
+    
+    // 取得Extras字段内容
+    NSString *customizeField1 = [userInfo valueForKey:@"customizeExtras"]; //服务端中Extras字段，key是自己定义的
+    AYCLog(@"content =[%@], customize field  =[%@]",content,customizeField1);
+    
+    // Required
     [JPUSHService handleRemoteNotification:userInfo];
 }
 

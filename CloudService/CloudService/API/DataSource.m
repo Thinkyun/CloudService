@@ -7,6 +7,7 @@
 //
 
 #import "DataSource.h"
+#import "MyFile.h"
 
 @implementation DataSource
 +(NSArray *)bankBin {
@@ -34,7 +35,11 @@
 }
 
 +(NSArray *)provinceArray {
-    return @[@"天津",@"黑龙江",@"青岛",@"山东",@"河南",@"湖南",@"内蒙古",@"湖北",@"四川",@"新疆",@"重庆"];
+    NSString *provincePath = [MyFile fileDocumentPath:PROVINCE_LIST];
+    
+    
+    return  [NSKeyedUnarchiver unarchiveObjectWithFile:provincePath];
+//    return @[@"天津",@"黑龙江",@"青岛",@"山东",@"河南",@"湖南",@"内蒙古",@"湖北",@"四川",@"新疆",@"重庆"];
 }
 
 +(NSDictionary *)provinceCodeDict {

@@ -35,4 +35,9 @@
  */
 - (void)loginAppDic:(NSMutableDictionary *)paramDic;
 
+/**
+ *  获取省份列表
+ */
+- (void)getAreas;
+
 @end

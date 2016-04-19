@@ -426,15 +426,15 @@
                         <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q2T-Fm-dfR">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q2T-Fm-dfR">
                                 <rect key="frame" x="16" y="0.0" width="343" height="603"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YbK-pI-z03">
-                                        <rect key="frame" x="0.0" y="0.0" width="343" height="603"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="343" height="568"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XPu-ve-Bmg">
-                                                <rect key="frame" x="10" y="408" width="323" height="35"/>
-                                                <state key="normal" title="直接进入应用首页">
+                                                <rect key="frame" x="10" y="451" width="323" height="35"/>
+                                                <state key="normal" title="首页">
                                                     <color key="titleColor" red="0.5883443813" green="0.5883443813" blue="0.5883443813" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
                                                 <connections>
@@ -442,13 +442,13 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0bi-16-jhl">
-                                                <rect key="frame" x="10" y="353" width="323" height="35"/>
+                                                <rect key="frame" x="10" y="401" width="323" height="35"/>
                                                 <color key="backgroundColor" red="0.1529411765" green="0.49019607840000001" blue="0.85098039219999999" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="35" id="chk-PA-JZ1"/>
                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="vyn-Jb-7UT"/>
                                                 </constraints>
-                                                <state key="normal" title="填写个人信息，马上成为会员">
+                                                <state key="normal" title="认证">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <state key="selected">
@@ -458,45 +458,46 @@
                                                     <segue destination="9IL-JY-7wm" kind="push" id="OrN-33-9Qy"/>
                                                 </connections>
                                             </button>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1yc-Qu-rq1">
-                                                <rect key="frame" x="15" y="223" width="313" height="110"/>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1yc-Qu-rq1">
+                                                <rect key="frame" x="5" y="196" width="333" height="190"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="80" id="dkk-sK-WVp"/>
-                                                    <constraint firstAttribute="height" constant="110" id="vVV-BQ-KNH"/>
+                                                    <constraint firstAttribute="height" constant="190" id="vVV-BQ-KNH"/>
                                                 </constraints>
-                                                <string key="text">1. 单次旅程投保
-本公司对各被保险人的保险责任的开始时间以下列情况中最迟发生的时间为准:
-1) 保险单所载的生效日期；
-2) 该被保险人在本合同有效期内离开其境内日常居住地或日常工作地直接前往境外旅行目的地。</string>
+                                                <string key="text">● 创业组建团队的权利，支持兼职或专职时间自由；
+● 获取全国省份有车险需求的用户名单可供申请销售；
+● 算价过程中可进行比价功能，支持多家保险公司投保；
+● 积分可随时兑换，规则范围内自由支配，方便简单税点低；
+● 平台会根据市场的变化为用户提供适应销售的营销方案；</string>
                                                 <color key="textColor" red="0.54509803921568623" green="0.54509803921568623" blue="0.54509803921568623" alpha="1" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="注册成功" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xPS-pz-WnY">
-                                                <rect key="frame" x="15" y="155" width="313" height="30"/>
+                                                <rect key="frame" x="15" y="133" width="313" height="25"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="dqP-hS-34T"/>
-                                                    <constraint firstAttribute="height" constant="30" id="wDW-wN-rXE"/>
+                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="25" id="dqP-hS-34T"/>
+                                                    <constraint firstAttribute="height" constant="25" id="wDW-wN-rXE"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pix" translatesAutoresizingMaskIntoConstraints="NO" id="LgB-HX-yof">
-                                                <rect key="frame" x="111" y="20" width="120" height="120"/>
+                                                <rect key="frame" x="112" y="15" width="120" height="105"/>
                                                 <color key="backgroundColor" red="1" green="0.17007582060000001" blue="0.18900344620000001" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="120" id="7wJ-8e-1ds"/>
+                                                    <constraint firstAttribute="height" constant="105" id="7wJ-8e-1ds"/>
                                                     <constraint firstAttribute="width" constant="120" id="mHh-tT-ijN"/>
                                                 </constraints>
                                             </imageView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Emu-fm-orG">
-                                                <rect key="frame" x="15" y="190" width="313" height="30"/>
+                                                <rect key="frame" x="15" y="163" width="313" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="qYC-6g-4D7"/>
                                                 </constraints>
-                                                <state key="normal" title="会员条款">
+                                                <state key="normal" title="会员专享">
                                                     <color key="titleColor" red="0.42342148507130128" green="0.42342148507130128" blue="0.42342148507130128" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
                                             </button>
@@ -504,27 +505,28 @@
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstItem="Emu-fm-orG" firstAttribute="trailing" secondItem="xPS-pz-WnY" secondAttribute="trailing" id="19Q-6y-hAO"/>
-                                            <constraint firstItem="LgB-HX-yof" firstAttribute="top" secondItem="YbK-pI-z03" secondAttribute="top" constant="20" id="3bF-E9-0wf"/>
-                                            <constraint firstItem="XPu-ve-Bmg" firstAttribute="top" secondItem="0bi-16-jhl" secondAttribute="bottom" constant="20" id="4kY-da-hMm"/>
+                                            <constraint firstItem="LgB-HX-yof" firstAttribute="top" secondItem="YbK-pI-z03" secondAttribute="top" constant="15" id="3bF-E9-0wf"/>
+                                            <constraint firstItem="XPu-ve-Bmg" firstAttribute="top" secondItem="0bi-16-jhl" secondAttribute="bottom" constant="15" id="4kY-da-hMm"/>
                                             <constraint firstItem="LgB-HX-yof" firstAttribute="centerX" secondItem="YbK-pI-z03" secondAttribute="centerX" id="8CF-yY-keb"/>
                                             <constraint firstItem="XPu-ve-Bmg" firstAttribute="height" secondItem="0bi-16-jhl" secondAttribute="height" id="96j-BS-kYa"/>
                                             <constraint firstItem="1yc-Qu-rq1" firstAttribute="top" secondItem="Emu-fm-orG" secondAttribute="bottom" constant="3" id="9rr-z3-aKo"/>
-                                            <constraint firstItem="xPS-pz-WnY" firstAttribute="top" secondItem="LgB-HX-yof" secondAttribute="bottom" constant="15" id="FMb-UC-pSj"/>
+                                            <constraint firstItem="xPS-pz-WnY" firstAttribute="top" secondItem="LgB-HX-yof" secondAttribute="bottom" constant="13" id="FMb-UC-pSj"/>
                                             <constraint firstItem="Emu-fm-orG" firstAttribute="leading" secondItem="xPS-pz-WnY" secondAttribute="leading" id="GRr-VM-sz6"/>
-                                            <constraint firstAttribute="trailing" secondItem="1yc-Qu-rq1" secondAttribute="trailing" constant="15" id="ITp-bh-aVA"/>
+                                            <constraint firstAttribute="trailing" secondItem="1yc-Qu-rq1" secondAttribute="trailing" constant="5" id="ITp-bh-aVA"/>
                                             <constraint firstItem="XPu-ve-Bmg" firstAttribute="leading" secondItem="0bi-16-jhl" secondAttribute="leading" id="M2t-KZ-0Gj"/>
                                             <constraint firstAttribute="trailing" secondItem="xPS-pz-WnY" secondAttribute="trailing" constant="15" id="ar2-yk-pMB"/>
                                             <constraint firstItem="0bi-16-jhl" firstAttribute="leading" secondItem="YbK-pI-z03" secondAttribute="leading" constant="10" id="cLk-zq-jud"/>
-                                            <constraint firstItem="1yc-Qu-rq1" firstAttribute="leading" secondItem="YbK-pI-z03" secondAttribute="leading" constant="15" id="cPk-Az-GuT"/>
+                                            <constraint firstItem="1yc-Qu-rq1" firstAttribute="leading" secondItem="YbK-pI-z03" secondAttribute="leading" constant="5" id="cPk-Az-GuT"/>
                                             <constraint firstAttribute="trailing" secondItem="0bi-16-jhl" secondAttribute="trailing" constant="10" id="fyX-YU-AR1"/>
                                             <constraint firstItem="xPS-pz-WnY" firstAttribute="leading" secondItem="YbK-pI-z03" secondAttribute="leading" constant="15" id="mV2-Gd-qWx"/>
-                                            <constraint firstItem="0bi-16-jhl" firstAttribute="top" secondItem="1yc-Qu-rq1" secondAttribute="bottom" constant="20" id="oOT-XG-lXc"/>
-                                            <constraint firstAttribute="height" constant="603" id="pFm-Xs-Q59"/>
+                                            <constraint firstItem="0bi-16-jhl" firstAttribute="top" secondItem="1yc-Qu-rq1" secondAttribute="bottom" constant="15" id="oOT-XG-lXc"/>
+                                            <constraint firstAttribute="height" constant="568" id="pFm-Xs-Q59"/>
                                             <constraint firstItem="Emu-fm-orG" firstAttribute="top" secondItem="xPS-pz-WnY" secondAttribute="bottom" constant="5" id="pzj-Sd-jM5"/>
                                             <constraint firstItem="XPu-ve-Bmg" firstAttribute="trailing" secondItem="0bi-16-jhl" secondAttribute="trailing" id="txr-Q6-9v9"/>
                                         </constraints>
                                     </view>
                                 </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="YbK-pI-z03" secondAttribute="bottom" id="518-mJ-p5h"/>
                                     <constraint firstItem="YbK-pI-z03" firstAttribute="centerX" secondItem="Q2T-Fm-dfR" secondAttribute="centerX" id="AVV-dC-egh"/>
@@ -554,7 +556,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tJW-vo-tnH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-224.5" y="1191.5"/>
+            <point key="canvasLocation" x="-411.5" y="1146.5"/>
         </scene>
         <!--Select City View Controller-->
         <scene sceneID="6RZ-wJ-I8c">
@@ -1473,7 +1475,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FjV-52-9y1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2294.5" y="488.5"/>
+            <point key="canvasLocation" x="2230.5" y="532.5"/>
         </scene>
         <!--预约-->
         <scene sceneID="iZT-ts-OBf">
@@ -2896,11 +2898,12 @@
                         <outlet property="tfName" destination="kqN-XN-Wi2" id="dMc-Ep-6fR"/>
                         <outlet property="tfPhone" destination="pOe-iP-xPQ" id="L2V-zK-dag"/>
                         <segue destination="RT6-86-P7R" kind="push" identifier="offer" id="KaR-KU-zbk"/>
+                        <segue destination="g2Q-wk-WsR" kind="push" identifier="clientOrderInfo" id="E89-Ed-fEZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SAN-tt-IbJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2547.5" y="-511.5"/>
+            <point key="canvasLocation" x="2630.5" y="-612.5"/>
         </scene>
         <!--立即报价-->
         <scene sceneID="iak-uT-QYf">
@@ -3575,7 +3578,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="hk9-Xv-JLY"/>
         <segue reference="fDp-sc-Hby"/>
+        <segue reference="E89-Ed-fEZ"/>
         <segue reference="KaR-KU-zbk"/>
-        <segue reference="zAa-Im-zuA"/>
     </inferredMetricsTieBreakers>
 </document>

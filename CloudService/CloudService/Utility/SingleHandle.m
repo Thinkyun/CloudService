@@ -10,7 +10,7 @@
 #import "Utility.h"
 #import "ButelHandle.h"
 #import <JPUSHService.h>
-#import "ProvinceModel.h"
+#import "MyFile.h"
 
 static SingleHandle *singleHandle = nil;
 @implementation SingleHandle
@@ -80,16 +80,16 @@ static SingleHandle *singleHandle = nil;
             /**
              *  火炬登陆信息
              */
-            [[FireData sharedInstance] loginWithUserid:user.userNum uvar:nil];
+            [[FireData sharedInstance] loginWithUserid:user.userNum uvar:@{@"roleName":user.roleName}];
             /**
              *  注册极光推送标签别名
              */
             
-            [JPUSHService setTags:[NSSet setWithObject:user.roleName] alias:user.userName callbackSelector:nil target:nil];
+            [JPUSHService setTags:[NSSet setWithObject:user.roleName] alias:user.userNum callbackSelector:nil target:nil];
             
             [[ButelHandle shareButelHandle] ButelHttpLogin];
             [[NSNotificationCenter defaultCenter] postNotificationName:LoginToMenuViewNotice object:nil];
-            [weakSelf getAreas];
+            
          
         }else if([[returnData valueForKey:@"flag"] isEqualToString:@"error"]){
             [MBProgressHUD showMessag:[returnData valueForKey:@"msg"] toView:nil];
@@ -106,10 +106,32 @@ static SingleHandle *singleHandle = nil;
    
     [MHNetworkManager postReqeustWithURL:[RequestEntity urlString:kGetAreas] params:nil successBlock:^(id returnData) {
         if ([[returnData valueForKey:@"flag"] isEqualToString:@"success"]) {
+            NSArray *dataArray = [returnData valueForKey:@"data"];
+             NSMutableArray *provinceArray = [NSMutableArray array];
+            for (NSDictionary *province in dataArray) {
+                NSMutableDictionary *provinceDict = [NSMutableDictionary dictionary];
+                
+                NSString *provinceId = [province valueForKey:@"branchId"];
+                NSString *provinceName = [province valueForKey:@"branchName"];
+                [provinceDict setObject:provinceId forKey:@"provinceId"];
+                [provinceDict setObject:provinceName forKey:@"provinceName"];
+                [provinceArray addObject:provinceDict];
+            }
+
+            AYCLog(@"%@",provinceArray);
+            NSString *provincePath = [MyFile fileDocumentPath:PROVINCE_LIST];
+            //保存路径
             
-            NSArray *provinceArray = [ProvinceModel mj_objectWithKeyValues:[returnData valueForKey:@"data"]];
-            
-            
+            BOOL result = [NSKeyedArchiver archiveRootObject:provinceArray toFile:provincePath];
+            if (result) {
+                
+                AYCLog(@"success");
+                
+            }else {
+                
+                AYCLog(@"no success");
+                
+            }
         }else if([[returnData valueForKey:@"flag"] isEqualToString:@"error"]){
             [MBProgressHUD showMessag:[returnData valueForKey:@"msg"] toView:nil];
         }
