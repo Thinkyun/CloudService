@@ -283,7 +283,7 @@ static ButelHandle *singleHandle = nil;
 
 
 - (void)OnNewcall:(NSString*)szCallerNum szCallerNickname:(NSString*)szCallerNickname Sid:(NSString*)Sid  nCallType:(int) nCallType  szExtendSignalInfo:(NSString*)szExtendSignalInfo{
-    AYCLog(@"%@",szCallerNum);
+    AYCLog(@"%@",szCallerNum); 
 }
 
 //挂断回调
