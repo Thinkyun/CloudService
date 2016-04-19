@@ -9,7 +9,7 @@
 #import "RegisterViewController.h"
 #import "RestAPI.h"
 #import "Utility.h"
-#import "ZQCityPickerView.h"
+#import "CityPickerView.h"
 #import "DataSource.h"
 
 @interface RegisterViewController ()
@@ -98,13 +98,12 @@
     [[FireData sharedInstance] eventWithCategory:@"注册页面" action:@"定位" evar:nil attributes:nil];
 
     [self resignKeyBoardInView:self.view];
-    
-    __block ZQCityPickerView *cityPickerView = [[ZQCityPickerView alloc] initWithProvincesArray:[DataSource provinceArray1] codeDic:[DataSource provinceCodeDict1] componentsCount:2];
-    [cityPickerView showPickViewAnimated:^(NSString *province, NSString *city, NSString *cityCode, NSString *provinceCode) {
-        
-        self.locateBtn.selected = !self.locateBtn.selected;
+    __weak typeof(self) weakSelf = self;
+    __block CityPickerView *cityPickerView = [[CityPickerView alloc] initWithCount:2];
+    [cityPickerView showPickViewAnimated:^(NSString *province, NSString *city) {
+        weakSelf.locateBtn.selected = !weakSelf.locateBtn.selected;
         NSString *cityStr = [NSString stringWithFormat:@"%@%@",province,city];
-        [self.locateBtn setTitle:cityStr forState:(UIControlStateNormal)];
+        [weakSelf.locateBtn setTitle:cityStr forState:(UIControlStateNormal)];
         cityPickerView = nil;
     }];
     

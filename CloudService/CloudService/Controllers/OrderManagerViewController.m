@@ -32,6 +32,7 @@
     UIImageView *_noDataImg;
     UILabel *_lbNoData;
     Order *_order;
+    NSInteger currentIndex;
 }
 @end
 
@@ -62,6 +63,19 @@
      */
     [[ButelHandle shareButelHandle] hideCallView];
     
+    switch (currentIndex) {
+        case 0:
+            [_tableView1.mj_header beginRefreshing];
+            break;
+        case 1:
+            [_tableView2.mj_header beginRefreshing];
+            break;
+        case 2:
+            [_tableView3.mj_header beginRefreshing];
+            break;
+        default:
+            break;
+    }
 
 }
 
@@ -118,7 +132,7 @@
     }];
     // 设置自动切换透明度(在导航栏下面自动隐藏)
     _tableView1.mj_header.automaticallyChangeAlpha = YES;
-    [_tableView1.mj_header beginRefreshing];
+    
     
     [_pageView addTab:@"未完成" View:_tableView1 Info:nil];
     _tableView2 = [[UITableView alloc] init];
@@ -168,7 +182,8 @@
     [_pageView addTab:@"已支付" View:_tableView3 Info:nil];
     
     [_pageView enableTabBottomLine:YES LineHeight:2 LineColor:[HelperUtil colorWithHexString:@"277FD9"] LineBottomGap:0 ExtraWidth:50];
-    [_pageView setTitleStyle:[UIFont systemFontOfSize:14] SelFont:[UIFont systemFontOfSize:16] Color:[UIColor blackColor] SelColor:[HelperUtil colorWithHexString:@"277FD9"]];    [_pageView generate:^(UIButton *firstTitleControl, UIView *viewTitleEffect) {
+    [_pageView setTitleStyle:[UIFont systemFontOfSize:14] SelFont:[UIFont systemFontOfSize:16] Color:[UIColor blackColor] SelColor:[HelperUtil colorWithHexString:@"277FD9"]];
+    [_pageView generate:^(UIButton *firstTitleControl, UIView *viewTitleEffect) {
         CGRect frame= firstTitleControl.frame;
         frame.size.height-=5;
         frame.size.width-=6;
@@ -180,6 +195,7 @@
 - (void)LazyPageScrollViewPageChange:(LazyPageScrollView *)pageScrollView Index:(NSInteger)index PreIndex:(NSInteger)preIndex TitleEffectView:(UIView *)viewTitleEffect SelControl:(UIButton *)selBtn {
     [self removeNoData];
     if (index == 0) {
+        [_tableView1.mj_header beginRefreshing];
         if (_unfinishedArray.count == 0) {
             [self.pageView addSubview:_noDataImg];
             [self.pageView addSubview:_lbNoData];
@@ -189,7 +205,7 @@
         
         if (!_isLoad2) {
             [_tableView2.mj_header beginRefreshing];
-            _isLoad2 = YES;
+            _isLoad2 = NO;
         }
         if (_waitPayArray.count == 0) {
             [self.pageView addSubview:_noDataImg];
@@ -199,14 +215,14 @@
     if (index == 2) {
         if (!_isLoad3) {
             [_tableView3.mj_header beginRefreshing];
-            _isLoad3 = YES;
+            _isLoad3 = NO;
         }
         if (_alreadyPayArray.count == 0) {
             [self.pageView addSubview:_noDataImg];
             [self.pageView addSubview:_lbNoData];
         }
     }
-
+    currentIndex = index;
     AYCLog(@"之前下标：%ld 当前下标：%ld",preIndex,index);
 }
 
@@ -391,12 +407,15 @@
         [weakSelf.pageView addSubview:_lbNoData];
         
         if ([type isEqualToString:@"未完成"]) {
+            [_unfinishedArray removeAllObjects];
             [_tableView1 reloadData];
             [_tableView1.mj_header endRefreshing];
         }if ([type isEqualToString:@"待支付"]) {
+            [_waitPayArray removeAllObjects];
             [_tableView2 reloadData];
             [_tableView2.mj_header endRefreshing];
         }if ([type isEqualToString:@"已支付"]) {
+            [_alreadyPayArray removeAllObjects];
             [_tableView3 reloadData];
             [_tableView3.mj_header endRefreshing];
         }

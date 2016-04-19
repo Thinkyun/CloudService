@@ -13,13 +13,13 @@
 #import "HelperUtil.h"
 #import "DataSource.h"
 #import "Utility.h"
-#import "ZQCityPickerView.h"
 #import "LoginViewController.h"
 #import "CodeNameModel.h"
 #import "ResetPhonePopView.h"
 #import "SetUserInfoCell2.h"
 #import "PellTableViewSelect.h"
 #import "ChooseCompanyViewController.h"
+#import "CityPickerView.h"
 
 static NSString *const cell_id = @"setUserInfoCell";
 static NSString *const cell_Id2 = @"setUserInfoCell2";
@@ -600,14 +600,14 @@ static NSString *const select_CellID = @"selectCell";
 - (NSArray *)getChooseCityArray {
     
     NSMutableArray *dataArray = [NSMutableArray array];
-    for (NSString *provinceName in [DataSource provinceArray]) {
+    for (NSDictionary *provinceDic in [DataSource provinceArray]) {
         
-        if ([_valueArray_User[8] containsString:provinceName]) {
+        if ([_valueArray_User[8] containsString:[provinceDic valueForKey:@"provinceName"]]) {
             continue;
         }
         CodeNameModel *model = [[CodeNameModel alloc] init];
-        model.provinceCode = [[DataSource provinceCodeDict] valueForKey:provinceName];
-        model.provinceName = provinceName;
+        model.provinceCode = [provinceDic valueForKey:@"provinceId"];
+        model.provinceName = [provinceDic valueForKey:@"provinceName"];
         [dataArray addObject:model];
     }
     return dataArray;
@@ -642,37 +642,16 @@ static NSString *const select_CellID = @"selectCell";
 - (void)showCityPickerViewWithCount:(NSInteger )count {
     
     [HelperUtil resignKeyBoardInView:self.view];
-    __block ZQCityPickerView *cityPickerView = [[ZQCityPickerView alloc] initWithProvincesArray:[DataSource provinceArray1] codeDic:[DataSource provinceCodeDict1] componentsCount:count];
+    __block CityPickerView *cityPickerView = [[CityPickerView alloc] initWithCount:count];
     
     __weak typeof(self) weakSelf = self;
-    [cityPickerView showPickViewAnimated:^(NSString *province, NSString *city,NSString *cityCode,NSString *provinceCode) {
-        if (_indexPath.section == 0)
-        {
-            if (_saleCityArray.count > 3) {
-                [MBProgressHUD showMessag:@"城市选择不能超过四个" toView:weakSelf.view];
-                return ;
-            }
-            
-            // 可以用二分查找
-            for (CodeNameModel *model in _saleCityArray) {
-                if ([model.provinceName isEqualToString:province]) {
-                    return;
-                }
-            }
-            CodeNameModel *model = [[CodeNameModel alloc] init];
-            model.provinceName = province;
-            model.provinceCode = provinceCode;
-            [_saleCityArray addObject:model];
-            _valueArray_User[8] = [weakSelf changeStrArraytoTextString:_saleCityArray];
-            
-        }else
-        {
-            _valueArray_Bank[4] = province;
-            _valueArray_Bank[5] = city;
-        }
+    [cityPickerView showPickViewAnimated:^(NSString *province, NSString *city) {
+        _valueArray_Bank[4] = province;
+        _valueArray_Bank[5] = city;
         [weakSelf.tableView reloadData];
         cityPickerView = nil;
     }];
+   
     
 }
 

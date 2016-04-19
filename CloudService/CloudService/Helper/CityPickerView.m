@@ -1,61 +1,58 @@
 //
-//  ZQCityPickerView.m
-//  CloudService
+//  CityPickerView.m
+//  省市
 //
-//  Created by zhangqiang on 16/3/8.
-//  Copyright © 2016年 zhangqiang. All rights reserved.
+//  Created by 安永超 on 16/4/19.
+//  Copyright © 2016年 zph. All rights reserved.
 //
 
-#import "ZQCityPickerView.h"
-#import "DataSource.h"
-#import <FMDB.h>
-#import "MyFile.h"
-#define kWidth [UIScreen mainScreen].bounds.size.width
-#define kHeight [UIScreen mainScreen].bounds.size.height
-
-
-@interface ZQCityPickerView()<UIPickerViewDataSource,UIPickerViewDelegate>
+#import "CityPickerView.h"
+#define KWidth  [UIScreen mainScreen].bounds.size.width
+#define KHeight  [UIScreen mainScreen].bounds.size.height
+@interface CityPickerView()<UIPickerViewDataSource,UIPickerViewDelegate>
 {
-    NSArray *_provinceArray;
-    NSMutableArray *_cityArray;
-    NSString *_provinceCode;
-    NSDictionary *_provinceCodeDict;
-    NSMutableArray *_cityCodeArray;
-    
-    hidePickerViewBlock _block;
-    UIView *_accessInputView;
-    
-    NSInteger _ComponentsCount;
-}
 
+        hidePickerViewBlock _block;
+        UIView *_accessInputView;
+
+}
+/**
+ *  存放数据的数组
+ */
+@property (nonatomic,strong)NSArray *provinceArray;
 @property(nonatomic,strong)UIPickerView *pickerView;
 @property(nonatomic,strong)UIView *maskView;
+/**
+ *  省模型
+ */
+@property (nonatomic,strong)Province * selecletPro;
+@end
+
+
+@implementation Province
+
+/**
+ *  重写init方法
+ */
+-(instancetype)initWithDic:(NSDictionary *)dic{
+    if (self == [super init]) {
+        [self setValuesForKeysWithDictionary:dic];
+    }
+    return self;
+}
+
++(instancetype)citiesWithDic:(NSDictionary *)dic{
+    return [[self alloc]initWithDic:dic];
+}
 
 @end
 
-@implementation ZQCityPickerView
-
+@implementation CityPickerView
 - (instancetype)initWithCount:(NSInteger)count{
     
     if (self = [super initWithFrame:[UIScreen mainScreen].bounds]) {
         
-        NSString *provincePath = [MyFile fileDocumentPath:PROVINCE_LIST];
-        _ComponentsCount = count;
-        
-        _provinceArray = [NSKeyedUnarchiver unarchiveObjectWithFile:provincePath];
-        AYCLog(@"%@",_provinceArray);
-        NSDictionary *dic = _provinceArray[0];
-        _provinceCode = [dic valueForKey:@"provinceId"];
-        self.province = [dic valueForKey:@"provinceName"];
-        
-        if (count != 1) {
-            _cityArray = [NSMutableArray array];
-            _cityCodeArray = [NSMutableArray array];
-            [self searchCityinProvinceCode:_provinceCode];
-            self.city = [_cityArray firstObject];
-            self.cityCode = [_cityCodeArray firstObject];
-        }
-        
+
         self.frame = [UIScreen mainScreen].bounds;
         self.backgroundColor = [UIColor clearColor];
         self.hidden = YES;
@@ -76,9 +73,9 @@
     self.pickerView.backgroundColor = [UIColor whiteColor];
     self.pickerView.dataSource = self;
     self.pickerView.delegate = self;
-    [self pickerView:self.pickerView didSelectRow:0 inComponent:0];
+    
     _accessInputView = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMinY(self.pickerView.frame) - accessHeight, KWidth, accessHeight)];
-//    _accessInputView.hidden = YES;
+    //    _accessInputView.hidden = YES;
     _accessInputView.backgroundColor = [UIColor whiteColor];
     
     UIButton *cancleBtn = [UIButton buttonWithType:(UIButtonTypeSystem)];
@@ -99,46 +96,63 @@
     UIWindow *window = [[UIApplication sharedApplication] keyWindow];
     [window addSubview:self];
 }
-
-- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
-    return _ComponentsCount;
+-(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{
+    return 2;
 }
 
 // returns the # of rows in each component..
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
-    if (component == 0)
-    {
-        return _provinceArray.count;
-    }else
-    {
-        return _cityArray.count;
+    if (component == 0) {
+        return self.provinceArray.count;
+    }else{
+        
+        // 2.如果是第1组，城市 城市的行数就要看当前正在显示的是哪个省
+        //获取省的索引
+        NSInteger seleProIndx = [pickerView selectedRowInComponent:0];
+        //获取当前省的数据
+        Province * selePro = self.provinceArray[seleProIndx];
+        //保存当前省的数据
+        self.selecletPro = selePro;
+        //返回省的城市的个数
+        return selePro.cities.count;
+        
     }
 }
 
 -(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
+    
+    if (component == 0) {
+        
+        //返回省的名字
+        Province * city = self.provinceArray[row];
+        return city.state;
+    }else{
+               //返回保存的省里面的内容
+        return [self.selecletPro.cities[row] valueForKey:@"city"];
+    }
+    
 
-    return component == 0 ? [_provinceArray[row] valueForKey:@"provinceName"] : _cityArray[row];
 }
 
 -(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
-    if (component == 0)
-    {
-        NSDictionary *dic = _provinceArray[row];
-        _provinceCode = [dic valueForKey:@"provinceId"];
-  
-        if (_ComponentsCount != 1) {
-            [self searchCityinProvinceCode:_provinceCode];
-            [self.pickerView reloadComponent:1];
-            [pickerView selectRow:0 inComponent:1 animated:YES];
-        }
+    if (component == 0) {
+        [pickerView reloadComponent:1];
+        [pickerView selectRow:0 inComponent:1 animated:YES];
     }
-    NSDictionary *dic = _provinceArray[[self .pickerView selectedRowInComponent:0]];
-
-    self.province = [dic valueForKey:@"provinceName"];
-    if (_ComponentsCount != 1) {
-        self.city = _cityArray[[self.pickerView selectedRowInComponent:1]];
-        self.cityCode = _cityCodeArray[[self.pickerView selectedRowInComponent:1]];
-    }
+    
+    //设置label的内容
+    //选择了第几组的行
+    NSInteger selePro = [pickerView selectedRowInComponent:0];
+    NSInteger seleCity = [pickerView selectedRowInComponent:1];
+    
+    //获取内容
+    Province * pro = self.provinceArray[selePro];
+    //    NSString * city = pro.cities[seleCity];
+    //获取保存的省里面的城市
+    NSString * city = [self.selecletPro.cities[seleCity] valueForKey:@"city"];
+    //赋值
+    self.province = pro.state;
+    self.city = city;
 }
 
 - (void)cancleAction:(UIButton *)sender {
@@ -164,10 +178,7 @@
 
 - (void)hidePickerViewWithEnsure:(BOOL )flag {
     
-    if (_ComponentsCount == 1) {
-        self.city = @"";
-        self.cityCode = @"";
-    }
+
     [UIView animateWithDuration:0.3 animations:^{
         self.maskView.alpha = 0;
         _accessInputView.transform = CGAffineTransformIdentity;
@@ -175,41 +186,49 @@
     } completion:^(BOOL finished) {
         self.hidden = YES;
         if (flag) {
-            _block(self.province,self.city,self.cityCode,_provinceCode);
+            if (self.province||self.city) {
+                _block(self.province,self.city);
+            }else{
+                //获取内容
+                Province * pro = self.provinceArray[0];
+                self.province = pro.state;
+                //获取保存的省里面的城市
+                NSString * city = [self.selecletPro.cities[0] valueForKey:@"city"];
+                self.city = city;
+                _block(self.province,self.city);
+            }
+            
         }
         [self removeFromSuperview];
     }];
 }
+
+
 
 - (void)tapMaskView {
     [self hidePickerViewWithEnsure:NO];
 }
 
 /**
- *  搜索城市
- *
- *  @param provinceCode 省编码
- *
- *  @return 市
+ *  懒加载
  */
-- (void)searchCityinProvinceCode:(NSString *)provinceCode {
-    
-    [_cityArray removeAllObjects];
-    [_cityCodeArray removeAllObjects];
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"province" ofType:@"sqlite"];
-    FMDatabase *db = [FMDatabase databaseWithPath:path];
-    if (![db open]) {
-        AYCLog(@"数据库打开失败!");
-        return;
+-(NSArray *)provinceArray{
+    if (!_provinceArray) {
+        NSArray *array = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"area" ofType:@"plist"]];
+        NSMutableArray *nmArray = [NSMutableArray arrayWithCapacity:array.count];
+        for (NSDictionary *dic in array) {
+            [nmArray addObject:[Province citiesWithDic:dic]];
+        }
+        _provinceArray = nmArray;
     }
-    NSString *sqlStr = [NSString stringWithFormat:@"SELECT * FROM city where cityCode like '%@%%'",_provinceCode];
-    FMResultSet *result = [db executeQuery:sqlStr];
-    while ([result next]) {
-        AYCLog(@"%@",[result stringForColumn:@"cityName"]);
-        [_cityArray addObject:[result stringForColumn:@"cityName"]];
-        [_cityCodeArray addObject:[result stringForColumn:@"cityCode"]];
-    }
-    [db close];
+    return _provinceArray;
 }
+/*
+// Only override drawRect: if you perform custom drawing.
+// An empty implementation adversely affects performance during animation.
+- (void)drawRect:(CGRect)rect {
+    // Drawing code
+}
+*/
 
 @end

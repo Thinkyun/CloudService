@@ -828,9 +828,13 @@
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="b8O-t5-zQe">
-                                <rect key="frame" x="188" y="238" width="1" height="30"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b8O-t5-zQe">
+                                <rect key="frame" x="188" y="295" width="1" height="30"/>
                                 <color key="backgroundColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="to0-qn-Oa7"/>
+                                    <constraint firstAttribute="width" constant="1" id="zyG-di-KOB"/>
+                                </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YeO-m0-UYf">
                                 <rect key="frame" x="94" y="296" width="93" height="30"/>
@@ -918,6 +922,7 @@
                             <constraint firstItem="Ig4-Sc-fzE" firstAttribute="leading" secondItem="Qav-BB-bQn" secondAttribute="leading" constant="28" id="Xua-de-ENm"/>
                             <constraint firstItem="ebl-Kp-QXT" firstAttribute="top" secondItem="d4W-JT-eu7" secondAttribute="bottom" constant="10" id="Xw8-jX-ZcX"/>
                             <constraint firstItem="fbJ-Wv-db4" firstAttribute="leading" secondItem="YeO-m0-UYf" secondAttribute="trailing" constant="1" id="YID-rO-3d1"/>
+                            <constraint firstAttribute="bottom" secondItem="b8O-t5-zQe" secondAttribute="bottom" constant="13" id="ZeE-mN-WuQ"/>
                             <constraint firstItem="esK-4t-XEd" firstAttribute="leading" secondItem="Qav-BB-bQn" secondAttribute="leading" constant="28" id="a9g-ox-ns8"/>
                             <constraint firstItem="AYb-9p-NLg" firstAttribute="leading" secondItem="Qav-BB-bQn" secondAttribute="leading" constant="28" id="aSl-Ia-vYR"/>
                             <constraint firstItem="YeO-m0-UYf" firstAttribute="leading" secondItem="Oav-Xq-hWa" secondAttribute="trailing" constant="1" id="bSr-2E-Pnr"/>
@@ -931,6 +936,7 @@
                             <constraint firstItem="Oav-Xq-hWa" firstAttribute="top" secondItem="rtd-XD-Lyl" secondAttribute="bottom" constant="8" id="fms-rg-bDy"/>
                             <constraint firstAttribute="trailing" secondItem="d4W-JT-eu7" secondAttribute="trailing" id="iuW-IO-7B9"/>
                             <constraint firstItem="rtd-XD-Lyl" firstAttribute="leading" secondItem="Qav-BB-bQn" secondAttribute="leading" id="kbu-me-OhU"/>
+                            <constraint firstItem="b8O-t5-zQe" firstAttribute="leading" secondItem="YeO-m0-UYf" secondAttribute="trailing" constant="1" id="mWW-s9-IuR"/>
                             <constraint firstItem="ZRW-ec-xu4" firstAttribute="leading" secondItem="fbJ-Wv-db4" secondAttribute="trailing" constant="1" id="pg4-HK-RvS"/>
                             <constraint firstItem="Ig4-Sc-fzE" firstAttribute="top" secondItem="Qav-BB-bQn" secondAttribute="top" constant="15" id="pi8-rH-fLN"/>
                             <constraint firstItem="Hhh-hV-ox4" firstAttribute="top" secondItem="AYb-9p-NLg" secondAttribute="bottom" constant="8" id="qan-nZ-aVV"/>
@@ -961,6 +967,7 @@
                 <outlet property="lbLicenseNo" destination="Nje-zU-faP" id="45P-oX-yfd"/>
                 <outlet property="lbOrderNum" destination="Ig4-Sc-fzE" id="Njr-Pc-Ri3"/>
                 <outlet property="lbPhoneNo" destination="L4l-ss-nmz" id="mr5-UG-34t"/>
+                <outlet property="priceBtn" destination="YeO-m0-UYf" id="7KH-wn-pcr"/>
                 <outlet property="sendPayBtn" destination="ZRW-ec-xu4" id="lnX-8S-y20"/>
             </connections>
             <point key="canvasLocation" x="914.5" y="-53"/>

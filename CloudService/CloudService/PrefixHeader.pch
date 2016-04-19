@@ -34,4 +34,6 @@
 #define ProportionWidth 1.0/375*KWidth
 #define ProportionHeight 1.0/667*KHeight
 
+#define PROVINCE_LIST     @"/provinceList"
+
 #endif /* PrefixHeader_pch */

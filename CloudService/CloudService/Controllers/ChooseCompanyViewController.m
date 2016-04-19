@@ -128,10 +128,13 @@ static NSString *header_Id = @"header_Id";
         [_selectArray removeObjectAtIndex:indexPath.row];
         [_dataArray addObject:selectObject];
     }else {
-        if (_selectArray.count >= 4) {
-            [MBProgressHUD showMessag:@"销售保险城市不能超过4个!" toView:nil];
-            return;
-        }
+                if (self.type == chooseCity) {
+                    if (_selectArray.count >= 4) {
+                        [MBProgressHUD showMessag:@"销售保险城市不能超过4个!" toView:nil];
+                        return;
+                    }
+                }
+        
         toIndexPath = [NSIndexPath indexPathForItem:_selectArray.count inSection:0];
         selectObject = _dataArray[indexPath.row];
         [_dataArray removeObjectAtIndex:indexPath.row];

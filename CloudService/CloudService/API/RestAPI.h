@@ -11,7 +11,7 @@
 #import <UIKit/UIKit.h>
 
 
-//#define BaseAPI                 @"http://10.136.96.139:8889/cloudSales-action"  // 11服务器
+//#define BaseAPI                 @"http://192.168.4.114:8080/cloudSales-action"  // 11服务器
 //#define BaseAPI                 @"http://192.168.4.117:8889/cloudSales-action"  // 测试服务器
 //#define BaseAPI                     @"http://www.eyunkf.com" //测试服务器
 #define BaseAPI                     @"http://www.ddyunf.com" //生产服务器
@@ -101,7 +101,7 @@
 #define kSaveOrderGift        @"/app/order/saveOrderGift"                         // 保存投保礼
 
 
-#define kGetAreas            @"/app/area/getOnlineProvince"                             // 获取机构列表
+#define kGetAreas            @"/app/area/getOnlineProvince"                             // 获取机构省份列表
 
 #define ksharePayMessage        @"/app/order/sharePayMessage"                         // 分享支付链接
 
