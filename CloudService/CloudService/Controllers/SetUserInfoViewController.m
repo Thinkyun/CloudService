@@ -474,7 +474,7 @@ static NSString *const select_CellID = @"selectCell";
                 
                 chooseVC.dataArray = [NSMutableArray arrayWithArray:[self getChooseCityArray]];
                 
-                [[FireData sharedInstance] eventWithCategory:@"个人信息" action:@"申请销售保险公司" evar:nil attributes:nil];
+                [[FireData sharedInstance] eventWithCategory:@"个人信息" action:@"销售数据城市" evar:nil attributes:nil];
                 [self.navigationController pushViewController:chooseVC animated:YES];
 //                [[FireData sharedInstance] eventWithCategory:@"个人信息" action:@"销售数据城市" evar:nil attributes:nil];
 //                [self showCityPickerViewWithCount:1];
@@ -533,12 +533,12 @@ static NSString *const select_CellID = @"selectCell";
         }
     }
     
-    for (int i = 0; i < _valueArray_Bank.count; i ++) {
-        if ([_valueArray_Bank[i] length] <= 0) {
-            [MBProgressHUD showMessag:[NSString stringWithFormat:@"%@不能为空",_keyArray_Bank[i]] toView:self.view];
-            return nil;
-        }
-    }
+//    for (int i = 0; i < _valueArray_Bank.count; i ++) {
+//        if ([_valueArray_Bank[i] length] <= 0) {
+//            [MBProgressHUD showMessag:[NSString stringWithFormat:@"%@不能为空",_keyArray_Bank[i]] toView:self.view];
+//            return nil;
+//        }
+//    }
     
     if (![HelperUtil checkUserIdCard:_valueArray_User[1]]) {
         [MBProgressHUD showMessag:@"身份证号输入不正确" toView:self.view];

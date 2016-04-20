@@ -333,17 +333,19 @@
             dayAchievement.totalPremium = [[dayDic objectForKey:@"totalPremium"] floatValue];
             dayAchievement.resultTime = @"本日业绩";
             
-            NSDictionary *monthDic = [dataDic objectForKey:@"month"];
-            Achievement *monthAchievement = [[Achievement alloc] init];
-            monthAchievement.orderNum = [[monthDic objectForKey:@"orderNum"] intValue];
-            monthAchievement.totalPremium = [[monthDic objectForKey:@"totalPremium"] floatValue];
-            monthAchievement.resultTime = @"本周业绩";
-            
             NSDictionary *weekDic = [dataDic objectForKey:@"week"];
             Achievement *weekAchievement = [[Achievement alloc] init];
             weekAchievement.orderNum = [[weekDic objectForKey:@"orderNum"] intValue];
             weekAchievement.totalPremium = [[weekDic objectForKey:@"totalPremium"] floatValue];
-            weekAchievement.resultTime = @"本月业绩";
+            weekAchievement.resultTime = @"本周业绩";
+            
+            NSDictionary *monthDic = [dataDic objectForKey:@"month"];
+            Achievement *monthAchievement = [[Achievement alloc] init];
+            monthAchievement.orderNum = [[monthDic objectForKey:@"orderNum"] intValue];
+            monthAchievement.totalPremium = [[monthDic objectForKey:@"totalPremium"] floatValue];
+            monthAchievement.resultTime = @"本月业绩";
+            
+            
             
             _userAchievementArray = @[dayAchievement,monthAchievement,weekAchievement];
             [_tableView reloadData];

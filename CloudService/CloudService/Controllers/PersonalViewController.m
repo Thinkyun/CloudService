@@ -41,7 +41,8 @@ static NSString *cell_id = @"personalCell";
 
 - (void)initData {
     
-    NSArray *array1 = @[@"个人中心",@"我的团队",@"积分管理",@"用户认证",@"团队成员邀请",@"好友邀请"];
+//    NSArray *array1 = @[@"个人中心",@"我的团队",@"积分管理",@"用户认证",@"团队成员邀请",@"好友邀请"];
+    NSArray *array1 = @[@"个人中心",@"积分管理",@"用户认证",@"好友邀请"];
     NSArray *array2 = @[@"我的优惠券"];
     NSArray *array3 = @[@"关于应用"];
     
@@ -49,11 +50,11 @@ static NSString *cell_id = @"personalCell";
     
     _dataDict = [NSMutableDictionary dictionary];
     [_dataDict setValue:@"userInfo" forKey:array1[0]];
-    [_dataDict setValue:@"user-icon1" forKey:array1[1]];
-    [_dataDict setValue:@"user-icon2" forKey:array1[2]];
-    [_dataDict setValue:@"user-icon3" forKey:array1[3]];
-    [_dataDict setValue:@"user-icon4" forKey:array1[4]];
-    [_dataDict setValue:@"user-icon5" forKey:array1[5]];
+//    [_dataDict setValue:@"user-icon1" forKey:array1[1]];
+    [_dataDict setValue:@"user-icon2" forKey:array1[1]];
+    [_dataDict setValue:@"user-icon3" forKey:array1[2]];
+//    [_dataDict setValue:@"user-icon4" forKey:array1[4]];
+    [_dataDict setValue:@"user-icon5" forKey:array1[3]];
     [_dataDict setValue:@"user-icon6" forKey:array2[0]];
     [_dataDict setValue:@"user-icon7" forKey:array3[0]];
 //    [_dataDict setValue:@"user-icon8" forKey:array3[1]];
@@ -174,18 +175,18 @@ static NSString *cell_id = @"personalCell";
                 [self.navigationController pushViewController:setUserInfoVC animated:YES];
             }
                 break;
+//            case 1:
+//            {
+//                [[FireData sharedInstance] eventWithCategory:@"个人中心" action:@"我的团队" evar:nil attributes:nil];
+//                if ([[[SingleHandle shareSingleHandle] getUserInfo].roleName isEqualToString:@"团队长"]||[[[SingleHandle shareSingleHandle] getUserInfo].roleName isEqualToString:@"认证用户"]) {
+//                   [self performSegueWithIdentifier:@"pushMyTeam" sender:self];
+//                }else{
+//                    [MBProgressHUD showMessag:@"对不起，您还没有自己的团队" toView:self.view];
+//                }
+//                
+//            }
+//                break;
             case 1:
-            {
-                [[FireData sharedInstance] eventWithCategory:@"个人中心" action:@"我的团队" evar:nil attributes:nil];
-                if ([[[SingleHandle shareSingleHandle] getUserInfo].roleName isEqualToString:@"团队长"]||[[[SingleHandle shareSingleHandle] getUserInfo].roleName isEqualToString:@"认证用户"]) {
-                   [self performSegueWithIdentifier:@"pushMyTeam" sender:self];
-                }else{
-                    [MBProgressHUD showMessag:@"对不起，您还没有自己的团队" toView:self.view];
-                }
-                
-            }
-                break;
-            case 2:
             {
                 [[FireData sharedInstance] eventWithCategory:@"个人中心" action:@"积分管理" evar:nil attributes:nil];
                 UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
@@ -194,7 +195,7 @@ static NSString *cell_id = @"personalCell";
                 
             }
                 break;
-            case 3:
+            case 2:
             {
                 [[FireData sharedInstance] eventWithCategory:@"个人中心" action:@"用户认证" evar:nil attributes:nil];
                 UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
@@ -208,21 +209,21 @@ static NSString *cell_id = @"personalCell";
                 [self.navigationController pushViewController:setUserInfoVC animated:YES];
             }
                 break;
-            case 4:
-            {
-                [[FireData sharedInstance] eventWithCategory:@"个人中心" action:@"团队成员邀请" evar:nil attributes:nil];
-                if ([[[SingleHandle shareSingleHandle] getUserInfo].roleName isEqualToString:@"团队长"]||[[[SingleHandle shareSingleHandle] getUserInfo].roleName isEqualToString:@"团队成员"]) {
-                    UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-                    InviteFriendViewController *vc = [storyBoard instantiateViewControllerWithIdentifier:@"InviteFriendsVC"];
-                    vc.isTeamInvite = YES;
-                    [self.navigationController pushViewController:vc animated:YES];
-                }else{
-                    [MBProgressHUD showMessag:@"您还没有团队" toView:self.view];
-                }
-                
-            }
-                break;
-            case 5:
+//            case 4:
+//            {
+//                [[FireData sharedInstance] eventWithCategory:@"个人中心" action:@"团队成员邀请" evar:nil attributes:nil];
+//                if ([[[SingleHandle shareSingleHandle] getUserInfo].roleName isEqualToString:@"团队长"]||[[[SingleHandle shareSingleHandle] getUserInfo].roleName isEqualToString:@"团队成员"]) {
+//                    UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+//                    InviteFriendViewController *vc = [storyBoard instantiateViewControllerWithIdentifier:@"InviteFriendsVC"];
+//                    vc.isTeamInvite = YES;
+//                    [self.navigationController pushViewController:vc animated:YES];
+//                }else{
+//                    [MBProgressHUD showMessag:@"您还没有团队" toView:self.view];
+//                }
+//                
+//            }
+//                break;
+            case 3:
             {
                 [[FireData sharedInstance] eventWithCategory:@"个人中心" action:@"好友邀请" evar:nil attributes:nil];
                 [self performSegueWithIdentifier:@"invateFriend_push" sender:self];

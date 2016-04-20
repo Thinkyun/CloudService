@@ -10,7 +10,7 @@
 
 @interface Coupons : NSObject
 
-@property (nonatomic, assign) int      amount;
+@property (nonatomic, assign) int      amount; 
 @property (nonatomic, copy  ) NSString *couponName;
 @property (nonatomic, assign) int      couponNum;
 @property (nonatomic, copy  ) NSString *createTime;
