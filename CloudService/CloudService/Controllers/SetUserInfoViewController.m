@@ -474,7 +474,7 @@ static NSString *const select_CellID = @"selectCell";
                 
                 chooseVC.dataArray = [NSMutableArray arrayWithArray:[self getChooseCityArray]];
                 
-                [[FireData sharedInstance] eventWithCategory:@"个人信息" action:@"申请销售保险公司" evar:nil attributes:nil];
+                [[FireData sharedInstance] eventWithCategory:@"个人信息" action:@"销售数据城市" evar:nil attributes:nil];
                 [self.navigationController pushViewController:chooseVC animated:YES];
 //                [[FireData sharedInstance] eventWithCategory:@"个人信息" action:@"销售数据城市" evar:nil attributes:nil];
 //                [self showCityPickerViewWithCount:1];

@@ -51,6 +51,7 @@ static ButelHandle *singleHandle = nil;
  *  青牛http登陆
  */
 - (void)ButelHttpLogin {
+    [[FireData sharedInstance] eventWithCategory:@"青牛" action:@"http登陆" evar:nil attributes:nil];
     User *user = [[SingleHandle shareSingleHandle] getUserInfo];
     if ([user.roleName isEqualToString:@"普通用户"] || user.roleName.length <= 0) {
         [[NSNotificationCenter defaultCenter] postNotificationName:LoginToMenuViewNotice object:nil];
@@ -91,6 +92,7 @@ static ButelHandle *singleHandle = nil;
 }
 
 - (void)Init {
+    [[FireData sharedInstance] eventWithCategory:@"青牛" action:@"青牛sdk初始化" evar:nil attributes:nil];
     if (![_number isEqualToString:@""]&&![_UUID isEqualToString:@""]&&![_number isEqualToString:@""]) {
         self.callView = nil;
         //初始化青牛
@@ -130,6 +132,7 @@ static ButelHandle *singleHandle = nil;
         
     }
     if (isCanCall) {
+        [[FireData sharedInstance] eventWithCategory:@"青牛" action:@"退出登陆" evar:nil attributes:nil];
         [self.connect Logout];
          self.callView = nil;
         /**
@@ -154,11 +157,13 @@ static ButelHandle *singleHandle = nil;
 
 // 扬声器
 - (void)openSpeaker:(BOOL )isSpeaker {
+    [[FireData sharedInstance] eventWithCategory:@"青牛" action:@"开启扬声器" evar:nil attributes:nil];
     [self.connect OpenSpeaker:isSpeaker];
 }
 
 // 静音
 - (void)enableMute:(bool )isMute {
+    [[FireData sharedInstance] eventWithCategory:@"青牛" action:@"静音" evar:nil attributes:nil];
     [self.connect EnableMute:isMute];
 }
 
@@ -203,9 +208,14 @@ static ButelHandle *singleHandle = nil;
                 return;
             }
             
+            [[FireData sharedInstance] eventWithCategory:@"青牛" action:@"http拨打电话" evar:@{@"phone":phoneNo} attributes:nil];
+            
             AppDelegate *delegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
             delegate.isThird=YES;
             
+            /**
+             *  每次打电话前生成一次uuid
+             */
             _requestId = [HelperUtil uuidString];
             [MHNetworkManager postReqeustWithURL:kButelMakeCall
                                           params:@{@"entId":EntId,
@@ -276,7 +286,7 @@ static ButelHandle *singleHandle = nil;
 }
 //打电话成功回调
 - (void)OnConnect:(int)mediaFormat Sid:(NSString*)Sid {
-    
+    [[FireData sharedInstance] eventWithCategory:@"青牛" action:@"拨打电话成功回调" evar:nil attributes:nil];
     [self.callView OnConnectSuccess];
     AYCLog(@"%i,%@",mediaFormat,Sid);
 }
@@ -288,8 +298,9 @@ static ButelHandle *singleHandle = nil;
 
 //挂断回调
 - (void)OnDisconnect:(int) nReason Sid:(NSString*)Sid{
+    [[FireData sharedInstance] eventWithCategory:@"青牛" action:@"挂断电话回掉" evar:nil attributes:nil];
     isCall = !isCall;
-    _phoneNo = @"";
+
     [self.callView OnDisconnect];
     /**
      *  挂断电话后向后台传录音流水号
@@ -376,7 +387,7 @@ static ButelHandle *singleHandle = nil;
     [MHNetworkManager postReqeustWithURL:[NSString stringWithFormat:@"%@%@",BaseAPI,kSaveTape] params:params successBlock:^(id returnData) {
         
         if ([[returnData valueForKey:@"flag"] isEqualToString:@"success"]) {
-            
+            _phoneNo = @"";
         }else{
             [MBProgressHUD showMessag:[returnData valueForKey:@"msg"] toView:nil];
         }

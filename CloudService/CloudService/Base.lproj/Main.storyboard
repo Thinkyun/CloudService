@@ -3559,7 +3559,7 @@
         <image name="checkbox" width="19" height="19"/>
         <image name="details-arrow2" width="25" height="25"/>
         <image name="download-icon2" width="384" height="97"/>
-        <image name="download_link-1" width="150" height="150"/>
+        <image name="download_link-1" width="250" height="250"/>
         <image name="guize.png" width="539" height="800"/>
         <image name="head-bg" width="360" height="137"/>
         <image name="head2" width="64" height="64"/>

@@ -10,11 +10,11 @@
 
 @interface User : NSObject
 
-@property (nonatomic,copy) NSString *userName;
-@property (nonatomic,copy) NSString *userType;
-@property (nonatomic,copy) NSString *address;
-@property (nonatomic,copy) NSString *age;// 地址编码
-@property (nonatomic,copy) NSString *applySaleCompany;
+@property (nonatomic,copy) NSString *userName;//用户姓名
+@property (nonatomic,copy) NSString *userType;//用户类型
+@property (nonatomic,copy) NSString *address;//地址编码
+@property (nonatomic,copy) NSString *age;//年龄
+@property (nonatomic,copy) NSString *applySaleCompany;//销售保险公司
 @property (nonatomic,copy) NSString *chatName;
 @property (nonatomic,copy) NSString *idCard;
 @property (nonatomic,copy) NSString *password;

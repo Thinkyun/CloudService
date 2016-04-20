@@ -199,7 +199,10 @@
     self.locateManager.distanceFilter=distance;
     //启动跟踪定位
     if ([CLLocationManager authorizationStatus]==kCLAuthorizationStatusNotDetermined){
-        [self.locateManager requestWhenInUseAuthorization];
+        if ([[UIDevice currentDevice].systemVersion floatValue] >= 8.0) {
+            [self.locateManager requestWhenInUseAuthorization];
+        }
+        
 //        [self registerLocation];
     }else if([CLLocationManager authorizationStatus]==kCLAuthorizationStatusAuthorizedWhenInUse){
    

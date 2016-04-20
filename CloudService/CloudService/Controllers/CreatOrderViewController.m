@@ -60,6 +60,9 @@
     }
     
 }
+/**
+ *  下一步报价
+ */
 - (IBAction)nextAction:(id)sender {
     if ([_tfName.text isEqualToString:@""]) {
         [MBProgressHUD showMessag:@"车主姓名不能为空" toView:self.view];
