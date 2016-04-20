@@ -533,12 +533,12 @@ static NSString *const select_CellID = @"selectCell";
         }
     }
     
-    for (int i = 0; i < _valueArray_Bank.count; i ++) {
-        if ([_valueArray_Bank[i] length] <= 0) {
-            [MBProgressHUD showMessag:[NSString stringWithFormat:@"%@不能为空",_keyArray_Bank[i]] toView:self.view];
-            return nil;
-        }
-    }
+//    for (int i = 0; i < _valueArray_Bank.count; i ++) {
+//        if ([_valueArray_Bank[i] length] <= 0) {
+//            [MBProgressHUD showMessag:[NSString stringWithFormat:@"%@不能为空",_keyArray_Bank[i]] toView:self.view];
+//            return nil;
+//        }
+//    }
     
     if (![HelperUtil checkUserIdCard:_valueArray_User[1]]) {
         [MBProgressHUD showMessag:@"身份证号输入不正确" toView:self.view];

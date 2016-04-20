@@ -104,7 +104,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if ([self.order.orderStatus isEqualToString:@"待支付"]) {
-        return 352;
+        return 427;
     }else if ([self.order.orderStatus isEqualToString:@"已支付"]){
         return 420;
     }else{
