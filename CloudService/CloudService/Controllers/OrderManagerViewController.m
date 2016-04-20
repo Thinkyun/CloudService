@@ -31,8 +31,8 @@
     BOOL _isLoad3;//是否已加载
     UIImageView *_noDataImg;
     UILabel *_lbNoData;
-    Order *_order;
-    NSInteger currentIndex;
+    Order *_order;//订单信息
+    NSInteger currentIndex;//当前下标，以便返回时刷新当前view
 }
 @end
 
@@ -43,7 +43,7 @@
     _unfinishedArray = [NSMutableArray array];
     _waitPayArray = [NSMutableArray array];
     _alreadyPayArray = [NSMutableArray array];
-    [self initPageView];
+    [self initPageView];   //初始化pageview
     [self setupNoData];
     // Do any additional setup after loading the view.
 }
@@ -63,6 +63,9 @@
      */
     [[ButelHandle shareButelHandle] hideCallView];
     
+    /**
+     *  判断每次进入页面时刷新哪个试图
+     */
     switch (currentIndex) {
         case 0:
             [_tableView1.mj_header beginRefreshing];
@@ -78,7 +81,7 @@
     }
 
 }
-
+//没有数据
 - (void)setupNoData {
     _noDataImg = [[UIImageView alloc] initWithFrame:CGRectMake(KWidth/2-30, KHeight/2-80, 75, 85)];
     _noDataImg.image = [UIImage imageNamed:@"pix2"];
@@ -95,7 +98,7 @@
 
 #pragma mark pageView
 - (void)initPageView {
-
+    //初始化设置每页加载的数据数
     _pageSize1=4;
 
     _pageSize2=4;
@@ -119,17 +122,17 @@
         [weakSelf requestTeamAchievement:@"未完成"];
     }];
     // 上拉刷新
-//    _tableView1.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
-//        
-//        [weakSelf requestMoreTeamAchievement:@"未完成"];
-//        
-//    }];
-    
-    _tableView1.mj_footer = [MJRefreshAutoFooter footerWithRefreshingBlock:^{
+    _tableView1.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
         
         [weakSelf requestMoreTeamAchievement:@"未完成"];
         
     }];
+    
+//    _tableView1.mj_footer = [MJRefreshAutoFooter footerWithRefreshingBlock:^{
+//        
+//        [weakSelf requestMoreTeamAchievement:@"未完成"];
+//        
+//    }];
     // 设置自动切换透明度(在导航栏下面自动隐藏)
     _tableView1.mj_header.automaticallyChangeAlpha = YES;
     
@@ -191,6 +194,8 @@
         viewTitleEffect.center=firstTitleControl.center;
     }];
 }
+
+#pragma mark - pageViewDelegate
 
 - (void)LazyPageScrollViewPageChange:(LazyPageScrollView *)pageScrollView Index:(NSInteger)index PreIndex:(NSInteger)preIndex TitleEffectView:(UIView *)viewTitleEffect SelControl:(UIButton *)selBtn {
     [self removeNoData];
@@ -289,6 +294,8 @@
     [self performSegueWithIdentifier:@"orderInfo" sender:self];
     
 }
+
+#pragma mark - 使用storyboard即将跳转时进入这个方法
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // segue.identifier：获取连线的ID
@@ -517,8 +524,7 @@
 }
 
 
-
-//懒加载
+#pragma mark - 初始化pageview
 - (LazyPageScrollView *)pageView {
     if (!_pageView) {
         _pageView = [[LazyPageScrollView alloc] initWithFrame:CGRectMake(0, 0, KWidth, KHeight-64)];

@@ -193,7 +193,12 @@
                 
             } showHUD:YES];
 }
-
+/**
+ *  将获取到直客的数据传给后台
+ *
+ *  @param baseId 该订单号
+ *  @param url    跳转至报价的URL
+ */
 - (void)createOrderWithBaseId:(NSString *)baseId pushUrl:(NSString *)url{
     
     NSDictionary *params = @{@"baseId":baseId,
@@ -218,6 +223,10 @@
         
     } showHUD:YES];
 }
+
+/**
+ *  是否选择新车
+ */
 - (IBAction)newCarAction:(id)sender {
     if (self.isNewCarBtn.selected)
     {
@@ -236,6 +245,9 @@
     self.isNewCarBtn.selected = !self.isNewCarBtn.selected;
     
 }
+/**
+ *  选择城市的pickerView
+ */
 - (IBAction)showCityPickerView:(id)sender {
     [[FireData sharedInstance] eventWithCategory:@"创建订单" action:@"选择行驶省市" evar:nil attributes:nil];
     [HelperUtil resignKeyBoardInView:self.view];
@@ -252,6 +264,10 @@
 
 
 }
+
+/**
+ *  textfiled结束编辑时判断格式是否正确
+ */
 - (void)textFieldDidEndEditing:(UITextField *)textField {
     if ([textField isEqual:self.tfPhone]) {
         if (![self.tfPhone.text isEqualToString:@""] && ![HelperUtil checkTelNumber:self.tfPhone.text]){
@@ -276,6 +292,10 @@
     self.title=@"创建订单";
 
 }
+/**
+ *  storyboard即将跳转页面时传值
+ *
+ */
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // segue.identifier：获取连线的ID
     if ([segue.identifier isEqualToString:@"oldOrderInfo"]) {

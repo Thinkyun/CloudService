@@ -33,10 +33,10 @@
     int _pageSize;//每页加载数
     UIImageView *_noDataImg;
     UILabel *_lbNoData;
-    NSMutableArray *_orderArray;
-    Order *_order;
-    NSDate *_startDate;
-    NSDate *_endDate;
+    NSMutableArray *_orderArray;//搜索到的订单数组
+    Order *_order;//订单信息
+    NSDate *_startDate;//开始日期
+    NSDate *_endDate;//结束日期
 
 }
 @property (weak, nonatomic)IBOutlet UITableView *tableView;
@@ -408,12 +408,21 @@
     
 
 }
-
+/**
+ *  取消搜索
+ *
+ *  @param sender
+ */
 - (void)cancelClick:(UIButton *)sender {
     [[FireData sharedInstance] eventWithCategory:@"订单搜索" action:@"取消搜索" evar:nil attributes:nil];
     [self upMenu];
  
 }
+/**
+ *  确定搜索
+ *
+ *  @param sender
+ */
 
 - (void)sureClick:(UIButton *)sender {
     [[FireData sharedInstance] eventWithCategory:@"订单搜索" action:@"确定搜索" evar:nil attributes:nil];
@@ -509,7 +518,7 @@
     }
 }
 
-
+#pragma mark - 暂无数据
 - (void)setupNoData {
     _noDataImg = [[UIImageView alloc] initWithFrame:CGRectMake(KWidth/2-30, KHeight/2-80, 75, 85)];
     _noDataImg.image = [UIImage imageNamed:@"pix2"];
@@ -524,6 +533,8 @@
     [_noDataImg removeFromSuperview];
     [_lbNoData removeFromSuperview];
 }
+
+#pragma mark - 添加MJ控件
 
 - (void)addMjRefresh {
     
