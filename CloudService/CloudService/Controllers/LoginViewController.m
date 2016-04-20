@@ -186,7 +186,7 @@
     }
     return true;
 }
-
+    
 -(void)dealloc {
     _inputView = nil;
     _loginBtn = nil;
