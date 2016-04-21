@@ -29,6 +29,7 @@ static ButelHandle *singleHandle = nil;
     NSString *_requestId;
     BOOL _isLogin;//是否登陆状态
     NSString *_butelMsg;
+    NSString *_baseId;//baseId
     
 }
 
@@ -168,8 +169,9 @@ static ButelHandle *singleHandle = nil;
 }
 
 // 设置拨打手机号
-- (void)setPhoneNo:(NSString *)phoneNo {
+- (void)setPhoneNo:(NSString *)phoneNo phoneWithBaseId:(NSString *)baseId{
     self.callView.telNumStr = phoneNo;
+    _baseId = baseId;
 }
 
 - (void)showCallView {
@@ -383,7 +385,8 @@ static ButelHandle *singleHandle = nil;
 - (void)sendTape:(NSString *)sid {
     NSDictionary *params = @{@"userId":[[SingleHandle shareSingleHandle] getUserInfo].userId,
                              @"requestId":sid,
-                             @"phoneNo":_phoneNo};
+                             @"phoneNo":_phoneNo,
+                             @"baseId":_baseId};
     [MHNetworkManager postReqeustWithURL:[NSString stringWithFormat:@"%@%@",BaseAPI,kSaveTape] params:params successBlock:^(id returnData) {
         
         if ([[returnData valueForKey:@"flag"] isEqualToString:@"success"]) {

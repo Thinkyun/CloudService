@@ -52,7 +52,7 @@
 /**
  * 设置拨打手机号
  */
-- (void)setPhoneNo:(NSString *)phoneNo;
+- (void)setPhoneNo:(NSString *)phoneNo phoneWithBaseId:(NSString *)baseId;
 /**
  *  弹出拨打视图
  */

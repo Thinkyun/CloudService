@@ -347,7 +347,7 @@
             
             
             
-            _userAchievementArray = @[dayAchievement,monthAchievement,weekAchievement];
+            _userAchievementArray = @[dayAchievement,weekAchievement,monthAchievement];
             [_tableView reloadData];
             [_tableView.mj_header endRefreshing];
             
