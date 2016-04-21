@@ -31,7 +31,7 @@
      *  显示青牛拨打页面,并设置手机号
      */
     [[ButelHandle shareButelHandle] showCallView];
-    [[ButelHandle shareButelHandle] setPhoneNo:self.order.phoneNo];
+    [[ButelHandle shareButelHandle] setPhoneNo:self.order.phoneNo phoneWithBaseId:self.order.baseId];
     
     self.tableView.backgroundColor = [HelperUtil colorWithHexString:@"F4F4F4"];
     __weak typeof(self) weakSelf = self;

@@ -56,7 +56,7 @@
 - (void)tfPhoneChanged:(NSNotification *)sender {
     if (self.tfPhone.text.length >= 11) {
         self.tfPhone.text = [self.tfPhone.text substringToIndex:11];
-        [[ButelHandle shareButelHandle] setPhoneNo:_tfPhone.text];
+        [[ButelHandle shareButelHandle] setPhoneNo:_tfPhone.text phoneWithBaseId:@""];
     }
     
 }
