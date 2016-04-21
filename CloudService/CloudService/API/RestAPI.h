@@ -113,6 +113,8 @@
 
 #define kButelMakeCall     @"http://221.4.250.108:8088/apHttpService/agent/makeCall"           // 青牛拨打电话
 
+#define kButelLogOut     @"http://221.4.250.108:8088/apHttpService/agent/logout"           // 青牛http退出登陆
+
 //   常量
 /**************************************************************************************/
 
