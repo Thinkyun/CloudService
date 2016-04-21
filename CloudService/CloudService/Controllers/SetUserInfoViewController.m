@@ -201,7 +201,14 @@ static NSString *const select_CellID = @"selectCell";
     for (NSString *provinceName in [DataSource changeSaleCompanyWithString:user.saleCityValue]) {
         CodeNameModel *model = [[CodeNameModel alloc] init];
         model.provinceName = provinceName;
-        model.provinceCode = [[DataSource provinceCodeDict] valueForKey:provinceName];
+        
+        AYCLog(@"%@",[DataSource provinceArray]);
+        for (NSDictionary *dic in [DataSource provinceArray]) {
+            if ([[dic objectForKey:@"provinceName"] isEqualToString:provinceName]) {
+                model.provinceCode = [dic objectForKey:@"provinceId"];
+            }
+        }
+//        model.provinceCode = [[DataSource provinceArray] valueForKey:provinceName];
         [_saleCityArray addObject:model];
         i ++;
     }
@@ -213,6 +220,7 @@ static NSString *const select_CellID = @"selectCell";
 }
 
 - (void)reloadSaleCity {
+    AYCLog(@"%@",_saleCityArray);
     _valueArray_User[_indexPath.row] = [self changeStrArraytoTextString:_saleCityArray];
 
     [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:_indexPath,nil] withRowAnimation:UITableViewRowAnimationNone];

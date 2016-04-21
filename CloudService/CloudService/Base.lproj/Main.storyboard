@@ -1435,7 +1435,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DF7-Ey-5Os" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1283.5" y="-398.5"/>
+            <point key="canvasLocation" x="1463.5" y="-428.5"/>
         </scene>
         <!--订单详情-->
         <scene sceneID="f1q-sT-j2A">
@@ -1475,7 +1475,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FjV-52-9y1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2230.5" y="532.5"/>
+            <point key="canvasLocation" x="2580.5" y="557.5"/>
         </scene>
         <!--预约-->
         <scene sceneID="iZT-ts-OBf">
@@ -2612,7 +2612,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8og-qv-kWh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1305.5" y="477.5"/>
+            <point key="canvasLocation" x="1325.5" y="405.5"/>
         </scene>
         <!--Base Tab Bar View Controller-->
         <scene sceneID="AOh-fO-AaT">
@@ -3577,8 +3577,8 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="hk9-Xv-JLY"/>
+        <segue reference="MPx-U3-8mP"/>
         <segue reference="fDp-sc-Hby"/>
-        <segue reference="E89-Ed-fEZ"/>
         <segue reference="KaR-KU-zbk"/>
     </inferredMetricsTieBreakers>
 </document>

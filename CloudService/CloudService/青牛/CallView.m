@@ -29,6 +29,7 @@
     UILabel *_lbMute;//静音
     UIButton *_btnSpeaker;//扬声器按钮
     UIButton *_btnMute;//静音按钮
+     BOOL _isOnConnect;//是否收到OnConnect回调
 }
 @property (nonatomic, strong) NSTimer *timerForDuration;
 @end
@@ -139,7 +140,7 @@
     [keyWindow addSubview:self];
     
 }
-
+//拨打电话
 - (void)callNum:(UIButton *)sender {
     
    
