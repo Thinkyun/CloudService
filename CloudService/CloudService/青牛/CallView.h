@@ -12,6 +12,7 @@
 
 @property (nonatomic,copy)NSString *telNumStr;
 
+
 /**
  *  释放拨打界面,同时退出青牛
  */

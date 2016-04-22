@@ -13,6 +13,7 @@
 #import <ButelCommonConnectSDK/ButelRecordConnect.h>
 #import "Utility.h"
 #import <JPUSHService.h>
+#import "SingleHandle.h"
 
 #define EntId  @"7593111023"
 static ButelHandle *singleHandle = nil;
@@ -32,6 +33,7 @@ static ButelHandle *singleHandle = nil;
     NSString *_baseId;//baseId
     BOOL _isLogOut;//是否登出操作
     BOOL _isUnInit;//是否反初始化
+    BOOL _isInit;//是否初始化
    
     
 }
@@ -127,11 +129,11 @@ static ButelHandle *singleHandle = nil;
      */
     User *user = [[SingleHandle shareSingleHandle] getUserInfo];
     if ([user.roleName isEqualToString:@"普通用户"] || user.roleName.length <= 0) {
-        [self appLogout];
+        [[SingleHandle shareSingleHandle] logOut];
         return ;
     }
     if (!_isLogin) {
-       [self appLogout];
+       [[SingleHandle shareSingleHandle] logOut];
         return;
         
     }
@@ -141,7 +143,20 @@ static ButelHandle *singleHandle = nil;
         switch (status.curConnStatus) {
             case BS_UNConnect:
                 [MBProgressHUD showMessag:@"青牛未登陆" toView:nil];
-                [self loginWithLogin:_UUID number:_number deviceId:_deviceId nickname:@"CONNECT" userUniqueIdentifer:_deviceId];
+                /**
+                 *  先判断一下青牛是否初始化成功，如果初始化成功，先进行反初始化，然后退出app
+                 *  如果没有初始化直接退出app
+                 */
+                if (_isInit) {
+                    [MBProgressHUD showHUDAddedTo:(UIView*)[[[UIApplication sharedApplication]delegate]window] animated:YES];
+                    [self.connect Uninit];
+                    _isUnInit = YES;
+                }else {
+                    [[SingleHandle shareSingleHandle] logOut];
+                }
+
+                AYCLog(@"%@%@%@",_UUID,_number,_deviceId);
+//                [self loginWithLogin:_UUID number:_number deviceId:_deviceId nickname:@"CONNECT" userUniqueIdentifer:_deviceId];
                 break;
             case BS_Connecting:
                 [MBProgressHUD showMessag:@"青牛正在登陆，请稍候" toView:nil];
@@ -182,7 +197,7 @@ static ButelHandle *singleHandle = nil;
         
     }else {
         
-        [MBProgressHUD showMessag:@"青牛正在登陆，请稍候" toView:nil];
+        [MBProgressHUD showMessag:@"青牛未登陆" toView:nil];
     }
 
 }
@@ -245,11 +260,12 @@ static ButelHandle *singleHandle = nil;
             switch (status.curConnStatus) {
                 case BS_UNConnect:
                     [MBProgressHUD showMessag:@"青牛未登陆" toView:nil];
-                    [self loginWithLogin:_UUID number:_number deviceId:_deviceId nickname:@"CONNECT" userUniqueIdentifer:_deviceId];
+//                    [self loginWithLogin:_UUID number:_number deviceId:_deviceId nickname:@"CONNECT" userUniqueIdentifer:_deviceId];
+                    isCall = !isCall;
                     break;
                 case BS_Connecting:
                     [MBProgressHUD showMessag:@"青牛正在登陆，请稍候" toView:nil];
-                    
+                    isCall = !isCall;
                     break;
                 case BS_Connect2ButelNet:
                 {
@@ -262,6 +278,7 @@ static ButelHandle *singleHandle = nil;
                     /**
                      *  每次打电话前生成一次uuid
                      */
+                    _phoneNo = phoneNo;
                     _requestId = [HelperUtil uuidString];
                     [MHNetworkManager postReqeustWithURL:kButelMakeCall
                                                   params:@{@"entId":EntId,
@@ -273,7 +290,7 @@ static ButelHandle *singleHandle = nil;
                                             successBlock:^(NSDictionary *returnData) {
                                                 NSDictionary *dic = returnData;
                                                 if ([[dic objectForKey:@"code"] isEqualToString:@"000"]) {
-                                                    _phoneNo = phoneNo;
+                                                   
                                                 }else {
                                                     if ([[dic objectForKey:@"msg"] isEqual:[NSNull null]]) {
                                                         [MBProgressHUD showError:@"服务器异常" toView:nil];
@@ -298,7 +315,7 @@ static ButelHandle *singleHandle = nil;
 
            
         }else {
-            [MBProgressHUD showMessag:@"正在集成中，请稍候" toView:[UIApplication sharedApplication].keyWindow];
+            [MBProgressHUD showMessag:@"青牛未登陆" toView:nil];
           
             return;
 
@@ -317,6 +334,7 @@ static ButelHandle *singleHandle = nil;
     AYCLog(@"APP::OnInit()...");
     
     if (reason == 0) {
+        _isInit = YES;
        [self loginWithLogin:_UUID number:_number deviceId:_deviceId nickname:@"CONNECT" userUniqueIdentifer:_deviceId];
         
     }
@@ -340,6 +358,7 @@ static ButelHandle *singleHandle = nil;
 }
 //打电话成功回调
 - (void)OnConnect:(int)mediaFormat Sid:(NSString*)Sid {
+
     [[FireData sharedInstance] eventWithCategory:@"青牛" action:@"拨打电话成功回调" evar:nil attributes:nil];
     [self.callView OnConnectSuccess];
     AYCLog(@"%i,%@",mediaFormat,Sid);
@@ -369,19 +388,23 @@ static ButelHandle *singleHandle = nil;
 
 - (void)OnUninit:(int)reason {
     if (_isUnInit) {
-        @try {
+            _isInit = NO;
             [MBProgressHUD hideAllHUDsForView:(UIView*)[[[UIApplication sharedApplication]delegate]window] animated:YES];
             //释放青牛sdk
             [ButelEventConnectSDK destroyButelCommonConn:self.connect];
-            [self appLogout];
+            self.callView = nil;
+            [[SingleHandle shareSingleHandle] logOut];
             _isUnInit = NO;
-            
-        } @catch (NSException *exception) {
-            AYCLog(@"%@",[[exception callStackSymbols] componentsJoinedByString:@"\n"]);
-            
-        }
+      
 
     }
+//    if (_isTOut) {
+//        //释放青牛sdk
+//        [ButelEventConnectSDK destroyButelCommonConn:self.connect];
+//        self.callView = nil;
+//        _isTOut = NO;
+//
+//    }
     
  
     
@@ -421,8 +444,7 @@ static ButelHandle *singleHandle = nil;
 
 -(void)onLogout:(int)reason {
     
-    if (reason == 0) {
-        @try {
+   
             if (_isLogOut) {
                 ButelStatus status = [self.connect GetButelConnStatus];
                 AYCLog(@"%i",status.curConnStatus);
@@ -431,10 +453,7 @@ static ButelHandle *singleHandle = nil;
                 _isLogOut = NO;
             }
             
-        } @catch (NSException *exception) {
-            AYCLog(@"%@",[[exception callStackSymbols] componentsJoinedByString:@"\n"]);
-        }
-    }
+    
 
 }
 
@@ -444,26 +463,6 @@ static ButelHandle *singleHandle = nil;
     [self.connect Login:UUID number:number deviceId:deviceID nickname:nickName userUniqueIdentifer:userID];
 }
 
-/**
- *  app登出
- */
-
-- (void)appLogout {
-    self.callView = nil;
-    /**
-     *  退出登录时清除账号信息
-     */
-    [JPUSHService setTags:[NSSet set] alias:@"" callbackSelector:nil target:nil];
-    //        User *user = [[SingleHandle shareSingleHandle] getUserInfo];
-    //
-    //        [Utility saveUserName:user.phoneNo passWord:nil];
-    UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    UIViewController *loginVC = [storyBoard instantiateViewControllerWithIdentifier:@"loginNavi"];
-    UIViewController *oldVC = [UIApplication sharedApplication].keyWindow.rootViewController;
-    oldVC = nil;
-    
-    [UIApplication sharedApplication].keyWindow.rootViewController = loginVC;
-}
 
 /**
  *  往后台服务器传录音流水号
@@ -484,5 +483,19 @@ static ButelHandle *singleHandle = nil;
     } failureBlock:^(NSError *error) {
         
     } showHUD:NO];
+}
+/**
+ *  被别人踢掉退出青牛
+ */
+- (void)logOutButel {
+    if (_isInit) {
+//        [MBProgressHUD showHUDAddedTo:(UIView*)[[[UIApplication sharedApplication]delegate]window] animated:YES];
+        [self.connect Uninit];
+        _isUnInit = YES;
+    }else {
+        [[SingleHandle shareSingleHandle] logOut];
+    }
+    
+//    _isLogOut = YES;
 }
 @end

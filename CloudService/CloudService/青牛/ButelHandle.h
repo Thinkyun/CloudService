@@ -57,4 +57,7 @@
  *  弹出拨打视图
  */
 - (void)popCallView;
+
+
+- (void)logOutButel ;
 @end

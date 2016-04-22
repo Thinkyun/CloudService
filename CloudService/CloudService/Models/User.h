@@ -34,6 +34,7 @@
 @property (nonatomic,copy) NSString *workStartDate;
 @property (nonatomic,copy) NSString *saleCityValue;
 @property (nonatomic, copy) NSString *proportion;//积分比
+@property (nonatomic, copy) NSString *currentCompany;//现任公司
 
 // 银行信息
 @property(nonatomic,copy)NSString *accountCity;  // 市

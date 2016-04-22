@@ -50,12 +50,12 @@
     /**
      *  取出省份code
      */
-    NSDictionary *provinceCodeDict = [DataSource provinceCodeDict];
+//    NSDictionary *provinceCodeDict = [DataSource provinceCodeDict];
    
     for (int i = 0; i<provinceNameArray.count; i++) {
         CodeNameModel *proviceModel = [CodeNameModel new];
         proviceModel.provinceName = provinceNameArray[i];
-        proviceModel.provinceCode = [provinceCodeDict valueForKey:provinceNameArray[i]];
+//        proviceModel.provinceCode = [provinceCodeDict valueForKey:provinceNameArray[i]];
         proviceModel.isCheck = NO;
         [_provinceArray addObject:proviceModel];
     }

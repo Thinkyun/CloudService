@@ -34,6 +34,10 @@
  *  @param location 定位信息
  */
 - (void)loginAppDic:(NSMutableDictionary *)paramDic;
+/**
+ *  退出登录
+ */
+- (void)logOut;
 
 /**
  *  获取省份列表

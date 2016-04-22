@@ -156,6 +156,7 @@ static NSString *const select_CellID = @"selectCell";
     _keyArray_User = @[@"真实姓名",
                        @"证件号码",@"用户类型",
                        @"原离职公司",@"原职位",
+                       @"现任公司",
                        @"从业时间",
                        @"微信号",@"申请销售保险公司",
                        @"销售数据城市"];
@@ -172,12 +173,13 @@ static NSString *const select_CellID = @"selectCell";
     
     _valueArray_User[3] = [DataSource changeCompanyCodeToText:user.oldCompany];
     _valueArray_User[4] = user.oldPost.length > 0 ? user.oldPost : @"";
+    _valueArray_User[5] = user.currentCompany.length >0 ? user.currentCompany : @"";
     NSString *workDate = user.workStartDate.length > 0 ? [HelperUtil timeFormat:user.workStartDate format:@"yyyy-MM-dd"] : @"";
-    _valueArray_User[5] = workDate;
-    _valueArray_User[6] = user.chatName;
+    _valueArray_User[6] = workDate;
+    _valueArray_User[7] = user.chatName;
     // 编码汉字
-    _valueArray_User[7] = [DataSource changeSaleCompanyWithCodeString:user.applySaleCompany];
-    _valueArray_User[8] = user.saleCityValue;
+    _valueArray_User[8] = [DataSource changeSaleCompanyWithCodeString:user.applySaleCompany];
+    _valueArray_User[9] = user.saleCityValue;
     
     _valueArray_Bank = [NSMutableArray arrayWithArray:@[@"",@"",@"",@"",@"",@""]];
     _valueArray_Bank[0] = user.bankAccountName;
@@ -318,7 +320,7 @@ static NSString *const select_CellID = @"selectCell";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    BOOL isCell2 = (indexPath.row == 3 || indexPath.row == 4 || indexPath.row == 7 || indexPath.row == 8) ? 1 : 0;
+    BOOL isCell2 = (indexPath.row == 3 || indexPath.row == 4 || indexPath.row == 8 || indexPath.row == 9) ? 1 : 0;
     // 个人信息,带下拉框
     if (indexPath.section == 0 && isCell2) {
 
@@ -333,13 +335,13 @@ static NSString *const select_CellID = @"selectCell";
         [cell2 isPullDown:NO];
             
         if (self.notEnable) {
-            if(indexPath.row == 8 || indexPath.row == 7) {
+            if(indexPath.row == 9 || indexPath.row == 8) {
                 cell2.titleLabelWidth.constant = 120;
             }
             return cell2;
         }
         [cell2 isPullDown:YES];
-        if (indexPath.row == 8) {
+        if (indexPath.row == 9) {
             cell2.titleLabelWidth.constant = 120;
             if (cell2.contentLabel.text.length > 0) {
                 [cell2 setDeleteImage:NO];
@@ -347,7 +349,7 @@ static NSString *const select_CellID = @"selectCell";
                 [cell2 setDeleteImage:NO];
             }
         }
-        if (indexPath.row == 7) {
+        if (indexPath.row == 8) {
             cell2.titleLabelWidth.constant = 120;
             cell2.imgView.image = [UIImage imageNamed:@"details-arrow1"];
         }
@@ -373,7 +375,7 @@ static NSString *const select_CellID = @"selectCell";
         if (indexPath.row == 1) {
             cell.textFiled.keyboardType = UIKeyboardTypeDefault;
             [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(carUserCardChanged:) name:UITextFieldTextDidChangeNotification object:cell.textFiled];
-        }else if(indexPath.row == 2 || indexPath.row == 5)
+        }else if(indexPath.row == 2 || indexPath.row == 6)
         {
             cell.textFiled.enabled = NO;
         }
@@ -413,7 +415,7 @@ static NSString *const select_CellID = @"selectCell";
     }
     [HelperUtil resignKeyBoardInView:self.view];
     _indexPath = indexPath;
-    BOOL isCell2 = (indexPath.section == 0) && (indexPath.row == 3 || indexPath.row == 4 || indexPath.row == 7 || indexPath.row == 8) ? 1 : 0;
+    BOOL isCell2 = (indexPath.section == 0) && (indexPath.row == 3 || indexPath.row == 4 || indexPath.row == 8 || indexPath.row == 9) ? 1 : 0;
     CGRect tempRect = CGRectZero;
     CGRect cellFrame = CGRectZero;
     if (!isCell2 || indexPath.section == 1) {
@@ -443,7 +445,7 @@ static NSString *const select_CellID = @"selectCell";
                         } animated:YES];
                     }
                         break;
-            case 5:
+            case 6:
                 
                 [[FireData sharedInstance] eventWithCategory:@"个人信息" action:@"从业时间" evar:nil attributes:nil];
                         [self showDataPickerView];
@@ -460,7 +462,7 @@ static NSString *const select_CellID = @"selectCell";
                             } animated:YES];
                     }
                         break;
-            case 7:{
+            case 8:{
                 
                 ChooseCompanyViewController *chooseVC = [[ChooseCompanyViewController alloc] init];
                 chooseVC.type = chooseCompany;
@@ -475,7 +477,7 @@ static NSString *const select_CellID = @"selectCell";
                 
                         break;
                     }
-            case 8:{
+            case 9:{
                 ChooseCompanyViewController *chooseVC = [[ChooseCompanyViewController alloc] init];
                 chooseVC.type = chooseCity;
                 chooseVC.selectArray = _saleCityArray;
@@ -533,11 +535,25 @@ static NSString *const select_CellID = @"selectCell";
 #pragma mark -- 私有方法
 - (NSDictionary *)getParam {
     
+    if ([_valueArray_User[3] length] <= 0 && [_valueArray_User[5] length] <= 0) {
+        [MBProgressHUD showMessag:[NSString stringWithFormat:@"原离职公司或现任公司至少填写一个"] toView:self.view];
+        return nil;
+    }
+    if ([_valueArray_User[3] length] >0) {
+        if ([_valueArray_User[4] length] <=0 ) {
+            [MBProgressHUD showMessag:[NSString stringWithFormat:@"%@不能为空",_keyArray_User[4]] toView:self.view];
+            return nil;
+        }
+    }
+    
     for (int i = 0; i < _valueArray_User.count; i ++) {
         
         if ([_valueArray_User[i] length] <= 0) {
-            [MBProgressHUD showMessag:[NSString stringWithFormat:@"%@不能为空",_keyArray_User[i]] toView:self.view];
-            return nil;
+            if (!_valueArray_User[3] || !_valueArray_User[5]) {
+                [MBProgressHUD showMessag:[NSString stringWithFormat:@"%@不能为空",_keyArray_User[i]] toView:self.view];
+                return nil;
+            }
+            
         }
     }
     
@@ -561,11 +577,16 @@ static NSString *const select_CellID = @"selectCell";
     [dict setValue:[HelperUtil getSexWithIdcord:idCord] forKey:@"sex"];
     [dict setValue:[HelperUtil getBorthDayWithIdCord:idCord] forKey:@"age"];
     [dict setValue:_valueArray_User[0] forKey:@"realName"];
-    [dict setValue:_valueArray_User[6] forKey:@"chatName"];
-//
-    [dict setValue:_valueArray_User[5] forKey:@"workStartDate"];
     [dict setValue:_valueArray_User[4] forKey:@"oldPost"];
-    [dict setValue:[DataSource changeCompanyTextToCode:_valueArray_User[3]] forKey:@"oldCompany"];
+    [dict setValue:_valueArray_User[5] forKey:@"currentCompany"];
+    [dict setValue:_valueArray_User[6] forKey:@"workStartDate"];
+    [dict setValue:_valueArray_User[7] forKey:@"chatName"];
+//
+    if ([_valueArray_User[3] length] >0) {
+        [dict setValue:[DataSource changeCompanyTextToCode:_valueArray_User[3]] forKey:@"oldCompany"];
+
+    }
+    
     NSString *saleCity = _saleCityArray.count > 0 ? [self changeStrArraytoCodeString:_saleCityArray] : user.saleCity;
     [dict setValue:saleCity forKey:@"saleCity"];
     [dict setValue:[self changeStrArraytoCodeString:_companyArray] forKey:@"applySaleCompany"];
@@ -591,7 +612,7 @@ static NSString *const select_CellID = @"selectCell";
     NSMutableArray *dataArray = [NSMutableArray array];
     for (NSString *companyName in [DataSource insureCommpanyNameArray]) {
         
-        if ([_valueArray_User[7] containsString:companyName]) {
+        if ([_valueArray_User[8] containsString:companyName]) {
             continue;
         }
         CodeNameModel *model = [[CodeNameModel alloc] init];
@@ -610,7 +631,7 @@ static NSString *const select_CellID = @"selectCell";
     NSMutableArray *dataArray = [NSMutableArray array];
     for (NSDictionary *provinceDic in [DataSource provinceArray]) {
         
-        if ([_valueArray_User[8] containsString:[provinceDic valueForKey:@"provinceName"]]) {
+        if ([_valueArray_User[9] containsString:[provinceDic valueForKey:@"provinceName"]]) {
             continue;
         }
         CodeNameModel *model = [[CodeNameModel alloc] init];

@@ -54,10 +54,7 @@
  */
 +(NSArray *)provinceArray;
 
-/**
- *  省对应编码
- */
-+(NSDictionary *)provinceCodeDict;
+
 
 
 /**

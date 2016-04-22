@@ -135,6 +135,7 @@ static User *user = nil;
         if ([returnData[@"flag"] isEqualToString:@"success"]) {
             NSDictionary *dict = [returnData objectForKey:@"data"];
             double newVersion = [[dict objectForKey:@"version"] doubleValue];
+            
             BOOL flag = newVersion > currentVersion;
             
             versionCheckBlock(flag);

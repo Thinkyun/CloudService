@@ -72,8 +72,8 @@
     __weak typeof(self) weakSelf = self;
     // 检查版本号
     [Utility checkNewVersion:^(BOOL hasNewVersion) {
+        [Utility saveVersion:hasNewVersion];
         if (hasNewVersion) {
-            [Utility saveVersion:hasNewVersion];
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"版本更新" message:@"系统检测有新版本" delegate:weakSelf cancelButtonTitle:nil otherButtonTitles:@"点击进入下载", nil];
             [alertView show];
         }
@@ -181,6 +181,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(logOut) name:LogOutViewNotice object:nil];
     
 }
+
 /**
  *  注册定位
  */
@@ -222,6 +223,10 @@
     
 }
 
+- (void)logOut{
+    [[ButelHandle shareButelHandle] logOutButel];
+}
+
 - (void)loginToLogin {
     UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     UIViewController *loginVC = [storyBoard instantiateViewControllerWithIdentifier:@"loginNavi"];
@@ -231,14 +236,7 @@
     [UIApplication sharedApplication].keyWindow.rootViewController = loginVC;
 }
 
-- (void)logOut {
-    /**
-     *  退出青牛sdk
-     */
-    [[ButelHandle shareButelHandle] logOut];
-    
-    
-}
+
 
 #pragma mark -- CLLocationManagerDelegate
 

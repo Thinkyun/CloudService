@@ -22,6 +22,9 @@
 		6320B73C1C89A2CE0076FC7E /* Coupons.m in Sources */ = {isa = PBXBuildFile; fileRef = 6320B73B1C89A2CE0076FC7E /* Coupons.m */; };
 		6339A3FC1CC4D6B7007305DE /* EYTextPopupView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6339A3FB1CC4D6B7007305DE /* EYTextPopupView.m */; };
 		6339B0DD1CB6637C0045F7E0 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 6339B0DC1CB6637C0045F7E0 /* Default.png */; };
+		633ACB241CCA03DC0053DD2E /* UserVerifyStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 633ACB231CCA03DC0053DD2E /* UserVerifyStatus.m */; };
+		633ACB2D1CCA241F0053DD2E /* ButelCommonConnectSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 633ACB2B1CCA241F0053DD2E /* ButelCommonConnectSDK.bundle */; };
+		633ACB2E1CCA241F0053DD2E /* ButelCommonConnectSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 633ACB2C1CCA241F0053DD2E /* ButelCommonConnectSDK.framework */; };
 		6343224D1CC60AA900C25837 /* MyFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 6343224C1CC60AA900C25837 /* MyFile.m */; };
 		634322551CC61A6500C25837 /* CityPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 634322541CC61A6500C25837 /* CityPickerView.m */; };
 		634647C31CB49EAF004A064E /* EYInputPopupView.m in Sources */ = {isa = PBXBuildFile; fileRef = 634647BB1CB49EAF004A064E /* EYInputPopupView.m */; };
@@ -194,6 +197,10 @@
 		6339A3FA1CC4D6B7007305DE /* EYTextPopupView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EYTextPopupView.h; sourceTree = "<group>"; };
 		6339A3FB1CC4D6B7007305DE /* EYTextPopupView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EYTextPopupView.m; sourceTree = "<group>"; };
 		6339B0DC1CB6637C0045F7E0 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		633ACB221CCA03DC0053DD2E /* UserVerifyStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserVerifyStatus.h; sourceTree = "<group>"; };
+		633ACB231CCA03DC0053DD2E /* UserVerifyStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserVerifyStatus.m; sourceTree = "<group>"; };
+		633ACB2B1CCA241F0053DD2E /* ButelCommonConnectSDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ButelCommonConnectSDK.bundle; sourceTree = "<group>"; };
+		633ACB2C1CCA241F0053DD2E /* ButelCommonConnectSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ButelCommonConnectSDK.framework; sourceTree = "<group>"; };
 		6343224B1CC60AA900C25837 /* MyFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyFile.h; sourceTree = "<group>"; };
 		6343224C1CC60AA900C25837 /* MyFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyFile.m; sourceTree = "<group>"; };
 		634322531CC61A6500C25837 /* CityPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CityPickerView.h; sourceTree = "<group>"; };
@@ -918,6 +925,8 @@
 				63C07BA71C7B15C10084581F /* HelperUtil.m */,
 				F05732091C859D2400D88B78 /* SingleHandle.h */,
 				F057320A1C859D2400D88B78 /* SingleHandle.m */,
+				633ACB221CCA03DC0053DD2E /* UserVerifyStatus.h */,
+				633ACB231CCA03DC0053DD2E /* UserVerifyStatus.m */,
 				639CF6AB1C9FF0800086C72B /* UIViewController+AlertView.h */,
 				639CF6AC1C9FF0800086C72B /* UIViewController+AlertView.m */,
 				634647BA1CB49EAF004A064E /* EYInputPopupView.h */,
@@ -1043,7 +1052,7 @@
 				TargetAttributes = {
 					F0292BA91C7B00CD00A810A9 = {
 						CreatedOnToolsVersion = 7.2;
-						DevelopmentTeam = 7PS2AH4H79;
+						DevelopmentTeam = LH28XA7T22;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -1202,6 +1211,7 @@
 				639D79951CA2A510002523E6 /* SelectCityViewController.m in Sources */,
 				63C54E321C7C2F96007CE8CA /* OrderManagerCell.m in Sources */,
 				F0AB898C1C8ED04F00849E3A /* ZQCityPickerView.m in Sources */,
+				633ACB241CCA03DC0053DD2E /* UserVerifyStatus.m in Sources */,
 				6320B73C1C89A2CE0076FC7E /* Coupons.m in Sources */,
 				F07FF9D61C81469400EB1BB1 /* ResetPhonePopView.m in Sources */,
 				636CD9881C884E9A0050935E /* IntergralSearchViewController.m in Sources */,
@@ -1334,8 +1344,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_BITCODE = NO;
@@ -1380,8 +1390,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_BITCODE = NO;
@@ -1408,8 +1418,8 @@
 			baseConfigurationReference = 8080CD2CAEE01D9CB60C40F6 /* Pods-CloudService.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Sunshine Insurance Group Co., Ltd.";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Sunshine Insurance Group Co., Ltd.";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1427,7 +1437,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.sinosig.EYunKeFu;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "1d845a3f-dc6f-487f-975f-4be95ad4ef10";
 			};
 			name = Debug;
 		};
@@ -1436,8 +1446,8 @@
 			baseConfigurationReference = AA863A4D44EB33149F738225 /* Pods-CloudService.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Sunshine Insurance Group Co., Ltd.";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Sunshine Insurance Group Co., Ltd.";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1455,7 +1465,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.sinosig.EYunKeFu;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "1d845a3f-dc6f-487f-975f-4be95ad4ef10";
 			};
 			name = Release;
 		};

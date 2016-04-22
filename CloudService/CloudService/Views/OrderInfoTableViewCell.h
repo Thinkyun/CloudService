@@ -24,5 +24,9 @@
 @property (nonatomic, weak) IBOutlet UILabel *lbReserveTime;//预约时间
 @property (nonatomic, weak) IBOutlet UILabel *lbInsureComName;//销售保险公司
 @property (nonatomic, weak) IBOutlet UILabel *lbAgentName;//数据来源
-
+@property (nonatomic, weak) IBOutlet UILabel *lbGift;//投保礼
+@property (nonatomic, weak) IBOutlet UILabel *lbPolicyNo;//商业险保单号
+@property (nonatomic, weak) IBOutlet UILabel *lbProposalNo;//商业险投保单号
+@property (nonatomic, weak) IBOutlet UILabel *lbCiProposalNo;//交强险投保单号
+@property (nonatomic, weak) IBOutlet UILabel *lbCiPolicyNo;//交强险保单号
 @end

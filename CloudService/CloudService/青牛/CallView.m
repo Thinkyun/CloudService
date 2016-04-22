@@ -51,7 +51,7 @@
 }
 
 - (void)setContentView {
-    
+
     /** 拨号、挂断按钮*/
     _btnCall = [UIButton buttonWithType:UIButtonTypeCustom];
     _btnCall.frame = CGRectMake(0, 0, 80, 80);
@@ -142,9 +142,9 @@
 }
 //拨打电话
 - (void)callNum:(UIButton *)sender {
-    
-   
-    [[ButelHandle shareButelHandle] makeCallWithPhoneNo:self.telNumStr];
+
+        [[ButelHandle shareButelHandle] makeCallWithPhoneNo:self.telNumStr];
+ 
     
       
 }
