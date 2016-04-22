@@ -92,6 +92,10 @@
     }
     cell.lbAgentName.text = self.order.agentName;
     cell.lbInsureComName.text = self.order.insureComName;
+    cell.lbPolicyNo.text = self.order.policyNo;
+    cell.lbProposalNo.text = self.order.proposalNo;
+    cell.lbCiPolicyNo.text = self.order.ciPolicyNo;
+    cell.lbCiProposalNo.text = self.order.ciProposalNo;
     
     [cell.callBtn addTarget:self action:@selector(callClick:) forControlEvents:UIControlEventTouchUpInside];
     [cell.priceBtn addTarget:self action:@selector(priceClick:) forControlEvents:UIControlEventTouchUpInside];
@@ -104,9 +108,9 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if ([self.order.orderStatus isEqualToString:@"待支付"]) {
-        return 427;
+        return 483;
     }else if ([self.order.orderStatus isEqualToString:@"已支付"]){
-        return 420;
+        return 402;
     }else{
         return 382;
     }

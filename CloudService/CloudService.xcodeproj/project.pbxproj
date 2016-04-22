@@ -22,6 +22,9 @@
 		6320B73C1C89A2CE0076FC7E /* Coupons.m in Sources */ = {isa = PBXBuildFile; fileRef = 6320B73B1C89A2CE0076FC7E /* Coupons.m */; };
 		6339A3FC1CC4D6B7007305DE /* EYTextPopupView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6339A3FB1CC4D6B7007305DE /* EYTextPopupView.m */; };
 		6339B0DD1CB6637C0045F7E0 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 6339B0DC1CB6637C0045F7E0 /* Default.png */; };
+		633ACB241CCA03DC0053DD2E /* UserVerifyStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 633ACB231CCA03DC0053DD2E /* UserVerifyStatus.m */; };
+		633ACB2D1CCA241F0053DD2E /* ButelCommonConnectSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 633ACB2B1CCA241F0053DD2E /* ButelCommonConnectSDK.bundle */; };
+		633ACB2E1CCA241F0053DD2E /* ButelCommonConnectSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 633ACB2C1CCA241F0053DD2E /* ButelCommonConnectSDK.framework */; };
 		6343224D1CC60AA900C25837 /* MyFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 6343224C1CC60AA900C25837 /* MyFile.m */; };
 		634322551CC61A6500C25837 /* CityPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 634322541CC61A6500C25837 /* CityPickerView.m */; };
 		634647C31CB49EAF004A064E /* EYInputPopupView.m in Sources */ = {isa = PBXBuildFile; fileRef = 634647BB1CB49EAF004A064E /* EYInputPopupView.m */; };
@@ -102,8 +105,6 @@
 		63E9BFDD1C9659B200FFE0BA /* Order.m in Sources */ = {isa = PBXBuildFile; fileRef = 63E9BFDC1C9659B200FFE0BA /* Order.m */; };
 		63F6DE421CC7233E00859AB0 /* ShareManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 63F6DE411CC7233E00859AB0 /* ShareManager.m */; };
 		900B29761CB4F73C00A9FBD7 /* EYPopupView.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 900B29751CB4F73C00A9FBD7 /* EYPopupView.bundle */; };
-		9025D0F91CA50B6500E3B43F /* ButelCommonConnectSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 9025D0F71CA50B6500E3B43F /* ButelCommonConnectSDK.bundle */; };
-		9025D0FA1CA50B6500E3B43F /* ButelCommonConnectSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9025D0F81CA50B6500E3B43F /* ButelCommonConnectSDK.framework */; };
 		91A97CA728DD2D371997D3F7 /* libPods-CloudService.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D96943D8DC951CBCC61FF495 /* libPods-CloudService.a */; };
 		F019C9D61C7BFD7900E73A2C /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F019C9D51C7BFD7900E73A2C /* LoginViewController.m */; };
 		F019C9D91C7BFD8D00E73A2C /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F019C9D81C7BFD8D00E73A2C /* RegisterViewController.m */; };
@@ -194,6 +195,10 @@
 		6339A3FA1CC4D6B7007305DE /* EYTextPopupView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EYTextPopupView.h; sourceTree = "<group>"; };
 		6339A3FB1CC4D6B7007305DE /* EYTextPopupView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EYTextPopupView.m; sourceTree = "<group>"; };
 		6339B0DC1CB6637C0045F7E0 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		633ACB221CCA03DC0053DD2E /* UserVerifyStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserVerifyStatus.h; sourceTree = "<group>"; };
+		633ACB231CCA03DC0053DD2E /* UserVerifyStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserVerifyStatus.m; sourceTree = "<group>"; };
+		633ACB2B1CCA241F0053DD2E /* ButelCommonConnectSDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ButelCommonConnectSDK.bundle; sourceTree = "<group>"; };
+		633ACB2C1CCA241F0053DD2E /* ButelCommonConnectSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ButelCommonConnectSDK.framework; sourceTree = "<group>"; };
 		6343224B1CC60AA900C25837 /* MyFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyFile.h; sourceTree = "<group>"; };
 		6343224C1CC60AA900C25837 /* MyFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyFile.m; sourceTree = "<group>"; };
 		634322531CC61A6500C25837 /* CityPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CityPickerView.h; sourceTree = "<group>"; };
@@ -329,8 +334,6 @@
 		63F6DE411CC7233E00859AB0 /* ShareManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareManager.m; sourceTree = "<group>"; };
 		8080CD2CAEE01D9CB60C40F6 /* Pods-CloudService.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CloudService.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CloudService/Pods-CloudService.debug.xcconfig"; sourceTree = "<group>"; };
 		900B29751CB4F73C00A9FBD7 /* EYPopupView.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = EYPopupView.bundle; sourceTree = "<group>"; };
-		9025D0F71CA50B6500E3B43F /* ButelCommonConnectSDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ButelCommonConnectSDK.bundle; sourceTree = "<group>"; };
-		9025D0F81CA50B6500E3B43F /* ButelCommonConnectSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ButelCommonConnectSDK.framework; sourceTree = "<group>"; };
 		AA863A4D44EB33149F738225 /* Pods-CloudService.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CloudService.release.xcconfig"; path = "Pods/Target Support Files/Pods-CloudService/Pods-CloudService.release.xcconfig"; sourceTree = "<group>"; };
 		D96943D8DC951CBCC61FF495 /* libPods-CloudService.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CloudService.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F019C9D41C7BFD7900E73A2C /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
@@ -451,7 +454,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				636CD92C1C880C4E0050935E /* AVFoundation.framework in Frameworks */,
-				9025D0FA1CA50B6500E3B43F /* ButelCommonConnectSDK.framework in Frameworks */,
+				633ACB2E1CCA241F0053DD2E /* ButelCommonConnectSDK.framework in Frameworks */,
 				63E547AE1CBB89BC00703321 /* libFireData.a in Frameworks */,
 				636CD92A1C880C4A0050935E /* MediaPlayer.framework in Frameworks */,
 				636CD9281C880C440050935E /* AudioToolbox.framework in Frameworks */,
@@ -483,8 +486,8 @@
 		63588FDB1CA4CEA4002C6857 /* 青牛 */ = {
 			isa = PBXGroup;
 			children = (
-				9025D0F71CA50B6500E3B43F /* ButelCommonConnectSDK.bundle */,
-				9025D0F81CA50B6500E3B43F /* ButelCommonConnectSDK.framework */,
+				633ACB2B1CCA241F0053DD2E /* ButelCommonConnectSDK.bundle */,
+				633ACB2C1CCA241F0053DD2E /* ButelCommonConnectSDK.framework */,
 				63588FDE1CA4CEA4002C6857 /* ButelHandle.h */,
 				63588FDF1CA4CEA4002C6857 /* ButelHandle.m */,
 				63588FE01CA4CEA4002C6857 /* CallView.h */,
@@ -918,6 +921,8 @@
 				63C07BA71C7B15C10084581F /* HelperUtil.m */,
 				F05732091C859D2400D88B78 /* SingleHandle.h */,
 				F057320A1C859D2400D88B78 /* SingleHandle.m */,
+				633ACB221CCA03DC0053DD2E /* UserVerifyStatus.h */,
+				633ACB231CCA03DC0053DD2E /* UserVerifyStatus.m */,
 				639CF6AB1C9FF0800086C72B /* UIViewController+AlertView.h */,
 				639CF6AC1C9FF0800086C72B /* UIViewController+AlertView.m */,
 				634647BA1CB49EAF004A064E /* EYInputPopupView.h */,
@@ -1084,6 +1089,7 @@
 				63A2AB051CA13F980094B876 /* rulebg2.png in Resources */,
 				900B29761CB4F73C00A9FBD7 /* EYPopupView.bundle in Resources */,
 				63C54E331C7C2F96007CE8CA /* OrderManagerCell.xib in Resources */,
+				633ACB2D1CCA241F0053DD2E /* ButelCommonConnectSDK.bundle in Resources */,
 				63A2AB021CA13F440094B876 /* activity3.png in Resources */,
 				630EF18B1C8530940059CB34 /* MyClientTableViewCell.xib in Resources */,
 				634EE6271C997F0000FB526D /* rulebg3.png in Resources */,
@@ -1113,7 +1119,6 @@
 				6367FB0D1C9AA19900947038 /* rulebg1.png in Resources */,
 				630EF1901C8543900059CB34 /* PersonResultCell.xib in Resources */,
 				637565741CAE056E004566BA /* Default-736h@2x.png in Resources */,
-				9025D0F91CA50B6500E3B43F /* ButelCommonConnectSDK.bundle in Resources */,
 				637533B01C83F64100A12932 /* details-icon.png in Resources */,
 				F0AFC54C1C9C0D2B00BC3CBC /* Default-568h@2x.png in Resources */,
 			);
@@ -1202,6 +1207,7 @@
 				639D79951CA2A510002523E6 /* SelectCityViewController.m in Sources */,
 				63C54E321C7C2F96007CE8CA /* OrderManagerCell.m in Sources */,
 				F0AB898C1C8ED04F00849E3A /* ZQCityPickerView.m in Sources */,
+				633ACB241CCA03DC0053DD2E /* UserVerifyStatus.m in Sources */,
 				6320B73C1C89A2CE0076FC7E /* Coupons.m in Sources */,
 				F07FF9D61C81469400EB1BB1 /* ResetPhonePopView.m in Sources */,
 				636CD9881C884E9A0050935E /* IntergralSearchViewController.m in Sources */,
@@ -1408,8 +1414,8 @@
 			baseConfigurationReference = 8080CD2CAEE01D9CB60C40F6 /* Pods-CloudService.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Sunshine Insurance Group Co., Ltd.";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Sunshine Insurance Group Co., Ltd.";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1436,8 +1442,8 @@
 			baseConfigurationReference = AA863A4D44EB33149F738225 /* Pods-CloudService.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Sunshine Insurance Group Co., Ltd.";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Sunshine Insurance Group Co., Ltd.";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

@@ -100,6 +100,21 @@ static SingleHandle *singleHandle = nil;
 
 }
 
+- (void) logOut {
+    /**
+     *  退出登录时清除账号信息
+     */
+    //    [JPUSHService setTags:[NSSet set] alias:@"" callbackSelector:nil target:nil];
+    //        User *user = [[SingleHandle shareSingleHandle] getUserInfo];
+    //
+    //        [Utility saveUserName:user.phoneNo passWord:nil];
+    UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    UIViewController *loginVC = [storyBoard instantiateViewControllerWithIdentifier:@"loginNavi"];
+    UIViewController *oldVC = [UIApplication sharedApplication].keyWindow.rootViewController;
+    oldVC = nil;
+    
+    [UIApplication sharedApplication].keyWindow.rootViewController = loginVC;
+}
 - (void)getAreas {
     AppDelegate *delegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
     delegate.isThird=NO;

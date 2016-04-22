@@ -21,6 +21,7 @@
 #import "ButelHandle.h"
 #import "AppDelegate.h"
 #import "EYPopupViewHeader.h"
+#import "UserVerifyStatus.h"
 
 @interface HomeViewController ()<UICollectionViewDataSource,UICollectionViewDelegate,UIAlertViewDelegate>
 {
@@ -131,67 +132,54 @@ static NSString *headerView_ID = @"headerView";
     [super viewDidAppear:animated];
 
 }
-
-- (void)signAction:(UIButton *)sender {
-    
-    User *user = [[SingleHandle shareSingleHandle] getUserInfo];
-    if ([user.roleName isEqualToString:@"普通用户"] || user.roleName.length <= 0) {
-        
-//        UIAlertView *alterView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"当前用户为普通用户,不能签到,请到个人中心认证" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"去认证", nil];
-//    
-//        [alterView show];
-        __weak typeof(self) weakSelf = self;
-        [EYTextPopupView popViewWithTitle:@"温馨提示" contentText:@"当前用户为普通用户,不能签到,请到个人中心认证"
-                          leftButtonTitle:EYLOCALSTRING(@"下次再说")
-                         rightButtonTitle:EYLOCALSTRING(@"马上认证")
-                                leftBlock:^() {
-                                }
-                               rightBlock:^() {
-                                   UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-                                   SetUserInfoViewController *setUserInfoVC = [storyBoard instantiateViewControllerWithIdentifier:@"setUserInfo"];
-                                   setUserInfoVC.rightBtnTitle = @"提交";
-                                   [weakSelf.navigationController pushViewController:setUserInfoVC animated:YES];
-                               }
-                             dismissBlock:^() {
-                                 
-                             }];
-        
-        return ;
-    }
-    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
-    [dict setValue:user.userId forKey:@"userId"];
-    [dict setValue:[Utility location] forKey:@"address"];
-    AppDelegate *delegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
-    delegate.isThird=NO;
-    [MHNetworkManager postReqeustWithURL:[RequestEntity urlString:kSignedAPI]
-                                  params:dict
-                            successBlock:^(id returnData) {
-                                
-            if ([[returnData valueForKey:@"flag"] isEqualToString:@"success"]) {
-                [sender setBackgroundImage:[UIImage imageNamed:@"home-icon7_"] forState:(UIControlStateNormal)];
-                [sender setTitle:@"已签到" forState:(UIControlStateNormal)];
-                sender.enabled = NO;
-                user.sign = @"1";
-                [[SingleHandle shareSingleHandle] saveUserInfo:user];
-                
-            }
-    } failureBlock:^(NSError *error) {
-    
-    } showHUD:YES];
-    
-}
-////UIAlertViewDelegate
-//- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex NS_DEPRECATED_IOS(2_0, 9_0) {
-//    if (buttonIndex == 1) {
-//        UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-//        SetUserInfoViewController *setUserInfoVC = [storyBoard instantiateViewControllerWithIdentifier:@"setUserInfo"];
-//        setUserInfoVC.rightBtnTitle = @"提交";
-//        [self.navigationController pushViewController:setUserInfoVC animated:YES];
-//    }
-//}
 -(void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
 }
+- (void)signAction:(UIButton *)sender {
+    __weak typeof(self) weakSelf = self;
+
+    AppDelegate *delegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
+    delegate.isThird=NO;
+    User *user = [[SingleHandle shareSingleHandle] getUserInfo];
+    if ([user.roleName isEqualToString:@"普通用户"] || user.roleName.length <= 0) {
+        
+        [[UserVerifyStatus shareUserVerifyStatus] userVerifyStatus:user.userId success:^(VerifyStatus verifyStatus) {
+            if (verifyStatus == VerifySuccess) {
+                user.roleName = @"认证用户";
+
+            } if (verifyStatus == NeedVerify) {
+                [weakSelf alertConent:@"当前用户为普通用户,不能签到,请到个人中心认证"];
+                
+            }
+        }];
+    
+    }
+    if (![user.roleName isEqualToString:@"普通用户"]) {
+        NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+        [dict setValue:user.userId forKey:@"userId"];
+        [dict setValue:[Utility location] forKey:@"address"];
+        
+        [MHNetworkManager postReqeustWithURL:[RequestEntity urlString:kSignedAPI]
+                                      params:dict
+                                successBlock:^(id returnData) {
+                                    
+                                    if ([[returnData valueForKey:@"flag"] isEqualToString:@"success"]) {
+                                        [sender setBackgroundImage:[UIImage imageNamed:@"home-icon7_"] forState:(UIControlStateNormal)];
+                                        [sender setTitle:@"已签到" forState:(UIControlStateNormal)];
+                                        sender.enabled = NO;
+                                        user.sign = @"1";
+                                        [[SingleHandle shareSingleHandle] saveUserInfo:user];
+                                        
+                                    }
+                                } failureBlock:^(NSError *error) {
+                                    
+                                } showHUD:YES];
+
+    }
+    
+}
+
+
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     return _dataKeyArray.count;
@@ -348,63 +336,57 @@ static NSString *headerView_ID = @"headerView";
 
 /** 获取数据*/
 - (void)getData {
+    __weak typeof(self) weakSelf = self;
     User *user = [[SingleHandle shareSingleHandle] getUserInfo];
     if ([user.roleName isEqualToString:@"普通用户"] || user.roleName.length <= 0) {
-//        UIAlertView *alterView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"当前用户为普通用户,不能获取数据,请到个人中心认证" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"去认证", nil];
-//        
-//        [alterView show];
         
-        __weak typeof(self) weakSelf = self;
-        [EYTextPopupView popViewWithTitle:@"温馨提示" contentText:@"当前用户为普通用户,不能获取数据,请到个人中心认证"
-                          leftButtonTitle:EYLOCALSTRING(@"下次再说")
-                         rightButtonTitle:EYLOCALSTRING(@"马上认证")
-                                leftBlock:^() {
-                                }
-                               rightBlock:^() {
-                                   UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-                                   SetUserInfoViewController *setUserInfoVC = [storyBoard instantiateViewControllerWithIdentifier:@"setUserInfo"];
-                                   setUserInfoVC.rightBtnTitle = @"提交";
-                                   [weakSelf.navigationController pushViewController:setUserInfoVC animated:YES];
-                               }
-                             dismissBlock:^() {
-                                 
-                             }];
-
-
-        return ;
-    }
-    AppDelegate *delegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
-    delegate.isThird=NO;
-    if ([user.sign isEqualToString:@"1"]) {
-        
-        NSDictionary *paramsDic=@{@"userId":[[SingleHandle shareSingleHandle] getUserInfo].userId};
-        NSString *url = [NSString stringWithFormat:@"%@%@",BaseAPI,kapplyCustomerData];
-        
-        __weak typeof(self) weakSelf = self;
-        [MHNetworkManager postReqeustWithURL:url
-                                      params:paramsDic
-                                successBlock:^(id returnData) {
-                                    
-            NSDictionary *dic = returnData;
-            if ([[dic objectForKey:@"flag"] isEqualToString:@"success"]) {
-                NSDictionary *dataDic = [dic objectForKey:@"data"];
-                _order = [Order mj_objectWithKeyValues:dataDic];
-                [weakSelf performSegueWithIdentifier:@"getData" sender:weakSelf];
+        [[UserVerifyStatus shareUserVerifyStatus] userVerifyStatus:user.userId success:^(VerifyStatus verifyStatus) {
+            if (verifyStatus == VerifySuccess) {
+                user.roleName = @"认证用户";
                 
-            }else {
-                [MBProgressHUD showMessag:[dic objectForKey:@"msg"] toView:weakSelf.view];
+            }if (verifyStatus == NeedVerify) {
+                [weakSelf alertConent:@"当前用户为普通用户,不能获取数据,请到个人中心认证"];
+                
             }
+        }];
+    }
+    if (![user.roleName isEqualToString:@"普通用户"]) {
+        AppDelegate *delegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
+        delegate.isThird=NO;
+        if ([user.sign isEqualToString:@"1"]) {
             
-        } failureBlock:^(NSError *error) {
+            NSDictionary *paramsDic=@{@"userId":[[SingleHandle shareSingleHandle] getUserInfo].userId};
+            NSString *url = [NSString stringWithFormat:@"%@%@",BaseAPI,kapplyCustomerData];
             
-        } showHUD:YES];
-    }else {
-        [MBProgressHUD showMessag:@"签到后才能获取数据!" toView:nil];
+            __weak typeof(self) weakSelf = self;
+            [MHNetworkManager postReqeustWithURL:url
+                                          params:paramsDic
+                                    successBlock:^(id returnData) {
+                                        
+                                        NSDictionary *dic = returnData;
+                                        if ([[dic objectForKey:@"flag"] isEqualToString:@"success"]) {
+                                            NSDictionary *dataDic = [dic objectForKey:@"data"];
+                                            _order = [Order mj_objectWithKeyValues:dataDic];
+                                            [weakSelf performSegueWithIdentifier:@"getData" sender:weakSelf];
+                                            
+                                        }else {
+                                            [MBProgressHUD showMessag:[dic objectForKey:@"msg"] toView:weakSelf.view];
+                                        }
+                                        
+                                    } failureBlock:^(NSError *error) {
+                                        
+                                    } showHUD:YES];
+        }else {
+            [MBProgressHUD showMessag:@"签到后才能获取数据!" toView:nil];
+        }
+        
+
     }
     
-
 }
-
+/**
+ *  storyboard在跳转页面前
+ */
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // segue.identifier：获取连线的ID
     if ([segue.identifier isEqualToString:@"getData"]) {
@@ -412,6 +394,30 @@ static NSString *headerView_ID = @"headerView";
         OrderInfoViewController *receive = segue.destinationViewController;
         receive.order = _order;
     }
+}
+
+/**
+ *  自定义alert提示框
+ */
+
+- (void)alertConent:(NSString *)conent {
+    __weak typeof(self) weakSelf = self;
+
+    [EYTextPopupView popViewWithTitle:@"温馨提示" contentText:conent
+                      leftButtonTitle:EYLOCALSTRING(@"下次再说")
+                     rightButtonTitle:EYLOCALSTRING(@"马上认证")
+                            leftBlock:^() {
+                            }
+                           rightBlock:^() {
+                               UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+                               SetUserInfoViewController *setUserInfoVC = [storyBoard instantiateViewControllerWithIdentifier:@"setUserInfo"];
+                               setUserInfoVC.rightBtnTitle = @"提交";
+                               [weakSelf.navigationController pushViewController:setUserInfoVC animated:YES];
+                           }
+                         dismissBlock:^() {
+                             
+                         }];
+
 }
 
 - (void)didReceiveMemoryWarning {

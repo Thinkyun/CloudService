@@ -12,6 +12,7 @@
 #import "MHAsiNetworkDefine.h"
 #import "MHNetwrok.h"
 #import "AppDelegate.h"
+#import "SingleHandle.h"
 @interface MHAsiNetworkItem ()
 
 @end
@@ -111,7 +112,10 @@
                 DTLog(@"\n\n----请求的返回结果 %@\n",responseObject);
                 if ([[responseObject objectForKey:@"flag"] isEqualToString:@"userConflict"]) {
                     [[NSNotificationCenter defaultCenter] postNotificationName:LogOutViewNotice object:nil];
+//                    [[SingleHandle shareSingleHandle] logOut];
+                    
                     [MBProgressHUD showMessag:[responseObject objectForKey:@"msg"] toView:nil];
+                   
                 }else{
                     if (successBlock) {
                         successBlock(responseObject);

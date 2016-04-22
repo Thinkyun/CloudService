@@ -159,8 +159,8 @@ static NSString *cell_id = @"personalCell";
     
     if (indexPath.section == 3) {
         [[FireData sharedInstance] eventWithCategory:@"个人中心" action:@"退出登录" evar:nil attributes:nil];
-        [[NSNotificationCenter defaultCenter] postNotificationName:LogOutViewNotice object:nil];
-//        [[ButelHandle shareButelHandle] logOut];
+//        [[NSNotificationCenter defaultCenter] postNotificationName:LogOutViewNotice object:nil];
+        [[ButelHandle shareButelHandle] logOut];
         return;
     }
     
