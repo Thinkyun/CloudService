@@ -141,6 +141,7 @@ static ButelHandle *singleHandle = nil;
         switch (status.curConnStatus) {
             case BS_UNConnect:
                 [MBProgressHUD showMessag:@"青牛未登陆" toView:nil];
+                AYCLog(@"%@%@%@",_UUID,_number,_deviceId);
                 [self loginWithLogin:_UUID number:_number deviceId:_deviceId nickname:@"CONNECT" userUniqueIdentifer:_deviceId];
                 break;
             case BS_Connecting:
@@ -246,10 +247,11 @@ static ButelHandle *singleHandle = nil;
                 case BS_UNConnect:
                     [MBProgressHUD showMessag:@"青牛未登陆" toView:nil];
                     [self loginWithLogin:_UUID number:_number deviceId:_deviceId nickname:@"CONNECT" userUniqueIdentifer:_deviceId];
+                    isCall = !isCall;
                     break;
                 case BS_Connecting:
                     [MBProgressHUD showMessag:@"青牛正在登陆，请稍候" toView:nil];
-                    
+                    isCall = !isCall;
                     break;
                 case BS_Connect2ButelNet:
                 {
@@ -262,6 +264,7 @@ static ButelHandle *singleHandle = nil;
                     /**
                      *  每次打电话前生成一次uuid
                      */
+                    _phoneNo = phoneNo;
                     _requestId = [HelperUtil uuidString];
                     [MHNetworkManager postReqeustWithURL:kButelMakeCall
                                                   params:@{@"entId":EntId,
@@ -273,7 +276,7 @@ static ButelHandle *singleHandle = nil;
                                             successBlock:^(NSDictionary *returnData) {
                                                 NSDictionary *dic = returnData;
                                                 if ([[dic objectForKey:@"code"] isEqualToString:@"000"]) {
-                                                    _phoneNo = phoneNo;
+                                                   
                                                 }else {
                                                     if ([[dic objectForKey:@"msg"] isEqual:[NSNull null]]) {
                                                         [MBProgressHUD showError:@"服务器异常" toView:nil];
@@ -340,6 +343,7 @@ static ButelHandle *singleHandle = nil;
 }
 //打电话成功回调
 - (void)OnConnect:(int)mediaFormat Sid:(NSString*)Sid {
+
     [[FireData sharedInstance] eventWithCategory:@"青牛" action:@"拨打电话成功回调" evar:nil attributes:nil];
     [self.callView OnConnectSuccess];
     AYCLog(@"%i,%@",mediaFormat,Sid);
@@ -369,17 +373,13 @@ static ButelHandle *singleHandle = nil;
 
 - (void)OnUninit:(int)reason {
     if (_isUnInit) {
-        @try {
+       
             [MBProgressHUD hideAllHUDsForView:(UIView*)[[[UIApplication sharedApplication]delegate]window] animated:YES];
             //释放青牛sdk
             [ButelEventConnectSDK destroyButelCommonConn:self.connect];
             [self appLogout];
             _isUnInit = NO;
-            
-        } @catch (NSException *exception) {
-            AYCLog(@"%@",[[exception callStackSymbols] componentsJoinedByString:@"\n"]);
-            
-        }
+      
 
     }
     
@@ -453,7 +453,7 @@ static ButelHandle *singleHandle = nil;
     /**
      *  退出登录时清除账号信息
      */
-    [JPUSHService setTags:[NSSet set] alias:@"" callbackSelector:nil target:nil];
+//    [JPUSHService setTags:[NSSet set] alias:@"" callbackSelector:nil target:nil];
     //        User *user = [[SingleHandle shareSingleHandle] getUserInfo];
     //
     //        [Utility saveUserName:user.phoneNo passWord:nil];

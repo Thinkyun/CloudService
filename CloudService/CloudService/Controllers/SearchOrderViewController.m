@@ -69,6 +69,8 @@
         }
         
     }];
+    
+   
     self.tableView.tableFooterView = [UIView new];
     [self addMjRefresh];
     //蒙版
@@ -155,6 +157,7 @@
     [_tfTel setFont:[UIFont systemFontOfSize:14]];
     _tfTel.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
     _tfTel.borderStyle = UITextBorderStyleRoundedRect;
+    _tfTel.keyboardType = UIKeyboardTypePhonePad;
     [_searchView addSubview:_tfTel];
     [_tfTel mas_makeConstraints:^(MASConstraintMaker *make) {
         //添加高约束
@@ -405,8 +408,24 @@
         // 添加宽度（宽度跟左边按键一样）
         make.width.equalTo(btnCancel);
     }];
+     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tfPhoneChanged:) name:UITextFieldTextDidChangeNotification object:_tfTel];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tfCarChanged:) name:UITextFieldTextDidChangeNotification object:_tfCar];
 
+}
+
+- (void)tfPhoneChanged:(NSNotification *)sender {
+    if (_tfTel.text.length >= 11) {
+        _tfTel.text = [_tfTel.text substringToIndex:11];
+    }
+    
+}
+
+- (void)tfCarChanged:(NSNotification *)sender {
+    if (_tfCar.text.length >= 7) {
+        _tfCar.text = [_tfCar.text substringToIndex:7];
+    }
+    
 }
 /**
  *  取消搜索

@@ -425,6 +425,7 @@
             [_alreadyPayArray removeAllObjects];
             [_tableView3 reloadData];
             [_tableView3.mj_header endRefreshing];
+            
         }
     } showHUD:YES];
 }
