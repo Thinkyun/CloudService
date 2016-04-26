@@ -124,7 +124,7 @@ static User *user = nil;
     return [[NSUserDefaults standardUserDefaults] boolForKey:@"isNewVersion"];
     
 }
-+(void)checkNewVersion:(void(^)(BOOL hasNewVersion))versionCheckBlock{
++(void)checkNewVersion:(void(^)(BOOL hasNewVersion,NSString *updateUrl))versionCheckBlock{
     
     NSDictionary *infoDict = [[NSBundle mainBundle] infoDictionary];
     __block double currentVersion = [[infoDict objectForKey:@"CFBundleShortVersionString"] doubleValue];
@@ -137,24 +137,25 @@ static User *user = nil;
             double newVersion = [[dict objectForKey:@"version"] doubleValue];
             
             BOOL flag = newVersion > currentVersion;
+            NSString *url = @"";
             
-            versionCheckBlock(flag);
+            versionCheckBlock(flag,url);
         }
         
     } failureBlock:^(NSError *error) {
-        versionCheckBlock(NO);
+        versionCheckBlock(NO,@"");
     } showHUD:NO];
 }
 
-+(void)saveUUID:(NSString *)UUID{
++(void)saveRegistrationID:(NSString *)RegistrationID{
 
-    [[NSUserDefaults standardUserDefaults] setValue:UUID forKey:@"UUID"];
+    [[NSUserDefaults standardUserDefaults] setValue:RegistrationID forKey:@"RegistrationID"];
     [[NSUserDefaults standardUserDefaults] synchronize];
     
 }
 
-+(NSString *)UUID {
-    return [[NSUserDefaults standardUserDefaults] valueForKey:@"UUID"];
++(NSString *)RegistrationID {
+    return [[NSUserDefaults standardUserDefaults] valueForKey:@"RegistrationID"];
 }
 
 

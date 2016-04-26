@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+@class Order;
 
 @interface OrderManagerCell : UITableViewCell
 
@@ -16,4 +17,5 @@
 @property (weak, nonatomic)IBOutlet UILabel *lbBiPremium;
 @property (weak, nonatomic)IBOutlet UILabel *lbCiPremium;
 @property (weak, nonatomic)IBOutlet UILabel *lbVehicleTaxPremium;
+@property (nonatomic, strong) Order *order;
 @end

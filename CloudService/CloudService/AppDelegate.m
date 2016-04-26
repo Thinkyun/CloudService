@@ -25,6 +25,7 @@
 #define Jchannel      @"Publish channel"
 @interface AppDelegate ()<CLLocationManagerDelegate,UIAlertViewDelegate,FireDataDelegate> {
     BOOL _isSetCity;
+    NSString *_updateUrl;
 }
 
 @end
@@ -55,6 +56,9 @@
     [JPUSHService setupWithOption:launchOptions appKey:JAppKey
                           channel:Jchannel apsForProduction:YES]; //如果是生产环境应该设置为Y                                                                                                                                                                                                                                                                                                                                                                            ES
     
+    NSDictionary *remoteNotification = [launchOptions objectForKey: UIApplicationLaunchOptionsRemoteNotificationKey];
+    AYCLog(@"%@",remoteNotification);
+    
     //检测网络状态
     if ([[HelperUtil getNetWorkStates] isEqualToString:@"2G"]) {
         [MBProgressHUD showMessag:@"当前处于2G网络，您当前所有操作可能会有延迟！" toView:nil];
@@ -71,10 +75,12 @@
     
     __weak typeof(self) weakSelf = self;
     // 检查版本号
-    [Utility checkNewVersion:^(BOOL hasNewVersion) {
+    [Utility checkNewVersion:^(BOOL hasNewVersion,NSString *updateUrl) {
         [Utility saveVersion:hasNewVersion];
         if (hasNewVersion) {
+            _updateUrl = updateUrl;
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"版本更新" message:@"系统检测有新版本" delegate:weakSelf cancelButtonTitle:nil otherButtonTitles:@"点击进入下载", nil];
+            alertView.tag = 100;
             [alertView show];
         }
     }];
@@ -109,11 +115,18 @@
 
 #pragma mark UIAlertViewDelegate
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex NS_DEPRECATED_IOS(2_0, 9_0) {
-    
-    if(buttonIndex == 0) {
-        
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://www.ddyunf.com/html/download.html"]];
+    if(alertView.tag == 100){
+        if(buttonIndex == 0) {
+            
+            //        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://www.ddyunf.com/html/download.html"]];
+//            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"itms-services://?action=download-manifest&url=https://apps.sinosig.com:8083/dhmi/appstore/download1/ios/cloudService_iphone.plist"]];
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:_updateUrl]];
+            
+            
+        }
     }
+    
+    
 }
 
 /**
@@ -129,12 +142,16 @@
     [FireData sharedInstance].enableIDFA = NO;
     [FireData sharedInstance].delegate = self;
     
+    
+    
 //    [FireData sharedInstance].refcode = @"refcode100000";
 }
 /* 统计SDK捕获到异常，程序即将崩溃时，回调此函数 */
 -(void)onCrash {
     
 }
+
+
 /**
  定义协议函数，在SDK内部捕获到对应崩溃事件，并将对应的崩溃事件添加到事件队列后进行对应的事件处理，并将当前获取到的异常信息对象传递
  */
@@ -179,7 +196,16 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loginToMenu) name:LoginToMenuViewNotice object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(logOut) name:LogOutViewNotice object:nil];
-    
+    /**
+     *  注册极光推送监听
+     *
+     *  @return
+     */
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(networkDidSetup:) name:kJPFNetworkDidSetupNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(networkDidClose:) name:kJPFNetworkDidCloseNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(networkDidRegister:) name:kJPFNetworkDidRegisterNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(networkDidLogin:) name:kJPFNetworkDidLoginNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(networkDidReceiveMessage:) name:kJPFNetworkDidReceiveMessageNotification object:nil];
 }
 
 /**
@@ -271,13 +297,96 @@
 }
 
 #pragma mark JPush
+/**
+ *  JPush建立连接
+ *
+ *  @param notification
+ */
+- (void)networkDidSetup:(NSNotification *)notification {
+    AYCLog(@"JPush建立连接");
+}
+/**
+ *  JPush关闭连接
+ *
+ *  @param notification
+ */
+- (void)networkDidClose:(NSNotification *)notification {
+    AYCLog(@"JPush关闭连接");
+}
+/**
+ *  JPush注册成功
+ *
+ *  @param notification
+ */
+- (void)networkDidRegister:(NSNotification *)notification {
+    AYCLog(@"JPush注册成功");
+}
+/**
+ *  JPush登录成功
+ *
+ *  @param notification
+ */
+- (void)networkDidLogin:(NSNotification *)notification {
+    AYCLog(@"JPush登录成功");
+    /**
+     *  获取
+     */
+    NSString *registrationID = [Utility RegistrationID];
+    if (!registrationID) {
+        registrationID = [JPUSHService registrationID];
+        [Utility saveRegistrationID:registrationID];
+    }
+
+}
+/**
+ *  JPush收到自定义消息(非APNS)
+ *
+ *  @param notification
+ */
+- (void)networkDidReceiveMessage:(NSNotification *)notification {
+    AYCLog(@"JPush收到自定义消息(非APNS)");
+    NSDictionary * userInfo = [notification userInfo];
+    NSString *content = [userInfo valueForKey:@"content"];
+    NSDictionary *extras = [userInfo valueForKey:@"extras"];
+    NSString *customizeField1 = [extras valueForKey:@"customizeField1"]; //自定义参数，key是自己定义的
+    
+}
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     // Required
     [JPUSHService registerDeviceToken:deviceToken];
    
 }
 
--(void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo{
+//-(void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo{
+//    NSString *alert = [[userInfo objectForKey:@"aps"] objectForKey:@"alert"];
+//    if (application.applicationState == UIApplicationStateActive) {
+//        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"推送消息"
+//                                                            message:alert
+//                                                           delegate:self
+//                                                  cancelButtonTitle:@"OK"
+//                                                  otherButtonTitles:nil];
+//        [alertView show];
+//    }
+//    [application setApplicationIconBadgeNumber:0];
+//
+//    
+//    // 取得 APNs 标准信息内容
+//    NSDictionary *aps = [userInfo valueForKey:@"aps"];
+//    NSString *content = [aps valueForKey:@"alert"]; //推送显示的内容
+//
+//    
+//    // 取得Extras字段内容
+//    NSString *customizeField1 = [userInfo valueForKey:@"customizeExtras"]; //服务端中Extras字段，key是自己定义的
+//    AYCLog(@"content =[%@], customize field  =[%@]",content,customizeField1);
+//    
+//    // Required
+//    [JPUSHService handleRemoteNotification:userInfo];
+//}
+
+
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
+    
     NSString *alert = [[userInfo objectForKey:@"aps"] objectForKey:@"alert"];
     if (application.applicationState == UIApplicationStateActive) {
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"推送消息"
@@ -285,32 +394,27 @@
                                                            delegate:self
                                                   cancelButtonTitle:@"OK"
                                                   otherButtonTitles:nil];
+        alertView.tag = 101;
         [alertView show];
     }
     [application setApplicationIconBadgeNumber:0];
-
+    
     
     // 取得 APNs 标准信息内容
     NSDictionary *aps = [userInfo valueForKey:@"aps"];
     NSString *content = [aps valueForKey:@"alert"]; //推送显示的内容
-
+    
     
     // 取得Extras字段内容
     NSString *customizeField1 = [userInfo valueForKey:@"customizeExtras"]; //服务端中Extras字段，key是自己定义的
     AYCLog(@"content =[%@], customize field  =[%@]",content,customizeField1);
-    
-    // Required
-    [JPUSHService handleRemoteNotification:userInfo];
-}
 
-
-
-- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
-    
     // IOS 7 Support Required
     [JPUSHService handleRemoteNotification:userInfo];
     completionHandler(UIBackgroundFetchResultNewData);
 }
+
+
 
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
     

@@ -59,19 +59,20 @@ static SingleHandle *singleHandle = nil;
 - (void)loginAppDic:(NSMutableDictionary *)paramDic{
 
     /**
-     *  获取
+     *  每次登录前取JPush的RegistrationID，如果RegistrationID存在，取出
+     *  如果RegistrationID不存在，则手动生成一个UUID
      */
-    NSString *uuid = [Utility UUID];
-    if (!uuid) {
-        uuid = [HelperUtil uuidString];
-        [Utility saveUUID:uuid];
+    NSString *registrationID = [Utility RegistrationID];
+    if (!registrationID) {
+        registrationID = [HelperUtil uuidString];
+       
     }
-    [paramDic setObject:uuid forKey:@"imei"];
+    [paramDic setObject:registrationID forKey:@"imei"];
     
     AppDelegate *delegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
     delegate.isThird=NO;
     
-    __weak typeof(self) weakSelf = self;
+//    __weak typeof(self) weakSelf = self;
     [MHNetworkManager postReqeustWithURL:[RequestEntity urlString:kLoginAPI] params:paramDic successBlock:^(id returnData) {
         if ([[returnData valueForKey:@"flag"] isEqualToString:@"success"]) {
             User *user = [User mj_objectWithKeyValues:[returnData valueForKey:@"data"]];
@@ -82,10 +83,10 @@ static SingleHandle *singleHandle = nil;
              */
             [[FireData sharedInstance] loginWithUserid:user.userNum uvar:@{@"roleName":user.roleName}];
             /**
-             *  注册极光推送标签别名
+             *  注册极光推送标签
              */
-            
-            [JPUSHService setTags:[NSSet setWithObject:user.roleName] alias:user.userNum callbackSelector:nil target:nil];
+        
+            [JPUSHService setTags:[NSSet setWithObject:user.roleName] callbackSelector:nil object:nil];
             
             [[ButelHandle shareButelHandle] ButelHttpLogin];
             [[NSNotificationCenter defaultCenter] postNotificationName:LoginToMenuViewNotice object:nil];
