@@ -30,10 +30,15 @@
     logoImageView.image = [[UIImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"icon80.png" ofType:nil]];
     [_qrImageView addSubview:logoImageView];
     
+    __weak typeof(self) weakSelf = self;
+    [logoImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.height.and.width.equalTo(weakSelf.qrImageView).multipliedBy(0.25);
+        make.center.equalTo(weakSelf.qrImageView);
+    }];
+    
     NSDictionary *infoDict = [[NSBundle mainBundle] infoDictionary];
     double currentVersion = [[infoDict objectForKey:@"CFBundleShortVersionString"] doubleValue];
     self.versionLabel.text = [NSString stringWithFormat:@"版本号 V%.1f",currentVersion];
-    __weak typeof(self) weakSelf = self;
     [self setLeftImageBarButtonItemWithFrame:CGRectMake(0, 0, 30, 30) image:@"title-back" selectImage:@"" action:^(AYCButton *button) {
 //        NSLog(@"Retain count is %ld", CFGetRetainCount((__bridge CFTypeRef)self));
         [weakSelf.navigationController popViewControllerAnimated:YES];

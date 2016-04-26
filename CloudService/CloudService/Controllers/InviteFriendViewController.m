@@ -32,6 +32,11 @@
     [_qrImgView addSubview:logoImageView];
     
     __weak typeof(self) weakSelf = self;
+    [logoImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.height.and.width.equalTo(weakSelf.qrImgView).multipliedBy(0.25);
+        make.center.equalTo(weakSelf.qrImgView);
+    }];
+    
     [self setLeftImageBarButtonItemWithFrame:CGRectMake(0, 0, 30, 30) image:@"title-back" selectImage:@"" action:^(AYCButton *button) {
         [weakSelf.navigationController popViewControllerAnimated:YES];
     }];
