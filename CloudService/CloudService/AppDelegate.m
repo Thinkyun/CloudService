@@ -111,7 +111,7 @@
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex NS_DEPRECATED_IOS(2_0, 9_0) {
     
     if(buttonIndex == 0) {
-        
+
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://www.ddyunf.com/html/download.html"]];
     }
 }
