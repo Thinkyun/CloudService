@@ -106,4 +106,17 @@
  */
 +(NSString *)RegistrationID;
 
+/**
+ *  保存url
+ *
+ *  @param updateUrl
+ */
++ (void)saveUrl:(NSString *)updateUrl;
+/**
+ *  取出url
+ *
+ *  @return
+ */
++ (NSString *)updateUrl;
+
 @end

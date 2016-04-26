@@ -17,6 +17,7 @@
 #import <JPUSHService.h>
 #import "ButelHandle.h"
 #import "SingleHandle.h"
+#import <Bugtags/Bugtags.h>
 
 #define MObAppKey     @"100082c56c5c0"
 #define WXAppID       @"wx5ba999122c08bd76"
@@ -25,7 +26,7 @@
 #define Jchannel      @"Publish channel"
 @interface AppDelegate ()<CLLocationManagerDelegate,UIAlertViewDelegate,FireDataDelegate> {
     BOOL _isSetCity;
-    NSString *_updateUrl;
+   
 }
 
 @end
@@ -36,6 +37,7 @@
 @synthesize isThird;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+
    
     // Override point for customization after application launch.
     //极光推送
@@ -59,10 +61,10 @@
     NSDictionary *remoteNotification = [launchOptions objectForKey: UIApplicationLaunchOptionsRemoteNotificationKey];
     AYCLog(@"%@",remoteNotification);
     
-    //检测网络状态
-    if ([[HelperUtil getNetWorkStates] isEqualToString:@"2G"]) {
-        [MBProgressHUD showMessag:@"当前处于2G网络，您当前所有操作可能会有延迟！" toView:nil];
-    }
+//    //检测网络状态
+//    if ([[HelperUtil getNetWorkStates] isEqualToString:@"2G"]) {
+//        [MBProgressHUD showMessag:@"当前处于2G网络，您当前所有操作可能会有延迟！" toView:nil];
+//    }
     
 
     /**
@@ -78,7 +80,7 @@
     [Utility checkNewVersion:^(BOOL hasNewVersion,NSString *updateUrl) {
         [Utility saveVersion:hasNewVersion];
         if (hasNewVersion) {
-            _updateUrl = updateUrl;
+            [Utility saveUrl:updateUrl];
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"版本更新" message:@"系统检测有新版本" delegate:weakSelf cancelButtonTitle:nil otherButtonTitles:@"点击进入下载", nil];
             alertView.tag = 100;
             [alertView show];
@@ -99,7 +101,15 @@
      *  火炬统计
      */
     [self registerFireData];
-    
+    /**
+     *  bugtags统计
+     *
+     */
+    [Bugtags startWithAppKey:@"11068ec537cf8e890d3e1dc27ac9bed3" invocationEvent:BTGInvocationEventBubble];
+    //隐藏悬浮框
+    [Bugtags setInvocationEvent:BTGInvocationEventNone];
+
+  
     /**
      *  判断是否免登陆
      */
@@ -117,10 +127,14 @@
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex NS_DEPRECATED_IOS(2_0, 9_0) {
     if(alertView.tag == 100){
         if(buttonIndex == 0) {
+            NSString *updateUrl = [Utility updateUrl];
+            if(!updateUrl){
+                updateUrl = @"itms-services://?action=download-manifest&url=https%3A%2F%2Fwww.pgyer.com%2Fapiv1%2Fapp%2Fplist%3FaId%3D7838b7d9fe093d7c02932fbc9ae085db%26_api_key%3D2bd3be8388f881a5b188e170b623ce39";
+
+            }
             
-            //        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://www.ddyunf.com/html/download.html"]];
-//            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"itms-services://?action=download-manifest&url=https://apps.sinosig.com:8083/dhmi/appstore/download1/ios/cloudService_iphone.plist"]];
-            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:_updateUrl]];
+
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:updateUrl]];
             
             
         }

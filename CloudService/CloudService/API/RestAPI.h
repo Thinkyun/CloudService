@@ -12,7 +12,7 @@
 
 
 //#define BaseAPI                 @"http://192.168.4.114:8080/cloudSales-action"  // 11服务器
-//#define BaseAPI                 @"http://192.168.4.117:8889/cloudSales-action"  // 测试服务器
+//#define BaseAPI                 @"http://192.168.0.103:8080/cloudSales-action"  // 测试服务器
 //#define BaseAPI                     @"http://www.eyunkf.com" //测试服务器
 //#define BaseAPI                     @"http://www.ddyunf.com" //生产服务器
 
@@ -93,6 +93,8 @@
 #define kActifityCouponAPI      @"/app/activity/assignActivityCoupon"   // 下发活动优惠券
 
 #define kCheckVersionAPI        @"/app/system/getVersion"                         // 版本检测
+
+#define kVersionAPI              @"http://www.pgyer.com/apiv1/app/getAppKeyByShortcut"//版本检测
 
 #define agentCode               @"CLOUD_SERVICE"                         //agentCode
 
