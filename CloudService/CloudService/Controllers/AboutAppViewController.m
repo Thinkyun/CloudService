@@ -25,8 +25,8 @@
     [super viewDidLoad];
     self.title = @"关于";
     
-    _qrImageView.image = [Tools createQRForString:kCreateQRAPI withSize:188.0];
-    UIImageView *logoImageView = [[UIImageView alloc] initWithFrame:CGRectMake(188.0/2-20, 188.0/2-20, 40, 40)];
+    _qrImageView.image = [Tools createQRForString:kCreateQRAPI withSize:170.0];
+    UIImageView *logoImageView = [[UIImageView alloc] initWithFrame:CGRectMake(170.0/2-20, 170.0/2-20, 40, 40)];
     logoImageView.image = [[UIImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"icon80.png" ofType:nil]];
     [_qrImageView addSubview:logoImageView];
     
