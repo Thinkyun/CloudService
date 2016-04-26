@@ -20,6 +20,12 @@
 @implementation OrderViewController
 
 - (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    __weak typeof(self) weakSelf = self;
+    [self.tabBarController setRightImageBarButtonItemWithFrame:CGRectMake(0, 0, 30, 30) image:@"title-search" selectImage:@"title-search_" action:^(AYCButton *button) {
+        [[FireData sharedInstance] eventWithCategory:@"订单管理" action:@"搜索订单" evar:nil attributes:nil];
+        [weakSelf performSegueWithIdentifier:@"searchOrder" sender:weakSelf];
+    }];
     self.tabBarItem.title = @"订单管理";
 //    self.navigationItem.title = @"订单管理";
     self.tabBarController.navigationItem.title = @"订单管理";
@@ -34,11 +40,7 @@
     self.isScrollEnable = YES;
     
 //    self.tabBarController.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSearch target:self action:@selector(searchItemAction)];
-    __weak typeof(self) weakSelf = self;
-    [self.tabBarController setRightImageBarButtonItemWithFrame:CGRectMake(0, 0, 30, 30) image:@"title-search" selectImage:@"title-search_" action:^(AYCButton *button) {
-        [[FireData sharedInstance] eventWithCategory:@"订单管理" action:@"搜索订单" evar:nil attributes:nil];
-        [weakSelf performSegueWithIdentifier:@"searchOrder" sender:weakSelf];
-    }];
+   
 
 }
 
