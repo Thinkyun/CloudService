@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		04BF40DB1CCF6272007325FB /* Tools.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BF40DA1CCF6272007325FB /* Tools.m */; };
+		04BF40DD1CCF628B007325FB /* EYPopupView.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 04BF40DC1CCF628B007325FB /* EYPopupView.bundle */; };
+		04BF40E01CCF62C2007325FB /* ButelCommonConnectSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 04BF40DE1CCF62C2007325FB /* ButelCommonConnectSDK.bundle */; };
+		04BF40E11CCF62C2007325FB /* ButelCommonConnectSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04BF40DF1CCF62C2007325FB /* ButelCommonConnectSDK.framework */; };
+		04BF40E31CCF6671007325FB /* icon80.png in Resources */ = {isa = PBXBuildFile; fileRef = 04BF40E21CCF6671007325FB /* icon80.png */; };
 		630EF18A1C8530940059CB34 /* MyClientTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 630EF1881C8530940059CB34 /* MyClientTableViewCell.m */; };
 		630EF18B1C8530940059CB34 /* MyClientTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 630EF1891C8530940059CB34 /* MyClientTableViewCell.xib */; };
 		630EF18F1C8543900059CB34 /* PersonResultCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 630EF18D1C8543900059CB34 /* PersonResultCell.m */; };
@@ -117,9 +122,6 @@
 		63E547AE1CBB89BC00703321 /* libFireData.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 63E547AD1CBB89BC00703321 /* libFireData.a */; };
 		63E9BFDD1C9659B200FFE0BA /* Order.m in Sources */ = {isa = PBXBuildFile; fileRef = 63E9BFDC1C9659B200FFE0BA /* Order.m */; };
 		63F6DE421CC7233E00859AB0 /* ShareManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 63F6DE411CC7233E00859AB0 /* ShareManager.m */; };
-		900B29761CB4F73C00A9FBD7 /* EYPopupView.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 900B29751CB4F73C00A9FBD7 /* EYPopupView.bundle */; };
-		9095D5661CCA57E10078C8D8 /* ButelCommonConnectSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 9095D5641CCA57E10078C8D8 /* ButelCommonConnectSDK.bundle */; };
-		9095D5671CCA57E10078C8D8 /* ButelCommonConnectSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9095D5651CCA57E10078C8D8 /* ButelCommonConnectSDK.framework */; };
 		91A97CA728DD2D371997D3F7 /* libPods-CloudService.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D96943D8DC951CBCC61FF495 /* libPods-CloudService.a */; };
 		F019C9D61C7BFD7900E73A2C /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F019C9D51C7BFD7900E73A2C /* LoginViewController.m */; };
 		F019C9D91C7BFD8D00E73A2C /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F019C9D81C7BFD8D00E73A2C /* RegisterViewController.m */; };
@@ -185,6 +187,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		04BF40D91CCF6272007325FB /* Tools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tools.h; sourceTree = "<group>"; };
+		04BF40DA1CCF6272007325FB /* Tools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tools.m; sourceTree = "<group>"; };
+		04BF40DC1CCF628B007325FB /* EYPopupView.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = EYPopupView.bundle; sourceTree = "<group>"; };
+		04BF40DE1CCF62C2007325FB /* ButelCommonConnectSDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ButelCommonConnectSDK.bundle; sourceTree = "<group>"; };
+		04BF40DF1CCF62C2007325FB /* ButelCommonConnectSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ButelCommonConnectSDK.framework; sourceTree = "<group>"; };
+		04BF40E21CCF6671007325FB /* icon80.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon80.png; path = Assets.xcassets/AppIcon.appiconset/icon80.png; sourceTree = "<group>"; };
 		630EF1871C8530940059CB34 /* MyClientTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyClientTableViewCell.h; sourceTree = "<group>"; };
 		630EF1881C8530940059CB34 /* MyClientTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyClientTableViewCell.m; sourceTree = "<group>"; };
 		630EF1891C8530940059CB34 /* MyClientTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyClientTableViewCell.xib; sourceTree = "<group>"; };
@@ -376,9 +384,6 @@
 		63F6DE401CC7233E00859AB0 /* ShareManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareManager.h; sourceTree = "<group>"; };
 		63F6DE411CC7233E00859AB0 /* ShareManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareManager.m; sourceTree = "<group>"; };
 		8080CD2CAEE01D9CB60C40F6 /* Pods-CloudService.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CloudService.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CloudService/Pods-CloudService.debug.xcconfig"; sourceTree = "<group>"; };
-		900B29751CB4F73C00A9FBD7 /* EYPopupView.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = EYPopupView.bundle; sourceTree = "<group>"; };
-		9095D5641CCA57E10078C8D8 /* ButelCommonConnectSDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ButelCommonConnectSDK.bundle; sourceTree = "<group>"; };
-		9095D5651CCA57E10078C8D8 /* ButelCommonConnectSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ButelCommonConnectSDK.framework; sourceTree = "<group>"; };
 		AA863A4D44EB33149F738225 /* Pods-CloudService.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CloudService.release.xcconfig"; path = "Pods/Target Support Files/Pods-CloudService/Pods-CloudService.release.xcconfig"; sourceTree = "<group>"; };
 		D96943D8DC951CBCC61FF495 /* libPods-CloudService.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CloudService.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F019C9D41C7BFD7900E73A2C /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
@@ -499,7 +504,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				636CD92C1C880C4E0050935E /* AVFoundation.framework in Frameworks */,
-				9095D5671CCA57E10078C8D8 /* ButelCommonConnectSDK.framework in Frameworks */,
+				04BF40E11CCF62C2007325FB /* ButelCommonConnectSDK.framework in Frameworks */,
 				63E547AE1CBB89BC00703321 /* libFireData.a in Frameworks */,
 				636CD92A1C880C4A0050935E /* MediaPlayer.framework in Frameworks */,
 				636CD9281C880C440050935E /* AudioToolbox.framework in Frameworks */,
@@ -531,8 +536,8 @@
 		63588FDB1CA4CEA4002C6857 /* 青牛 */ = {
 			isa = PBXGroup;
 			children = (
-				9095D5641CCA57E10078C8D8 /* ButelCommonConnectSDK.bundle */,
-				9095D5651CCA57E10078C8D8 /* ButelCommonConnectSDK.framework */,
+				04BF40DE1CCF62C2007325FB /* ButelCommonConnectSDK.bundle */,
+				04BF40DF1CCF62C2007325FB /* ButelCommonConnectSDK.framework */,
 				63588FDE1CA4CEA4002C6857 /* ButelHandle.h */,
 				63588FDF1CA4CEA4002C6857 /* ButelHandle.m */,
 				63588FE01CA4CEA4002C6857 /* CallView.h */,
@@ -577,6 +582,8 @@
 		637565751CAE62FD004566BA /* AYCUnicode */ = {
 			isa = PBXGroup;
 			children = (
+				04BF40D91CCF6272007325FB /* Tools.h */,
+				04BF40DA1CCF6272007325FB /* Tools.m */,
 				637565761CAE62FD004566BA /* NSArray+AYCUnicode.h */,
 				637565771CAE62FD004566BA /* NSArray+AYCUnicode.m */,
 				637565781CAE62FD004566BA /* NSDictionary+AYCUnicode.h */,
@@ -874,6 +881,7 @@
 				F0292BB01C7B00CD00A810A9 /* AppDelegate.h */,
 				F0292BB11C7B00CD00A810A9 /* AppDelegate.m */,
 				F0292BB61C7B00CD00A810A9 /* Main.storyboard */,
+				04BF40E21CCF6671007325FB /* icon80.png */,
 				F0292BB91C7B00CD00A810A9 /* Assets.xcassets */,
 				F0292BBB1C7B00CD00A810A9 /* LaunchScreen.storyboard */,
 				F0292BBE1C7B00CD00A810A9 /* Info.plist */,
@@ -1018,7 +1026,7 @@
 				639CF6AC1C9FF0800086C72B /* UIViewController+AlertView.m */,
 				634647BA1CB49EAF004A064E /* EYInputPopupView.h */,
 				634647BB1CB49EAF004A064E /* EYInputPopupView.m */,
-				900B29751CB4F73C00A9FBD7 /* EYPopupView.bundle */,
+				04BF40DC1CCF628B007325FB /* EYPopupView.bundle */,
 				634647BD1CB49EAF004A064E /* EYPopupView.h */,
 				634647BE1CB49EAF004A064E /* EYPopupView.m */,
 				634647BF1CB49EAF004A064E /* EYPopupViewHeader.h */,
@@ -1139,7 +1147,7 @@
 				TargetAttributes = {
 					F0292BA91C7B00CD00A810A9 = {
 						CreatedOnToolsVersion = 7.2;
-						DevelopmentTeam = 7PS2AH4H79;
+						DevelopmentTeam = LH28XA7T22;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -1178,14 +1186,14 @@
 				63A2AB031CA13F440094B876 /* activity3@2X.png in Resources */,
 				634EE6201C995A8D00FB526D /* activity2@2X.png in Resources */,
 				63A2AB051CA13F980094B876 /* rulebg2.png in Resources */,
-				900B29761CB4F73C00A9FBD7 /* EYPopupView.bundle in Resources */,
 				63C54E331C7C2F96007CE8CA /* OrderManagerCell.xib in Resources */,
-				9095D5661CCA57E10078C8D8 /* ButelCommonConnectSDK.bundle in Resources */,
 				63A2AB021CA13F440094B876 /* activity3.png in Resources */,
+				04BF40E01CCF62C2007325FB /* ButelCommonConnectSDK.bundle in Resources */,
 				630EF18B1C8530940059CB34 /* MyClientTableViewCell.xib in Resources */,
 				634EE6271C997F0000FB526D /* rulebg3.png in Resources */,
 				6339B0DD1CB6637C0045F7E0 /* Default.png in Resources */,
 				F09A5F901A55BEDD008D4963 /* HomeHeaderView.xib in Resources */,
+				04BF40E31CCF6671007325FB /* icon80.png in Resources */,
 				F094B59E1C8000E500A2312D /* HomeCollectionCell.xib in Resources */,
 				63C2FB951C7FEC9500D48B8C /* OrderInfoTableViewCell.xib in Resources */,
 				F0AFC54D1C9C0D2B00BC3CBC /* Default-667h@2x.png in Resources */,
@@ -1196,6 +1204,7 @@
 				F0292BBA1C7B00CD00A810A9 /* Assets.xcassets in Resources */,
 				F094A84A1C9F9D5900E89967 /* TagSelectItem.xib in Resources */,
 				63790FEE1C93C03C006CB0E2 /* ActivityCollectionCell.xib in Resources */,
+				04BF40DD1CCF628B007325FB /* EYPopupView.bundle in Resources */,
 				F07FF9E01C81752D00EB1BB1 /* MyTeamTableViewCell.xib in Resources */,
 				F07FF9D81C8146D800EB1BB1 /* ResetPhonePopView.xib in Resources */,
 				F06DE1DB1C9957CF006D3BE7 /* SetUserInfoCell2.xib in Resources */,
@@ -1336,6 +1345,7 @@
 				63790FE61C93B12B006CB0E2 /* HoriCardFlowLayout2.m in Sources */,
 				63ADFBE61C7EAC52000D3164 /* ResultTableViewCell.m in Sources */,
 				63AA2BDA1C8A8E1E00D7CF04 /* Integral.m in Sources */,
+				04BF40DB1CCF6272007325FB /* Tools.m in Sources */,
 				F094B59D1C8000E500A2312D /* HomeCollectionCell.m in Sources */,
 				63C07B9B1C7B14BB0084581F /* MHAsiNetworkHandler.m in Sources */,
 				63E143B11CCF0694002462DB /* SegmentControl.m in Sources */,

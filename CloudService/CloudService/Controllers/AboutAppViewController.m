@@ -7,6 +7,7 @@
 //
 
 #import "AboutAppViewController.h"
+#import "Tools.h"
 
 @interface AboutAppViewController ()
 
@@ -15,6 +16,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *versionLabel;
 @property (weak, nonatomic) IBOutlet UILabel *iconLabel;
 
+@property (weak, nonatomic) IBOutlet UIImageView *qrImageView;
 @end
 
 @implementation AboutAppViewController
@@ -22,6 +24,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"关于";
+    
+    _qrImageView.image = [Tools createQRForString:kCreateQRAPI withSize:188.0];
+    UIImageView *logoImageView = [[UIImageView alloc] initWithFrame:CGRectMake(188.0/2-20, 188.0/2-20, 40, 40)];
+    logoImageView.image = [[UIImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"icon80.png" ofType:nil]];
+    [_qrImageView addSubview:logoImageView];
+    
     NSDictionary *infoDict = [[NSBundle mainBundle] infoDictionary];
     double currentVersion = [[infoDict objectForKey:@"CFBundleShortVersionString"] doubleValue];
     self.versionLabel.text = [NSString stringWithFormat:@"版本号 V%.1f",currentVersion];
