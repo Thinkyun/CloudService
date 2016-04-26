@@ -81,7 +81,7 @@
             /**
              *  微信分享
              */
-            [[ShareManager manager] shareParamsByText:content images:imageArray url:[NSURL URLWithString:_linkUrl] title:@"点点云服"];
+            [[ShareManager manager] shareParamsByText:content images:imageArray url:[NSURL URLWithString:kCreateQRAPI] title:@"点点云服"];
 
         }
     
