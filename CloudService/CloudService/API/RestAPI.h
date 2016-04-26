@@ -24,6 +24,8 @@
 
 #define kGetCodeAPI             @"/app/user/getCode"                     //获取验证码
 
+#define kCreateQRAPI            @"http://www.pgyer.com/ddyunfiOS"          //创建一个二维码（下载）
+
 #define kGetuserInfoAPI         @"/app/user/findUserInfo"                     //个人信息
 
 #define kGetuserIntergralAPI    @"/app/credits/findUserCredits"                     //我的积分

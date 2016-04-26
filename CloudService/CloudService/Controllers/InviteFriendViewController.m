@@ -7,6 +7,7 @@
 //
 
 #import "InviteFriendViewController.h"
+#import "Tools.h"
 #import "ShareManager.h"
 
 @interface InviteFriendViewController ()
@@ -24,7 +25,12 @@
     [super viewDidLoad];
     self.title = @"邀请";
     [self setUpInviteLink];
-  
+    
+    _qrImgView.image = [Tools createQRForString:kCreateQRAPI withSize:188];
+    UIImageView *logoImageView = [[UIImageView alloc] initWithFrame:CGRectMake(188.0/2-20, 188.0/2-20, 40, 40)];
+    logoImageView.image = [[UIImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"icon80.png" ofType:nil]];
+    [_qrImgView addSubview:logoImageView];
+    
     __weak typeof(self) weakSelf = self;
     [self setLeftImageBarButtonItemWithFrame:CGRectMake(0, 0, 30, 30) image:@"title-back" selectImage:@"" action:^(AYCButton *button) {
         [weakSelf.navigationController popViewControllerAnimated:YES];
@@ -75,7 +81,7 @@
             /**
              *  微信分享
              */
-            [[ShareManager manager] shareParamsByText:content images:imageArray url:[NSURL URLWithString:_linkUrl] title:@"点点云服"];
+            [[ShareManager manager] shareParamsByText:content images:imageArray url:[NSURL URLWithString:kCreateQRAPI] title:@"点点云服"];
 
         }
     
