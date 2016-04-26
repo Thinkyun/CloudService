@@ -7,6 +7,7 @@
 //
 
 #import "AboutAppViewController.h"
+#import "Tools.h"
 
 @interface AboutAppViewController ()
 
@@ -15,6 +16,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *versionLabel;
 @property (weak, nonatomic) IBOutlet UILabel *iconLabel;
 
+@property (weak, nonatomic) IBOutlet UIImageView *qrImageView;
 @end
 
 @implementation AboutAppViewController
@@ -22,10 +24,21 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"关于";
+    
+    _qrImageView.image = [Tools createQRForString:kCreateQRAPI withSize:170.0];
+    UIImageView *logoImageView = [[UIImageView alloc] initWithFrame:CGRectMake(170.0/2-20, 170.0/2-20, 40, 40)];
+    logoImageView.image = [[UIImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"icon80.png" ofType:nil]];
+    [_qrImageView addSubview:logoImageView];
+    
+    __weak typeof(self) weakSelf = self;
+    [logoImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.height.and.width.equalTo(weakSelf.qrImageView).multipliedBy(0.25);
+        make.center.equalTo(weakSelf.qrImageView);
+    }];
+    
     NSDictionary *infoDict = [[NSBundle mainBundle] infoDictionary];
     double currentVersion = [[infoDict objectForKey:@"CFBundleShortVersionString"] doubleValue];
     self.versionLabel.text = [NSString stringWithFormat:@"版本号 V%.1f",currentVersion];
-    __weak typeof(self) weakSelf = self;
     [self setLeftImageBarButtonItemWithFrame:CGRectMake(0, 0, 30, 30) image:@"title-back" selectImage:@"" action:^(AYCButton *button) {
 //        NSLog(@"Retain count is %ld", CFGetRetainCount((__bridge CFTypeRef)self));
         [weakSelf.navigationController popViewControllerAnimated:YES];

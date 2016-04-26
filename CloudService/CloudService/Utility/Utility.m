@@ -130,17 +130,25 @@ static User *user = nil;
     __block double currentVersion = [[infoDict objectForKey:@"CFBundleShortVersionString"] doubleValue];
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     [dict setObject:@"iOS" forKey:@"clientType"];
-    [MHNetworkManager postReqeustWithURL:[RequestEntity urlString:kCheckVersionAPI] params:@{@"clientType":@"iOS"} successBlock:^(id returnData) {
-        
-        if ([returnData[@"flag"] isEqualToString:@"success"]) {
-            NSDictionary *dict = [returnData objectForKey:@"data"];
-            double newVersion = [[dict objectForKey:@"version"] doubleValue];
-            
-            BOOL flag = newVersion > currentVersion;
-            NSString *url = @"";
-            
-            versionCheckBlock(flag,url);
+    [MHNetworkManager postReqeustWithURL:kVersionAPI params:@{@"shortcut":@"ddyunfiOS",@"_api_key":@"2bd3be8388f881a5b188e170b623ce39"} successBlock:^(id returnData) {
+        NSInteger code = [returnData[@"code"] integerValue];
+        switch (code) {
+            case 0:{
+                NSDictionary *dict = [returnData objectForKey:@"data"];
+                double newVersion = [[dict objectForKey:@"appVersion"] doubleValue];
+                NSString *appkey = [dict valueForKey:@"appKey"];
+                BOOL flag = newVersion > currentVersion;
+                NSString *url = [NSString stringWithFormat:@"itms-services://?action=download-manifest&url=https://www.pgyer.com/app/plist/%@",appkey];
+                
+                versionCheckBlock(flag,url);
+            }
+                
+                break;
+                
+            default:
+                break;
         }
+        
         
     } failureBlock:^(NSError *error) {
         versionCheckBlock(NO,@"");
@@ -158,5 +166,15 @@ static User *user = nil;
     return [[NSUserDefaults standardUserDefaults] valueForKey:@"RegistrationID"];
 }
 
+
++ (void)saveUrl:(NSString *)updateUrl {
+    
+    [[NSUserDefaults standardUserDefaults] setValue:updateUrl forKey:@"updateUrl"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
++ (NSString *)updateUrl {
+    return [[NSUserDefaults standardUserDefaults] valueForKey:@"updateUrl"];
+}
 
 @end

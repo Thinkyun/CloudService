@@ -60,7 +60,7 @@ static ButelHandle *singleHandle = nil;
     [[FireData sharedInstance] eventWithCategory:@"青牛" action:@"http登陆" evar:nil attributes:nil];
     User *user = [[SingleHandle shareSingleHandle] getUserInfo];
     if ([user.roleName isEqualToString:@"普通用户"] || user.roleName.length <= 0) {
-        [[NSNotificationCenter defaultCenter] postNotificationName:LoginToMenuViewNotice object:nil];
+//        [[NSNotificationCenter defaultCenter] postNotificationName:LoginToMenuViewNotice object:nil];
         return;
     }
     //http登陆

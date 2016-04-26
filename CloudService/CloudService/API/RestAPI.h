@@ -12,7 +12,7 @@
 
 
 //#define BaseAPI                 @"http://192.168.4.114:8080/cloudSales-action"  // 11服务器
-//#define BaseAPI                 @"http://192.168.4.117:8889/cloudSales-action"  // 测试服务器
+//#define BaseAPI                 @"http://192.168.0.103:8080/cloudSales-action"  // 测试服务器
 //#define BaseAPI                     @"http://www.eyunkf.com" //测试服务器
 //#define BaseAPI                     @"http://www.ddyunf.com" //生产服务器
 
@@ -23,6 +23,8 @@
 #define kLoginAPI               @"/app/user/login"                     //登录
 
 #define kGetCodeAPI             @"/app/user/getCode"                     //获取验证码
+
+#define kCreateQRAPI            @"http://www.pgyer.com/ddyunfiOS"          //创建一个二维码（下载）
 
 #define kGetuserInfoAPI         @"/app/user/findUserInfo"                     //个人信息
 
@@ -93,6 +95,8 @@
 #define kActifityCouponAPI      @"/app/activity/assignActivityCoupon"   // 下发活动优惠券
 
 #define kCheckVersionAPI        @"/app/system/getVersion"                         // 版本检测
+
+#define kVersionAPI              @"http://www.pgyer.com/apiv1/app/getAppKeyByShortcut"//版本检测
 
 #define agentCode               @"CLOUD_SERVICE"                         //agentCode
 

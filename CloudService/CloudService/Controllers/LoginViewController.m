@@ -157,7 +157,7 @@
     }
     //登陆
     [[SingleHandle shareSingleHandle] loginAppDic:dict];
-
+  
 }
 
 
