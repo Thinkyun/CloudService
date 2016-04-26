@@ -48,7 +48,7 @@
  *
  *  @param versionCheckBlock 是否有新版本
  */
-+(void)checkNewVersion:(void(^)(BOOL hasNewVersion))versionCheckBlock;
++(void)checkNewVersion:(void(^)(BOOL hasNewVersion,NSString *updateUrl))versionCheckBlock;
 
 /**
  *  获取定位城市
@@ -94,16 +94,16 @@
  */
 +(BOOL )isNewVersion;
 /**
- *  保存uuid
+ *  保存RegistrationID
  *
- *  @param UUID
+ *  @param RegistrationID
  */
-+(void)saveUUID:(NSString *)UUID;
++(void)saveRegistrationID:(NSString *)RegistrationID;
 /**
- *  取出uuid
+ *  取出RegistrationID
  *
  *  @return
  */
-+(NSString *)UUID;
++(NSString *)RegistrationID;
 
 @end

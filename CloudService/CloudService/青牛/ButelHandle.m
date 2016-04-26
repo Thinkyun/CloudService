@@ -156,7 +156,6 @@ static ButelHandle *singleHandle = nil;
                 }
 
                 AYCLog(@"%@%@%@",_UUID,_number,_deviceId);
-//                [self loginWithLogin:_UUID number:_number deviceId:_deviceId nickname:@"CONNECT" userUniqueIdentifer:_deviceId];
                 break;
             case BS_Connecting:
                 [MBProgressHUD showMessag:@"青牛正在登陆，请稍候" toView:nil];
@@ -260,7 +259,7 @@ static ButelHandle *singleHandle = nil;
             switch (status.curConnStatus) {
                 case BS_UNConnect:
                     [MBProgressHUD showMessag:@"青牛未登陆" toView:nil];
-//                    [self loginWithLogin:_UUID number:_number deviceId:_deviceId nickname:@"CONNECT" userUniqueIdentifer:_deviceId];
+
                     isCall = !isCall;
                     break;
                 case BS_Connecting:

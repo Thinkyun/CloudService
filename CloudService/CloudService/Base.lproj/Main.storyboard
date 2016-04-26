@@ -1402,40 +1402,18 @@
         <!--订单管理-->
         <scene sceneID="En5-ls-5mo">
             <objects>
-                <viewController title="订单管理" id="ouT-BD-X5h" userLabel="订单管理" customClass="OrderManagerViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="ehu-FX-4J1"/>
-                        <viewControllerLayoutGuide type="bottom" id="PFK-A2-Eck"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="nH8-Nq-vTP">
-                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2fE-ZY-gNK" customClass="LazyPageScrollView">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
-                                <color key="backgroundColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
-                            </view>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="2fE-ZY-gNK" firstAttribute="leading" secondItem="nH8-Nq-vTP" secondAttribute="leading" id="1QE-UT-las"/>
-                            <constraint firstItem="2fE-ZY-gNK" firstAttribute="top" secondItem="ehu-FX-4J1" secondAttribute="bottom" id="52k-lN-dga"/>
-                            <constraint firstItem="PFK-A2-Eck" firstAttribute="top" secondItem="2fE-ZY-gNK" secondAttribute="bottom" id="NQt-7T-lOS"/>
-                            <constraint firstAttribute="trailing" secondItem="2fE-ZY-gNK" secondAttribute="trailing" id="idt-2K-U7d"/>
-                        </constraints>
-                    </view>
+                <viewController title="订单管理" id="ouT-BD-X5h" userLabel="订单管理" customClass="OrderViewController" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="订单管理" id="pF1-o9-cab"/>
                     <navigationItem key="navigationItem" title="订单管理" id="4R5-gg-bDG"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
-                        <outlet property="pageView" destination="2fE-ZY-gNK" id="xcD-0b-61R"/>
                         <segue destination="nWe-z1-RRx" kind="push" identifier="searchOrder" id="YSw-6b-qmW"/>
                         <segue destination="g2Q-wk-WsR" kind="push" identifier="orderInfo" id="MPx-U3-8mP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DF7-Ey-5Os" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1463.5" y="-428.5"/>
+            <point key="canvasLocation" x="1303.5" y="-482.5"/>
         </scene>
         <!--订单详情-->
         <scene sceneID="f1q-sT-j2A">
