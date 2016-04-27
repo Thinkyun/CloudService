@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		04BF40DB1CCF6272007325FB /* Tools.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BF40DA1CCF6272007325FB /* Tools.m */; };
-		04BF40DD1CCF628B007325FB /* EYPopupView.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 04BF40DC1CCF628B007325FB /* EYPopupView.bundle */; };
 		04BF40E01CCF62C2007325FB /* ButelCommonConnectSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 04BF40DE1CCF62C2007325FB /* ButelCommonConnectSDK.bundle */; };
 		04BF40E11CCF62C2007325FB /* ButelCommonConnectSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04BF40DF1CCF62C2007325FB /* ButelCommonConnectSDK.framework */; };
 		04BF40E31CCF6671007325FB /* icon80.png in Resources */ = {isa = PBXBuildFile; fileRef = 04BF40E21CCF6671007325FB /* icon80.png */; };
@@ -189,7 +188,6 @@
 /* Begin PBXFileReference section */
 		04BF40D91CCF6272007325FB /* Tools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tools.h; sourceTree = "<group>"; };
 		04BF40DA1CCF6272007325FB /* Tools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tools.m; sourceTree = "<group>"; };
-		04BF40DC1CCF628B007325FB /* EYPopupView.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = EYPopupView.bundle; sourceTree = "<group>"; };
 		04BF40DE1CCF62C2007325FB /* ButelCommonConnectSDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ButelCommonConnectSDK.bundle; sourceTree = "<group>"; };
 		04BF40DF1CCF62C2007325FB /* ButelCommonConnectSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ButelCommonConnectSDK.framework; sourceTree = "<group>"; };
 		04BF40E21CCF6671007325FB /* icon80.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon80.png; path = Assets.xcassets/AppIcon.appiconset/icon80.png; sourceTree = "<group>"; };
@@ -1203,7 +1201,6 @@
 				F0292BBA1C7B00CD00A810A9 /* Assets.xcassets in Resources */,
 				F094A84A1C9F9D5900E89967 /* TagSelectItem.xib in Resources */,
 				63790FEE1C93C03C006CB0E2 /* ActivityCollectionCell.xib in Resources */,
-				04BF40DD1CCF628B007325FB /* EYPopupView.bundle in Resources */,
 				F07FF9E01C81752D00EB1BB1 /* MyTeamTableViewCell.xib in Resources */,
 				F07FF9D81C8146D800EB1BB1 /* ResetPhonePopView.xib in Resources */,
 				F06DE1DB1C9957CF006D3BE7 /* SetUserInfoCell2.xib in Resources */,

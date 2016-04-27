@@ -13,10 +13,10 @@
 
 //#define BaseAPI                 @"http://192.168.4.114:8080/cloudSales-action"  // 11服务器
 //#define BaseAPI                 @"http://192.168.0.103:8080/cloudSales-action"  // 测试服务器
-//#define BaseAPI                     @"http://www.eyunkf.com" //测试服务器
+#define BaseAPI                     @"http://www.eyunkf.com" //测试服务器
 //#define BaseAPI                     @"http://www.ddyunf.com" //生产服务器
 
-#define BaseAPI                     @"http://139.198.0.209" //生产服务器
+//#define BaseAPI                     @"http://139.198.0.209" //生产服务器
 
 #define kRegisterAPI            @"/app/user/register"                     //注册
 
@@ -85,6 +85,8 @@
 #define kZhiKeUnfinishInfo      @"http://139.198.0.29:80/zkyq-web/unfinishedOrder/returnPage?baseId="   //直客订单详情
 
 #define kZhiKeFinishInfo      @"http://139.198.0.29:80/zkyq-web/insure/returnPage?baseId="   //直客订单详情
+
+#define kGetOrderInfo          @"/app/order/getCustomerOrderDataVO"               //获取订单详情
 
 #define kfindOrderByCondition     @"/app/order/findOrderByCondition"             //订单条件查询
 

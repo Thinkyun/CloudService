@@ -10,8 +10,8 @@
 #import "UnfinishedViewController.h"
 #import "UnPaidViewController.h"
 #import "PaidViewController.h"
-
 #import "OrderInfoViewController.h"
+#import "Order.h"
 
 @interface OrderViewController ()
 
@@ -44,10 +44,6 @@
 
 }
 
-//- (void)searchItemAction{
-//    [[FireData sharedInstance] eventWithCategory:@"订单管理" action:@"搜索订单" evar:nil attributes:nil];
-//    [self performSegueWithIdentifier:@"searchOrder" sender:self];
-//}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -63,6 +59,8 @@
         OrderInfoViewController *receive = segue.destinationViewController;
         //        _dataList[]
         receive.order = sender;
+        Order *order = sender;
+        receive.baseId = order.baseId;
         AYCLog(@"%@",receive.order);
     }
 }
