@@ -13,7 +13,6 @@
 
 @property (nonatomic,strong)Order *order;
 
-@property (nonatomic,copy)NSString *baseId;
 
 
 @end

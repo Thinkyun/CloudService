@@ -48,16 +48,7 @@
     
     [super viewWillAppear:animated];
     self.title=@"订单详情";
-    NSString *userId = [SingleHandle shareSingleHandle].user.userId;
-    NSString *url = [NSString stringWithFormat:@"%@%@",BaseAPI,kGetOrderInfo];
-    [MHNetworkManager postReqeustWithURL:url params:@{@"baseId":_baseId,@"userId":userId} successBlock:^(id returnData) {
-        NSLog(@"%@",returnData);
-        _order = [Order mj_objectWithKeyValues:returnData[@"data"]];
-        [_tableView reloadData];
-    } failureBlock:^(NSError *error) {
-        
-        NSLog(@"%@",error);
-    } showHUD:YES];
+   
 }
 
 

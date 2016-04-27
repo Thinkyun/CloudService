@@ -60,7 +60,6 @@
         //        _dataList[]
         receive.order = sender;
         Order *order = sender;
-        receive.baseId = order.baseId;
         AYCLog(@"%@",receive.order);
     }
 }
