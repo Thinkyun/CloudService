@@ -85,8 +85,8 @@ static SingleHandle *singleHandle = nil;
             /**
              *  注册极光推送标签
              */
-        
-            [JPUSHService setTags:[NSSet setWithObject:user.roleName] callbackSelector:nil object:nil];
+            [JPUSHService setTags:[NSSet setWithObject:user.roleName] alias:user.userNum callbackSelector:nil target:nil];
+//            [JPUSHService setTags:[NSSet setWithObject:user.roleName] callbackSelector:nil object:nil];
             
             [[ButelHandle shareButelHandle] ButelHttpLogin];
             [[NSNotificationCenter defaultCenter] postNotificationName:LoginToMenuViewNotice object:nil];

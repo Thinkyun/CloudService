@@ -22,6 +22,7 @@
 #import "AppDelegate.h"
 #import "EYPopupViewHeader.h"
 #import "UserVerifyStatus.h"
+#import <PgyUpdate/PgyUpdateManager.h>
 
 @interface HomeViewController ()<UICollectionViewDataSource,UICollectionViewDelegate,UIAlertViewDelegate>
 {
@@ -33,6 +34,7 @@
     BOOL _isHide;
     Order *_order;//获取数据
     HomeHeaderView *_headerView;
+    NSDictionary *_responseDic;
 }
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 
@@ -46,7 +48,11 @@ static NSString *headerView_ID = @"headerView";
 - (void)viewDidLoad {
     [super viewDidLoad];
    
-
+    /**
+     *  自定义更新
+     *
+     */
+    [[PgyUpdateManager sharedPgyManager] checkUpdateWithDelegete:self selector:@selector(updateMethod:)];
    
 
     [self initData];
@@ -420,6 +426,37 @@ static NSString *headerView_ID = @"headerView";
 
 }
 
+#pragma mark - 检查更新
+/**
+ *  自定义更新
+ */
+- (void)updateMethod:(NSDictionary *)response {
+    if (response) {
+        _responseDic = response;
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"版本更新" message:@"系统检测有新版本" delegate:self cancelButtonTitle:nil otherButtonTitles:@"点击进入下载", nil];
+        alertView.tag = 100;
+        [alertView show];
+        NSLog(@"%@",response);
+    }
+    
+    
+}
+
+
+
+#pragma mark UIAlertViewDelegate
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex NS_DEPRECATED_IOS(2_0, 9_0) {
+    if(alertView.tag == 100){
+        if(buttonIndex == 0) {
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:_responseDic[@"downloadURL"]]];
+            //更新本地版本号
+            [[PgyUpdateManager sharedPgyManager] updateLocalBuildNumber];
+            
+        }
+    }
+    
+    
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

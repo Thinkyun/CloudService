@@ -14,7 +14,6 @@ PODS:
   - AFNetworking/Serialization (3.0.4)
   - AFNetworking/UIKit (3.0.4):
     - AFNetworking/NSURLSession
-  - Bugtags (1.1.9)
   - FMDB (2.6):
     - FMDB/standard (= 2.6)
   - FMDB/standard (2.6)
@@ -26,6 +25,8 @@ PODS:
   - MJExtension (3.0.10)
   - MJRefresh (3.1.0)
   - MOBFoundation (1.4.0)
+  - Pgyer (2.8.4)
+  - PgyUpdate (1.2)
   - SDWebImage (3.7.5):
     - SDWebImage/Core (= 3.7.5)
   - SDWebImage/Core (3.7.5)
@@ -37,7 +38,6 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking
-  - Bugtags
   - FMDB (~> 2.6)
   - IQKeyboardManager
   - JPush (~> 2.1.0)
@@ -47,6 +47,8 @@ DEPENDENCIES:
   - MJExtension
   - MJRefresh
   - MOBFoundation
+  - Pgyer
+  - PgyUpdate
   - SDWebImage
   - ShareSDK3
   - ShareSDK3/ShareSDKPlatforms/WeChat
@@ -54,7 +56,6 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   AFNetworking: a0075feb321559dc78d9d85b55d11caa19eabb93
-  Bugtags: cff5f312f214af51b2f4fcdd65258d1874a0fd2e
   FMDB: c1968bab3ab0aed38f66cb778ae1e7fa9a652b6e
   IQKeyboardManager: b91928f7927ba55a5829b4dcf4b7a6736ac9fc22
   JPush: 92cb879829f0d81ab17b2c9ad009fdb88c6cf6e5
@@ -64,6 +65,8 @@ SPEC CHECKSUMS:
   MJExtension: d86aacb740c87519d20e3cca55b6fa4be6cc7548
   MJRefresh: 743e6404967d1c2c688472ea3ecfde247d872db4
   MOBFoundation: a77f81eb3f80857d68ab90912cefe68bcb6cd6aa
+  Pgyer: 26edfcc8da6da6383fabfdbccd2f77c623b9d6eb
+  PgyUpdate: a42e82cec5ad4e992af390e9d494f6fc62db65e4
   SDWebImage: 69c6303e3348fba97e03f65d65d4fbc26740f461
   ShareSDK3: 2987b2c38210299d8c3259fff65740f59691a688
 

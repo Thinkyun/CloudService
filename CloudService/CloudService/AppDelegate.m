@@ -17,16 +17,22 @@
 #import <JPUSHService.h>
 #import "ButelHandle.h"
 #import "SingleHandle.h"
-#import <Bugtags/Bugtags.h>
+#import <PgySDK/PgyManager.h>
+#import <PgyUpdate/PgyUpdateManager.h>
+#import "BaseTabBarViewController.h"
+#import "LoginNavigationController.h"
+#import "LoadViewController.h"
+
 
 #define MObAppKey     @"100082c56c5c0"
 #define WXAppID       @"wx5ba999122c08bd76"
 #define WXAppSecret   @"64865cd279891a0929b1343ef63c7412"
 #define JAppKey       @"f8500a8c6752cafab40e7daf"
 #define Jchannel      @"Publish channel"
+#define PGYAppKey     @"7838b7d9fe093d7c02932fbc9ae085db"
 @interface AppDelegate ()<CLLocationManagerDelegate,UIAlertViewDelegate,FireDataDelegate> {
     BOOL _isSetCity;
-   
+    
 }
 
 @end
@@ -61,11 +67,6 @@
     NSDictionary *remoteNotification = [launchOptions objectForKey: UIApplicationLaunchOptionsRemoteNotificationKey];
     AYCLog(@"%@",remoteNotification);
     
-//    //检测网络状态
-//    if ([[HelperUtil getNetWorkStates] isEqualToString:@"2G"]) {
-//        [MBProgressHUD showMessag:@"当前处于2G网络，您当前所有操作可能会有延迟！" toView:nil];
-//    }
-    
 
     /**
      *  获取省份列表
@@ -75,17 +76,17 @@
     [[SingleHandle shareSingleHandle] getAreas];
     
     
-    __weak typeof(self) weakSelf = self;
-    // 检查版本号
-    [Utility checkNewVersion:^(BOOL hasNewVersion,NSString *updateUrl) {
-        [Utility saveVersion:hasNewVersion];
-        if (hasNewVersion) {
-            [Utility saveUrl:updateUrl];
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"版本更新" message:@"系统检测有新版本" delegate:weakSelf cancelButtonTitle:nil otherButtonTitles:@"点击进入下载", nil];
-            alertView.tag = 100;
-            [alertView show];
-        }
-    }];
+//    __weak typeof(self) weakSelf = self;
+//    // 检查版本号
+//    [Utility checkNewVersion:^(BOOL hasNewVersion,NSString *updateUrl) {
+//        [Utility saveVersion:hasNewVersion];
+//        if (hasNewVersion) {
+//            [Utility saveUrl:updateUrl];
+//            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"版本更新" message:@"系统检测有新版本" delegate:weakSelf cancelButtonTitle:nil otherButtonTitles:@"点击进入下载", nil];
+//            alertView.tag = 100;
+//            [alertView show];
+//        }
+//    }];
     
     // 注册shareSDK
     [self registerShareSDK];
@@ -96,52 +97,54 @@
     
     //设置状态栏为白色
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-
+    
     /**
      *  火炬统计
      */
     [self registerFireData];
     /**
-     *  bugtags统计
+     *  蒲公英统计
      *
      */
-    [Bugtags startWithAppKey:@"11068ec537cf8e890d3e1dc27ac9bed3" invocationEvent:BTGInvocationEventBubble];
-    //隐藏悬浮框
-    [Bugtags setInvocationEvent:BTGInvocationEventNone];
+    //关闭用户反馈
+    [[PgyManager sharedPgyManager] setEnableFeedback:NO];
+    //启动基本SDK
+    [[PgyManager sharedPgyManager] startManagerWithAppId:PGYAppKey];
+    //启动更新检查SDK
+    [[PgyUpdateManager sharedPgyManager] startManagerWithAppId:PGYAppKey];
 
-  
+//    [[PgyUpdateManager sharedPgyManager] checkUpdate];
+    
+   
     /**
      *  判断是否免登陆
      */
-//    if ([Utility passWord]) {
-//        [self exemptLogin];
-//    }else {
-//        
-//        [self loginToLogin];
-//    }
+    if ([Utility isRemberPassWord]) {
+        NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+        [dict setValue:[Utility userName] forKey:@"userName"];
+        [dict setValue:[Utility sha256WithString:[Utility passWord]] forKey:@"password"];
+        NSString *address = [Utility location];
+        if (address) {
+            [dict setValue:address forKey:@"address"];
+        }else {
+            
+            [dict setValue:@"北京市" forKey:@"address"];
+        }
+        //登陆
+        [[SingleHandle shareSingleHandle] loginAppDic:dict];
+
+    }else {
+        [UIView animateWithDuration:2 animations:^{
+            
+        } completion:^(BOOL finished) {
+            [self loginToLogin];
+        }];
+        
+    }
     
     return YES;
 }
 
-#pragma mark UIAlertViewDelegate
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex NS_DEPRECATED_IOS(2_0, 9_0) {
-    if(alertView.tag == 100){
-        if(buttonIndex == 0) {
-            NSString *updateUrl = [Utility updateUrl];
-            if(!updateUrl){
-                updateUrl = @"itms-services://?action=download-manifest&url=https%3A%2F%2Fwww.pgyer.com%2Fapiv1%2Fapp%2Fplist%3FaId%3D7838b7d9fe093d7c02932fbc9ae085db%26_api_key%3D2bd3be8388f881a5b188e170b623ce39";
-
-            }
-            
-
-            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:updateUrl]];
-            
-            
-        }
-    }
-    
-    
-}
 
 /**
  *  数据统计
@@ -401,19 +404,7 @@
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
     
-    NSString *alert = [[userInfo objectForKey:@"aps"] objectForKey:@"alert"];
-    if (application.applicationState == UIApplicationStateActive) {
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"推送消息"
-                                                            message:alert
-                                                           delegate:self
-                                                  cancelButtonTitle:@"OK"
-                                                  otherButtonTitles:nil];
-        alertView.tag = 101;
-        [alertView show];
-    }
-    [application setApplicationIconBadgeNumber:0];
-    
-    
+//    NSString *alert = [[userInfo objectForKey:@"aps"] objectForKey:@"alert"];
     // 取得 APNs 标准信息内容
     NSDictionary *aps = [userInfo valueForKey:@"aps"];
     NSString *content = [aps valueForKey:@"alert"]; //推送显示的内容
@@ -423,6 +414,40 @@
     NSString *customizeField1 = [userInfo valueForKey:@"customizeExtras"]; //服务端中Extras字段，key是自己定义的
     AYCLog(@"content =[%@], customize field  =[%@]",content,customizeField1);
 
+    switch (application.applicationState) {
+        case UIApplicationStateActive://应用在前台时收到推送消息弹出alertview
+        {
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"推送消息"
+                                                                message:content
+                                                               delegate:self
+                                                      cancelButtonTitle:@"OK"
+                                                      otherButtonTitles:nil];
+            alertView.tag = 101;
+            [alertView show];
+
+        }
+            break;
+        case UIApplicationStateInactive://应用在后台状态下，点击推送消息进入前台时
+        {
+          
+            
+        }
+            
+            break;
+        case UIApplicationStateBackground:
+        {
+      
+            
+        }
+            break;
+            
+        default:
+            break;
+    }
+    [application setApplicationIconBadgeNumber:0];
+    
+    
+    
     // IOS 7 Support Required
     [JPUSHService handleRemoteNotification:userInfo];
     completionHandler(UIBackgroundFetchResultNewData);
@@ -446,16 +471,31 @@
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
+    /**
+     *  app进入后台之前先记录下当前所在控制器
+     */
+    UIViewController *VC = [HelperUtil currentViewController];
+    if ([VC isKindOfClass:[BaseTabBarViewController class]]) {
+        BaseTabBarViewController *tab = (BaseTabBarViewController *)VC;
+         NSLog(@"---------%@",tab.selectedViewController);
+    }if ([VC.navigationController isKindOfClass:[LoginNavigationController class]]) {
+        
+    }
+    else {
+        NSLog(@"-------%@",VC);
+    }
+  
     [application setApplicationIconBadgeNumber:0];
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
 }
 
+
 - (void)applicationWillEnterForeground:(UIApplication *)application {
-    if ([Utility isNewVersion]) {
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"版本更新" message:@"系统检测有新版本" delegate:self cancelButtonTitle:nil otherButtonTitles:@"点击进入下载", nil];
-        [alertView show];
-    }
+//    if ([Utility isNewVersion]) {
+//        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"版本更新" message:@"系统检测有新版本" delegate:self cancelButtonTitle:nil otherButtonTitles:@"点击进入下载", nil];
+//        [alertView show];
+//    }
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
 }
 

@@ -1,17 +1,46 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="moG-sH-JKE">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="wou-5f-TFM">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
-        <!--Base Navi View Controller-->
+        <!--Load View Controller-->
+        <scene sceneID="Ce9-YI-Efd">
+            <objects>
+                <viewController id="wou-5f-TFM" customClass="LoadViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="8tV-vf-MFs"/>
+                        <viewControllerLayoutGuide type="bottom" id="I9A-EV-5qZ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="nes-TY-7l4">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Default-736h.png" translatesAutoresizingMaskIntoConstraints="NO" id="yKW-y3-DUa">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="I9A-EV-5qZ" firstAttribute="top" secondItem="yKW-y3-DUa" secondAttribute="bottom" id="USq-XO-fzM"/>
+                            <constraint firstItem="yKW-y3-DUa" firstAttribute="top" secondItem="nes-TY-7l4" secondAttribute="top" id="eLb-3O-pD3"/>
+                            <constraint firstItem="yKW-y3-DUa" firstAttribute="leading" secondItem="nes-TY-7l4" secondAttribute="leading" id="rmn-NO-YGv"/>
+                            <constraint firstAttribute="trailing" secondItem="yKW-y3-DUa" secondAttribute="trailing" id="yFz-4T-afc"/>
+                        </constraints>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UtO-2e-WkI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1266.5" y="-128.5"/>
+        </scene>
+        <!--Login Navigation Controller-->
         <scene sceneID="Od2-UD-XWg">
             <objects>
-                <navigationController storyboardIdentifier="loginNavi" id="moG-sH-JKE" customClass="BaseNaviViewController" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="loginNavi" id="moG-sH-JKE" customClass="LoginNavigationController" sceneMemberID="viewController">
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="OcS-xo-06j">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -23,7 +52,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Myl-sB-Nic" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-778.5" y="62.5"/>
+            <point key="canvasLocation" x="-833.5" y="7.5"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -1680,7 +1709,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5iS-I2-iuC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2181.5" y="-443.5"/>
+            <point key="canvasLocation" x="2129.5" y="-477.5"/>
         </scene>
         <!--我的客户-->
         <scene sceneID="cw4-cx-GMB">
@@ -2613,7 +2642,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="c5l-B0-GOa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="681.5" y="44.5"/>
+            <point key="canvasLocation" x="793.5" y="40.5"/>
         </scene>
         <!--首页导航条-->
         <scene sceneID="HDM-0L-Ee9">
@@ -2634,7 +2663,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nbz-iM-kPv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="127.5" y="203.5"/>
+            <point key="canvasLocation" x="315.5" y="163.5"/>
         </scene>
         <!--创建客户-->
         <scene sceneID="bQL-Ao-Mxf">
@@ -3013,7 +3042,7 @@
                             <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tEI-e1-eG5">
                                 <rect key="frame" x="217" y="260" width="108" height="30"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="point2" translatesAutoresizingMaskIntoConstraints="NO" id="5Qp-rF-ITq">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="point2" translatesAutoresizingMaskIntoConstraints="NO" id="5Qp-rF-ITq">
                                         <rect key="frame" x="0.0" y="10" width="15" height="15"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="5Qp-rF-ITq" secondAttribute="height" id="QqV-Bo-Vz3"/>
@@ -3530,6 +3559,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Default-736h.png" width="540" height="960"/>
         <image name="btn-icon1" width="20" height="20"/>
         <image name="btn2" width="330" height="40"/>
         <image name="btn9_" width="160" height="40"/>
@@ -3555,9 +3585,9 @@
         <image name="youhuiquan-checkbox" width="22" height="22"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="hk9-Xv-JLY"/>
-        <segue reference="MPx-U3-8mP"/>
+        <segue reference="i3c-Qa-Pxq"/>
         <segue reference="fDp-sc-Hby"/>
         <segue reference="KaR-KU-zbk"/>
+        <segue reference="hk9-Xv-JLY"/>
     </inferredMetricsTieBreakers>
 </document>

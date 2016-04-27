@@ -117,6 +117,8 @@
 
 #define kUserVerifyStatus       @"/app/user/userVerifyStatus"                         // 查看用户认证状态
 
+#define kGetOrderInfo       @"/app/order/getCustomerOrderDataVO"                         // 根据baseId获取订单信息
+
 #define kButelUrl       @"http://221.4.250.108:8088/apHttpService/agent/login4Butel"           // 青牛登陆
 
 
