@@ -272,11 +272,7 @@
         NSDictionary *remoteNotification = [_launchOptions objectForKey: UIApplicationLaunchOptionsRemoteNotificationKey];
         _launchOptions = nil;
 
-//        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, KWidth, KHeight)];
-//        label.numberOfLines = 0;
-//        label.font =[ UIFont systemFontOfSize:16];
-//        label.text = [NSString stringWithFormat:@"%@",remoteNotification];
-//        [_window addSubview:label];
+
         if (!_currentVC) {
             UINavigationController *navC = (UINavigationController *)_window.rootViewController;
             UITabBarController *tabBarC = (UITabBarController *)navC.topViewController;
@@ -537,11 +533,7 @@
     
     NSString *code = customizeField1[@"code"];
     NSString *baseId = customizeField1[@"baseId"];
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, KWidth, KHeight)];
-    label.numberOfLines = 0;
-    label.font =[ UIFont systemFontOfSize:16];
-    label.text = [NSString stringWithFormat:@"%@,%@,%@",[_currentVC class],code,baseId];
-    [_window addSubview:label];
+
     if ([code isEqualToString:@"001"]) {
         NSString *userId = [SingleHandle shareSingleHandle].user.userId;
         NSString *url = [NSString stringWithFormat:@"%@%@",BaseAPI,kGetOrderInfo];
@@ -550,15 +542,9 @@
             Order *order  = [Order mj_objectWithKeyValues:returnData[@"data"]];
             OrderInfoViewController *orderInfoVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"orderInfo"];
             orderInfoVC.order = order;
-            
-            UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, KWidth, KHeight)];
-            label.numberOfLines = 0;
-            label.font =[ UIFont systemFontOfSize:16];
-            label.text = [NSString stringWithFormat:@"%@,%@,%@",[_currentVC class],order,[orderInfoVC class]];
-            [_window addSubview:label];
-//            _window.rootViewController = [VCViewController new];
-            [_currentVC presentViewController:[VCViewController new] animated:NO completion:nil];
-//            [_currentVC.navigationController pushViewController:orderInfoVC animated:NO];
+
+
+            [_currentVC.navigationController pushViewController:orderInfoVC animated:YES];
         } failureBlock:^(NSError *error) {
             
         } showHUD:YES];

@@ -135,7 +135,9 @@ static NSString *headerView_ID = @"headerView";
 }
 
 -(void)viewDidAppear:(BOOL)animated {
+    
     [super viewDidAppear:animated];
+    
 
 }
 -(void)viewWillDisappear:(BOOL)animated {

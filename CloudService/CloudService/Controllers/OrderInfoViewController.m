@@ -38,6 +38,10 @@
     __weak typeof(self) weakSelf = self;
     [weakSelf setLeftImageBarButtonItemWithFrame:CGRectMake(0, 0, 30, 30) image:@"title-back" selectImage:@"back" action:^(AYCButton *button) {
       [[FireData sharedInstance] eventWithCategory:@"订单搜索" action:@"返回上一页" evar:nil attributes:nil];
+        /**
+         *  首页隐藏青牛拨打页面
+         */
+        [[ButelHandle shareButelHandle] hideCallView];
         [weakSelf.navigationController popViewControllerAnimated:YES];
     }];
     
@@ -72,34 +76,41 @@
        
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
-    cell.lbOrderNum.text = [NSString stringWithFormat:@"订单号:%@",self.order.baseId];
-    cell.lbCustName.text = self.order.customerName;
-    if ([self.order.type isEqualToString:@"自建"]) {
-        cell.lbPhoneNo.text = self.order.phoneNo;
-    }else{
-        NSMutableString *phone = [[NSMutableString alloc] initWithString:self.order.phoneNo];
-        [phone replaceCharactersInRange:NSMakeRange(3, 4) withString:@"****"];
-        cell.lbPhoneNo.text = phone;
+
+    if (self.order) {
+        cell.lbOrderNum.text = [NSString stringWithFormat:@"订单号:%@",self.order.baseId];
+        cell.lbCustName.text = self.order.customerName;
+        if ([self.order.type isEqualToString:@"自建"]) {
+            cell.lbPhoneNo.text = self.order.phoneNo;
+        }else{
+            if (self.order.phoneNo.length>10) {
+                NSMutableString *phone = [[NSMutableString alloc] initWithString:self.order.phoneNo];
+                [phone replaceCharactersInRange:NSMakeRange(3, 4) withString:@"****"];
+                cell.lbPhoneNo.text = phone;
+            }
+            
+        }
+        
+        cell.lbLicenseNo.text = self.order.licenseNo;
+        cell.lbEndCode.text = self.order.endCode;
+        if ([self.order.comment isEqualToString:@""]) {
+            cell.lbComment.text = @"暂无备注";
+        }else{
+            cell.lbComment.text = self.order.comment;
+        }
+        if ([self.order.reserveTime isEqualToString:@""]) {
+            cell.lbReserveTime.text = @"";
+        }else{
+            cell.lbReserveTime.text = [HelperUtil timeFormat:self.order.reserveTime format:@"yyyy-MM-dd HH:mm"];
+        }
+        cell.lbAgentName.text = self.order.agentName;
+        cell.lbInsureComName.text = self.order.insureComName;
+        cell.lbPolicyNo.text = self.order.policyNo;
+        cell.lbProposalNo.text = self.order.proposalNo;
+        cell.lbCiPolicyNo.text = self.order.ciPolicyNo;
+        cell.lbCiProposalNo.text = self.order.ciProposalNo;
+
     }
-    
-    cell.lbLicenseNo.text = self.order.licenseNo;
-    cell.lbEndCode.text = self.order.endCode;
-    if ([self.order.comment isEqualToString:@""]) {
-        cell.lbComment.text = @"暂无备注";
-    }else{
-        cell.lbComment.text = self.order.comment;
-    }
-    if ([self.order.reserveTime isEqualToString:@""]) {
-        cell.lbReserveTime.text = @"";
-    }else{
-        cell.lbReserveTime.text = [HelperUtil timeFormat:self.order.reserveTime format:@"yyyy-MM-dd HH:mm"];
-    }
-    cell.lbAgentName.text = self.order.agentName;
-    cell.lbInsureComName.text = self.order.insureComName;
-    cell.lbPolicyNo.text = self.order.policyNo;
-    cell.lbProposalNo.text = self.order.proposalNo;
-    cell.lbCiPolicyNo.text = self.order.ciPolicyNo;
-    cell.lbCiProposalNo.text = self.order.ciProposalNo;
     
     [cell.callBtn addTarget:self action:@selector(callClick:) forControlEvents:UIControlEventTouchUpInside];
     [cell.priceBtn addTarget:self action:@selector(priceClick:) forControlEvents:UIControlEventTouchUpInside];
