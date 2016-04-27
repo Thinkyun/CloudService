@@ -16,11 +16,12 @@
 #import "EYPopupViewHeader.h"
 #import "ShareManager.h"
 
-
 @interface OrderInfoViewController ()<UITableViewDataSource,UITableViewDelegate,UIActionSheetDelegate>
+{
+    Order *_getOrderInfo;
+}
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property(nonatomic,strong) UIView *footView;
-
 @end
 
 @implementation OrderInfoViewController
@@ -31,14 +32,21 @@
      *  显示青牛拨打页面,并设置手机号
      */
     [[ButelHandle shareButelHandle] showCallView];
-    [[ButelHandle shareButelHandle] setPhoneNo:self.order.phoneNo phoneWithBaseId:self.order.baseId];
     
+    [[ButelHandle shareButelHandle] setPhoneNo:self.order.phoneNo phoneWithBaseId:self.order.baseId];
     self.tableView.backgroundColor = [HelperUtil colorWithHexString:@"F4F4F4"];
     __weak typeof(self) weakSelf = self;
     [weakSelf setLeftImageBarButtonItemWithFrame:CGRectMake(0, 0, 30, 30) image:@"title-back" selectImage:@"back" action:^(AYCButton *button) {
       [[FireData sharedInstance] eventWithCategory:@"订单搜索" action:@"返回上一页" evar:nil attributes:nil];
         [weakSelf.navigationController popViewControllerAnimated:YES];
     }];
+    /**
+     *  判断order是否包含订单信息，如果包含订单信息不再请求网络，如果没有包含订单信息，则通过baseId重新请求订单详
+     *  情信息
+     */
+    
+        [[ButelHandle shareButelHandle] setPhoneNo:self.order.phoneNo phoneWithBaseId:self.order.baseId];
+  
     // Do any additional setup after loading the view.
 }
 - (void)viewWillAppear:(BOOL)animated {
@@ -47,6 +55,7 @@
     self.title=@"订单详情";
     
 }
+
 
 #pragma mark tableView
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{

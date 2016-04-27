@@ -30,7 +30,7 @@
     }
 }
 
-- (UIViewController *)viewController {
+- (UIViewController *)parentController {
     for (UIView *view = self; view; view = view.superview) {
         UIResponder *nextResponder = [view nextResponder];
         if ([nextResponder isKindOfClass:[UIViewController class]]) {

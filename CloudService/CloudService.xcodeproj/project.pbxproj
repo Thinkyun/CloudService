@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		04BF40DB1CCF6272007325FB /* Tools.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BF40DA1CCF6272007325FB /* Tools.m */; };
-		04BF40DD1CCF628B007325FB /* EYPopupView.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 04BF40DC1CCF628B007325FB /* EYPopupView.bundle */; };
 		04BF40E01CCF62C2007325FB /* ButelCommonConnectSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 04BF40DE1CCF62C2007325FB /* ButelCommonConnectSDK.bundle */; };
 		04BF40E11CCF62C2007325FB /* ButelCommonConnectSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04BF40DF1CCF62C2007325FB /* ButelCommonConnectSDK.framework */; };
 		04BF40E31CCF6671007325FB /* icon80.png in Resources */ = {isa = PBXBuildFile; fileRef = 04BF40E21CCF6671007325FB /* icon80.png */; };
@@ -86,6 +85,8 @@
 		637A624C1C8EC0020020AE5E /* CouponsDistributeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 637A624A1C8EC0020020AE5E /* CouponsDistributeCell.m */; };
 		637A624D1C8EC0020020AE5E /* CouponsDistributeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 637A624B1C8EC0020020AE5E /* CouponsDistributeCell.xib */; };
 		637A62501C8ED5A00020AE5E /* CouponsDistributed.m in Sources */ = {isa = PBXBuildFile; fileRef = 637A624F1C8ED5A00020AE5E /* CouponsDistributed.m */; };
+		637C00B21CD0643100EAF23E /* LoginNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 637C00B11CD0643100EAF23E /* LoginNavigationController.m */; };
+		637C00B81CD081D300EAF23E /* LoadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 637C00B71CD081D300EAF23E /* LoadViewController.m */; };
 		6383656A1C7DB8BA001A10C4 /* HZQDatePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 638365641C7DB8BA001A10C4 /* HZQDatePickerView.m */; };
 		6383656B1C7DB8BA001A10C4 /* HZQDatePickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 638365651C7DB8BA001A10C4 /* HZQDatePickerView.xib */; };
 		6383656C1C7DB8BA001A10C4 /* UIColor+HexString.m in Sources */ = {isa = PBXBuildFile; fileRef = 638365671C7DB8BA001A10C4 /* UIColor+HexString.m */; };
@@ -189,7 +190,6 @@
 /* Begin PBXFileReference section */
 		04BF40D91CCF6272007325FB /* Tools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tools.h; sourceTree = "<group>"; };
 		04BF40DA1CCF6272007325FB /* Tools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tools.m; sourceTree = "<group>"; };
-		04BF40DC1CCF628B007325FB /* EYPopupView.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = EYPopupView.bundle; sourceTree = "<group>"; };
 		04BF40DE1CCF62C2007325FB /* ButelCommonConnectSDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ButelCommonConnectSDK.bundle; sourceTree = "<group>"; };
 		04BF40DF1CCF62C2007325FB /* ButelCommonConnectSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ButelCommonConnectSDK.framework; sourceTree = "<group>"; };
 		04BF40E21CCF6671007325FB /* icon80.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon80.png; path = Assets.xcassets/AppIcon.appiconset/icon80.png; sourceTree = "<group>"; };
@@ -316,6 +316,10 @@
 		637A624B1C8EC0020020AE5E /* CouponsDistributeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CouponsDistributeCell.xib; sourceTree = "<group>"; };
 		637A624E1C8ED5A00020AE5E /* CouponsDistributed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CouponsDistributed.h; sourceTree = "<group>"; };
 		637A624F1C8ED5A00020AE5E /* CouponsDistributed.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CouponsDistributed.m; sourceTree = "<group>"; };
+		637C00B01CD0643100EAF23E /* LoginNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginNavigationController.h; sourceTree = "<group>"; };
+		637C00B11CD0643100EAF23E /* LoginNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginNavigationController.m; sourceTree = "<group>"; };
+		637C00B61CD081D300EAF23E /* LoadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadViewController.h; sourceTree = "<group>"; };
+		637C00B71CD081D300EAF23E /* LoadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadViewController.m; sourceTree = "<group>"; };
 		638365631C7DB8BA001A10C4 /* HZQDatePickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HZQDatePickerView.h; sourceTree = "<group>"; };
 		638365641C7DB8BA001A10C4 /* HZQDatePickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HZQDatePickerView.m; sourceTree = "<group>"; };
 		638365651C7DB8BA001A10C4 /* HZQDatePickerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HZQDatePickerView.xib; sourceTree = "<group>"; };
@@ -795,6 +799,8 @@
 			children = (
 				F019C9D41C7BFD7900E73A2C /* LoginViewController.h */,
 				F019C9D51C7BFD7900E73A2C /* LoginViewController.m */,
+				637C00B61CD081D300EAF23E /* LoadViewController.h */,
+				637C00B71CD081D300EAF23E /* LoadViewController.m */,
 				F019C9D71C7BFD8D00E73A2C /* RegisterViewController.h */,
 				F019C9D81C7BFD8D00E73A2C /* RegisterViewController.m */,
 				F019C9E01C7C685600E73A2C /* RegisterSucViewController.h */,
@@ -921,6 +927,8 @@
 				F0292BCE1C7B015200A810A9 /* BaseTabBarViewController.m */,
 				F0292BCF1C7B015200A810A9 /* BaseViewController.h */,
 				F0292BD01C7B015200A810A9 /* BaseViewController.m */,
+				637C00B01CD0643100EAF23E /* LoginNavigationController.h */,
+				637C00B11CD0643100EAF23E /* LoginNavigationController.m */,
 			);
 			path = BaseViewControllers;
 			sourceTree = "<group>";
@@ -1146,7 +1154,7 @@
 				TargetAttributes = {
 					F0292BA91C7B00CD00A810A9 = {
 						CreatedOnToolsVersion = 7.2;
-						DevelopmentTeam = LH28XA7T22;
+						DevelopmentTeam = 7PS2AH4H79;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -1203,7 +1211,6 @@
 				F0292BBA1C7B00CD00A810A9 /* Assets.xcassets in Resources */,
 				F094A84A1C9F9D5900E89967 /* TagSelectItem.xib in Resources */,
 				63790FEE1C93C03C006CB0E2 /* ActivityCollectionCell.xib in Resources */,
-				04BF40DD1CCF628B007325FB /* EYPopupView.bundle in Resources */,
 				F07FF9E01C81752D00EB1BB1 /* MyTeamTableViewCell.xib in Resources */,
 				F07FF9D81C8146D800EB1BB1 /* ResetPhonePopView.xib in Resources */,
 				F06DE1DB1C9957CF006D3BE7 /* SetUserInfoCell2.xib in Resources */,
@@ -1296,6 +1303,7 @@
 				63E9BFDD1C9659B200FFE0BA /* Order.m in Sources */,
 				63AA2BD51C8A70ED00D7CF04 /* DataSource.m in Sources */,
 				630EF19B1C856CD00059CB34 /* CouponsViewController.m in Sources */,
+				637C00B21CD0643100EAF23E /* LoginNavigationController.m in Sources */,
 				F0292BE21C7B015200A810A9 /* BaseViewController.m in Sources */,
 				F0292BE41C7B015200A810A9 /* Utility.m in Sources */,
 				630EF1931C8567400059CB34 /* IntegralViewController.m in Sources */,
@@ -1412,6 +1420,7 @@
 				635A4E211CCE30CE00C41C0D /* NSBundle+YYAdd.m in Sources */,
 				63C2FB981C8022D900D48B8C /* PlaceholderTextView.m in Sources */,
 				63790FED1C93C03C006CB0E2 /* ActivityCollectionCell.m in Sources */,
+				637C00B81CD081D300EAF23E /* LoadViewController.m in Sources */,
 				F06DDBA91C7DAB7400C862A1 /* AYCButton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1531,6 +1540,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

@@ -35,7 +35,7 @@
 /**
  Returns the view's view controller (may be nil).
  */
-@property (nonatomic, readonly) UIViewController *viewController;
+@property (nonatomic, readonly) UIViewController *parentController;
 
 @property (nonatomic) CGFloat left;        ///< Shortcut for frame.origin.x.
 @property (nonatomic) CGFloat top;         ///< Shortcut for frame.origin.y

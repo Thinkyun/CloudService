@@ -119,5 +119,12 @@
  *  生成uuid
  */
 + (NSString *)uuidString;
+/**
+ *  获取当前控制器
+ *
+ *  @return 
+ */
++ (UIViewController *)currentViewController;
+
 
 @end

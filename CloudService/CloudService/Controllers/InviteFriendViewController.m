@@ -8,6 +8,7 @@
 
 #import "InviteFriendViewController.h"
 #import "Tools.h"
+#import "UIView+YYAdd.h"
 #import "ShareManager.h"
 
 @interface InviteFriendViewController ()
@@ -26,8 +27,9 @@
     self.title = @"邀请";
     [self setUpInviteLink];
     
-    _qrImgView.image = [Tools createQRForString:kCreateQRAPI withSize:188];
-    UIImageView *logoImageView = [[UIImageView alloc] initWithFrame:CGRectMake(188.0/2-20, 188.0/2-20, 40, 40)];
+    _qrImgView.image = [Tools createQRForString:kCreateQRAPI withSize:_qrImgView.width];
+    NSLog(@"%lf",_qrImgView.width);
+    UIImageView *logoImageView = [[UIImageView alloc] initWithFrame:CGRectMake(_qrImgView.width*3.0/8-_qrImgView.width/8, _qrImgView.width*3/8-_qrImgView.width/8, _qrImgView.width/4, _qrImgView.width/4)];
     logoImageView.image = [[UIImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"icon80.png" ofType:nil]];
     [_qrImgView addSubview:logoImageView];
     
