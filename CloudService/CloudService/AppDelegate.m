@@ -22,7 +22,10 @@
 #import "BaseTabBarViewController.h"
 #import "LoginNavigationController.h"
 #import "LoadViewController.h"
+#import "OrderInfoViewController.h"
+#import "Order.h"
 
+#import "VCViewController.h"
 
 #define MObAppKey     @"100082c56c5c0"
 #define WXAppID       @"wx5ba999122c08bd76"
@@ -32,7 +35,8 @@
 #define PGYAppKey     @"7838b7d9fe093d7c02932fbc9ae085db"
 @interface AppDelegate ()<CLLocationManagerDelegate,UIAlertViewDelegate,FireDataDelegate> {
     BOOL _isSetCity;
-    
+    UIViewController *_currentVC;
+    NSDictionary *_launchOptions;
 }
 
 @end
@@ -44,7 +48,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
-   
+    _launchOptions = launchOptions;
+
     // Override point for customization after application launch.
     //极光推送
     if ([[UIDevice currentDevice].systemVersion floatValue] >= 8.0) {
@@ -64,8 +69,8 @@
     [JPUSHService setupWithOption:launchOptions appKey:JAppKey
                           channel:Jchannel apsForProduction:YES]; //如果是生产环境应该设置为Y                                                                                                                                                                                                                                                                                                                                                                            ES
     
-    NSDictionary *remoteNotification = [launchOptions objectForKey: UIApplicationLaunchOptionsRemoteNotificationKey];
-    AYCLog(@"%@",remoteNotification);
+    
+
     
 
     /**
@@ -256,13 +261,30 @@
 }
 
 - (void)loginToMenu {
+    
     UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     BaseNaviViewController *menuVC = [storyBoard instantiateViewControllerWithIdentifier:@"MenuNavi"];
-
     UIViewController *oldVC = self.window.rootViewController;
     oldVC = nil;
     self.window.rootViewController = menuVC;
 
+    if (_launchOptions) {
+        NSDictionary *remoteNotification = [_launchOptions objectForKey: UIApplicationLaunchOptionsRemoteNotificationKey];
+        _launchOptions = nil;
+
+//        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, KWidth, KHeight)];
+//        label.numberOfLines = 0;
+//        label.font =[ UIFont systemFontOfSize:16];
+//        label.text = [NSString stringWithFormat:@"%@",remoteNotification];
+//        [_window addSubview:label];
+        if (!_currentVC) {
+            UINavigationController *navC = (UINavigationController *)_window.rootViewController;
+            UITabBarController *tabBarC = (UITabBarController *)navC.topViewController;
+            _currentVC = tabBarC.viewControllers[0];
+            
+            [self JPushToVCWithDictionary:remoteNotification];
+        }
+    }
     
 }
 
@@ -411,9 +433,9 @@
     
     
     // 取得Extras字段内容
-    NSString *customizeField1 = [userInfo valueForKey:@"customizeExtras"]; //服务端中Extras字段，key是自己定义的
-    AYCLog(@"content =[%@], customize field  =[%@]",content,customizeField1);
-
+//    NSString *code = customizeField1[@"code"];
+//    NSString *baseId = [customizeField1[@"msg"] objectForKey:@"baseId"];
+    
     switch (application.applicationState) {
         case UIApplicationStateActive://应用在前台时收到推送消息弹出alertview
         {
@@ -428,11 +450,10 @@
         }
             break;
         case UIApplicationStateInactive://应用在后台状态下，点击推送消息进入前台时
-        {
-          
-            
-        }
-            
+        
+            if(!_launchOptions){
+            [self JPushToVCWithDictionary:userInfo];
+            }
             break;
         case UIApplicationStateBackground:
         {
@@ -478,13 +499,15 @@
     if ([VC isKindOfClass:[BaseTabBarViewController class]]) {
         BaseTabBarViewController *tab = (BaseTabBarViewController *)VC;
          NSLog(@"---------%@",tab.selectedViewController);
-    }if ([VC.navigationController isKindOfClass:[LoginNavigationController class]]) {
-        
+        VC = tab.selectedViewController;
+    }else if ([VC.navigationController isKindOfClass:[LoginNavigationController class]]) {
+        VC = nil;
     }
     else {
         NSLog(@"-------%@",VC);
     }
-  
+    _currentVC = VC;
+
     [application setApplicationIconBadgeNumber:0];
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
@@ -507,6 +530,42 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+
+- (void)JPushToVCWithDictionary:(NSDictionary *)customizeField1{
+    
+    NSString *code = customizeField1[@"code"];
+    NSString *baseId = customizeField1[@"baseId"];
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, KWidth, KHeight)];
+    label.numberOfLines = 0;
+    label.font =[ UIFont systemFontOfSize:16];
+    label.text = [NSString stringWithFormat:@"%@,%@,%@",[_currentVC class],code,baseId];
+    [_window addSubview:label];
+    if ([code isEqualToString:@"001"]) {
+        NSString *userId = [SingleHandle shareSingleHandle].user.userId;
+        NSString *url = [NSString stringWithFormat:@"%@%@",BaseAPI,kGetOrderInfo];
+        [MHNetworkManager postReqeustWithURL:url params:@{@"baseId":baseId,@"userId":userId} successBlock:^(id returnData) {
+            NSLog(@"%@",returnData);
+            Order *order  = [Order mj_objectWithKeyValues:returnData[@"data"]];
+            OrderInfoViewController *orderInfoVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"orderInfo"];
+            orderInfoVC.order = order;
+            
+            UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, KWidth, KHeight)];
+            label.numberOfLines = 0;
+            label.font =[ UIFont systemFontOfSize:16];
+            label.text = [NSString stringWithFormat:@"%@,%@,%@",[_currentVC class],order,[orderInfoVC class]];
+            [_window addSubview:label];
+//            _window.rootViewController = [VCViewController new];
+            [_currentVC presentViewController:[VCViewController new] animated:NO completion:nil];
+//            [_currentVC.navigationController pushViewController:orderInfoVC animated:NO];
+        } failureBlock:^(NSError *error) {
+            
+        } showHUD:YES];
+    }else if ([code isEqualToString:@"002"]){
+        
+    }
+
 }
 
 @end

@@ -11,6 +11,7 @@
 		04BF40E01CCF62C2007325FB /* ButelCommonConnectSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 04BF40DE1CCF62C2007325FB /* ButelCommonConnectSDK.bundle */; };
 		04BF40E11CCF62C2007325FB /* ButelCommonConnectSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04BF40DF1CCF62C2007325FB /* ButelCommonConnectSDK.framework */; };
 		04BF40E31CCF6671007325FB /* icon80.png in Resources */ = {isa = PBXBuildFile; fileRef = 04BF40E21CCF6671007325FB /* icon80.png */; };
+		04D140E81CD0C1710067B8C4 /* VCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D140E71CD0C1710067B8C4 /* VCViewController.m */; };
 		630EF18A1C8530940059CB34 /* MyClientTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 630EF1881C8530940059CB34 /* MyClientTableViewCell.m */; };
 		630EF18B1C8530940059CB34 /* MyClientTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 630EF1891C8530940059CB34 /* MyClientTableViewCell.xib */; };
 		630EF18F1C8543900059CB34 /* PersonResultCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 630EF18D1C8543900059CB34 /* PersonResultCell.m */; };
@@ -193,6 +194,8 @@
 		04BF40DE1CCF62C2007325FB /* ButelCommonConnectSDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ButelCommonConnectSDK.bundle; sourceTree = "<group>"; };
 		04BF40DF1CCF62C2007325FB /* ButelCommonConnectSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ButelCommonConnectSDK.framework; sourceTree = "<group>"; };
 		04BF40E21CCF6671007325FB /* icon80.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon80.png; path = Assets.xcassets/AppIcon.appiconset/icon80.png; sourceTree = "<group>"; };
+		04D140E61CD0C1710067B8C4 /* VCViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VCViewController.h; sourceTree = "<group>"; };
+		04D140E71CD0C1710067B8C4 /* VCViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VCViewController.m; sourceTree = "<group>"; };
 		630EF1871C8530940059CB34 /* MyClientTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyClientTableViewCell.h; sourceTree = "<group>"; };
 		630EF1881C8530940059CB34 /* MyClientTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyClientTableViewCell.m; sourceTree = "<group>"; };
 		630EF1891C8530940059CB34 /* MyClientTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyClientTableViewCell.xib; sourceTree = "<group>"; };
@@ -886,6 +889,8 @@
 				F0292BDD1C7B015200A810A9 /* Views */,
 				F0292BB01C7B00CD00A810A9 /* AppDelegate.h */,
 				F0292BB11C7B00CD00A810A9 /* AppDelegate.m */,
+				04D140E61CD0C1710067B8C4 /* VCViewController.h */,
+				04D140E71CD0C1710067B8C4 /* VCViewController.m */,
 				F0292BB61C7B00CD00A810A9 /* Main.storyboard */,
 				04BF40E21CCF6671007325FB /* icon80.png */,
 				F0292BB91C7B00CD00A810A9 /* Assets.xcassets */,
@@ -1154,7 +1159,7 @@
 				TargetAttributes = {
 					F0292BA91C7B00CD00A810A9 = {
 						CreatedOnToolsVersion = 7.2;
-						DevelopmentTeam = 7PS2AH4H79;
+						DevelopmentTeam = LH28XA7T22;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -1364,6 +1369,7 @@
 				F09A5F8F1A55BEDD008D4963 /* HomeHeaderView.m in Sources */,
 				F01A616D1C7D860E008CBBD5 /* LoginInputView.m in Sources */,
 				F090DEE01C896B1800168BF8 /* RequestManager.m in Sources */,
+				04D140E81CD0C1710067B8C4 /* VCViewController.m in Sources */,
 				630EF1A51C8579630059CB34 /* IntergralChangeViewController.m in Sources */,
 				F019C9E21C7C685700E73A2C /* RegisterSucViewController.m in Sources */,
 				637A62481C8EBEC60020AE5E /* CouponsDistributeViewController.m in Sources */,

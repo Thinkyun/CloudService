@@ -12,4 +12,7 @@
 @interface OrderInfoViewController : BaseViewController
 
 @property (nonatomic,strong)Order *order;
+
+
+
 @end
