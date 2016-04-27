@@ -549,9 +549,12 @@ static NSString *const select_CellID = @"selectCell";
     for (int i = 0; i < _valueArray_User.count; i ++) {
         
         if ([_valueArray_User[i] length] <= 0) {
-            if (!_valueArray_User[3] || !_valueArray_User[5]) {
-                [MBProgressHUD showMessag:[NSString stringWithFormat:@"%@不能为空",_keyArray_User[i]] toView:self.view];
-                return nil;
+            if (!_valueArray_User[3] ) {
+                if (!_valueArray_User[5]) {
+                    [MBProgressHUD showMessag:[NSString stringWithFormat:@"%@不能为空",_keyArray_User[i]] toView:self.view];
+                    return nil;
+                }
+                
             }
             
         }
