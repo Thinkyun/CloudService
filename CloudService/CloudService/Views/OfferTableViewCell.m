@@ -8,6 +8,7 @@
 
 #import "OfferTableViewCell.h"
 #import "HZQDatePickerView.h"
+#import "ButelHandle.h"
 
 @interface OfferTableViewCell()<HZQDatePickerViewDelegate>
 {
@@ -39,6 +40,7 @@
    
     if (self.carUserPhone.text.length >=11) {
         self.carUserPhone.text = [self.carUserPhone.text substringToIndex:11];
+        [[ButelHandle shareButelHandle] setPhoneNo:self.carUserPhone.text phoneWithBaseId:@""];
     }
 }
 - (void)carUserCardChanged:(NSNotificationCenter *)sender {

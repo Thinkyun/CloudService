@@ -24,6 +24,7 @@
 #import "LoadViewController.h"
 #import "OrderInfoViewController.h"
 #import "Order.h"
+#import "CouponsViewController.h"
 
 #import "VCViewController.h"
 
@@ -37,6 +38,7 @@
     BOOL _isSetCity;
     UIViewController *_currentVC;
     NSDictionary *_launchOptions;
+    NSDictionary *_userInfoDic;
 }
 
 @end
@@ -429,19 +431,45 @@
     
     
     // 取得Extras字段内容
-//    NSString *code = customizeField1[@"code"];
-//    NSString *baseId = [customizeField1[@"msg"] objectForKey:@"baseId"];
+    NSString *code = userInfo[@"code"];
+    _userInfoDic = userInfo;
     
     switch (application.applicationState) {
         case UIApplicationStateActive://应用在前台时收到推送消息弹出alertview
+            
         {
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"推送消息"
-                                                                message:content
-                                                               delegate:self
-                                                      cancelButtonTitle:@"OK"
-                                                      otherButtonTitles:nil];
-            alertView.tag = 101;
-            [alertView show];
+            UIViewController *VC = [HelperUtil currentViewController];
+            if ([VC isKindOfClass:[BaseTabBarViewController class]]) {
+                BaseTabBarViewController *tab = (BaseTabBarViewController *)VC;
+                NSLog(@"---------%@",tab.selectedViewController);
+                VC = tab.selectedViewController;
+            }else if ([VC.navigationController isKindOfClass:[LoginNavigationController class]]) {
+                VC = nil;
+            }
+            else {
+                NSLog(@"-------%@",VC);
+            }
+            _currentVC = VC;
+
+            if (code) {
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"推送消息"
+                                                                    message:content
+                                                                   delegate:self
+                                                          cancelButtonTitle:@"好的"
+                                                          otherButtonTitles:@"去看看",nil];
+                alertView.tag = 101;
+                [alertView show];
+            }else{
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"推送消息"
+                                                                    message:content
+                                                                   delegate:self
+                                                          cancelButtonTitle:@"OK"
+                                                          otherButtonTitles:nil];
+                alertView.tag = 102;
+                [alertView show];
+            }
+
+            
 
         }
             break;
@@ -530,8 +558,7 @@
 
 
 - (void)JPushToVCWithDictionary:(NSDictionary *)customizeField1{
-    
-    NSString *code = customizeField1[@"code"];
+        NSString *code = customizeField1[@"code"];
     NSString *baseId = customizeField1[@"baseId"];
 
     if ([code isEqualToString:@"001"]) {
@@ -547,11 +574,25 @@
             [_currentVC.navigationController pushViewController:orderInfoVC animated:YES];
         } failureBlock:^(NSError *error) {
             
+            
         } showHUD:YES];
     }else if ([code isEqualToString:@"002"]){
-        
+        CouponsViewController*couponsVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"coupons"];
+        [_currentVC.navigationController pushViewController:couponsVC animated:YES];
+
     }
 
+}
+#pragma mark - alertView
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex NS_DEPRECATED_IOS(2_0, 9_0){
+    if(alertView.tag == 101){
+        if(buttonIndex == 0){
+            
+        }else{
+            
+            [self JPushToVCWithDictionary:_userInfoDic];
+        }
+    }
 }
 
 @end
