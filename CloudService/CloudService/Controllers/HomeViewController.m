@@ -283,12 +283,12 @@ static NSString *headerView_ID = @"headerView";
 //            [MBProgressHUD showMessag:@"程序猿正在火力开发中" toView:self.view];
             break;
         case 3:
-//        {
-//            IntergralCityViewController *intergCityVC = [[IntergralCityViewController alloc] init];
-//            [self.navigationController pushViewController:intergCityVC animated:YES];
-//        }
+        {
+            IntergralCityViewController *intergCityVC = [[IntergralCityViewController alloc] init];
+            [self.navigationController pushViewController:intergCityVC animated:YES];
             [[FireData sharedInstance] eventWithCategory:@"首页" action:@"积分商城" evar:nil attributes:nil];
-            [MBProgressHUD showMessag:@"程序猿正在火力开发中" toView:self.view];
+        }
+//            [MBProgressHUD showMessag:@"程序猿正在火力开发中" toView:self.view];
             break;
         case 4:
         {

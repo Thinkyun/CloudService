@@ -6,7 +6,9 @@
 //  Copyright © 2016年 zhangqiang. All rights reserved.
 //
 
+#define kSecretKey @"D04220001"
 #import "IntergralCityViewController.h"
+#import "HelperUtil.h"
 
 @interface IntergralCityViewController ()<UIWebViewDelegate>
 
@@ -35,10 +37,44 @@
     [self.view addSubview:self.webView];
     self.webView.delegate = self;
     
+    User *user = [SingleHandle shareSingleHandle].user;
+    NSLog(@"%@*****%@",user.userNum,user.totalNum);
+    
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"www.baidu.con"]];
     [self.webView loadRequest:request];
 }
 
+- (void)loadData{
+    NSDate *date = [NSDate date];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    NSString *dateStr = [dateFormatter stringFromDate:date];
+    
+    User *user = [SingleHandle shareSingleHandle].user;
+    NSDictionary *params = @{@"Trstype":@"YG",@"Trscode":@"300001",@"Channel":@"B2C",@"transationId":@"1001101",@"dateTime":dateStr,@"usrNum":user.userNum,@"totalCredits":user.totalNum};
+    NSString *paramStr = [NSString stringWithFormat:@"%@%@",kSecretKey,[self JSONDataByDictionary:params]];
+    NSString *md5Str = [HelperUtil md5HexDigest:paramStr];
+    NSData *paramsData = [md5Str dataUsingEncoding:NSUTF8StringEncoding];
+    
+    NSURL *url;
+    
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:30];
+    [request setHTTPBody:paramsData];
+    request.HTTPMethod = @"POST";
+    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+    
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:configuration];
+    NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        if (error) {
+            NSLog(@"%@",error);
+//            faliureHander(error);
+        }else{
+            NSLog(@"%@",response);
+//            successHander(data);
+        }
+    }];
+    [dataTask resume];
+}
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
     return YES;
@@ -61,6 +97,20 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+- (NSData *)JSONDataByDictionary:(NSDictionary *)dict{
+    NSMutableString *mutableStr = [NSMutableString new];
+    [dict enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+        if (mutableStr.length==0) {
+            [mutableStr appendFormat:@"%@=%@",key,obj];
+        }else{
+            [mutableStr appendFormat:@"&%@=%@",key,obj];
+        }
+    }];
+    NSData *data = [NSJSONSerialization dataWithJSONObject:mutableStr options:NSJSONWritingPrettyPrinted error:nil];
+    return data;
+}
+
 
 /*
 #pragma mark - Navigation
