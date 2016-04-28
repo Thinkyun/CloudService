@@ -33,45 +33,37 @@
         [weakSelf.navigationController popViewControllerAnimated:YES];
     }];
     
-    self.webView = [[UIWebView alloc] initWithFrame:self.view.bounds];
+    self.webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, KWidth, KHeight-64)];
     [self.view addSubview:self.webView];
     self.webView.delegate = self;
     
     
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.baidu.con"]];
-    [self.webView loadRequest:request];
-}
-
-- (void)loadData{
+//    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.baidu.con"]];
+    
+    //url
+    NSURL *url = [NSURL URLWithString: @"http://192.168.4.103/index_shop.php"];
+    //参数
     NSDate *date = [NSDate date];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
     NSString *dateStr = [dateFormatter stringFromDate:date];
+    NSString *userNum = [[[SingleHandle shareSingleHandle] user] userNum];
+    NSNumber *totalCredits = [[[SingleHandle shareSingleHandle] user] usableNum];
+    NSString *key = [NSString stringWithFormat:@"%@%@",kSecretKey,userNum];
+    NSString *sign = [self md5String:key];
     
-    User *user = [SingleHandle shareSingleHandle].user;
-    NSDictionary *params = @{@"Trstype":@"YG",@"Trscode":@"300001",@"Channel":@"B2C",@"transationId":@"1001101",@"dateTime":dateStr,@"usrNum":user.userNum,@"totalCredits":user.totalNum};
-    NSString *paramStr = [NSString stringWithFormat:@"%@%@",kSecretKey,[self JSONDataByDictionary:params]];
-    NSString *md5Str = [HelperUtil md5HexDigest:paramStr];
-    NSData *paramsData = [md5Str dataUsingEncoding:NSUTF8StringEncoding];
+    NSDictionary *params = @{@"Trstype":@"YG",@"Trscode":@"300001",@"Channel":@"B2C",@"transationId":@"1001101",@"dateTime":dateStr,@"userNum":userNum,@"totalCredits":totalCredits,@"sign":sign};
+    NSData *paramsData = [NSJSONSerialization dataWithJSONObject:params options:NSJSONWritingPrettyPrinted error:nil];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL: url];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [request setHTTPMethod: @"POST"];
+    [request setHTTPBody: paramsData];
     
-    NSURL *url;
+    [self.webView loadRequest:request];
+}
+
+- (void)loadData{
     
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:30];
-    [request setHTTPBody:paramsData];
-    request.HTTPMethod = @"POST";
-    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
-    
-    NSURLSession *session = [NSURLSession sessionWithConfiguration:configuration];
-    NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-        if (error) {
-            NSLog(@"%@",error);
-//            faliureHander(error);
-        }else{
-            NSLog(@"%@",response);
-//            successHander(data);
-        }
-    }];
-    [dataTask resume];
 }
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
@@ -96,19 +88,24 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (NSData *)JSONDataByDictionary:(NSDictionary *)dict{
-    NSMutableString *mutableStr = [NSMutableString new];
-    [dict enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
-        if (mutableStr.length==0) {
-            [mutableStr appendFormat:@"%@=%@",key,obj];
-        }else{
-            [mutableStr appendFormat:@"&%@=%@",key,obj];
-        }
-    }];
-    NSData *data = [NSJSONSerialization dataWithJSONObject:mutableStr options:NSJSONWritingPrettyPrinted error:nil];
-    return data;
-}
 
+
+- (NSString*)md5String:(NSString*)str
+{
+    const char *cStr = [str UTF8String];
+    unsigned char result[32];
+    CC_MD5(cStr, (CC_LONG)strlen(cStr), result);
+    
+    // 先转MD5，再转大写
+    return [NSString stringWithFormat:
+            @"%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x",
+            result[0], result[1], result[2], result[3],
+            result[4], result[5], result[6], result[7],
+            result[8], result[9], result[10], result[11],
+            result[12], result[13], result[14], result[15]
+            ];
+    
+}
 
 /*
 #pragma mark - Navigation

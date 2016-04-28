@@ -11,9 +11,9 @@
 #import <UIKit/UIKit.h>
 
 
-//#define BaseAPI                 @"http://192.168.4.115:8080/cloudSales-action"  // 11服务器
+#define BaseAPI                 @"http://192.168.4.115:8080/cloudSales-action"  // 11服务器
 //#define BaseAPI                 @"http://192.168.0.103:8080/cloudSales-action"  // 测试服务器
-#define BaseAPI                     @"http://www.eyunkf.com" //测试服务器
+//#define BaseAPI                     @"http://www.eyunkf.com" //测试服务器
 //#define BaseAPI                     @"http://www.ddyunf.com" //生产服务器
 
 //#define BaseAPI                     @"http://139.198.0.209" //生产服务器

@@ -7,6 +7,8 @@
 //
 
 #import "BaseViewController.h"
+#import <CommonCrypto/CommonDigest.h>
+
 
 @interface IntergralCityViewController : BaseViewController
 

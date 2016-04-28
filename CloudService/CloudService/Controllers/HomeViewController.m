@@ -333,7 +333,9 @@ static NSString *headerView_ID = @"headerView";
             NSString *str = [returnData[@"data"] valueForKey:@"totalNum"];
             _integral = [NSString stringWithFormat:@"%@",str];
             user.totalNum = @([_integral integerValue]);
-//            [[SingleHandle shareSingleHandle] saveUserInfo:user];
+            NSString *str1 = [NSString stringWithFormat:@"%@",[returnData[@"data"] valueForKey:@"usableNum"]];
+            user.usableNum = @([str1 integerValue]);
+            [[SingleHandle shareSingleHandle] saveUserInfo:user];
             [weakSelf.collectionView reloadData];
         }else {
             [MBProgressHUD showMessag:[returnData objectForKey:@"msg"] toView:weakSelf.view];
