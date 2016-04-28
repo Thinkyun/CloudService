@@ -11,6 +11,7 @@
 #import "PellTableViewSelect.h"
 #import "HZQDatePickerView.h"
 #import "SingleHandle.h"
+#import "ButelHandle.h"
 
 #undef  RGBCOLOR
 #define RGBCOLOR(r,g,b) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:1]
@@ -50,7 +51,10 @@
    
     // Do any additional setup after loading the view.
 }
-
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [[ButelHandle shareButelHandle] showCallView];
+}
 
 - (IBAction)codeAction:(id)sender {
     [[FireData sharedInstance] eventWithCategory:@"预约" action:@"选择结束码" evar:nil attributes:nil];

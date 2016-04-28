@@ -24,8 +24,9 @@
 #import "LoadViewController.h"
 #import "OrderInfoViewController.h"
 #import "Order.h"
+#import "CouponsViewController.h"
+#import "CallViewController.h"
 
-#import "VCViewController.h"
 
 #define MObAppKey     @"100082c56c5c0"
 #define WXAppID       @"wx5ba999122c08bd76"
@@ -36,7 +37,8 @@
 @interface AppDelegate ()<CLLocationManagerDelegate,UIAlertViewDelegate,FireDataDelegate> {
     BOOL _isSetCity;
     UIViewController *_currentVC;
-    NSDictionary *_launchOptions;
+    NSDictionary *_remoteNotification;
+    NSDictionary *_userInfoDic;
 }
 
 @end
@@ -47,8 +49,12 @@
 @synthesize isThird;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-
-    _launchOptions = launchOptions;
+    self.callWindow = [[UIWindow alloc] initWithFrame:CGRectMake(KWidth-20, KHeight/2, 220, 80)];
+    self.callWindow.windowLevel = UIWindowLevelStatusBar;
+    self.callWindow.rootViewController = [CallViewController new];
+    self.callWindow.hidden = YES;
+    
+//    _launchOptions = launchOptions;
 
     // Override point for customization after application launch.
     //极光推送
@@ -70,7 +76,7 @@
                           channel:Jchannel apsForProduction:YES]; //如果是生产环境应该设置为Y                                                                                                                                                                                                                                                                                                                                                                            ES
     
     
-
+    _remoteNotification = [launchOptions objectForKey: UIApplicationLaunchOptionsRemoteNotificationKey];
     
 
     /**
@@ -268,9 +274,9 @@
     oldVC = nil;
     self.window.rootViewController = menuVC;
 
-    if (_launchOptions) {
-        NSDictionary *remoteNotification = [_launchOptions objectForKey: UIApplicationLaunchOptionsRemoteNotificationKey];
-        _launchOptions = nil;
+    if (_remoteNotification) {
+        
+//        _launchOptions = nil;
 
 
         if (!_currentVC) {
@@ -278,7 +284,8 @@
             UITabBarController *tabBarC = (UITabBarController *)navC.topViewController;
             _currentVC = tabBarC.viewControllers[0];
             
-            [self JPushToVCWithDictionary:remoteNotification];
+            [self JPushToVCWithDictionary:_remoteNotification];
+            _remoteNotification = nil;
         }
     }
     
@@ -429,25 +436,51 @@
     
     
     // 取得Extras字段内容
-//    NSString *code = customizeField1[@"code"];
-//    NSString *baseId = [customizeField1[@"msg"] objectForKey:@"baseId"];
+    NSString *code = userInfo[@"code"];
+    _userInfoDic = userInfo;
     
     switch (application.applicationState) {
         case UIApplicationStateActive://应用在前台时收到推送消息弹出alertview
+            
         {
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"推送消息"
-                                                                message:content
-                                                               delegate:self
-                                                      cancelButtonTitle:@"OK"
-                                                      otherButtonTitles:nil];
-            alertView.tag = 101;
-            [alertView show];
+            UIViewController *VC = [HelperUtil currentViewController];
+            if ([VC isKindOfClass:[BaseTabBarViewController class]]) {
+                BaseTabBarViewController *tab = (BaseTabBarViewController *)VC;
+                NSLog(@"---------%@",tab.selectedViewController);
+                VC = tab.selectedViewController;
+            }else if ([VC.navigationController isKindOfClass:[LoginNavigationController class]]) {
+                VC = nil;
+            }
+            else {
+                NSLog(@"-------%@",VC);
+            }
+            _currentVC = VC;
+
+            if (code) {
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"推送消息"
+                                                                    message:content
+                                                                   delegate:self
+                                                          cancelButtonTitle:@"好的"
+                                                          otherButtonTitles:@"去看看",nil];
+                alertView.tag = 101;
+                [alertView show];
+            }else{
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"推送消息"
+                                                                    message:content
+                                                                   delegate:self
+                                                          cancelButtonTitle:@"OK"
+                                                          otherButtonTitles:nil];
+                alertView.tag = 102;
+                [alertView show];
+            }
+
+            
 
         }
             break;
         case UIApplicationStateInactive://应用在后台状态下，点击推送消息进入前台时
         
-            if(!_launchOptions){
+            if(!_remoteNotification){
             [self JPushToVCWithDictionary:userInfo];
             }
             break;
@@ -530,28 +563,47 @@
 
 
 - (void)JPushToVCWithDictionary:(NSDictionary *)customizeField1{
-    
-    NSString *code = customizeField1[@"code"];
+        NSString *code = customizeField1[@"code"];
     NSString *baseId = customizeField1[@"baseId"];
 
     if ([code isEqualToString:@"001"]) {
         NSString *userId = [SingleHandle shareSingleHandle].user.userId;
         NSString *url = [NSString stringWithFormat:@"%@%@",BaseAPI,kGetOrderInfo];
-        [MHNetworkManager postReqeustWithURL:url params:@{@"baseId":baseId,@"userId":userId} successBlock:^(id returnData) {
+
+        [MHNetworkManager getRequstWithURL:url params:@{@"baseId":baseId,@"userId":userId} successBlock:^(id returnData) {
             NSLog(@"%@",returnData);
             Order *order  = [Order mj_objectWithKeyValues:returnData[@"data"]];
             OrderInfoViewController *orderInfoVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"orderInfo"];
             orderInfoVC.order = order;
+          
+            if (order.customerName) {
+                [_currentVC.navigationController pushViewController:orderInfoVC animated:YES];
+            }else{
+                return ;
+            }
 
-
-            [_currentVC.navigationController pushViewController:orderInfoVC animated:YES];
+            
         } failureBlock:^(NSError *error) {
+            
             
         } showHUD:YES];
     }else if ([code isEqualToString:@"002"]){
-        
+        CouponsViewController*couponsVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"coupons"];
+        [_currentVC.navigationController pushViewController:couponsVC animated:YES];
+
     }
 
+}
+#pragma mark - alertView
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex NS_DEPRECATED_IOS(2_0, 9_0){
+    if(alertView.tag == 101){
+        if(buttonIndex == 0){
+            
+        }else{
+            
+            [self JPushToVCWithDictionary:_userInfoDic];
+        }
+    }
 }
 
 @end

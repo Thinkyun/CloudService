@@ -135,8 +135,10 @@
     [self addSubview:_imgMute];
     [self addSubview:_lbMute];
     [self addGestureRecognizer:oneFingerSwipeleft];
-    self.hidden = YES;
-    UIWindow *keyWindow = [UIApplication sharedApplication].keyWindow;
+//    self.hidden = YES;
+//    UIWindow *keyWindow = [UIApplication sharedApplication].keyWindow;
+    UIWindow *keyWindow = [[[UIApplication sharedApplication] delegate] window];
+    
     [keyWindow addSubview:self];
     
 }

@@ -7,6 +7,7 @@
 //
 
 #import "OrderH5ViewController.h"
+#import "ButelHandle.h"
 
 @interface OrderH5ViewController ()<UIWebViewDelegate>
 
@@ -21,6 +22,10 @@
     self.fireDataApp = [[FiredataApp alloc] init];
     [self setupViews];
     // Do any additional setup after loading the view.
+}
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [[ButelHandle shareButelHandle] showCallView];
 }
 
 - (void)setupViews {

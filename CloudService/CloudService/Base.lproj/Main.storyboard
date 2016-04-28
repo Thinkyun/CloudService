@@ -2148,7 +2148,7 @@
         <!--优惠券-->
         <scene sceneID="xPC-rz-ONU">
             <objects>
-                <viewController title="优惠券" id="4pk-ih-XKo" customClass="CouponsViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="coupons" title="优惠券" useStoryboardIdentifierAsRestorationIdentifier="YES" id="4pk-ih-XKo" customClass="CouponsViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="hFe-zi-Hwe"/>
                         <viewControllerLayoutGuide type="bottom" id="7sb-3m-1NC"/>
