@@ -36,7 +36,11 @@
 #define PGYAppKey     @"7838b7d9fe093d7c02932fbc9ae085db"
 @interface AppDelegate ()<CLLocationManagerDelegate,UIAlertViewDelegate,FireDataDelegate> {
     BOOL _isSetCity;
+    
+    //程序进入后台前的控制器
     UIViewController *_currentVC;
+    
+    //存放远程通知内容的字典
     NSDictionary *_remoteNotification;
     NSDictionary *_userInfoDic;
 }
@@ -74,7 +78,6 @@
     //JAppKey : 是你在极光推送申请下来的appKey Jchannel : 可以直接设置默认值即可 Publish channel
     [JPUSHService setupWithOption:launchOptions appKey:JAppKey
                           channel:Jchannel apsForProduction:YES]; //如果是生产环境应该设置为Y                                                                                                                                                                                                                                                                                                                                                                            ES
-    
     
     _remoteNotification = [launchOptions objectForKey: UIApplicationLaunchOptionsRemoteNotificationKey];
     
@@ -274,11 +277,9 @@
     oldVC = nil;
     self.window.rootViewController = menuVC;
 
+    //若有远程推送的字典，则跳转到指定界面
     if (_remoteNotification) {
-        
-//        _launchOptions = nil;
-
-
+        //_currentVC不存在，则是首页界面
         if (!_currentVC) {
             UINavigationController *navC = (UINavigationController *)_window.rootViewController;
             UITabBarController *tabBarC = (UITabBarController *)navC.topViewController;

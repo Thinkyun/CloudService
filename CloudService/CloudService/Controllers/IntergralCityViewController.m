@@ -37,10 +37,8 @@
     [self.view addSubview:self.webView];
     self.webView.delegate = self;
     
-    User *user = [SingleHandle shareSingleHandle].user;
-    NSLog(@"%@*****%@",user.userNum,user.totalNum);
     
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"www.baidu.con"]];
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.baidu.con"]];
     [self.webView loadRequest:request];
 }
 

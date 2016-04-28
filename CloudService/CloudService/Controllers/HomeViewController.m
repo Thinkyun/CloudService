@@ -332,6 +332,8 @@ static NSString *headerView_ID = @"headerView";
         if ([[returnData valueForKey:@"flag"] isEqualToString:@"success"]) {
             NSString *str = [returnData[@"data"] valueForKey:@"totalNum"];
             _integral = [NSString stringWithFormat:@"%@",str];
+            user.totalNum = @([_integral integerValue]);
+//            [[SingleHandle shareSingleHandle] saveUserInfo:user];
             [weakSelf.collectionView reloadData];
         }else {
             [MBProgressHUD showMessag:[returnData objectForKey:@"msg"] toView:weakSelf.view];
