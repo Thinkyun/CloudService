@@ -38,10 +38,7 @@
     __weak typeof(self) weakSelf = self;
     [weakSelf setLeftImageBarButtonItemWithFrame:CGRectMake(0, 0, 30, 30) image:@"title-back" selectImage:@"back" action:^(AYCButton *button) {
       [[FireData sharedInstance] eventWithCategory:@"订单搜索" action:@"返回上一页" evar:nil attributes:nil];
-        /**
-         *  首页隐藏青牛拨打页面
-         */
-        [[ButelHandle shareButelHandle] hideCallView];
+
         [weakSelf.navigationController popViewControllerAnimated:YES];
     }];
     
@@ -53,6 +50,11 @@
     [super viewWillAppear:animated];
     self.title=@"订单详情";
    
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+
 }
 
 

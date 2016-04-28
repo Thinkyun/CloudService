@@ -13,6 +13,6 @@
 @property (strong, nonatomic) UIWindow *window;
 @property BOOL isThird;
 @property(nonatomic,strong)CLLocationManager *locateManager;
-
+@property (nonatomic, strong) UIWindow *callWindow;
 @end
 

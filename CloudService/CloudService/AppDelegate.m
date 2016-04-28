@@ -25,8 +25,8 @@
 #import "OrderInfoViewController.h"
 #import "Order.h"
 #import "CouponsViewController.h"
+#import "CallViewController.h"
 
-#import "VCViewController.h"
 
 #define MObAppKey     @"100082c56c5c0"
 #define WXAppID       @"wx5ba999122c08bd76"
@@ -49,7 +49,11 @@
 @synthesize isThird;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-
+    self.callWindow = [[UIWindow alloc] initWithFrame:CGRectMake(KWidth-20, KHeight/2, 220, 80)];
+    self.callWindow.windowLevel = UIWindowLevelStatusBar;
+    self.callWindow.rootViewController = [CallViewController new];
+    self.callWindow.hidden = YES;
+    
     _launchOptions = launchOptions;
 
     // Override point for customization after application launch.

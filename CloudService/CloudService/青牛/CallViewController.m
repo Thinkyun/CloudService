@@ -1,18 +1,18 @@
 //
-//  VCViewController.m
+//  CallViewController.m
 //  CloudService
 //
-//  Created by mac on 16/4/27.
+//  Created by 安永超 on 16/4/27.
 //  Copyright © 2016年 zhangqiang. All rights reserved.
 //
 
-#import "VCViewController.h"
+#import "CallViewController.h"
 
-@interface VCViewController ()
+@interface CallViewController ()
 
 @end
 
-@implementation VCViewController
+@implementation CallViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
