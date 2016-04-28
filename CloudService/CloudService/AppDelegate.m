@@ -37,7 +37,7 @@
 @interface AppDelegate ()<CLLocationManagerDelegate,UIAlertViewDelegate,FireDataDelegate> {
     BOOL _isSetCity;
     UIViewController *_currentVC;
-    NSDictionary *_launchOptions;
+    NSDictionary *_remoteNotification;
     NSDictionary *_userInfoDic;
 }
 
@@ -54,7 +54,7 @@
     self.callWindow.rootViewController = [CallViewController new];
     self.callWindow.hidden = YES;
     
-    _launchOptions = launchOptions;
+//    _launchOptions = launchOptions;
 
     // Override point for customization after application launch.
     //极光推送
@@ -76,7 +76,7 @@
                           channel:Jchannel apsForProduction:YES]; //如果是生产环境应该设置为Y                                                                                                                                                                                                                                                                                                                                                                            ES
     
     
-
+    _remoteNotification = [launchOptions objectForKey: UIApplicationLaunchOptionsRemoteNotificationKey];
     
 
     /**
@@ -274,9 +274,9 @@
     oldVC = nil;
     self.window.rootViewController = menuVC;
 
-    if (_launchOptions) {
-        NSDictionary *remoteNotification = [_launchOptions objectForKey: UIApplicationLaunchOptionsRemoteNotificationKey];
-        _launchOptions = nil;
+    if (_remoteNotification) {
+        
+//        _launchOptions = nil;
 
 
         if (!_currentVC) {
@@ -284,7 +284,8 @@
             UITabBarController *tabBarC = (UITabBarController *)navC.topViewController;
             _currentVC = tabBarC.viewControllers[0];
             
-            [self JPushToVCWithDictionary:remoteNotification];
+            [self JPushToVCWithDictionary:_remoteNotification];
+            _remoteNotification = nil;
         }
     }
     
@@ -479,7 +480,7 @@
             break;
         case UIApplicationStateInactive://应用在后台状态下，点击推送消息进入前台时
         
-            if(!_launchOptions){
+            if(!_remoteNotification){
             [self JPushToVCWithDictionary:userInfo];
             }
             break;
@@ -568,14 +569,20 @@
     if ([code isEqualToString:@"001"]) {
         NSString *userId = [SingleHandle shareSingleHandle].user.userId;
         NSString *url = [NSString stringWithFormat:@"%@%@",BaseAPI,kGetOrderInfo];
-        [MHNetworkManager postReqeustWithURL:url params:@{@"baseId":baseId,@"userId":userId} successBlock:^(id returnData) {
+
+        [MHNetworkManager getRequstWithURL:url params:@{@"baseId":baseId,@"userId":userId} successBlock:^(id returnData) {
             NSLog(@"%@",returnData);
             Order *order  = [Order mj_objectWithKeyValues:returnData[@"data"]];
             OrderInfoViewController *orderInfoVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"orderInfo"];
             orderInfoVC.order = order;
+          
+            if (order.customerName) {
+                [_currentVC.navigationController pushViewController:orderInfoVC animated:YES];
+            }else{
+                return ;
+            }
 
-
-            [_currentVC.navigationController pushViewController:orderInfoVC animated:YES];
+            
         } failureBlock:^(NSError *error) {
             
             

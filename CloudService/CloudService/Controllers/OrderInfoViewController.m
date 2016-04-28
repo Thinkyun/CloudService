@@ -78,7 +78,7 @@
        
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
-
+    
     if (self.order) {
         cell.lbOrderNum.text = [NSString stringWithFormat:@"订单号:%@",self.order.baseId];
         cell.lbCustName.text = self.order.customerName;
