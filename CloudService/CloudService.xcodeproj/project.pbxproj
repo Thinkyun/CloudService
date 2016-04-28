@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		04320B481CD1AD0D005206B8 /* DJNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 04320B471CD1AD0D005206B8 /* DJNetworking.m */; };
 		04BF40DB1CCF6272007325FB /* Tools.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BF40DA1CCF6272007325FB /* Tools.m */; };
 		04BF40E01CCF62C2007325FB /* ButelCommonConnectSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 04BF40DE1CCF62C2007325FB /* ButelCommonConnectSDK.bundle */; };
 		04BF40E11CCF62C2007325FB /* ButelCommonConnectSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04BF40DF1CCF62C2007325FB /* ButelCommonConnectSDK.framework */; };
@@ -190,8 +189,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		04320B461CD1AD0D005206B8 /* DJNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJNetworking.h; sourceTree = "<group>"; };
-		04320B471CD1AD0D005206B8 /* DJNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJNetworking.m; sourceTree = "<group>"; };
 		04BF40D91CCF6272007325FB /* Tools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tools.h; sourceTree = "<group>"; };
 		04BF40DA1CCF6272007325FB /* Tools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tools.m; sourceTree = "<group>"; };
 		04BF40DE1CCF62C2007325FB /* ButelCommonConnectSDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ButelCommonConnectSDK.bundle; sourceTree = "<group>"; };
@@ -892,8 +889,6 @@
 				F0292BDD1C7B015200A810A9 /* Views */,
 				F0292BB01C7B00CD00A810A9 /* AppDelegate.h */,
 				F0292BB11C7B00CD00A810A9 /* AppDelegate.m */,
-				04320B461CD1AD0D005206B8 /* DJNetworking.h */,
-				04320B471CD1AD0D005206B8 /* DJNetworking.m */,
 				04D140E61CD0C1710067B8C4 /* VCViewController.h */,
 				04D140E71CD0C1710067B8C4 /* VCViewController.m */,
 				F0292BB61C7B00CD00A810A9 /* Main.storyboard */,
@@ -1433,7 +1428,6 @@
 				63790FED1C93C03C006CB0E2 /* ActivityCollectionCell.m in Sources */,
 				637C00B81CD081D300EAF23E /* LoadViewController.m in Sources */,
 				F06DDBA91C7DAB7400C862A1 /* AYCButton.m in Sources */,
-				04320B481CD1AD0D005206B8 /* DJNetworking.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
