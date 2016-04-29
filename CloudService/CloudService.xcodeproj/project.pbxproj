@@ -24,6 +24,7 @@
 		630EF1A51C8579630059CB34 /* IntergralChangeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 630EF1A21C8579630059CB34 /* IntergralChangeViewController.m */; };
 		630EF1A61C8579630059CB34 /* MyIntergralViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 630EF1A41C8579630059CB34 /* MyIntergralViewController.m */; };
 		6320B73C1C89A2CE0076FC7E /* Coupons.m in Sources */ = {isa = PBXBuildFile; fileRef = 6320B73B1C89A2CE0076FC7E /* Coupons.m */; };
+		6334CE6F1CD3047F00A98AD9 /* UINavigationController+FDFullscreenPopGesture.m in Sources */ = {isa = PBXBuildFile; fileRef = 6334CE6E1CD3047F00A98AD9 /* UINavigationController+FDFullscreenPopGesture.m */; };
 		6339A3FC1CC4D6B7007305DE /* EYTextPopupView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6339A3FB1CC4D6B7007305DE /* EYTextPopupView.m */; };
 		6339B0DD1CB6637C0045F7E0 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 6339B0DC1CB6637C0045F7E0 /* Default.png */; };
 		633ACB241CCA03DC0053DD2E /* UserVerifyStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 633ACB231CCA03DC0053DD2E /* UserVerifyStatus.m */; };
@@ -216,6 +217,8 @@
 		630EF1A41C8579630059CB34 /* MyIntergralViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyIntergralViewController.m; sourceTree = "<group>"; };
 		6320B73A1C89A2CE0076FC7E /* Coupons.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Coupons.h; sourceTree = "<group>"; };
 		6320B73B1C89A2CE0076FC7E /* Coupons.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Coupons.m; sourceTree = "<group>"; };
+		6334CE6D1CD3047F00A98AD9 /* UINavigationController+FDFullscreenPopGesture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+FDFullscreenPopGesture.h"; sourceTree = "<group>"; };
+		6334CE6E1CD3047F00A98AD9 /* UINavigationController+FDFullscreenPopGesture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+FDFullscreenPopGesture.m"; sourceTree = "<group>"; };
 		6339A3FA1CC4D6B7007305DE /* EYTextPopupView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EYTextPopupView.h; sourceTree = "<group>"; };
 		6339A3FB1CC4D6B7007305DE /* EYTextPopupView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EYTextPopupView.m; sourceTree = "<group>"; };
 		6339B0DC1CB6637C0045F7E0 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
@@ -1054,6 +1057,8 @@
 		F0292BDC1C7B015200A810A9 /* Venders */ = {
 			isa = PBXGroup;
 			children = (
+				6334CE6D1CD3047F00A98AD9 /* UINavigationController+FDFullscreenPopGesture.h */,
+				6334CE6E1CD3047F00A98AD9 /* UINavigationController+FDFullscreenPopGesture.m */,
 				63E547AB1CBB89BC00703321 /* FireData.h */,
 				63E547AC1CBB89BC00703321 /* FiredataApp.h */,
 				63E547AD1CBB89BC00703321 /* libFireData.a */,
@@ -1159,7 +1164,7 @@
 				TargetAttributes = {
 					F0292BA91C7B00CD00A810A9 = {
 						CreatedOnToolsVersion = 7.2;
-						DevelopmentTeam = LH28XA7T22;
+						DevelopmentTeam = 7PS2AH4H79;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -1359,6 +1364,7 @@
 				63ADFBE61C7EAC52000D3164 /* ResultTableViewCell.m in Sources */,
 				63AA2BDA1C8A8E1E00D7CF04 /* Integral.m in Sources */,
 				04BF40DB1CCF6272007325FB /* Tools.m in Sources */,
+				6334CE6F1CD3047F00A98AD9 /* UINavigationController+FDFullscreenPopGesture.m in Sources */,
 				F094B59D1C8000E500A2312D /* HomeCollectionCell.m in Sources */,
 				63C07B9B1C7B14BB0084581F /* MHAsiNetworkHandler.m in Sources */,
 				63E143B11CCF0694002462DB /* SegmentControl.m in Sources */,
@@ -1470,8 +1476,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_BITCODE = NO;
@@ -1516,8 +1522,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_BITCODE = NO;
@@ -1562,7 +1568,7 @@
 					"$(PROJECT_DIR)/CloudService/Venders",
 					"$(PROJECT_DIR)/CloudService/Models",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.sinosig.EYunKeFu;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sinosig.EYunKeF;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -1590,7 +1596,7 @@
 					"$(PROJECT_DIR)/CloudService/Venders",
 					"$(PROJECT_DIR)/CloudService/Models",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.sinosig.EYunKeFu;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sinosig.EYunKeF;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};

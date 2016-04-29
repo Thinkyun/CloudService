@@ -26,9 +26,8 @@
         [[FireData sharedInstance] eventWithCategory:@"订单管理" action:@"搜索订单" evar:nil attributes:nil];
         [weakSelf performSegueWithIdentifier:@"searchOrder" sender:weakSelf];
     }];
-    self.tabBarItem.title = @"订单管理";
-//    self.navigationItem.title = @"订单管理";
-    self.tabBarController.navigationItem.title = @"订单管理";
+
+    self.tabBarController.title = @"订单管理";
 
 }
 

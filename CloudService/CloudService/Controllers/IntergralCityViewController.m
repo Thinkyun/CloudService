@@ -28,7 +28,7 @@
     self.title = @"积分商城";
     __weak typeof(self) weakSelf = self;
     [self setLeftImageBarButtonItemWithFrame:CGRectMake(0, 0, 30, 30) image:@"title-back" selectImage:@"" action:^(AYCButton *button) {
-        
+        [[NSNotificationCenter defaultCenter] postNotificationName:ExchangeIntegralSuccess object:nil];
         [[FireData sharedInstance] eventWithCategory:@"积分商城" action:@"返回" evar:nil attributes:nil];
         [weakSelf.navigationController popViewControllerAnimated:YES];
     }];
@@ -38,10 +38,9 @@
     self.webView.delegate = self;
     
     
-//    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.baidu.con"]];
     
     //url
-    NSURL *url = [NSURL URLWithString: @"http://192.168.4.103/index_shop.php"];
+    NSURL *url = [NSURL URLWithString: kIntergralCity];
     //参数
     NSDate *date = [NSDate date];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];

@@ -54,7 +54,7 @@ static NSString *headerView_ID = @"headerView";
      */
     [[PgyUpdateManager sharedPgyManager] checkUpdateWithDelegete:self selector:@selector(updateMethod:)];
    
-
+    
     [self initData];
     [self setupViews];
     // 获取我的积分
@@ -63,7 +63,7 @@ static NSString *headerView_ID = @"headerView";
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getMyintegralData) name:ExchangeIntegralSuccess object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadCollectionView:) name:ReloadHomeData object:nil];
 
-    
+
     
 }
 
@@ -111,12 +111,12 @@ static NSString *headerView_ID = @"headerView";
 - (void)viewWillAppear:(BOOL)animated {
     //导航条滑动返回
     [super viewWillAppear:animated];
+    [self.collectionView reloadData];
     /**
      *  首页隐藏青牛拨打页面
      */
     [[ButelHandle shareButelHandle] hideCallView];
     
-    self.navigationController.interactivePopGestureRecognizer.delegate = (id)self;
     
     self.view.frame = CGRectMake(0, 0, KWidth, KHeight - 64);
     

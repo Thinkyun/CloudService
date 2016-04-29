@@ -94,9 +94,11 @@ static SingleHandle *singleHandle = nil;
          
         }else if([[returnData valueForKey:@"flag"] isEqualToString:@"error"]){
             [MBProgressHUD showMessag:[returnData valueForKey:@"msg"] toView:nil];
+            [self logOut];
+            
         }
     } failureBlock:^(NSError *error) {
-        
+        [self logOut];
     } showHUD:YES];
 
 }
@@ -109,6 +111,7 @@ static SingleHandle *singleHandle = nil;
     //        User *user = [[SingleHandle shareSingleHandle] getUserInfo];
     //
     //        [Utility saveUserName:user.phoneNo passWord:nil];
+    [Utility remberPassWord:NO];
     UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     UIViewController *loginVC = [storyBoard instantiateViewControllerWithIdentifier:@"loginNavi"];
     UIViewController *oldVC = [UIApplication sharedApplication].keyWindow.rootViewController;

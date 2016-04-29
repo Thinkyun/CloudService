@@ -78,7 +78,7 @@
     _blackBtn.backgroundColor = [UIColor blackColor];
     _blackBtn.frame = self.view.frame;
     _blackBtn.alpha = 0.5f;
-    [_blackBtn addTarget:self action:@selector(upMenu) forControlEvents:UIControlEventTouchUpInside];
+//    [_blackBtn addTarget:self action:@selector(upMenu) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_blackBtn];
     //加载搜索试图
     [self initSearchMenu];
@@ -435,7 +435,7 @@
 - (void)cancelClick:(UIButton *)sender {
     [[FireData sharedInstance] eventWithCategory:@"订单搜索" action:@"取消搜索" evar:nil attributes:nil];
     [self upMenu];
- 
+
 }
 /**
  *  确定搜索

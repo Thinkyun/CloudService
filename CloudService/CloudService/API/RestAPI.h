@@ -11,12 +11,12 @@
 #import <UIKit/UIKit.h>
 
 
-#define BaseAPI                 @"http://192.168.4.115:8080/cloudSales-action"  // 11服务器
+//#define BaseAPI                 @"http://192.168.4.115:8080/cloudSales-action"  // 11服务器
 //#define BaseAPI                 @"http://192.168.0.103:8080/cloudSales-action"  // 测试服务器
 //#define BaseAPI                     @"http://www.eyunkf.com" //测试服务器
 //#define BaseAPI                     @"http://www.ddyunf.com" //生产服务器
 
-//#define BaseAPI                     @"http://139.198.0.209" //生产服务器
+#define BaseAPI                     @"http://139.198.0.209" //生产服务器
 
 #define kRegisterAPI            @"/app/user/register"                     //注册
 
@@ -126,6 +126,8 @@
 
 #define kButelLogOut     @"http://221.4.250.108:8088/apHttpService/agent/logout"           // 青牛http退出登陆
 
+#define kIntergralCity     @"http://api.gifttalk.com.cn/index_shop.php"           // 商城测试环境
+
 //   常量
 /**************************************************************************************/
 
@@ -154,6 +156,8 @@ static NSString *const ReloadHomeData = @"ReloadHomeData";
 static NSString *const ChooseSaleCompany = @"ChooseSaleCompany";
 
 static NSString *const ChooseSaleCity = @"ChooseSaleCity";
+
+static NSString *const getUserCredits = @"getUserCredits";
 
 
 /**************************************************************************************/

@@ -48,7 +48,7 @@
     _blackBtn.backgroundColor = [UIColor blackColor];
     _blackBtn.frame = self.view.frame;
     _blackBtn.alpha = 0.5f;
-    [_blackBtn addTarget:self action:@selector(upMenu) forControlEvents:UIControlEventTouchUpInside];
+//    [_blackBtn addTarget:self action:@selector(upMenu) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_blackBtn];
     [self initSearchMenu];
     [self addMjRefresh];
@@ -347,6 +347,7 @@
     
     [[FireData sharedInstance] eventWithCategory:@"积分搜索" action:@"取消" evar:nil attributes:nil];
     [self upMenu];
+
 }
 
 - (void)addMjRefresh {
