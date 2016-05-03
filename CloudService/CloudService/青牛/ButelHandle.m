@@ -179,7 +179,12 @@ static ButelHandle *singleHandle = nil;
                         [MBProgressHUD showHUDAddedTo:(UIView*)[[[UIApplication sharedApplication]delegate]window] animated:YES];
                         [self.connect Logout];
                         _isLogOut = YES;
+                    }else{
+                        [MBProgressHUD showHUDAddedTo:(UIView*)[[[UIApplication sharedApplication]delegate]window] animated:YES];
+                        [self.connect Logout];
+                        _isLogOut = YES;
                     }
+                    
                 } failureBlock:^(NSError *error) {
                     delegate.isThird = NO;
                 } showHUD:NO];
@@ -467,21 +472,24 @@ static ButelHandle *singleHandle = nil;
  *  往后台服务器传录音流水号
  */
 - (void)sendTape:(NSString *)sid sidWithPhone:(NSString *)phone{
-    NSDictionary *params = @{@"userId":[[SingleHandle shareSingleHandle] getUserInfo].userId,
-                             @"requestId":sid,
-                             @"phoneNo":phone,
-                             @"baseId":_baseId};
-    [MHNetworkManager postReqeustWithURL:[NSString stringWithFormat:@"%@%@",BaseAPI,kSaveTape] params:params successBlock:^(id returnData) {
-        
-        if ([[returnData valueForKey:@"flag"] isEqualToString:@"success"]) {
-          
-        }else{
-            [MBProgressHUD showMessag:[returnData valueForKey:@"msg"] toView:nil];
-        }
-        
-    } failureBlock:^(NSError *error) {
-        
-    } showHUD:NO];
+    if (sid) {
+        NSDictionary *params = @{@"userId":[[SingleHandle shareSingleHandle] getUserInfo].userId,
+                                 @"requestId":sid,
+                                 @"phoneNo":phone,
+                                 @"baseId":_baseId};
+        [MHNetworkManager postReqeustWithURL:[NSString stringWithFormat:@"%@%@",BaseAPI,kSaveTape] params:params successBlock:^(id returnData) {
+            
+            if ([[returnData valueForKey:@"flag"] isEqualToString:@"success"]) {
+                
+            }else{
+                [MBProgressHUD showMessag:[returnData valueForKey:@"msg"] toView:nil];
+            }
+            
+        } failureBlock:^(NSError *error) {
+            
+        } showHUD:NO];
+    }
+    
 }
 /**
  *  被别人踢掉退出青牛

@@ -25,9 +25,9 @@ typedef void(^hidePickerViewBlock)(NSString *province,NSString *city);
 
 @interface Province : NSObject
 @property (nonatomic,strong)NSArray *cities;
-@property (nonatomic,copy)NSString *state;
+@property (nonatomic,copy)NSString *provinceName;
 
 //重写init方法
--(instancetype)initWithDic:(NSDictionary *)dic;
-+(instancetype)citiesWithDic:(NSDictionary *)dic;
+//-(instancetype)initWithDic:(NSDictionary *)dic;
+//+(instancetype)citiesWithDic:(NSDictionary *)dic;
 @end

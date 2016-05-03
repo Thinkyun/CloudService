@@ -38,14 +38,14 @@
     [self.navigationController setNavigationBarHidden:NO animated:animated];
 }
 
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-    if (!_isTosetUserInfo) {
-        if (!self.isFromhomeVC) {
-            [self.navigationController setNavigationBarHidden:YES animated:animated];
-        }
-    }
-}
+//- (void)viewWillDisappear:(BOOL)animated {
+//    [super viewWillDisappear:animated];
+//    if (!_isTosetUserInfo) {
+//        if (!self.isFromhomeVC) {
+//            [self.navigationController setNavigationBarHidden:YES animated:YES];
+//        }
+//    }
+//}
 
 - (IBAction)resetUserInfoAction:(id)sender {
     [[FireData sharedInstance] eventWithCategory:@"个人信息" action:@"修改" evar:nil attributes:nil];
@@ -71,8 +71,21 @@
     }else {
         _valueArray[1] = user.userName;
     }
-    _valueArray[2] = user.phoneNo;
-    _valueArray[3] = user.idCard;
+    if (user.phoneNo.length>10) {
+        NSMutableString *phone = [[NSMutableString alloc] initWithString:user.phoneNo];
+        [phone replaceCharactersInRange:NSMakeRange(3, 4) withString:@"****"];
+         _valueArray[2] = phone;
+    }else {
+        _valueArray[2] = user.phoneNo;
+    }
+    if (user.idCard.length>17) {
+        NSMutableString *idCard = [[NSMutableString alloc] initWithString:user.idCard];
+        [idCard replaceCharactersInRange:NSMakeRange(6, 8) withString:@"********"];
+        _valueArray[3] = idCard;
+    }else{
+        _valueArray[3] = user.idCard;
+    }
+
     _valueArray[4] = user.chatName;
     _valueArray[5] = user.bankNum;
     

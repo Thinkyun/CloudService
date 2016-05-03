@@ -291,7 +291,15 @@
     _imgCall.hidden = NO;
     [_btnCall setBackgroundImage:[UIImage imageNamed:@"pop2-btn1"] forState:UIControlStateNormal];
     _lbCall.text = @"拨号";
-   
+    //恢复原始状态
+    if (isMute) {
+        [self mute];
+    }
+    if (isSpeaker) {
+        [self speaker];
+    }
+    
+    
     if (self.timerForDuration) {
       
         _callDuration = 0;
