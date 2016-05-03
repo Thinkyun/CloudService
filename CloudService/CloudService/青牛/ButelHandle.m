@@ -104,7 +104,7 @@ static ButelHandle *singleHandle = nil;
         //初始化青牛
         self.connect = [ButelEventConnectSDK CreateButelCommonConn:self];
         
-        if ([self.connect Init] == -50006) {
+        if ([self.connect Init:@"ButelCommonConnectSDK.bundle"] == -50006) {
             
         }
     }else{

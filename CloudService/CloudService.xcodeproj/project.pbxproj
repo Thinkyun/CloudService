@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		04BF40DB1CCF6272007325FB /* Tools.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BF40DA1CCF6272007325FB /* Tools.m */; };
-		04BF40E01CCF62C2007325FB /* ButelCommonConnectSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 04BF40DE1CCF62C2007325FB /* ButelCommonConnectSDK.bundle */; };
-		04BF40E11CCF62C2007325FB /* ButelCommonConnectSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04BF40DF1CCF62C2007325FB /* ButelCommonConnectSDK.framework */; };
 		04BF40E31CCF6671007325FB /* icon80.png in Resources */ = {isa = PBXBuildFile; fileRef = 04BF40E21CCF6671007325FB /* icon80.png */; };
 		630EF18A1C8530940059CB34 /* MyClientTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 630EF1881C8530940059CB34 /* MyClientTableViewCell.m */; };
 		630EF18B1C8530940059CB34 /* MyClientTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 630EF1891C8530940059CB34 /* MyClientTableViewCell.xib */; };
@@ -34,6 +32,8 @@
 		634647C51CB49EAF004A064E /* EYPopupView.m in Sources */ = {isa = PBXBuildFile; fileRef = 634647BE1CB49EAF004A064E /* EYPopupView.m */; };
 		634647C61CB49EAF004A064E /* EYTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 634647C21CB49EAF004A064E /* EYTextField.m */; };
 		6349DE5C1CD8AA8000A82A9F /* province.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6349DE5B1CD8AA8000A82A9F /* province.plist */; };
+		6349DE5F1CD8B5D300A82A9F /* ButelCommonConnectSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 6349DE5D1CD8B5D300A82A9F /* ButelCommonConnectSDK.bundle */; };
+		6349DE601CD8B5D300A82A9F /* ButelCommonConnectSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6349DE5E1CD8B5D300A82A9F /* ButelCommonConnectSDK.framework */; };
 		634EE61F1C995A8D00FB526D /* activity2.png in Resources */ = {isa = PBXBuildFile; fileRef = 634EE61D1C995A8D00FB526D /* activity2.png */; };
 		634EE6201C995A8D00FB526D /* activity2@2X.png in Resources */ = {isa = PBXBuildFile; fileRef = 634EE61E1C995A8D00FB526D /* activity2@2X.png */; };
 		634EE6271C997F0000FB526D /* rulebg3.png in Resources */ = {isa = PBXBuildFile; fileRef = 634EE6251C997F0000FB526D /* rulebg3.png */; };
@@ -191,8 +191,6 @@
 /* Begin PBXFileReference section */
 		04BF40D91CCF6272007325FB /* Tools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tools.h; sourceTree = "<group>"; };
 		04BF40DA1CCF6272007325FB /* Tools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tools.m; sourceTree = "<group>"; };
-		04BF40DE1CCF62C2007325FB /* ButelCommonConnectSDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ButelCommonConnectSDK.bundle; sourceTree = "<group>"; };
-		04BF40DF1CCF62C2007325FB /* ButelCommonConnectSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ButelCommonConnectSDK.framework; sourceTree = "<group>"; };
 		04BF40E21CCF6671007325FB /* icon80.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon80.png; path = Assets.xcassets/AppIcon.appiconset/icon80.png; sourceTree = "<group>"; };
 		630EF1871C8530940059CB34 /* MyClientTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyClientTableViewCell.h; sourceTree = "<group>"; };
 		630EF1881C8530940059CB34 /* MyClientTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyClientTableViewCell.m; sourceTree = "<group>"; };
@@ -236,6 +234,8 @@
 		634647C11CB49EAF004A064E /* EYTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EYTextField.h; sourceTree = "<group>"; };
 		634647C21CB49EAF004A064E /* EYTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EYTextField.m; sourceTree = "<group>"; };
 		6349DE5B1CD8AA8000A82A9F /* province.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = province.plist; sourceTree = "<group>"; };
+		6349DE5D1CD8B5D300A82A9F /* ButelCommonConnectSDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ButelCommonConnectSDK.bundle; sourceTree = "<group>"; };
+		6349DE5E1CD8B5D300A82A9F /* ButelCommonConnectSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ButelCommonConnectSDK.framework; sourceTree = "<group>"; };
 		634EE61D1C995A8D00FB526D /* activity2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = activity2.png; sourceTree = "<group>"; };
 		634EE61E1C995A8D00FB526D /* activity2@2X.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "activity2@2X.png"; sourceTree = "<group>"; };
 		634EE6251C997F0000FB526D /* rulebg3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rulebg3.png; sourceTree = "<group>"; };
@@ -511,7 +511,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				636CD92C1C880C4E0050935E /* AVFoundation.framework in Frameworks */,
-				04BF40E11CCF62C2007325FB /* ButelCommonConnectSDK.framework in Frameworks */,
+				6349DE601CD8B5D300A82A9F /* ButelCommonConnectSDK.framework in Frameworks */,
 				63E547AE1CBB89BC00703321 /* libFireData.a in Frameworks */,
 				636CD92A1C880C4A0050935E /* MediaPlayer.framework in Frameworks */,
 				636CD9281C880C440050935E /* AudioToolbox.framework in Frameworks */,
@@ -543,8 +543,8 @@
 		63588FDB1CA4CEA4002C6857 /* 青牛 */ = {
 			isa = PBXGroup;
 			children = (
-				04BF40DE1CCF62C2007325FB /* ButelCommonConnectSDK.bundle */,
-				04BF40DF1CCF62C2007325FB /* ButelCommonConnectSDK.framework */,
+				6349DE5D1CD8B5D300A82A9F /* ButelCommonConnectSDK.bundle */,
+				6349DE5E1CD8B5D300A82A9F /* ButelCommonConnectSDK.framework */,
 				63588FDE1CA4CEA4002C6857 /* ButelHandle.h */,
 				63588FDF1CA4CEA4002C6857 /* ButelHandle.m */,
 				63588FE01CA4CEA4002C6857 /* CallView.h */,
@@ -1199,8 +1199,8 @@
 				63A2AB051CA13F980094B876 /* rulebg2.png in Resources */,
 				63C54E331C7C2F96007CE8CA /* OrderManagerCell.xib in Resources */,
 				63A2AB021CA13F440094B876 /* activity3.png in Resources */,
-				04BF40E01CCF62C2007325FB /* ButelCommonConnectSDK.bundle in Resources */,
 				630EF18B1C8530940059CB34 /* MyClientTableViewCell.xib in Resources */,
+				6349DE5F1CD8B5D300A82A9F /* ButelCommonConnectSDK.bundle in Resources */,
 				634EE6271C997F0000FB526D /* rulebg3.png in Resources */,
 				6339B0DD1CB6637C0045F7E0 /* Default.png in Resources */,
 				6349DE5C1CD8AA8000A82A9F /* province.plist in Resources */,

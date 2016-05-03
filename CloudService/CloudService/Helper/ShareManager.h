@@ -22,5 +22,6 @@
 - (void)shareParamsByText:(NSString *)text
                    images:(id)images
                       url:(NSURL *)url
-                    title:(NSString *)title;
+                    title:(NSString *)title
+              WeChatTitle:(NSString *)WeChatTitle;
 @end

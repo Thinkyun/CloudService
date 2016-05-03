@@ -78,17 +78,21 @@
     //1、创建分享参数
     NSArray* imageArray = @[[UIImage imageNamed:@"sharLogo"]];
         if (imageArray) {
-            NSString *content = nil;
+            NSString *content = @"";
+            NSString *weChatTitle = @"";
             if (self.isTeamInvite) {
-                content = [NSString stringWithFormat:@"诚心邀请您加入点点云服，送万元梦想基金\n团队邀请码:%@",_teamInviteCode];
+                content = [NSString stringWithFormat:@"诚心邀请您加入点点云服,送万元梦想基金\n团队邀请码:%@",_teamInviteCode];
+                weChatTitle = [NSString stringWithFormat:@"诚心邀请您加入点点云服,团队邀请码:%@",_teamInviteCode];
+                
             }else {
-                content = [NSString stringWithFormat:@"诚心邀请您加入点点云服，送万元梦想基金\n个人邀请码:%@",_personInviteCode];
+                content = [NSString stringWithFormat:@"诚心邀请您加入点点云服,送万元梦想基金\n个人邀请码:%@",_personInviteCode];
+                weChatTitle = [NSString stringWithFormat:@"诚心邀请您加入点点云服,个人邀请码:%@",_personInviteCode];
             }
             
             /**
              *  微信分享
              */
-            [[ShareManager manager] shareParamsByText:content images:imageArray url:[NSURL URLWithString:kCreateQRAPI] title:@"点点云服"];
+            [[ShareManager manager] shareParamsByText:content images:imageArray url:[NSURL URLWithString:kCreateQRAPI] title:@"点点云服" WeChatTitle:weChatTitle];
 
         }
     

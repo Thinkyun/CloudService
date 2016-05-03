@@ -348,7 +348,8 @@ static NSString *cellID = @"cellID";
         /**
          *  微信分享
          */
-        [[ShareManager manager] shareParamsByText:content images:imageArray url:[NSURL URLWithString:_linkUrl] title:@"点点云服"];
+        NSString *weChatTitle = [NSString stringWithFormat:@"诚心邀请您加入点点云服，邀请码:%@",_personInviteCode];
+        [[ShareManager manager] shareParamsByText:content images:imageArray url:[NSURL URLWithString:_linkUrl] title:@"点点云服" WeChatTitle:weChatTitle];
                 
     }
 

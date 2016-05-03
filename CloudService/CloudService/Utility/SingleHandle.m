@@ -102,7 +102,8 @@ static SingleHandle *singleHandle = nil;
             
         }
     } failureBlock:^(NSError *error) {
-        [self logOut];
+        //2秒后再调用self的run方法
+        [weakSelf performSelector:@selector(logOut) withObject:nil afterDelay:2.0];
     } showHUD:YES];
 
 }
@@ -137,8 +138,10 @@ static SingleHandle *singleHandle = nil;
                 
                 NSString *provinceId = [province valueForKey:@"branchId"];
                 NSString *provinceName = [province valueForKey:@"branchName"];
+                NSString *limit = [province valueForKey:@"limit"];
                 [provinceDict setObject:provinceId forKey:@"provinceId"];
                 [provinceDict setObject:provinceName forKey:@"provinceName"];
+                [provinceDict setObject:limit forKey:@"limit"];
                 [provinceArray addObject:provinceDict];
             }
 

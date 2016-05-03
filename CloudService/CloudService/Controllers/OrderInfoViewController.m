@@ -294,7 +294,7 @@
     /**
      *  微信分享
      */
-    [[ShareManager manager] shareParamsByText:payMessage images:nil url:nil title:@"点点云服"];
+    [[ShareManager manager] shareParamsByText:payMessage images:nil url:nil title:@"点点云服" WeChatTitle:@""];
     
     
 
