@@ -35,6 +35,7 @@
 		634647C31CB49EAF004A064E /* EYInputPopupView.m in Sources */ = {isa = PBXBuildFile; fileRef = 634647BB1CB49EAF004A064E /* EYInputPopupView.m */; };
 		634647C51CB49EAF004A064E /* EYPopupView.m in Sources */ = {isa = PBXBuildFile; fileRef = 634647BE1CB49EAF004A064E /* EYPopupView.m */; };
 		634647C61CB49EAF004A064E /* EYTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 634647C21CB49EAF004A064E /* EYTextField.m */; };
+		6349DE5C1CD8AA8000A82A9F /* province.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6349DE5B1CD8AA8000A82A9F /* province.plist */; };
 		634EE61F1C995A8D00FB526D /* activity2.png in Resources */ = {isa = PBXBuildFile; fileRef = 634EE61D1C995A8D00FB526D /* activity2.png */; };
 		634EE6201C995A8D00FB526D /* activity2@2X.png in Resources */ = {isa = PBXBuildFile; fileRef = 634EE61E1C995A8D00FB526D /* activity2@2X.png */; };
 		634EE6271C997F0000FB526D /* rulebg3.png in Resources */ = {isa = PBXBuildFile; fileRef = 634EE6251C997F0000FB526D /* rulebg3.png */; };
@@ -159,7 +160,6 @@
 		F074D9321C93A756007A6A88 /* CodeNameModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F074D9311C93A756007A6A88 /* CodeNameModel.m */; };
 		F074D9361C93CC35007A6A88 /* province.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = F074D9351C93CC35007A6A88 /* province.sqlite */; };
 		F074D93C1C93F0F5007A6A88 /* OrderH5ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F074D93B1C93F0F5007A6A88 /* OrderH5ViewController.m */; };
-		F07531D21C8687BB00E71796 /* area.plist in Resources */ = {isa = PBXBuildFile; fileRef = F07531D11C8687BB00E71796 /* area.plist */; };
 		F07FF9D61C81469400EB1BB1 /* ResetPhonePopView.m in Sources */ = {isa = PBXBuildFile; fileRef = F07FF9D51C81469400EB1BB1 /* ResetPhonePopView.m */; };
 		F07FF9D81C8146D800EB1BB1 /* ResetPhonePopView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F07FF9D71C8146D800EB1BB1 /* ResetPhonePopView.xib */; };
 		F07FF9DB1C815BF600EB1BB1 /* MyTeamViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F07FF9DA1C815BF600EB1BB1 /* MyTeamViewController.m */; };
@@ -241,6 +241,7 @@
 		634647C01CB49EAF004A064E /* EYPopupViewMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EYPopupViewMacro.h; sourceTree = "<group>"; };
 		634647C11CB49EAF004A064E /* EYTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EYTextField.h; sourceTree = "<group>"; };
 		634647C21CB49EAF004A064E /* EYTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EYTextField.m; sourceTree = "<group>"; };
+		6349DE5B1CD8AA8000A82A9F /* province.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = province.plist; sourceTree = "<group>"; };
 		634EE61D1C995A8D00FB526D /* activity2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = activity2.png; sourceTree = "<group>"; };
 		634EE61E1C995A8D00FB526D /* activity2@2X.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "activity2@2X.png"; sourceTree = "<group>"; };
 		634EE6251C997F0000FB526D /* rulebg3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rulebg3.png; sourceTree = "<group>"; };
@@ -460,7 +461,6 @@
 		F074D9351C93CC35007A6A88 /* province.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = province.sqlite; sourceTree = "<group>"; };
 		F074D93A1C93F0F5007A6A88 /* OrderH5ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderH5ViewController.h; sourceTree = "<group>"; };
 		F074D93B1C93F0F5007A6A88 /* OrderH5ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderH5ViewController.m; sourceTree = "<group>"; };
-		F07531D11C8687BB00E71796 /* area.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = area.plist; sourceTree = "<group>"; };
 		F07FF9D41C81469400EB1BB1 /* ResetPhonePopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResetPhonePopView.h; sourceTree = "<group>"; };
 		F07FF9D51C81469400EB1BB1 /* ResetPhonePopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResetPhonePopView.m; sourceTree = "<group>"; };
 		F07FF9D71C8146D800EB1BB1 /* ResetPhonePopView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ResetPhonePopView.xib; sourceTree = "<group>"; };
@@ -908,7 +908,7 @@
 		F0292BAD1C7B00CD00A810A9 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				F07531D11C8687BB00E71796 /* area.plist */,
+				6349DE5B1CD8AA8000A82A9F /* province.plist */,
 				F0292BD71C7B015200A810A9 /* PrefixHeader.pch */,
 				F0292BAE1C7B00CD00A810A9 /* main.m */,
 			);
@@ -1204,7 +1204,6 @@
 				636A35D01C9CFEB900540CD0 /* guize.png in Resources */,
 				634EE61F1C995A8D00FB526D /* activity2.png in Resources */,
 				63ADFBE71C7EAC52000D3164 /* ResultTableViewCell.xib in Resources */,
-				F07531D21C8687BB00E71796 /* area.plist in Resources */,
 				63A2AB031CA13F440094B876 /* activity3@2X.png in Resources */,
 				634EE6201C995A8D00FB526D /* activity2@2X.png in Resources */,
 				63A2AB051CA13F980094B876 /* rulebg2.png in Resources */,
@@ -1214,6 +1213,7 @@
 				630EF18B1C8530940059CB34 /* MyClientTableViewCell.xib in Resources */,
 				634EE6271C997F0000FB526D /* rulebg3.png in Resources */,
 				6339B0DD1CB6637C0045F7E0 /* Default.png in Resources */,
+				6349DE5C1CD8AA8000A82A9F /* province.plist in Resources */,
 				F09A5F901A55BEDD008D4963 /* HomeHeaderView.xib in Resources */,
 				04BF40E31CCF6671007325FB /* icon80.png in Resources */,
 				F094B59E1C8000E500A2312D /* HomeCollectionCell.xib in Resources */,

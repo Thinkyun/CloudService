@@ -7,6 +7,7 @@
 //
 
 #import "CityPickerView.h"
+
 #define KWidth  [UIScreen mainScreen].bounds.size.width
 #define KHeight  [UIScreen mainScreen].bounds.size.height
 @interface CityPickerView()<UIPickerViewDataSource,UIPickerViewDelegate>
@@ -20,12 +21,14 @@
  *  存放数据的数组
  */
 @property (nonatomic,strong)NSArray *provinceArray;
+@property (nonatomic,strong)NSArray *cityArray;
 @property(nonatomic,strong)UIPickerView *pickerView;
 @property(nonatomic,strong)UIView *maskView;
 /**
  *  省模型
  */
-@property (nonatomic,strong)Province * selecletPro;
+@property (nonatomic,copy)NSString * selecletPro;
+@property (nonatomic,copy)NSString * selecletCity;
 @end
 
 
@@ -34,16 +37,16 @@
 /**
  *  重写init方法
  */
--(instancetype)initWithDic:(NSDictionary *)dic{
-    if (self == [super init]) {
-        [self setValuesForKeysWithDictionary:dic];
-    }
-    return self;
-}
-
-+(instancetype)citiesWithDic:(NSDictionary *)dic{
-    return [[self alloc]initWithDic:dic];
-}
+//-(instancetype)initWithDic:(NSDictionary *)dic{
+//    if (self == [super init]) {
+//        [self setValuesForKeysWithDictionary:dic];
+//    }
+//    return self;
+//}
+//
+//+(instancetype)citiesWithDic:(NSDictionary *)dic{
+//    return [[self alloc]initWithDic:dic];
+//}
 
 @end
 
@@ -110,11 +113,14 @@
         //获取省的索引
         NSInteger seleProIndx = [pickerView selectedRowInComponent:0];
         //获取当前省的数据
-        Province * selePro = self.provinceArray[seleProIndx];
+        NSDictionary * seleDic = self.provinceArray[seleProIndx];
         //保存当前省的数据
-        self.selecletPro = selePro;
+        self.selecletPro = [seleDic valueForKey:@"name"];
+        //城市的数组
+        self.cityArray = [seleDic valueForKey:@"city"];
+        
         //返回省的城市的个数
-        return selePro.cities.count;
+        return self.cityArray.count;
         
     }
 }
@@ -122,13 +128,14 @@
 -(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
     
     if (component == 0) {
-        
-        //返回省的名字
-        Province * city = self.provinceArray[row];
-        return city.state;
+//        self.province = self.provinceArray
+//        //返回省的名字
+//        Province * city = self.provinceArray[row];
+        NSString *province = [self.provinceArray[row] valueForKey:@"name"];
+        return province;
     }else{
-               //返回保存的省里面的内容
-        return [self.selecletPro.cities[row] valueForKey:@"city"];
+               //返回保存的城市里面的内容
+        return [self.cityArray[row] valueForKey:@"name"];
     }
     
 
@@ -145,14 +152,8 @@
     NSInteger selePro = [pickerView selectedRowInComponent:0];
     NSInteger seleCity = [pickerView selectedRowInComponent:1];
     
-    //获取内容
-    Province * pro = self.provinceArray[selePro];
-    //    NSString * city = pro.cities[seleCity];
-    //获取保存的省里面的城市
-    NSString * city = [self.selecletPro.cities[seleCity] valueForKey:@"city"];
-    //赋值
-    self.province = pro.state;
-    self.city = city;
+    self.province = [self.provinceArray[selePro] valueForKey:@"name"];
+    self.city = [self.cityArray[seleCity] valueForKey:@"name"];
 }
 
 - (void)cancleAction:(UIButton *)sender {
@@ -190,11 +191,14 @@
                 _block(self.province,self.city);
             }else{
                 //获取内容
-                Province * pro = self.provinceArray[0];
-                self.province = pro.state;
-                //获取保存的省里面的城市
-                NSString * city = [self.selecletPro.cities[0] valueForKey:@"city"];
-                self.city = city;
+                
+                //获取当前省的数据
+                NSDictionary * seleDic = self.provinceArray[0];
+                //保存当前省的数据
+                self.selecletPro = [seleDic valueForKey:@"name"];
+                //城市的数组
+                self.cityArray = [seleDic valueForKey:@"city"];
+                self.city = [self.cityArray[0] valueForKey:@"name"];
                 _block(self.province,self.city);
             }
             
@@ -214,12 +218,13 @@
  */
 -(NSArray *)provinceArray{
     if (!_provinceArray) {
-        NSArray *array = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"area" ofType:@"plist"]];
-        NSMutableArray *nmArray = [NSMutableArray arrayWithCapacity:array.count];
-        for (NSDictionary *dic in array) {
-            [nmArray addObject:[Province citiesWithDic:dic]];
-        }
-        _provinceArray = nmArray;
+        NSString *path =[[NSString alloc]initWithString:[[NSBundle mainBundle] pathForResource:@"province"ofType:@"plist"]];
+
+        NSDictionary *rootDic = [NSDictionary dictionaryWithContentsOfFile:path];
+        
+        NSDictionary *provinceDic = [rootDic valueForKey:@"root"];
+        NSArray *array = [provinceDic valueForKey:@"province"];
+        _provinceArray = array;
     }
     return _provinceArray;
 }
