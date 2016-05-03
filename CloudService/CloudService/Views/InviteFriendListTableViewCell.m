@@ -6,7 +6,6 @@
 //  Copyright © 2016年 DJ. All rights reserved.
 //
 
-#define kWidth [UIScreen mainScreen].bounds.size.width
 
 #import "InviteFriendListTableViewCell.h"
 
@@ -40,14 +39,14 @@
     phoneLable.text = [NSString stringWithFormat:@"号码: %@",phoneStr];
     [self.contentView addSubview:phoneLable];
     
-    UILabel *statusLabel = [[UILabel alloc] initWithFrame:CGRectMake(kWidth-100-30, 15, 100, 30)];
+    UILabel *statusLabel = [[UILabel alloc] initWithFrame:CGRectMake(KWidth-100-30, 15, 100, 30)];
     statusLabel.textColor = [statusStr isEqualToString:@"未出单"]?[UIColor greenColor]:[UIColor redColor];
     statusLabel.textAlignment = NSTextAlignmentRight;
     statusLabel.font = [UIFont systemFontOfSize:14];
     statusLabel.text = statusStr;
     [self.contentView addSubview:statusLabel];
     
-    UILabel *integralLable = [[UILabel alloc] initWithFrame:CGRectMake(kWidth-100-30, 10+30+10, 100, 30)];
+    UILabel *integralLable = [[UILabel alloc] initWithFrame:CGRectMake(KWidth-100-30, 10+30+10, 100, 30)];
     integralLable.font = [UIFont systemFontOfSize:14];
     integralLable.textColor = [UIColor lightGrayColor];
     integralLable.text = isIntegral? @"积分已发":@"";

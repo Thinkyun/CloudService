@@ -745,6 +745,8 @@
 		63C54E381C7C3561007CE8CA /* PersonalController(个人中心) */ = {
 			isa = PBXGroup;
 			children = (
+				04BF2E601CD8962C00CC5BAB /* InviteFriendListViewController.h */,
+				04BF2E611CD8962C00CC5BAB /* InviteFriendListViewController.m */,
 				63C54E3F1C7C35BA007CE8CA /* PersonalViewController.h */,
 				63C54E401C7C35BA007CE8CA /* PersonalViewController.m */,
 				F07FF9D91C815BF600EB1BB1 /* MyTeamViewController.h */,
@@ -950,8 +952,6 @@
 				63C54E2A1C7C2B41007CE8CA /* OrderManager(订单管理) */,
 				63C54E371C7C34FA007CE8CA /* ResultsController(业绩查询) */,
 				63C54E381C7C3561007CE8CA /* PersonalController(个人中心) */,
-				04BF2E601CD8962C00CC5BAB /* InviteFriendListViewController.h */,
-				04BF2E611CD8962C00CC5BAB /* InviteFriendListViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
