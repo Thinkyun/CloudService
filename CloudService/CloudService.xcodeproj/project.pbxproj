@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		04BF2E5F1CD8961900CC5BAB /* InviteFriendListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BF2E5E1CD8961900CC5BAB /* InviteFriendListTableViewCell.m */; };
+		04BF2E621CD8962C00CC5BAB /* InviteFriendListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BF2E611CD8962C00CC5BAB /* InviteFriendListViewController.m */; };
 		04BF40DB1CCF6272007325FB /* Tools.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BF40DA1CCF6272007325FB /* Tools.m */; };
 		04BF40E01CCF62C2007325FB /* ButelCommonConnectSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 04BF40DE1CCF62C2007325FB /* ButelCommonConnectSDK.bundle */; };
 		04BF40E11CCF62C2007325FB /* ButelCommonConnectSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04BF40DF1CCF62C2007325FB /* ButelCommonConnectSDK.framework */; };
@@ -189,6 +191,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		04BF2E5D1CD8961900CC5BAB /* InviteFriendListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InviteFriendListTableViewCell.h; sourceTree = "<group>"; };
+		04BF2E5E1CD8961900CC5BAB /* InviteFriendListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InviteFriendListTableViewCell.m; sourceTree = "<group>"; };
+		04BF2E601CD8962C00CC5BAB /* InviteFriendListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InviteFriendListViewController.h; sourceTree = "<group>"; };
+		04BF2E611CD8962C00CC5BAB /* InviteFriendListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InviteFriendListViewController.m; sourceTree = "<group>"; };
 		04BF40D91CCF6272007325FB /* Tools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tools.h; sourceTree = "<group>"; };
 		04BF40DA1CCF6272007325FB /* Tools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tools.m; sourceTree = "<group>"; };
 		04BF40DE1CCF62C2007325FB /* ButelCommonConnectSDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ButelCommonConnectSDK.bundle; sourceTree = "<group>"; };
@@ -944,6 +950,8 @@
 				63C54E2A1C7C2B41007CE8CA /* OrderManager(订单管理) */,
 				63C54E371C7C34FA007CE8CA /* ResultsController(业绩查询) */,
 				63C54E381C7C3561007CE8CA /* PersonalController(个人中心) */,
+				04BF2E601CD8962C00CC5BAB /* InviteFriendListViewController.h */,
+				04BF2E611CD8962C00CC5BAB /* InviteFriendListViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1120,6 +1128,8 @@
 				F094A8461C9F9D5900E89967 /* TagSelectItem.h */,
 				F094A8471C9F9D5900E89967 /* TagSelectItem.m */,
 				F094A8481C9F9D5900E89967 /* TagSelectItem.xib */,
+				04BF2E5D1CD8961900CC5BAB /* InviteFriendListTableViewCell.h */,
+				04BF2E5E1CD8961900CC5BAB /* InviteFriendListTableViewCell.m */,
 			);
 			name = "PersonalViews(个人中心)";
 			sourceTree = "<group>";
@@ -1381,6 +1391,7 @@
 				F06DDBAA1C7DAB7400C862A1 /* UIViewController+AYCNavigationItem.m in Sources */,
 				F09A5F931A55F0AA008D4963 /* InviteFriendViewController.m in Sources */,
 				63C54E3E1C7C35AA007CE8CA /* ResultViewController.m in Sources */,
+				04BF2E5F1CD8961900CC5BAB /* InviteFriendListTableViewCell.m in Sources */,
 				63588FE51CA4CEA4002C6857 /* CallView.m in Sources */,
 				630EF1A61C8579630059CB34 /* MyIntergralViewController.m in Sources */,
 				635A4E221CCE30CE00C41C0D /* NSData+YYAdd.m in Sources */,
@@ -1395,6 +1406,7 @@
 				F074D9321C93A756007A6A88 /* CodeNameModel.m in Sources */,
 				63C07B9E1C7B14BB0084581F /* MHUploadParam.m in Sources */,
 				635A4E251CCE30CE00C41C0D /* UIGestureRecognizer+YYAdd.m in Sources */,
+				04BF2E621CD8962C00CC5BAB /* InviteFriendListViewController.m in Sources */,
 				635A4E2C1CCE30CE00C41C0D /* UnPaidViewController.m in Sources */,
 				F074D93C1C93F0F5007A6A88 /* OrderH5ViewController.m in Sources */,
 				637A624C1C8EC0020020AE5E /* CouponsDistributeCell.m in Sources */,
