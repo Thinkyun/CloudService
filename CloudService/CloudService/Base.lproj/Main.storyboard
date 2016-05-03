@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="wou-5f-TFM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="wou-5f-TFM">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
@@ -1426,7 +1426,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uQW-HY-y8x" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1117.5" y="-1501.5"/>
+            <point key="canvasLocation" x="1145.5" y="-1375.5"/>
         </scene>
         <!--订单管理-->
         <scene sceneID="En5-ls-5mo">
@@ -2042,7 +2042,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BdQ-Hf-yYS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1265.5" y="1146.5"/>
+            <point key="canvasLocation" x="1317.5" y="1462.5"/>
         </scene>
         <!--My Team View Controller-->
         <scene sceneID="Mdt-Ks-FOE">
@@ -2964,17 +2964,17 @@
                         <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Cp-xC-AiM">
-                                <rect key="frame" x="107" y="50" width="161" height="161"/>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4Cp-xC-AiM">
+                                <rect key="frame" x="80" y="50" width="215" height="214"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y9A-Xy-mFA">
-                                        <rect key="frame" x="0.0" y="53" width="161" height="54"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="0" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y9A-Xy-mFA">
+                                        <rect key="frame" x="0.0" y="71" width="215" height="72"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="45"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="积分" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ekO-87-8kM">
-                                        <rect key="frame" x="0.0" y="112" width="161" height="21"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="积分" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ekO-87-8kM">
+                                        <rect key="frame" x="0.0" y="148" width="215" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="21" id="1Et-df-Bak"/>
                                         </constraints>
@@ -3131,7 +3131,7 @@
                             <constraint firstItem="nNB-37-X5N" firstAttribute="top" secondItem="4Cp-xC-AiM" secondAttribute="bottom" constant="50" id="Vtl-Yb-UcV"/>
                             <constraint firstItem="SPh-yf-eZ2" firstAttribute="height" secondItem="iMo-q0-kws" secondAttribute="height" multiplier="45 / 640" id="dTc-XH-0b5"/>
                             <constraint firstItem="SPh-yf-eZ2" firstAttribute="leading" secondItem="iMo-q0-kws" secondAttribute="leading" constant="15" id="dX3-fp-1Jw"/>
-                            <constraint firstItem="4Cp-xC-AiM" firstAttribute="width" secondItem="iMo-q0-kws" secondAttribute="width" multiplier="3:7" id="gZU-ep-vDP"/>
+                            <constraint firstItem="4Cp-xC-AiM" firstAttribute="width" secondItem="iMo-q0-kws" secondAttribute="width" multiplier="4:7" id="gZU-ep-vDP"/>
                             <constraint firstItem="SPh-yf-eZ2" firstAttribute="leading" secondItem="cFW-AN-sJw" secondAttribute="leading" id="mt6-Fm-sku"/>
                             <constraint firstAttribute="trailing" secondItem="SPh-yf-eZ2" secondAttribute="trailing" constant="15" id="oig-RG-fsB"/>
                             <constraint firstItem="4Cp-xC-AiM" firstAttribute="centerX" secondItem="iMo-q0-kws" secondAttribute="centerX" id="oqx-CN-z1r"/>
@@ -3585,9 +3585,9 @@
         <image name="youhuiquan-checkbox" width="22" height="22"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="i3c-Qa-Pxq"/>
+        <segue reference="hk9-Xv-JLY"/>
+        <segue reference="aJV-kD-afh"/>
         <segue reference="fDp-sc-Hby"/>
         <segue reference="KaR-KU-zbk"/>
-        <segue reference="hk9-Xv-JLY"/>
     </inferredMetricsTieBreakers>
 </document>

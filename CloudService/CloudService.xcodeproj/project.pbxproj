@@ -88,7 +88,6 @@
 		637A62501C8ED5A00020AE5E /* CouponsDistributed.m in Sources */ = {isa = PBXBuildFile; fileRef = 637A624F1C8ED5A00020AE5E /* CouponsDistributed.m */; };
 		637C00B21CD0643100EAF23E /* LoginNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 637C00B11CD0643100EAF23E /* LoginNavigationController.m */; };
 		637C00B81CD081D300EAF23E /* LoadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 637C00B71CD081D300EAF23E /* LoadViewController.m */; };
-		637C00BB1CD0DCC300EAF23E /* CallViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 637C00BA1CD0DCC300EAF23E /* CallViewController.m */; };
 		6383656A1C7DB8BA001A10C4 /* HZQDatePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 638365641C7DB8BA001A10C4 /* HZQDatePickerView.m */; };
 		6383656B1C7DB8BA001A10C4 /* HZQDatePickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 638365651C7DB8BA001A10C4 /* HZQDatePickerView.xib */; };
 		6383656C1C7DB8BA001A10C4 /* UIColor+HexString.m in Sources */ = {isa = PBXBuildFile; fileRef = 638365671C7DB8BA001A10C4 /* UIColor+HexString.m */; };
@@ -324,8 +323,6 @@
 		637C00B11CD0643100EAF23E /* LoginNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginNavigationController.m; sourceTree = "<group>"; };
 		637C00B61CD081D300EAF23E /* LoadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadViewController.h; sourceTree = "<group>"; };
 		637C00B71CD081D300EAF23E /* LoadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadViewController.m; sourceTree = "<group>"; };
-		637C00B91CD0DCC300EAF23E /* CallViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CallViewController.h; sourceTree = "<group>"; };
-		637C00BA1CD0DCC300EAF23E /* CallViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CallViewController.m; sourceTree = "<group>"; };
 		638365631C7DB8BA001A10C4 /* HZQDatePickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HZQDatePickerView.h; sourceTree = "<group>"; };
 		638365641C7DB8BA001A10C4 /* HZQDatePickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HZQDatePickerView.m; sourceTree = "<group>"; };
 		638365651C7DB8BA001A10C4 /* HZQDatePickerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HZQDatePickerView.xib; sourceTree = "<group>"; };
@@ -552,8 +549,6 @@
 				63588FDF1CA4CEA4002C6857 /* ButelHandle.m */,
 				63588FE01CA4CEA4002C6857 /* CallView.h */,
 				63588FE11CA4CEA4002C6857 /* CallView.m */,
-				637C00B91CD0DCC300EAF23E /* CallViewController.h */,
-				637C00BA1CD0DCC300EAF23E /* CallViewController.m */,
 			);
 			path = "青牛";
 			sourceTree = "<group>";
@@ -1352,7 +1347,6 @@
 				63C2FB9B1C80237E00D48B8C /* AppointmentViewController.m in Sources */,
 				F059AA7C1A55903B0008D7BD /* SetNewPwdViewController.m in Sources */,
 				F06DE1DA1C9957CF006D3BE7 /* SetUserInfoCell2.m in Sources */,
-				637C00BB1CD0DCC300EAF23E /* CallViewController.m in Sources */,
 				63C07BAB1C7B15C10084581F /* HelperUtil.m in Sources */,
 				635A4E2A1CCE30CE00C41C0D /* PaidViewController.m in Sources */,
 				F01A61601C7D3D3E008CBBD5 /* SetUserInfoCell.m in Sources */,

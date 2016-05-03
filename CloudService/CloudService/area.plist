@@ -93,25 +93,25 @@
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>石景山</string>
+				<string>石景山区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>丰台</string>
+				<string>丰台区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>门头沟</string>
+				<string>门头沟区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>海淀</string>
+				<string>海淀区</string>
 			</dict>
 		</array>
 		<key>state</key>
@@ -124,115 +124,115 @@
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>普陀</string>
+				<string>普陀区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>闸北</string>
+				<string>闸北区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>虹口</string>
+				<string>虹口区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>杨浦</string>
+				<string>杨浦区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>卢湾</string>
+				<string>卢湾区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>徐汇</string>
+				<string>徐汇区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>长宁</string>
+				<string>长宁区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>静安</string>
+				<string>静安区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>黄浦</string>
+				<string>黄浦区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>金山</string>
+				<string>金山区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>浦东新</string>
+				<string>浦东新区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>嘉定</string>
+				<string>嘉定区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>闵行</string>
+				<string>闵行区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>宝山</string>
+				<string>宝山区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>南汇</string>
+				<string>南汇区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>青浦</string>
+				<string>青浦区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>松江</string>
+				<string>松江区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>奉贤</string>
+				<string>奉贤区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>崇明</string>
+				<string>崇明区</string>
 			</dict>
 		</array>
 		<key>state</key>

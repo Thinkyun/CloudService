@@ -69,7 +69,7 @@ static NSString *headerView_ID = @"headerView";
 
 - (void)initData {
     
-    _dataKeyArray = @[@"获取数据",@"我的客户",@"创建订单",@"积分商城",@"邀请好友",@"我的积分"];
+    _dataKeyArray = @[@"获取数据",@"我的客户",@"创建订单",@"积分商城",@"限时任务",@"我的积分"];
     _imageArray = @[@"home-icon1",@"home-icon2",@"home-icon3",@"home-icon4",@"home-icon5",@"home-icon6"];
     
     _dataDict = [NSMutableDictionary dictionary];
@@ -77,7 +77,7 @@ static NSString *headerView_ID = @"headerView";
     [_dataDict setValue:@"我的客户明细" forKey:_dataKeyArray[1]];
     [_dataDict setValue:@"创建我的订单" forKey:_dataKeyArray[2]];
     [_dataDict setValue:@"积分兑换商城" forKey:_dataKeyArray[3]];
-    [_dataDict setValue:@"邀请我的好友" forKey:_dataKeyArray[4]];
+    [_dataDict setValue:@"我的限时任务" forKey:_dataKeyArray[4]];
     [_dataDict setValue:@"积分明细查看" forKey:_dataKeyArray[5]];
     
 //    _scrollImgArray = @[@"banner",@"activity3",@"activity2"];
@@ -292,10 +292,10 @@ static NSString *headerView_ID = @"headerView";
             break;
         case 4:
         {
-            UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-            UIViewController *vc = [storyBoard instantiateViewControllerWithIdentifier:@"InviteFriendsVC"];
-            [[FireData sharedInstance] eventWithCategory:@"首页" action:@"邀请好友" evar:nil attributes:nil];
-            [self.navigationController pushViewController:vc animated:YES];
+//            UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+//            UIViewController *vc = [storyBoard instantiateViewControllerWithIdentifier:@"InviteFriendsVC"];
+//            [[FireData sharedInstance] eventWithCategory:@"首页" action:@"邀请好友" evar:nil attributes:nil];
+//            [self.navigationController pushViewController:vc animated:YES];
         }
             break;
         case 5:

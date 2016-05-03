@@ -72,7 +72,7 @@ static SingleHandle *singleHandle = nil;
     AppDelegate *delegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
     delegate.isThird=NO;
     
-//    __weak typeof(self) weakSelf = self;
+    __weak typeof(self) weakSelf = self;
     [MHNetworkManager postReqeustWithURL:[RequestEntity urlString:kLoginAPI] params:paramDic successBlock:^(id returnData) {
         if ([[returnData valueForKey:@"flag"] isEqualToString:@"success"]) {
             User *user = [User mj_objectWithKeyValues:[returnData valueForKey:@"data"]];
@@ -93,8 +93,12 @@ static SingleHandle *singleHandle = nil;
             
          
         }else if([[returnData valueForKey:@"flag"] isEqualToString:@"error"]){
-            [MBProgressHUD showMessag:[returnData valueForKey:@"msg"] toView:nil];
-            [self logOut];
+            NSString *msgStr = [returnData valueForKey:@"msg"];
+                [MBProgressHUD showMessag:msgStr toView:nil];
+                //2秒后再调用self的run方法
+                [weakSelf performSelector:@selector(logOut) withObject:nil afterDelay:2.0];
+       
+            
             
         }
     } failureBlock:^(NSError *error) {
@@ -102,6 +106,7 @@ static SingleHandle *singleHandle = nil;
     } showHUD:YES];
 
 }
+
 
 - (void) logOut {
     /**

@@ -676,7 +676,7 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rtd-XD-Lyl">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rtd-XD-Lyl">
                                 <rect key="frame" x="0.0" y="373" width="375" height="1"/>
                                 <color key="backgroundColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -783,7 +783,7 @@
                                     <constraint firstAttribute="height" constant="30" id="KHG-Ra-3RV"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YeO-m0-UYf">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YeO-m0-UYf">
                                 <rect key="frame" x="125" y="382" width="124" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="FqA-Hq-7Ek"/>
@@ -793,7 +793,7 @@
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="06A-mX-Hdw">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="06A-mX-Hdw">
                                 <rect key="frame" x="251" y="382" width="124" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="fZ1-yr-3mE"/>
@@ -803,7 +803,7 @@
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
-                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0f9-kD-EAE">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0f9-kD-EAE">
                                 <rect key="frame" x="0.0" y="421" width="375" height="1"/>
                                 <color key="backgroundColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -960,7 +960,7 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oav-Xq-hWa">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oav-Xq-hWa">
                                 <rect key="frame" x="0.0" y="382" width="124" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="kMe-VK-PfW"/>
@@ -1007,6 +1007,7 @@
                             <constraint firstItem="CbB-3R-pj5" firstAttribute="top" secondItem="rnk-dG-dnG" secondAttribute="bottom" constant="8" id="OLR-kM-F5T"/>
                             <constraint firstAttribute="trailing" secondItem="S60-kr-Tdv" secondAttribute="trailing" constant="14" id="P6C-dg-AfH"/>
                             <constraint firstItem="d4W-JT-eu7" firstAttribute="top" secondItem="Ig4-Sc-fzE" secondAttribute="bottom" constant="13" id="QOc-E0-KYt"/>
+                            <constraint firstItem="YeO-m0-UYf" firstAttribute="top" secondItem="mau-2o-D2c" secondAttribute="top" id="QlF-fw-OMK"/>
                             <constraint firstItem="tUs-wx-bsi" firstAttribute="top" secondItem="Hhh-hV-ox4" secondAttribute="bottom" constant="8" id="Qsd-f1-F96"/>
                             <constraint firstItem="ZRW-ec-xu4" firstAttribute="width" secondItem="fbJ-Wv-db4" secondAttribute="width" id="Rwf-oE-Jdv"/>
                             <constraint firstAttribute="trailing" secondItem="0f9-kD-EAE" secondAttribute="trailing" id="SQv-ew-Jf4"/>

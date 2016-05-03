@@ -25,7 +25,7 @@
 #import "OrderInfoViewController.h"
 #import "Order.h"
 #import "CouponsViewController.h"
-#import "CallViewController.h"
+
 
 
 #define MObAppKey     @"100082c56c5c0"
@@ -53,10 +53,7 @@
 @synthesize isThird;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    self.callWindow = [[UIWindow alloc] initWithFrame:CGRectMake(KWidth-20, KHeight/2, 220, 80)];
-    self.callWindow.windowLevel = UIWindowLevelStatusBar;
-    self.callWindow.rootViewController = [CallViewController new];
-    self.callWindow.hidden = YES;
+
     
 //    _launchOptions = launchOptions;
 
@@ -522,6 +519,9 @@
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
+//    [[UIApplication sharedApplication] setKeepAliveTimeout:600 handler:^{ //todo send keep live
+//       
+//    }];
     /**
      *  app进入后台之前先记录下当前所在控制器
      */
@@ -545,6 +545,7 @@
 
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
+//    [[UIApplication sharedApplication] clearKeepAliveTimeout];
 //    if ([Utility isNewVersion]) {
 //        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"版本更新" message:@"系统检测有新版本" delegate:self cancelButtonTitle:nil otherButtonTitles:@"点击进入下载", nil];
 //        [alertView show];
@@ -606,5 +607,7 @@
         }
     }
 }
+
+
 
 @end
