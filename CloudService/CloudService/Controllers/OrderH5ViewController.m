@@ -25,7 +25,7 @@
 }
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [[ButelHandle shareButelHandle] showCallView];
+//    [[ButelHandle shareButelHandle] showCallView];
 }
 
 - (void)setupViews {

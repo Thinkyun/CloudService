@@ -62,14 +62,10 @@
         __weak typeof(self)weakSelf = self;
         DTLog(@"--请求url地址--%@\n",url);
         DTLog(@"----请求参数%@\n",params);
-//        UITextView *tv = [[UITextView alloc] initWithFrame:CGRectMake(0, 0, KWidth, KHeight)];
-////        NSMutableString *str= [NSMutableString stringWithFormat:@"--请求url地址--%@\n----请求参数%@\n",url,params];
-//        tv.text = [NSString stringWithFormat:@"--请求url地址--%@\n----请求参数%@\n",url,params];
-//    
-//        [[[UIApplication sharedApplication].delegate window] addSubview:tv];
+
         
         AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-       
+    
         manager.responseSerializer.acceptableContentTypes =  [NSSet setWithObject:@"text/html"];
         manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/xml", nil];
         manager.responseSerializer = [AFJSONResponseSerializer serializer];

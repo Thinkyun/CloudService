@@ -46,7 +46,7 @@
 
 #pragma mark 显示一些信息
 + (MBProgressHUD *)showMessag:(NSString *)message toView:(UIView *)view {
-    if (view == nil) view = [UIApplication sharedApplication].keyWindow;
+    if (view == nil) view = [UIApplication sharedApplication].delegate.window;
     // 快速显示一个提示信息
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:view animated:YES];
     hud.mode = MBProgressHUDModeText;

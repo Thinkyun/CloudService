@@ -79,7 +79,7 @@
         [[FireData sharedInstance] eventWithCategory:@"我的积分" action:@"返回" evar:nil attributes:nil];
         [weakSelf.navigationController popViewControllerAnimated:YES];
     }];
-    self.backView.layer.cornerRadius = KWidth * 3 / 7 / 2.0;
+    self.backView.layer.cornerRadius = KWidth * 4 / 7 / 2.0;
     
     [weakSelf setRightTextBarButtonItemWithFrame:CGRectMake(0, 0, 80, 30) title:@"积分明细" titleColor:[UIColor whiteColor] backImage:@"" selectBackImage:@"" action:^(AYCButton *button) {
         
