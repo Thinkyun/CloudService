@@ -12,6 +12,7 @@
 #import "UserInfoViewController.h"
 #import "SetUserInfoViewController.h"
 #import "InviteFriendViewController.h"
+#import "InviteFriendListViewController.h"
 #import "ButelHandle.h"
 
 @interface PersonalViewController ()<UITableViewDataSource,UITableViewDelegate> {
@@ -42,7 +43,7 @@ static NSString *cell_id = @"personalCell";
 - (void)initData {
     
 //    NSArray *array1 = @[@"个人中心",@"我的团队",@"积分管理",@"用户认证",@"团队成员邀请",@"好友邀请"];
-    NSArray *array1 = @[@"个人中心",@"积分管理",@"用户认证",@"好友邀请"];
+    NSArray *array1 = @[@"个人中心",@"积分管理",@"用户认证",@"好友邀请",@"好友邀请列表"];
     NSArray *array2 = @[@"我的优惠券"];
     NSArray *array3 = @[@"关于应用"];
     
@@ -50,11 +51,12 @@ static NSString *cell_id = @"personalCell";
     
     _dataDict = [NSMutableDictionary dictionary];
     [_dataDict setValue:@"userInfo" forKey:array1[0]];
-//    [_dataDict setValue:@"user-icon1" forKey:array1[1]];
     [_dataDict setValue:@"user-icon2" forKey:array1[1]];
+    //    [_dataDict setValue:@"user-icon1" forKey:array1[1]];
     [_dataDict setValue:@"user-icon3" forKey:array1[2]];
-//    [_dataDict setValue:@"user-icon4" forKey:array1[4]];
     [_dataDict setValue:@"user-icon5" forKey:array1[3]];
+    [_dataDict setValue:@"user-icon9" forKey:array1[4]];
+    
     [_dataDict setValue:@"user-icon6" forKey:array2[0]];
     [_dataDict setValue:@"user-icon7" forKey:array3[0]];
 //    [_dataDict setValue:@"user-icon8" forKey:array3[1]];
@@ -227,6 +229,12 @@ static NSString *cell_id = @"personalCell";
             {
                 [[FireData sharedInstance] eventWithCategory:@"个人中心" action:@"好友邀请" evar:nil attributes:nil];
                 [self performSegueWithIdentifier:@"invateFriend_push" sender:self];
+            }
+                break;
+            case 4:{
+                [[FireData sharedInstance] eventWithCategory:@"个人中心" action:@"好友邀请列表" evar:nil attributes:nil];
+                [self.navigationController pushViewController:[InviteFriendListViewController new] animated:YES];
+                
             }
                 break;
             default:

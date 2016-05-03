@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		04BF2E5F1CD8961900CC5BAB /* InviteFriendListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BF2E5E1CD8961900CC5BAB /* InviteFriendListTableViewCell.m */; };
+		04BF2E621CD8962C00CC5BAB /* InviteFriendListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BF2E611CD8962C00CC5BAB /* InviteFriendListViewController.m */; };
 		04BF40DB1CCF6272007325FB /* Tools.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BF40DA1CCF6272007325FB /* Tools.m */; };
 		04BF40E31CCF6671007325FB /* icon80.png in Resources */ = {isa = PBXBuildFile; fileRef = 04BF40E21CCF6671007325FB /* icon80.png */; };
 		630EF18A1C8530940059CB34 /* MyClientTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 630EF1881C8530940059CB34 /* MyClientTableViewCell.m */; };
@@ -189,6 +191,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		04BF2E5D1CD8961900CC5BAB /* InviteFriendListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InviteFriendListTableViewCell.h; sourceTree = "<group>"; };
+		04BF2E5E1CD8961900CC5BAB /* InviteFriendListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InviteFriendListTableViewCell.m; sourceTree = "<group>"; };
+		04BF2E601CD8962C00CC5BAB /* InviteFriendListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InviteFriendListViewController.h; sourceTree = "<group>"; };
+		04BF2E611CD8962C00CC5BAB /* InviteFriendListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InviteFriendListViewController.m; sourceTree = "<group>"; };
 		04BF40D91CCF6272007325FB /* Tools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tools.h; sourceTree = "<group>"; };
 		04BF40DA1CCF6272007325FB /* Tools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tools.m; sourceTree = "<group>"; };
 		04BF40E21CCF6671007325FB /* icon80.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon80.png; path = Assets.xcassets/AppIcon.appiconset/icon80.png; sourceTree = "<group>"; };
@@ -739,6 +745,8 @@
 		63C54E381C7C3561007CE8CA /* PersonalController(个人中心) */ = {
 			isa = PBXGroup;
 			children = (
+				04BF2E601CD8962C00CC5BAB /* InviteFriendListViewController.h */,
+				04BF2E611CD8962C00CC5BAB /* InviteFriendListViewController.m */,
 				63C54E3F1C7C35BA007CE8CA /* PersonalViewController.h */,
 				63C54E401C7C35BA007CE8CA /* PersonalViewController.m */,
 				F07FF9D91C815BF600EB1BB1 /* MyTeamViewController.h */,
@@ -1120,6 +1128,8 @@
 				F094A8461C9F9D5900E89967 /* TagSelectItem.h */,
 				F094A8471C9F9D5900E89967 /* TagSelectItem.m */,
 				F094A8481C9F9D5900E89967 /* TagSelectItem.xib */,
+				04BF2E5D1CD8961900CC5BAB /* InviteFriendListTableViewCell.h */,
+				04BF2E5E1CD8961900CC5BAB /* InviteFriendListTableViewCell.m */,
 			);
 			name = "PersonalViews(个人中心)";
 			sourceTree = "<group>";
@@ -1159,7 +1169,7 @@
 				TargetAttributes = {
 					F0292BA91C7B00CD00A810A9 = {
 						CreatedOnToolsVersion = 7.2;
-						DevelopmentTeam = 7PS2AH4H79;
+						DevelopmentTeam = LH28XA7T22;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -1381,6 +1391,7 @@
 				F06DDBAA1C7DAB7400C862A1 /* UIViewController+AYCNavigationItem.m in Sources */,
 				F09A5F931A55F0AA008D4963 /* InviteFriendViewController.m in Sources */,
 				63C54E3E1C7C35AA007CE8CA /* ResultViewController.m in Sources */,
+				04BF2E5F1CD8961900CC5BAB /* InviteFriendListTableViewCell.m in Sources */,
 				63588FE51CA4CEA4002C6857 /* CallView.m in Sources */,
 				630EF1A61C8579630059CB34 /* MyIntergralViewController.m in Sources */,
 				635A4E221CCE30CE00C41C0D /* NSData+YYAdd.m in Sources */,
@@ -1395,6 +1406,7 @@
 				F074D9321C93A756007A6A88 /* CodeNameModel.m in Sources */,
 				63C07B9E1C7B14BB0084581F /* MHUploadParam.m in Sources */,
 				635A4E251CCE30CE00C41C0D /* UIGestureRecognizer+YYAdd.m in Sources */,
+				04BF2E621CD8962C00CC5BAB /* InviteFriendListViewController.m in Sources */,
 				635A4E2C1CCE30CE00C41C0D /* UnPaidViewController.m in Sources */,
 				F074D93C1C93F0F5007A6A88 /* OrderH5ViewController.m in Sources */,
 				637A624C1C8EC0020020AE5E /* CouponsDistributeCell.m in Sources */,
@@ -1562,7 +1574,7 @@
 					"$(PROJECT_DIR)/CloudService/Venders",
 					"$(PROJECT_DIR)/CloudService/Models",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.sinosig.EYunKeF;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sinosig.EYunKeFu;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -1590,7 +1602,7 @@
 					"$(PROJECT_DIR)/CloudService/Venders",
 					"$(PROJECT_DIR)/CloudService/Models",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.sinosig.EYunKeF;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sinosig.EYunKeFu;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};

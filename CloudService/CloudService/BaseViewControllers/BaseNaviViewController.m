@@ -6,18 +6,34 @@
 //  Copyright © 2016年 zhangqiang. All rights reserved.
 //
 
+
+
 #import "BaseNaviViewController.h"
+
+
 
 @interface BaseNaviViewController ()<UINavigationControllerDelegate,UIGestureRecognizerDelegate>
 @property (nonatomic, weak) UIViewController *currentShowVC;
+
 @end
+
+
 
 @implementation BaseNaviViewController
 
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+
+
+    
+
     // Do any additional setup after loading the view.
 }
+
+
+
 //-(id)initWithRootViewController:(UIViewController *)rootViewController
 //{
 //    BaseNaviViewController* nvc = [super initWithRootViewController:rootViewController];
