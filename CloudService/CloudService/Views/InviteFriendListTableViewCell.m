@@ -9,7 +9,12 @@
 
 #import "InviteFriendListTableViewCell.h"
 
-@implementation InviteFriendListTableViewCell
+@implementation InviteFriendListTableViewCell{
+    UILabel *_nameLabel;
+    UILabel *_phoneLabel;
+    UILabel *_statusLabel;
+    UILabel *_integralLable;
+}
 
 - (void)awakeFromNib {
     // Initialization code
@@ -23,35 +28,47 @@
 }
 
 - (void)setup{
-    NSString *nameStr = @"fda";
-    NSString *phoneStr = @"343424324314";
-    NSString *statusStr = @"未出单";
-    BOOL isIntegral = NO;
+
     UILabel *nameLable = [[UILabel alloc] initWithFrame:CGRectMake(30, 15, 150, 30)];
+    _nameLabel = nameLable;
     nameLable.textColor = [UIColor blackColor];
     nameLable.font = [UIFont systemFontOfSize:16];
-    nameLable.text = [NSString stringWithFormat:@"姓名: %@",nameStr];
     [self.contentView addSubview:nameLable];
     
     UILabel *phoneLable = [[UILabel alloc] initWithFrame:CGRectMake(30, 10+30+10, 200, 30)];
+    _phoneLabel = phoneLable;
     phoneLable.textColor = [UIColor blackColor];
     phoneLable.font = [UIFont systemFontOfSize:16];
-    phoneLable.text = [NSString stringWithFormat:@"号码: %@",phoneStr];
     [self.contentView addSubview:phoneLable];
     
     UILabel *statusLabel = [[UILabel alloc] initWithFrame:CGRectMake(KWidth-100-30, 15, 100, 30)];
-    statusLabel.textColor = [statusStr isEqualToString:@"未出单"]?[UIColor greenColor]:[UIColor redColor];
+    _statusLabel = statusLabel;
     statusLabel.textAlignment = NSTextAlignmentRight;
     statusLabel.font = [UIFont systemFontOfSize:14];
-    statusLabel.text = statusStr;
     [self.contentView addSubview:statusLabel];
     
     UILabel *integralLable = [[UILabel alloc] initWithFrame:CGRectMake(KWidth-100-30, 10+30+10, 100, 30)];
+    _integralLable = integralLable;
     integralLable.font = [UIFont systemFontOfSize:14];
     integralLable.textColor = [UIColor lightGrayColor];
-    integralLable.text = isIntegral? @"积分已发":@"";
     integralLable.textAlignment = NSTextAlignmentRight;
     [self.contentView addSubview:integralLable];
+}
+
+- (void)setDataDict:(NSDictionary *)dataDict{
+    if (_dataDict != dataDict) {
+        _dataDict = dataDict;
+        NSString *nameStr = [dataDict[@"realName"] length]>0? dataDict[@"realName"]:dataDict[@"userName"];
+        NSString *phoneStr = dataDict[@"phoneNo"];
+        BOOL isIntegral = [dataDict[@"completeOrder"] boolValue];
+        NSString *statusStr =  !isIntegral?@"未出单":@"已出单";
+        _nameLabel.text = [NSString stringWithFormat:@"姓名: %@",nameStr];
+        _phoneLabel.text = [NSString stringWithFormat:@"号码: %@",phoneStr];
+        _integralLable.text = isIntegral? @"积分已发":@"";
+        _statusLabel.text = statusStr;
+        _statusLabel.textColor = [statusStr isEqualToString:@"未出单"]?[UIColor greenColor]:[UIColor redColor];
+
+    }
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

@@ -4,7 +4,7 @@
 //
 //  Created by 安永超 on 16/2/23.
 //  Copyright © 2016年 zhangqiang. All rights reserved.
-//
+// 个人中心
 
 #import "PersonalViewController.h"
 #import "PersonalViewCell.h"
@@ -30,6 +30,35 @@
 static NSString *cell_id = @"personalCell";
 
 @implementation PersonalViewController
+
+- (void)viewWillAppear:(BOOL)animated {
+    
+    //    [[UIApplication sharedApplication] setStatusBarHidden:YES];
+    self.view.frame = [UIScreen mainScreen].bounds;
+    [super viewWillAppear:animated];
+    self.tabBarController.title = @"个人中心";
+    [self.navigationController setNavigationBarHidden:YES animated:animated];
+    
+}
+
+-(void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    User *user = [[SingleHandle shareSingleHandle] getUserInfo];
+    NSString *userName = nil;
+    userName = user.realName.length > 0 ? user.realName : user.userName;
+    self.userNameLabel.text = userName;
+    self.phoneNumLabel.text = user.phoneNo;
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:animated];
+}
+
+-(void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -68,45 +97,21 @@ static NSString *cell_id = @"personalCell";
     // 注册Cell
     [self.tableView registerNib:[UINib nibWithNibName:@"PersonalViewCell" bundle:nil] forCellReuseIdentifier:cell_id];
     
+    //headIconImgView上加手势
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapHeadicon)];
     [self.headIconImg addGestureRecognizer:tap];
 }
 
 
 
+//手势的实现
 - (void)tapHeadicon {
     [[FireData sharedInstance] eventWithCategory:@"个人中心" action:@"个人信息" evar:nil attributes:nil];
     [self performSegueWithIdentifier:@"userinfoVC" sender:self];
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    
-//    [[UIApplication sharedApplication] setStatusBarHidden:YES];
-    self.view.frame = [UIScreen mainScreen].bounds;
-    [super viewWillAppear:animated];
-    self.tabBarController.title = @"个人中心";
-    [self.navigationController setNavigationBarHidden:YES animated:animated];
-    
-}
 
--(void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-    User *user = [[SingleHandle shareSingleHandle] getUserInfo];
-    NSString *userName = nil;
-    userName = user.realName.length > 0 ? user.realName : user.userName;
-    self.userNameLabel.text = userName;
-    self.phoneNumLabel.text = user.phoneNo;
-}
-
-- (void)viewDidDisappear:(BOOL)animated {
-    [super viewDidDisappear:animated];
-    [self.navigationController setNavigationBarHidden:NO animated:animated];
-}
-
--(void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-    
-}
+#pragma mark - tableViewDataSource,delegate
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return _dataArray.count + 1;
@@ -123,7 +128,6 @@ static NSString *cell_id = @"personalCell";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     if (indexPath.section == _dataArray.count) {
-#warning cell宽度有问题,可能是没有启动图
         static NSString *cell_ID = @"logOutCell";
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cell_ID];
         if (!cell) {
@@ -169,6 +173,7 @@ static NSString *cell_id = @"personalCell";
     if (indexPath.section == 0) {
         switch (indexPath.row) {
                 case 0:
+                //个人信息
             {
                 [[FireData sharedInstance] eventWithCategory:@"个人中心" action:@"个人信息" evar:nil attributes:nil];
                 UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
@@ -189,6 +194,7 @@ static NSString *cell_id = @"personalCell";
 //            }
 //                break;
             case 1:
+            //积分管理
             {
                 [[FireData sharedInstance] eventWithCategory:@"个人中心" action:@"积分管理" evar:nil attributes:nil];
                 UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
@@ -198,6 +204,7 @@ static NSString *cell_id = @"personalCell";
             }
                 break;
             case 2:
+            //用户认证
             {
                 [[FireData sharedInstance] eventWithCategory:@"个人中心" action:@"用户认证" evar:nil attributes:nil];
                 UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
@@ -226,12 +233,15 @@ static NSString *cell_id = @"personalCell";
 //            }
 //                break;
             case 3:
+            //好友邀请
             {
                 [[FireData sharedInstance] eventWithCategory:@"个人中心" action:@"好友邀请" evar:nil attributes:nil];
                 [self performSegueWithIdentifier:@"invateFriend_push" sender:self];
             }
                 break;
-            case 4:{
+            case 4:
+            //好友邀请列表
+            {
                 [[FireData sharedInstance] eventWithCategory:@"个人中心" action:@"好友邀请列表" evar:nil attributes:nil];
                 [self.navigationController pushViewController:[InviteFriendListViewController new] animated:YES];
                 

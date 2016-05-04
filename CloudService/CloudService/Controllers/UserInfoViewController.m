@@ -25,6 +25,12 @@
 
 @implementation UserInfoViewController
 
+-(void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    _isTosetUserInfo = NO;
+    [self.navigationController setNavigationBarHidden:NO animated:animated];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -32,11 +38,7 @@
     [self setupViews];
 }
 
--(void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    _isTosetUserInfo = NO;
-    [self.navigationController setNavigationBarHidden:NO animated:animated];
-}
+
 
 //- (void)viewWillDisappear:(BOOL)animated {
 //    [super viewWillDisappear:animated];
@@ -85,10 +87,14 @@
     }else{
         _valueArray[3] = user.idCard;
     }
-
-    _valueArray[4] = user.chatName;
-    _valueArray[5] = user.bankNum;
     
+    _valueArray[4] = user.chatName;
+    NSString *temStr = user.bankNum;
+    if(user.bankNum.length>5){
+        temStr = [user.bankNum stringByReplacingCharactersInRange:(NSRange){0,user.bankNum.length-4} withString:@"**** **** **** "];
+        
+    }
+    _valueArray[5] = temStr;
 }
 
 - (void)setupViews {
@@ -121,6 +127,7 @@
 }
 
 
+#pragma - mark tableView DataSource Delegate
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 2;

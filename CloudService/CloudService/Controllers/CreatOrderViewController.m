@@ -15,6 +15,7 @@
 #import "OrderInfoViewController.h"
 #import "DataSource.h"
 #import "EYPopupViewHeader.h"
+#import "MyFile.h"
 
 // baseId 25961588
 @interface CreatOrderViewController ()<UITextFieldDelegate>
@@ -156,24 +157,44 @@
         if ([self.tfLicenseNo.text isEqualToString:@""]) {
             licenseNo = @"新车";
         }
+    NSString *path = [MyFile fileLibraryPath:PROVINCE_LIMIT];
+    NSArray *codeArray = [NSKeyedUnarchiver unarchiveObjectWithFile:path];
+    BOOL limit = YES;
+    if (_cityCode.length>0) {
+        for (NSString *proviceId in codeArray) {
+            
+            if([_cityCode hasPrefix:proviceId]){
+                limit = NO;
+                break;
+            }
+        }
+    }
+    
+    NSMutableDictionary *dict = [@{@"proportion":user.proportion,
+                                  @"customerName":_tfName.text,
+                                  @"phoneNo":_tfPhone.text,
+                                  @"dataType":@"01",
+                                  @"activeType":@"1",
+                                  @"macAdress":@"02:00:00:00:00:00",
+                                  @"agentCode":agentCode,
+                                  @"engineNo":@"",
+                                  @"vehicleFrameNo":@"",
+                                  @"licenseNo":licenseNo,
+                                  @"vehicleModelName":@"",
+                                  @"userId":user.userId,
+                                  @"accountType":@"3",
+                                  @"cityCode":_cityCode} mutableCopy];
+    if (limit) {
+
+        [dict setObject:user.phoneNo forKey:@"userPhoneNo"];
+    }else{
+        [dict setObject:@"" forKey:@"userPhoneNo"];
+    }
             NSDictionary *params = @{@"operType":@"",
                                      @"msg":@"",
                                      @"sendTime":@"",
                                      @"sign":@"",
-                                     @"data":@{@"proportion":user.proportion,
-                                               @"customerName":_tfName.text,
-                                               @"phoneNo":_tfPhone.text,
-                                               @"dataType":@"01",
-                                               @"activeType":@"1",
-                                               @"macAdress":@"02:00:00:00:00:00",
-                                               @"agentCode":agentCode,
-                                               @"engineNo":@"",
-                                               @"vehicleFrameNo":@"",
-                                               @"licenseNo":licenseNo,
-                                               @"vehicleModelName":@"",
-                                               @"userId":user.userId,
-                                               @"accountType":@"3",
-                                               @"cityCode":_cityCode}
+                                     @"data": dict
                                      };
     
             __weak typeof(self) weakSelf = self;
@@ -255,7 +276,7 @@
      __block ZQCityPickerView *cityPickerView = [[ZQCityPickerView alloc] initWithCount:2];
     
     __weak typeof(self) weakSelf = self;
-    [cityPickerView showPickViewAnimated:^(NSString *province, NSString *city,NSString *cityCode,NSString *provinceCode) {
+    [cityPickerView showPickViewAnimated:^(NSString *province, NSString *city,NSString *cityCode,NSString *provinceCode,BOOL limit) {
         weakSelf.tfCarCity.text = [NSString stringWithFormat:@"%@ %@",province,city];
         _cityCode = cityCode;
         cityPickerView = nil;

@@ -18,6 +18,17 @@
 
 //#define BaseAPI                     @"http://139.198.0.209" //生产服务器
 
+#define kZhiKe      @"http://139.198.1.73:8081/zkyq-web/platform/getInfo"              //直客测试
+
+#define kZhiKeUnfinishInfo      @"http://139.198.1.73:8081/zkyq-web/unfinishedOrder/returnPage?baseId="   //直客测试订单详情
+
+#define kZhiKeFinishInfo      @"http://139.198.1.73:8081/zkyq-web/insure/returnPage?baseId="   //直客测试订单详情
+//#define kZhiKe      @"http://139.198.0.29:80/zkyq-web/platform/getInfo"              //直客
+//
+//#define kZhiKeUnfinishInfo      @"http://139.198.0.29:80/zkyq-web/unfinishedOrder/returnPage?baseId="   //直客订单详情
+//
+//#define kZhiKeFinishInfo      @"http://139.198.0.29:80/zkyq-web/insure/returnPage?baseId="   //直客订单详情
+
 #define kRegisterAPI            @"/app/user/register"                     //注册
 
 #define kLoginAPI               @"/app/user/login"                     //登录
@@ -74,18 +85,6 @@
 
 #define kassignTeamCoupon      @"/app/coupon/assignTeamCoupon"                 //团队优惠券下发
 
-
-//#define kZhiKe      @"http://139.198.1.73:8081/zkyq-web/platform/getInfo"              //直客测试
-//
-//#define kZhiKeUnfinishInfo      @"http://139.198.1.73:8081/zkyq-web/unfinishedOrder/returnPage?baseId="   //直客测试订单详情
-//
-//#define kZhiKeFinishInfo      @"http://139.198.1.73:8081/zkyq-web/insure/returnPage?baseId="   //直客测试订单详情
-#define kZhiKe      @"http://139.198.0.29:80/zkyq-web/platform/getInfo"              //直客
-
-#define kZhiKeUnfinishInfo      @"http://139.198.0.29:80/zkyq-web/unfinishedOrder/returnPage?baseId="   //直客订单详情
-
-#define kZhiKeFinishInfo      @"http://139.198.0.29:80/zkyq-web/insure/returnPage?baseId="   //直客订单详情
-
 #define kGetOrderInfo          @"/app/order/getCustomerOrderDataVO"               //获取订单详情
 
 #define kfindOrderByCondition     @"/app/order/findOrderByCondition"             //订单条件查询
@@ -118,6 +117,8 @@
 #define kUserVerifyStatus       @"/app/user/userVerifyStatus"                         // 查看用户认证状态
 
 #define kGetOrderInfo       @"/app/order/getCustomerOrderDataVO"                         // 根据baseId获取订单信息
+
+#define kFindInviteRecord  @"/app/inviteRecord/findInviteRecord"            //获得好友邀请列表
 
 #define kButelUrl       @"http://221.4.250.108:8088/apHttpService/agent/login4Butel"           // 青牛登陆
 

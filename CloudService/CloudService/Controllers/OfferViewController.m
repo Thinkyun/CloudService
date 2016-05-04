@@ -12,6 +12,7 @@
 #import "MyClientViewController.h"
 #import "AppDelegate.h"
 #import "OrderH5ViewController.h"
+#import "MyFile.h"
 #import "Order.h"
 
 static NSString *const header_id = @"setUserInfoHeader";
@@ -183,27 +184,46 @@ static CGFloat headerHeight = 30;
      *  @param cityCode   城市代码
      *  @param registerDate   初登日期
      */
-    NSDictionary *params = @{@"operType":@"",
+    NSString *path = [MyFile fileLibraryPath:PROVINCE_LIMIT];
+    NSArray *codeArray = [NSKeyedUnarchiver unarchiveObjectWithFile:path];
+    BOOL limit = YES;
+    if (_order.cityCode.length>0) {
+        for (NSString *proviceId in codeArray) {
+            
+            if([_order.cityCode hasPrefix:proviceId]){
+                limit = NO;
+                break;
+            }
+        }
+    }
+    NSMutableDictionary *dict = @{@"proportion":user.proportion,
+                                  @"customerName":cell2.carUserName.text,
+                                  @"phoneNo":cell2.carUserPhone.text,
+                                  @"dataType":@"02",
+                                  @"activeType":@"1",
+                                  @"macAdress":@"02:00:00:00:00:00",
+                                  @"agentCode":agentCode,
+                                  @"engineNo":cell1.engine.text,
+                                  @"vehicleFrameNo":cell1.carFrameCode.text,
+                                  @"licenseNo":licenseNo,
+                                  @"vehicleModelName":cell1.engineType.text,
+                                  @"userId":user.userId,
+                                  @"accountType":@"3",
+                                  @"cityCode":self.order.cityCode,
+                                  @"registerDate":cell1.firstTime.text}.mutableCopy;
+    if (limit) {
+        
+        [dict setObject:user.phoneNo forKey:@"userPhoneNo"];
+    }else{
+        [dict setObject:@"" forKey:@"userPhoneNo"];
+    }
+     NSDictionary *params = @{@"operType":@"",
                              @"msg":@"",
                              @"sendTime":@"",
                              @"sign":@"",
-                             @"data":@{@"proportion":user.proportion,
-                                       @"customerName":cell2.carUserName.text,
-                                       @"phoneNo":cell2.carUserPhone.text,
-                                       @"dataType":@"02",
-                                       @"activeType":@"1",
-                                       @"macAdress":@"02:00:00:00:00:00",
-                                       @"agentCode":agentCode,
-                                       @"engineNo":cell1.engine.text,
-                                       @"vehicleFrameNo":cell1.carFrameCode.text,
-                                       @"licenseNo":licenseNo,
-                                       @"vehicleModelName":cell1.engineType.text,
-                                       @"userId":user.userId,
-                                       @"accountType":@"3",
-                                       @"cityCode":self.order.cityCode,
-                                       @"registerDate":cell1.firstTime.text}
+                             @"data":dict
                              };
-    
+ 
 
     __weak typeof(self) weakSelf = self;
     [MHNetworkManager postReqeustWithURL:kZhiKe params:params successBlock:^(id returnData) {

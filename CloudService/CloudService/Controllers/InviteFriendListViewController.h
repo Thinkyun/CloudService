@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MJRefresh/MJRefresh.h>
 
 @interface InviteFriendListViewController : UIViewController
 

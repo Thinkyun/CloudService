@@ -47,6 +47,7 @@
         NSDictionary *dic = _provinceArray[0];
         _provinceCode = [dic valueForKey:@"provinceId"];
         self.province = [dic valueForKey:@"provinceName"];
+        self.limit = [dic valueForKey:@"limit"];
         
         if (count != 1) {
             _cityArray = [NSMutableArray array];
@@ -125,7 +126,7 @@
     {
         NSDictionary *dic = _provinceArray[row];
         _provinceCode = [dic valueForKey:@"provinceId"];
-  
+        self.limit = [dic valueForKey:@"limit"];
         if (_ComponentsCount != 1) {
             [self searchCityinProvinceCode:_provinceCode];
             [self.pickerView reloadComponent:1];
@@ -175,7 +176,7 @@
     } completion:^(BOOL finished) {
         self.hidden = YES;
         if (flag) {
-            _block(self.province,self.city,self.cityCode,_provinceCode);
+            _block(self.province,self.city,self.cityCode,_provinceCode,_limit);
         }
         [self removeFromSuperview];
     }];

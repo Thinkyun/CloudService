@@ -8,13 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
-typedef void(^hidePickerViewBlock)(NSString *province,NSString *city,NSString *cityCode,NSString *provinceCode);
+typedef void(^hidePickerViewBlock)(NSString *province,NSString *city,NSString *cityCode,NSString *provinceCode,BOOL limit);
 
 @interface ZQCityPickerView : UIView
 
 @property (nonatomic,copy)NSString *city;
 @property (nonatomic,copy)NSString *province;
 @property (nonatomic,copy)NSString *cityCode;
+@property (nonatomic,assign) BOOL limit;
 
 - (instancetype)initWithCount:(NSInteger )count;
 

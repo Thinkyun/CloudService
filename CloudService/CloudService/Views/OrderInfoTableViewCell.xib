@@ -654,7 +654,7 @@
                 <outlet property="lbPolicyNo" destination="sFp-gl-Dct" id="sUI-d6-LfD"/>
                 <outlet property="priceBtn" destination="gfY-cz-KQ4" id="aMk-Ik-Gy3"/>
             </connections>
-            <point key="canvasLocation" x="1456.5" y="20"/>
+            <point key="canvasLocation" x="1605.5" y="29"/>
         </tableViewCell>
         <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="483" id="tCG-Al-3ay" customClass="OrderInfoTableViewCell">
             <rect key="frame" x="0.0" y="0.0" width="375" height="483"/>

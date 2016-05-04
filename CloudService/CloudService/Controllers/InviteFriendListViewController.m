@@ -11,9 +11,12 @@
 
 @interface InviteFriendListViewController ()<UITableViewDelegate,UITableViewDataSource>{
     UILabel *_label;
+    UITableView *_tableView;
+    NSInteger _pageNo;
+    NSInteger _allPageNo;
 }
 
-@property (nonatomic,strong)NSArray *dataList;
+@property (nonatomic,strong)NSMutableArray *dataList;
 
 @end
 
@@ -22,6 +25,11 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     
+}
+
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    [_tableView.mj_header beginRefreshing];
 }
 
 - (void)viewDidLoad {
@@ -35,19 +43,26 @@
         [weakSelf.navigationController popViewControllerAnimated:YES];
     }];
     
-    [self loadData];
     [self setupUI];
+    _dataList = [NSMutableArray array];
+    _tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        [self refreshData];
+    }];
+    _tableView.mj_footer = [MJRefreshAutoFooter footerWithRefreshingBlock:^{
+        [self loadMoreData];
+    }];
     // Do any additional setup after loading the view.
 }
 
 - (void)setupUI{
     //tableView 初始化
-    UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, KWidth, KHeight) style:UITableViewStylePlain];
+    UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, KWidth, KHeight-64-49) style:UITableViewStylePlain];
     tableView.showsHorizontalScrollIndicator = NO;
     tableView.showsVerticalScrollIndicator = NO;
     tableView.tableFooterView = [UIView new];
     tableView.delegate = self;
     tableView.dataSource = self;
+    _tableView = tableView;
     [self.view addSubview:tableView];
     
     //底下的View
@@ -55,23 +70,68 @@
     bottomView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:bottomView];
     
+    //地下的label
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, KWidth, 49)];
     label.font = [UIFont systemFontOfSize:16];
     label.textAlignment = NSTextAlignmentCenter;
     label.textColor = [UIColor grayColor];
-    label.text = [NSString stringWithFormat:@"共邀请%ld个好友",_dataList.count];
     _label = label;
     [bottomView addSubview:label];
 }
 
-- (void)loadData{
-    
+- (void)refreshData{
+    _pageNo = 1;
+    User *user = [SingleHandle shareSingleHandle].user;
+    NSString *url = [NSString stringWithFormat:@"%@%@",BaseAPI,kFindInviteRecord];
+    NSDictionary *params = @{@"userId":user.userId,@"pageSize":@8,@"pageNo":@(_pageNo)};
+    [MHNetworkManager postReqeustWithURL:url params:params successBlock:^(id returnData) {
+        
+        [_tableView.mj_header endRefreshing];
+        NSMutableArray *temArray = [NSMutableArray array];
+        if ([returnData[@"flag"] isEqualToString:@"success"]) {
+            _allPageNo = [[[returnData[@"data"] objectForKey:@"pageVO"] objectForKey:@"recordCount"] integerValue];
+            for (NSDictionary *dict in [returnData[@"data"] objectForKey:@"list"]) {
+                [temArray addObject:dict];
+            }
+            _dataList = temArray;
+            [_tableView reloadData];
+            _label.text = [NSString stringWithFormat:@"共邀请%ld个好友",_allPageNo];
+        }
+    } failureBlock:^(NSError *error) {
+        [_tableView.mj_header endRefreshing];
+    } showHUD:YES];
     
 }
 
+- (void)loadMoreData{
+    if (_pageNo >= _allPageNo/8) {
+        _pageNo = _allPageNo/8;
+        [_tableView.mj_footer endRefreshing];
+        return;
+    }
+    User *user = [SingleHandle shareSingleHandle].user;
+    NSString *url = [NSString stringWithFormat:@"%@%@",BaseAPI,kFindInviteRecord];
+    NSDictionary *params = @{@"userId":user.userId,@"pageSize":@8,@"pageNo":@(++_pageNo)};
+    [MHNetworkManager postReqeustWithURL:url params:params successBlock:^(id returnData) {
+        [_tableView.mj_footer endRefreshing];
+        NSMutableArray *temArray = [NSMutableArray array];
+        if ([returnData[@"flag"] isEqualToString:@"success"]) {
+            _allPageNo = [[[returnData[@"data"] objectForKey:@"pageVO"] objectForKey:@"recordCount"] integerValue];
+            for (NSDictionary *dict in [returnData[@"data"] objectForKey:@"list"]) {
+                [temArray addObject:dict];
+            }
+            [_dataList addObjectsFromArray:temArray];
+            [_tableView reloadData];
+            _label.text = [NSString stringWithFormat:@"共邀请%ld个好友",_allPageNo];
+        }
+    } failureBlock:^(NSError *error) {
+        [_tableView.mj_footer endRefreshing];
+    } showHUD:YES];
+
+}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 2;
+    return _dataList.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{

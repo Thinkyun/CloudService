@@ -36,5 +36,6 @@
 
 
 #define PROVINCE_LIST     @"/provinceList"
+#define PROVINCE_LIMIT    @"/provinceLimit"  //创建订单时，不给用户手机号的城市
 
 #endif /* PrefixHeader_pch */

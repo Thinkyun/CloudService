@@ -96,7 +96,7 @@
                 }
                 _noDataimageView.hidden = NO;
             }else{
-                
+                _noDataimageView.hidden = YES;
                 _tableView.dataList = _unfinishedArray;
                 [_tableView reloadData];
             }
@@ -106,7 +106,7 @@
         }
         
     } failureBlock:^(NSError *error) {
-        
+        [_tableView.mj_header endRefreshing];
     } showHUD:NO];
 }
 

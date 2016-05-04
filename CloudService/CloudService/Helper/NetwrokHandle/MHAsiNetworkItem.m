@@ -62,7 +62,11 @@
         __weak typeof(self)weakSelf = self;
         DTLog(@"--请求url地址--%@\n",url);
         DTLog(@"----请求参数%@\n",params);
-
+        
+        NSArray *temArray = [url componentsSeparatedByString:@"/"];
+        NSString *category = [temArray lastObject];
+        DTLog(@"category--%@",category);
+        [[FireData sharedInstance] eventWithCategory:category action:@"网络请求" evar:params attributes:@{@"url":url}];
         
         AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     
@@ -84,6 +88,7 @@
                 [MBProgressHUD hideAllHUDsForView:(UIView*)[[[UIApplication sharedApplication]delegate]window] animated:YES];
                 DTLog(@"\n\n----请求的返回结果 %@\n",responseObject);
                 if (successBlock) {
+                   
                     successBlock(responseObject);
                 }
                 if ([weakSelf.delegate respondsToSelector:@selector(requestDidFinishLoading:)]) {
@@ -116,10 +121,23 @@
                     [[NSNotificationCenter defaultCenter] postNotificationName:LogOutViewNotice object:nil];
 //                    [[SingleHandle shareSingleHandle] logOut];
                     
+                    //火炬
+                    NSArray *temArray = [url componentsSeparatedByString:@"/"];
+                    NSString *category = [temArray lastObject];
+                    DTLog(@"category--%@",category);
+                    [[FireData sharedInstance] eventWithCategory:category action:@"网络请求成功,用户被挤下线" evar:params attributes:@{@"url":url}];
+                    
                     [MBProgressHUD showMessag:[responseObject objectForKey:@"msg"] toView:nil];
                    
                 }else{
                     if (successBlock) {
+                        
+                        //火炬
+                        NSArray *temArray = [url componentsSeparatedByString:@"/"];
+                        NSString *category = [temArray lastObject];
+                        DTLog(@"category--%@",category);
+                        [[FireData sharedInstance] eventWithCategory:category action:@"网络请求成功" evar:params attributes:@{@"url":url}];
+                        
                         successBlock(responseObject);
                     }
                     if ([weakSelf.delegate respondsToSelector:@selector(requestDidFinishLoading:)]) {
@@ -133,6 +151,12 @@
                 [MBProgressHUD hideAllHUDsForView:(UIView*)[[[UIApplication sharedApplication]delegate]window] animated:YES];
                 DTLog(@"---error==%@\n",error.localizedDescription);
                 [MBProgressHUD showMessag:[NSString stringWithFormat:@"%@",error.localizedDescription] toView:nil];
+                
+                //火炬
+                NSArray *temArray = [url componentsSeparatedByString:@"/"];
+                NSString *category = [temArray lastObject];
+                DTLog(@"category--%@",category);
+                [[FireData sharedInstance] eventWithCategory:category action:@"网络请求失败" evar:params attributes:@{@"url":url,@"error":error.localizedDescription}];
                 if (failureBlock) {
                     failureBlock(error);
                 }

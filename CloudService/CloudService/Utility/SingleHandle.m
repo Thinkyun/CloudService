@@ -129,6 +129,7 @@ static SingleHandle *singleHandle = nil;
     AppDelegate *delegate=(AppDelegate*)[[UIApplication sharedApplication]delegate];
     delegate.isThird=NO;
    
+    NSMutableArray *limitArray = [NSMutableArray array];
     [MHNetworkManager postReqeustWithURL:[RequestEntity urlString:kGetAreas] params:nil successBlock:^(id returnData) {
         if ([[returnData valueForKey:@"flag"] isEqualToString:@"success"]) {
             NSArray *dataArray = [returnData valueForKey:@"data"];
@@ -143,14 +144,22 @@ static SingleHandle *singleHandle = nil;
                 [provinceDict setObject:provinceName forKey:@"provinceName"];
                 [provinceDict setObject:limit forKey:@"limit"];
                 [provinceArray addObject:provinceDict];
+                
+                if ([limit boolValue]) {
+                    [limitArray addObject:provinceId];
+                }
             }
+            
 
             AYCLog(@"%@",provinceArray);
             NSString *provincePath = [MyFile fileDocumentPath:PROVINCE_LIST];
+            
+            NSString *provinceLimit = [MyFile fileLibraryPath:PROVINCE_LIMIT];
             //保存路径
             
             BOOL result = [NSKeyedArchiver archiveRootObject:provinceArray toFile:provincePath];
-            if (result) {
+            BOOL result1 = [NSKeyedArchiver archiveRootObject:limitArray toFile:provinceLimit];
+            if (result&&result1) {
                 
                 AYCLog(@"success");
                 

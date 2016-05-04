@@ -113,7 +113,7 @@
                         _order.phoneNo = _tfPhone.text;
                         _order.customerName = _tfName.text;
                         _order.cityCode = _cityCode;
-
+                       
                         [weakSelf performSegueWithIdentifier:@"offer" sender:self];
                         return ;
                     }
@@ -186,9 +186,10 @@
      __block ZQCityPickerView *cityPickerView = [[ZQCityPickerView alloc] initWithCount:2];
     
     __weak typeof(self) weakSelf = self;
-    [cityPickerView showPickViewAnimated:^(NSString *province, NSString *city,NSString *cityCode,NSString *provinceCode) {
+    [cityPickerView showPickViewAnimated:^(NSString *province, NSString *city,NSString *cityCode,NSString *provinceCode,BOOL limit) {
         weakSelf.tfCarCity.text = [NSString stringWithFormat:@"%@ %@",province,city];
         _cityCode = cityCode;
+        _limit = limit;
         cityPickerView = nil;
     }];
     

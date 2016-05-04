@@ -10,4 +10,6 @@
 
 @interface CreatClientViewController : BaseViewController
 
+@property (nonatomic,assign) BOOL limit;
+
 @end

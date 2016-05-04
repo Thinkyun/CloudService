@@ -158,10 +158,11 @@
             return;
         }
     }
+    NSString *timeStr = self.tfDate.text.length >0?[NSString stringWithFormat:@"%@:00",self.tfDate.text]:@"";
     NSString *url = [NSString stringWithFormat:@"%@%@",BaseAPI,kaddReserve];
     NSDictionary *params = @{@"userId":[[SingleHandle shareSingleHandle] getUserInfo].userId,
                              @"customerId":self.customerId,
-                             @"time":[NSString stringWithFormat:@"%@:00",self.tfDate.text],
+                             @"time":timeStr,
                              @"comment":self.textView.text,
                              @"endCode":self.tfCode.text,
                              @"baseId":self.baseId,

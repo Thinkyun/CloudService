@@ -4,7 +4,7 @@
 //
 //  Created by zhangqiang on 16/2/27.
 //  Copyright © 2016年 zhangqiang. All rights reserved.
-//
+// 我的团队
 
 #import "MyTeamViewController.h"
 #import "MyTeamTableViewCell.h"
@@ -26,6 +26,11 @@
 
 static NSString *cell_id = @"myTeamCell";
 @implementation MyTeamViewController
+
+-(void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -122,6 +127,8 @@ static NSString *cell_id = @"myTeamCell";
         [_tableView.mj_header endRefreshing];
     } showHUD:YES];
 }
+
+#pragma mark - 加载数据
 - (void)requestMoreTeamMemberData {
     _page++;
     
@@ -162,6 +169,8 @@ static NSString *cell_id = @"myTeamCell";
     } showHUD:YES];
 }
 
+#pragma mark - btn-Target事件
+
 - (IBAction)inviteAction:(id)sender {
     if ([[[SingleHandle shareSingleHandle] getUserInfo].roleName isEqualToString:@"团队长"]) {
         
@@ -198,10 +207,7 @@ static NSString *cell_id = @"myTeamCell";
 
 
 
--(void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:NO animated:YES];
-}
+#pragma mark - tableView DataSource delegate
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return _teamMemberArray.count;

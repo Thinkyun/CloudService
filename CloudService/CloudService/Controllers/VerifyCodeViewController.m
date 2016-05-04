@@ -19,6 +19,11 @@
 
 @implementation VerifyCodeViewController
 
+-(void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.eyeImg = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"login-line"]];
@@ -49,10 +54,7 @@
         self.pwdTextWord.secureTextEntry = YES;
     }
 }
--(void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:NO animated:YES];
-}
+
 - (IBAction)nextStepActopn:(id)sender {
     [[FireData sharedInstance] eventWithCategory:@"验证原始密码" action:@"下一步" evar:nil attributes:nil];
     NSString *pwd = [Utility passWord];
