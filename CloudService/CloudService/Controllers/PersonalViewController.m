@@ -72,7 +72,7 @@ static NSString *cell_id = @"personalCell";
 - (void)initData {
     
 //    NSArray *array1 = @[@"个人中心",@"我的团队",@"积分管理",@"用户认证",@"团队成员邀请",@"好友邀请"];
-    NSArray *array1 = @[@"个人中心",@"积分管理",@"用户认证",@"好友邀请",@"好友邀请列表"];
+    NSArray *array1 = @[@"个人中心",@"积分管理",@"用户认证",@"好友邀请",@"好友列表"];
     NSArray *array2 = @[@"我的优惠券"];
     NSArray *array3 = @[@"关于应用"];
     
@@ -84,7 +84,7 @@ static NSString *cell_id = @"personalCell";
     //    [_dataDict setValue:@"user-icon1" forKey:array1[1]];
     [_dataDict setValue:@"user-icon3" forKey:array1[2]];
     [_dataDict setValue:@"user-icon5" forKey:array1[3]];
-    [_dataDict setValue:@"user-icon9" forKey:array1[4]];
+    [_dataDict setValue:@"icon_friends" forKey:array1[4]];
     
     [_dataDict setValue:@"user-icon6" forKey:array2[0]];
     [_dataDict setValue:@"user-icon7" forKey:array3[0]];

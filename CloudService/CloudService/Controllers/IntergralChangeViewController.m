@@ -48,10 +48,10 @@
     
     User *user = [[SingleHandle shareSingleHandle] getUserInfo];
     self.intergTotalLabel.font = [UIFont systemFontOfSize:45 * KWidth / 414.0];
-    if ([user.totalNum floatValue] >= 100000) {
-        self.intergTotalLabel.text = [NSString stringWithFormat:@"%.0lf",[user.totalNum floatValue]];
+    if ([user.usableNum floatValue] >= 100000) {
+        self.intergTotalLabel.text = [NSString stringWithFormat:@"%.0lf",[user.usableNum floatValue]];
     }else {
-        self.intergTotalLabel.text = [NSString stringWithFormat:@"%@",user.totalNum];
+        self.intergTotalLabel.text = [NSString stringWithFormat:@"%@",user.usableNum];
     }
 //    self.maxChangeLabel.text = [NSString stringWithFormat:@"最多可兑换%.0f元",[user.totalNum floatValue] / 100];
     

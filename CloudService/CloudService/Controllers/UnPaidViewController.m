@@ -70,6 +70,7 @@
     NSString *url = [NSString stringWithFormat:@"%@%@",BaseAPI,kfindMainOrder];
     __weak typeof(self) weakSelf = self;
     [MHNetworkManager postReqeustWithURL:url params:paramsDic successBlock:^(id returnData) {
+        
         [_tableView.mj_header endRefreshing];
         NSDictionary *dic = returnData;
         if ([[dic objectForKey:@"flag"] isEqualToString:@"success"]) {

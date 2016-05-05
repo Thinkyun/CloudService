@@ -45,6 +45,43 @@ static NSString *headerView_ID = @"headerView";
 
 @implementation HomeViewController
 
+- (void)viewWillAppear:(BOOL)animated {
+    //导航条滑动返回
+    [super viewWillAppear:animated];
+    [self.collectionView reloadData];
+    /**
+     *  首页隐藏青牛拨打页面
+     */
+    [[ButelHandle shareButelHandle] hideCallView];
+    
+    
+    self.view.frame = CGRectMake(0, 0, KWidth, KHeight - 64);
+    
+    [[UIApplication sharedApplication] setStatusBarHidden:NO];
+    [self.navigationController setNavigationBarHidden:NO animated:NO];
+    [self setNavigationBarTitleColor:[UIColor whiteColor]];
+    self.navigationController.navigationBar.barTintColor = [HelperUtil
+                                                            colorWithHexString:@"1FAAF2"];
+    
+    //隐藏导航栏黑线
+    [self.navigationController.navigationBar setBackgroundImage:[[UIImage alloc] init] forBarMetrics:UIBarMetricsDefault];
+    self.navigationController.navigationBar.shadowImage = [[UIImage alloc] init];
+    self.tabBarController.title = @"首页";
+    self.tabBarController.navigationItem.rightBarButtonItem = nil;
+    
+}
+
+-(void)viewDidAppear:(BOOL)animated {
+    
+    [super viewDidAppear:animated];
+    
+    
+}
+
+-(void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
    
@@ -59,6 +96,9 @@ static NSString *headerView_ID = @"headerView";
     [self setupViews];
     // 获取我的积分
     [self getMyintegralData];
+    
+    //限时活动
+    [self timeLimitActivity];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getMyintegralData) name:ExchangeIntegralSuccess object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadCollectionView:) name:ReloadHomeData object:nil];
@@ -108,41 +148,7 @@ static NSString *headerView_ID = @"headerView";
 }
 
 
-- (void)viewWillAppear:(BOOL)animated {
-    //导航条滑动返回
-    [super viewWillAppear:animated];
-    [self.collectionView reloadData];
-    /**
-     *  首页隐藏青牛拨打页面
-     */
-    [[ButelHandle shareButelHandle] hideCallView];
-    
-    
-    self.view.frame = CGRectMake(0, 0, KWidth, KHeight - 64);
-    
-    [[UIApplication sharedApplication] setStatusBarHidden:NO];
-    [self.navigationController setNavigationBarHidden:NO animated:NO];
-    [self setNavigationBarTitleColor:[UIColor whiteColor]];
-    self.navigationController.navigationBar.barTintColor = [HelperUtil
-                                                            colorWithHexString:@"1FAAF2"];
 
-    //隐藏导航栏黑线
-    [self.navigationController.navigationBar setBackgroundImage:[[UIImage alloc] init] forBarMetrics:UIBarMetricsDefault];
-    self.navigationController.navigationBar.shadowImage = [[UIImage alloc] init];
-    self.tabBarController.title = @"首页";
-    self.tabBarController.navigationItem.rightBarButtonItem = nil;
-
-}
-
--(void)viewDidAppear:(BOOL)animated {
-    
-    [super viewDidAppear:animated];
-    
-
-}
--(void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-}
 - (void)signAction:(UIButton *)sender {
     __weak typeof(self) weakSelf = self;
 
@@ -395,6 +401,19 @@ static NSString *headerView_ID = @"headerView";
 
     }
     
+}
+
+- (void)timeLimitActivity{
+    User *user = [SingleHandle shareSingleHandle].user;
+    NSString *url = [NSString stringWithFormat:@"%@%@",BaseAPI,kFindUserCompleteOrderNum];
+    [MHNetworkManager postReqeustWithURL:url params:@{@"userId":user.userId} successBlock:^(id returnData) {
+        NSString *dataStr = [NSString stringWithFormat:@"%@",returnData[@"data"]];
+        if(([dataStr isEqualToString:@"<null>"])||([[returnData[@"data"]  objectForKey:@"completeOrderNum"] integerValue]== 0)){
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"限时任务" message:@"还需一单，便能得到每日奖励" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"好的", nil];
+            [alertView show];
+        }
+    } failureBlock:^(NSError *error) {
+    } showHUD:YES];
 }
 /**
  *  storyboard在跳转页面前

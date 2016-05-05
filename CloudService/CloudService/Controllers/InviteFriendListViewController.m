@@ -8,12 +8,15 @@
 
 #import "InviteFriendListViewController.h"
 #import "InviteFriendListTableViewCell.h"
+#import "UIView+YYAdd.h"
 
 @interface InviteFriendListViewController ()<UITableViewDelegate,UITableViewDataSource>{
     UILabel *_label;
     UITableView *_tableView;
     NSInteger _pageNo;
     NSInteger _allPageNo;
+    UIImageView *_noDataimageView;
+
 }
 
 @property (nonatomic,strong)NSMutableArray *dataList;
@@ -75,6 +78,7 @@
     label.font = [UIFont systemFontOfSize:16];
     label.textAlignment = NSTextAlignmentCenter;
     label.textColor = [UIColor grayColor];
+    _label.text = @"共邀请0个好友";
     _label = label;
     [bottomView addSubview:label];
 }
@@ -90,6 +94,22 @@
         NSMutableArray *temArray = [NSMutableArray array];
         if ([returnData[@"flag"] isEqualToString:@"success"]) {
             _allPageNo = [[[returnData[@"data"] objectForKey:@"pageVO"] objectForKey:@"recordCount"] integerValue];
+            
+            if (!_noDataimageView) {
+                _noDataimageView = [[UIImageView alloc] initWithFrame:CGRectMake(KWidth/2-75/2.0, 0, 75, 85)];
+                _noDataimageView.centerY = KHeight/2-108;
+                _noDataimageView.image = [UIImage imageNamed:@"pix2"];
+                _noDataimageView.hidden = YES;
+                
+                UILabel *noDataLabel = [[UILabel alloc] initWithFrame:CGRectMake(-_noDataimageView.left, 90, KWidth, 25)];
+                noDataLabel.font = [UIFont systemFontOfSize:14];
+                noDataLabel.textColor = [UIColor lightGrayColor];
+                noDataLabel.textAlignment = NSTextAlignmentCenter;
+                noDataLabel.text = @"当前暂无数据";
+                [_noDataimageView addSubview:noDataLabel];
+                [self.view addSubview:_noDataimageView];
+            }
+            _noDataimageView.hidden = _allPageNo <= 0?NO:YES;
             for (NSDictionary *dict in [returnData[@"data"] objectForKey:@"list"]) {
                 [temArray addObject:dict];
             }
@@ -123,6 +143,7 @@
             [_dataList addObjectsFromArray:temArray];
             [_tableView reloadData];
             _label.text = [NSString stringWithFormat:@"共邀请%ld个好友",_allPageNo];
+            _noDataimageView.hidden = _allPageNo <= 0?YES:NO;
         }
     } failureBlock:^(NSError *error) {
         [_tableView.mj_footer endRefreshing];
