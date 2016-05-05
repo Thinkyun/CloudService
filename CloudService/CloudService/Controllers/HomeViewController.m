@@ -18,6 +18,7 @@
 #import "RuleViewController.h"
 #import "Order.h"
 #import "SetUserInfoViewController.h"
+#import "MyIntergralViewController.h"
 #import "ButelHandle.h"
 #import "AppDelegate.h"
 #import "EYPopupViewHeader.h"
@@ -35,6 +36,7 @@
     Order *_order;//获取数据
     HomeHeaderView *_headerView;
     NSDictionary *_responseDic;
+    NSString *_goodsCityUrl;
 }
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 
@@ -97,8 +99,10 @@ static NSString *headerView_ID = @"headerView";
     // 获取我的积分
     [self getMyintegralData];
     
+    //商城接口的获取
+    [self getCityUrl];
     //限时活动
-    [self timeLimitActivity];
+//    [self timeLimitActivity];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getMyintegralData) name:ExchangeIntegralSuccess object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadCollectionView:) name:ReloadHomeData object:nil];
@@ -290,7 +294,12 @@ static NSString *headerView_ID = @"headerView";
             break;
         case 3:
         {
+            if (_goodsCityUrl.length<=0) {
+                [MBProgressHUD showMessag:@"网络繁忙，请稍后再试" toView:nil];
+                return;
+            }
             IntergralCityViewController *intergCityVC = [[IntergralCityViewController alloc] init];
+            intergCityVC.goodsCityUrl = _goodsCityUrl;
             [self.navigationController pushViewController:intergCityVC animated:YES];
             [[FireData sharedInstance] eventWithCategory:@"首页" action:@"积分商城" evar:nil attributes:nil];
         }
@@ -347,6 +356,18 @@ static NSString *headerView_ID = @"headerView";
             [MBProgressHUD showMessag:[returnData objectForKey:@"msg"] toView:weakSelf.view];
         }
         
+    } failureBlock:^(NSError *error) {
+        
+    } showHUD:NO];
+}
+
+//得到商城URL
+- (void)getCityUrl{
+    [MHNetworkManager postReqeustWithURL:[RequestEntity urlString:kIntergralCity] params:nil successBlock:^(id returnData) {
+        NSLog(@"%@",returnData);
+        if ([returnData[@"flag"] isEqualToString:@"success"]) {
+            _goodsCityUrl = returnData[@"data"];
+        }
     } failureBlock:^(NSError *error) {
         
     } showHUD:NO];
@@ -424,6 +445,10 @@ static NSString *headerView_ID = @"headerView";
         // segue.destinationViewController：获取连线时所指的界面（VC）
         OrderInfoViewController *receive = segue.destinationViewController;
         receive.order = _order;
+    }
+    if ([segue.identifier isEqualToString:@"myIntergralVC_push"]) {
+        MyIntergralViewController *VC = segue.destinationViewController;
+        VC.goodsCityUrl = _goodsCityUrl;
     }
 }
 

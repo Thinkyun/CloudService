@@ -56,7 +56,8 @@
         return;
     }
     [_tableView.mj_header beginRefreshing];
-    
+    [[FireData sharedInstance] eventWithCategory:@"订单管理" action:@"待支付" evar:nil attributes:nil
+     ];
 }
 
 

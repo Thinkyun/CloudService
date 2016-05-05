@@ -52,7 +52,8 @@
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     [_tableView.mj_header beginRefreshing];
-    
+    [[FireData sharedInstance] eventWithCategory:@"订单管理" action:@"未完成" evar:nil attributes:nil
+     ];
 }
 
 

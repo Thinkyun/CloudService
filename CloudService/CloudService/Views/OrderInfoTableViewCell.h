@@ -29,4 +29,6 @@
 @property (nonatomic, weak) IBOutlet UILabel *lbProposalNo;//商业险投保单号
 @property (nonatomic, weak) IBOutlet UILabel *lbCiProposalNo;//交强险投保单号
 @property (nonatomic, weak) IBOutlet UILabel *lbCiPolicyNo;//交强险保单号
+@property (weak, nonatomic) IBOutlet UIButton *shareBtn;  //分享报价
+
 @end

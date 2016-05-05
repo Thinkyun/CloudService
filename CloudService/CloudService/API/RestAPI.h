@@ -25,9 +25,9 @@
 #define kZhiKeFinishInfo      @"http://139.198.1.73:8081/zkyq-web/insure/returnPage?baseId="   //直客测试订单详情
 //#define kZhiKe      @"http://139.198.0.29:80/zkyq-web/platform/getInfo"              //直客
 //
-//#define kZhiKeUnfinishInfo      @"http://139.198.0.29:80/zkyq-web/unfinishedOrder/returnPage?baseId="   //直客订单详情
+//#define kZhiKeUnfinishInfo      @"http://139.198.0.29:80/zkyq-web/unfinishedOrder/returnPage?baseId="   //直客订单详情(未完成)
 //
-//#define kZhiKeFinishInfo      @"http://139.198.0.29:80/zkyq-web/insure/returnPage?baseId="   //直客订单详情
+//#define kZhiKeFinishInfo      @"http://139.198.0.29:80/zkyq-web/insure/returnPage?baseId="   //直客订单详情（完成）
 
 #define kRegisterAPI            @"/app/user/register"                     //注册
 
@@ -129,7 +129,11 @@
 
 #define kButelLogOut     @"http://221.4.250.108:8088/apHttpService/agent/logout"           // 青牛http退出登陆
 
-#define kIntergralCity     @"http://api.gifttalk.com.cn/index_shop.php"           // 商城测试环境
+#define kIntergralCity     @"/dictionary/getCreditMarketUrl"           // 商城测试环境
+
+#define kShareOrderInfo    @"/app/order/shareOrderInfo"             //获取分享内容
+
+#define kSMSShareOrderInfo    @"/app/order/smsShareOrderInfo"        //短信报价分享
 
 //   常量
 /**************************************************************************************/

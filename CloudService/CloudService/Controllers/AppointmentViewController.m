@@ -173,7 +173,8 @@
         
         if ([[returnData objectForKey:@"flag"] isEqualToString:@"success"]) {
             [MBProgressHUD showMessag:@"预约成功" toView:nil];
-            self.refreshBlock(self.tfCode.text,[HelperUtil getDateWithDateStr:self.tfDate.text dateFormatter:@"yyyy-MM-dd HH:mm"],self.textView.text);
+            NSString *time = self.tfDate.text.length <=0 ? @"" : [HelperUtil getDateWithDateStr:self.tfDate.text dateFormatter:@"yyyy-MM-dd HH:mm"];
+            self.refreshBlock(self.tfCode.text,time,self.textView.text);
             [weakSelf.navigationController popViewControllerAnimated:YES];
             
         }else {

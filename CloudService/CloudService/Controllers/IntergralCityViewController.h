@@ -12,4 +12,6 @@
 
 @interface IntergralCityViewController : BaseViewController
 
+@property (nonatomic,copy)NSString *goodsCityUrl;
+
 @end

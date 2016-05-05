@@ -19,6 +19,7 @@
 @interface OrderInfoViewController ()<UITableViewDataSource,UITableViewDelegate,UIActionSheetDelegate>
 {
     Order *_getOrderInfo;
+    UIActionSheet *_shareActionSheet;
 }
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property(nonatomic,strong) UIView *footView;
@@ -47,7 +48,20 @@
 }
 - (void)viewWillAppear:(BOOL)animated {
     
-    [super viewWillAppear:animated];
+//    [super viewWillAppear:animated];
+    [[FireData sharedInstance] beginLogPageView:@"订单详情" attributes:nil cvar:nil];
+    
+    
+    NSDictionary *params ;
+    if([_order.orderStatus isEqualToString:@"未完成"]){
+        
+    }else if ([_order.orderStatus isEqualToString:@"待支付"]){
+        params =  @{@"订单号":_order.baseId,@"交强险投保单号":_order.ciProposalNo,@"商业险投保单号":_order.proposalNo};
+    }else if ([_order.orderStatus isEqualToString:@"已支付"]){
+        params = @{@"订单号":_order.baseId,@"交强险保单号":_order.ciPolicyNo,@"商业险保单号":_order.policyNo};
+    }
+    
+    [[FireData sharedInstance] eventWithCategory:@"订单详情" action:_order.orderStatus evar:params attributes:nil];
     self.title=@"订单详情";
    
 }
@@ -119,6 +133,7 @@
     [cell.appointmentBtn addTarget:self action:@selector(appointmentClick:) forControlEvents:UIControlEventTouchUpInside];
     [cell.sendPayBtn addTarget:self action:@selector(sendPayMessageClick:) forControlEvents:UIControlEventTouchUpInside];
     [cell.giftBtn addTarget:self action:@selector(giftClick:) forControlEvents:UIControlEventTouchUpInside];
+    [cell.shareBtn addTarget:self action:@selector(shareClick:) forControlEvents:UIControlEventTouchUpInside];
         return cell;
 }
 
@@ -159,33 +174,27 @@
 
 }
 
+- (void)shareClick:(UIButton *)sender{
+    [[FireData sharedInstance] eventWithCategory:@"订单详情" action:@"报价分享" evar:nil attributes:nil];
+    
+    _shareActionSheet=[[UIActionSheet alloc] initWithTitle:@"请选择支付方式" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"短信报价分享",@"微信报价分享", nil];
+    [_shareActionSheet showInView:[UIApplication sharedApplication].keyWindow];
+
+}
+
 
 /** 预约*/
 - (void)appointmentClick:(UIButton *)sender {
     [[FireData sharedInstance] eventWithCategory:@"订单详情" action:@"预约按钮" evar:nil attributes:nil];
     [self performSegueWithIdentifier:@"appointment" sender:self];
 }
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // segue.identifier：获取连线的ID
-    if ([segue.identifier isEqualToString:@"appointment"]) {
-        // segue.destinationViewController：获取连线时所指的界面（VC）
-        AppointmentViewController *receive = segue.destinationViewController;
-        receive.customerId = self.order.customerId;
-        receive.baseId = self.order.baseId;
-        receive.phoneNo = self.order.phoneNo;
-        [receive refreshTableview:^(NSString *endCode, NSString *time, NSString *comment) {
-            self.order.endCode = endCode;
-            self.order.reserveTime = time;
-            self.order.comment = comment;
-            [self.tableView reloadData];
-        }];
-    }
-}
+
 
 /**
  *  下发支付短信
  */
 - (void)sendPayMessageClick:(UIButton *)sender {
+    [[FireData sharedInstance] eventWithCategory:@"订单详情" action:@"找人代付按钮" evar:nil attributes:nil];
     if ([self.order.gift isEqualToString:@""]) {
         [EYInputPopupView popViewWithTitle:@"请填写投保礼"
                                contentText:self.order.gift
@@ -206,31 +215,13 @@
        
     }
 }
-/**
- *  下发支付短信
- */
-- (void)sendPayMessage:(NSString *)phoneNo{
-    NSString *url = [NSString stringWithFormat:@"%@%@",BaseAPI,kSendPayMessage];
-    NSDictionary *params = @{@"baseId":self.order.baseId,
-                             @"phoneNo":phoneNo,
-                             @"userNum":[[SingleHandle shareSingleHandle] getUserInfo].userNum};
-    [MHNetworkManager postReqeustWithURL:url params:params successBlock:^(id returnData) {
-        if ([[returnData objectForKey:@"flag"] isEqualToString:@"success"]) {
-            [MBProgressHUD showMessag:@"下发支付短信成功" toView:nil];
-            
-        }else {
-            [MBProgressHUD showMessag:[returnData objectForKey:@"msg"] toView:nil];
-        }
-    } failureBlock:^(NSError *error) {
-        
-    } showHUD:NO];
 
-}
 
 /**
  *  投保礼
  */
 - (void)giftClick:(UIButton *)sender {
+    [[FireData sharedInstance] eventWithCategory:@"订单详情" action:@"投保礼按钮" evar:nil attributes:nil];
     [EYInputPopupView popViewWithTitle:@"请填写投保礼"
                            contentText:self.order.gift
                                   type:EYInputPopupView_Type_multi_line
@@ -244,6 +235,115 @@
                            }];
 
 }
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // segue.identifier：获取连线的ID
+    if ([segue.identifier isEqualToString:@"appointment"]) {
+        // segue.destinationViewController：获取连线时所指的界面（VC）
+        AppointmentViewController *receive = segue.destinationViewController;
+        receive.customerId = self.order.customerId;
+        receive.baseId = self.order.baseId;
+        receive.phoneNo = self.order.phoneNo;
+        [receive refreshTableview:^(NSString *endCode, NSString *time, NSString *comment) {
+            self.order.endCode = endCode;
+            self.order.reserveTime = time;
+            self.order.comment = comment;
+            [self.tableView reloadData];
+        }];
+    }
+}
+
+
+
+#pragma mark UIActionSheetDelegate
+- (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex{
+    if (actionSheet == _shareActionSheet) {
+        if (buttonIndex==0) {
+            AYCLog(@"短信报价分享");
+//            [[FireData sharedInstance] eventWithCategory:@"订单详情" action:@"订单短信分享" evar:nil attributes:nil];
+//            [EYInputPopupView popViewWithTitle:@"请填写分享的手机号"
+//                                   contentText:self.order.phoneNo
+//                                          type:EYInputPopupView_Type_multi_line
+//                                   cancelBlock:^{
+//                                       
+//                                   } confirmBlock:^(UIView *view, NSString *text) {
+                                       [self sendShareSMS];
+//                                   } dismissBlock:^{
+//                                       
+//                                   }];
+            
+        }
+        if (buttonIndex==1) {
+            AYCLog(@"微信报价分享");
+            [[FireData sharedInstance] eventWithCategory:@"订单详情" action:@"订单微信分享" evar:nil attributes:nil];
+            [self weixinPriceShare];
+        }
+    }else{
+        
+        if (buttonIndex==0) {
+            AYCLog(@"短信支付");
+            [[FireData sharedInstance] eventWithCategory:@"订单详情" action:@"短信支付" evar:nil attributes:nil];
+            [EYInputPopupView popViewWithTitle:@"请填写支付手机号"
+                                   contentText:self.order.phoneNo
+                                          type:EYInputPopupView_Type_multi_line
+                                   cancelBlock:^{
+                                       
+                                   } confirmBlock:^(UIView *view, NSString *text) {
+                                       
+                                       [self sendPayMessage:text];
+                                   } dismissBlock:^{
+                                       
+                                   }];
+            
+        }
+        if (buttonIndex==1) {
+            AYCLog(@"微信支付");
+            [[FireData sharedInstance] eventWithCategory:@"订单详情" action:@"微信支付" evar:nil attributes:nil];
+            [self sharePayMessage];
+        }
+    }
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+- (void)dealloc
+{
+    AYCLog(@"订单详情销毁");
+}
+
+//短信报价分享
+- (void)sendShareSMS{
+    NSString *url = [NSString stringWithFormat:@"%@%@",BaseAPI,kSMSShareOrderInfo];
+    User *user = [SingleHandle shareSingleHandle].user;
+    [MHNetworkManager postReqeustWithURL:url params:@{@"baseId":_order.baseId,@"userNum":user.userNum} successBlock:^(id returnData) {
+        if ([returnData[@"flag"] isEqualToString:@"success"]) {
+            [MBProgressHUD showMessag:@"短信发送成功" toView:nil];
+        }else{
+            [MBProgressHUD showMessag:@"短信发送失败，请稍后再试" toView:nil];
+        }
+    } failureBlock:^(NSError *error) {
+        [MBProgressHUD showMessag:@"短信发送失败，请稍后再试" toView:nil];
+    } showHUD:YES];
+}
+
+//微信报价分享
+
+- (void)weixinPriceShare{
+
+    NSString *url = [NSString stringWithFormat:@"%@%@",BaseAPI,kShareOrderInfo];
+    [MHNetworkManager postReqeustWithURL:url params:@{@"baseId":self.order.baseId} successBlock:^(id returnData) {
+        if ([returnData[@"flag"] isEqualToString:@"success"]) {
+            NSString  *contentStr = returnData[@"data"];
+            [[ShareManager manager] shareParamsByText:nil images:nil url:[NSURL URLWithString:kCreateQRAPI] title:nil ChatTitle:contentStr];
+        }
+    } failureBlock:^(NSError *error) {
+        [MBProgressHUD showMessag:@"网络繁忙，请稍后再试" toView:nil];
+    } showHUD:YES];
+
+}
+
 /**
  *  保存投保礼
  */
@@ -255,7 +355,7 @@
         if ([[returnData objectForKey:@"flag"] isEqualToString:@"success"]) {
             
             self.order.gift = text;
-           
+            
             
             [MBProgressHUD showMessag:@"保存投保礼成功" toView:nil];
         }else {
@@ -266,6 +366,8 @@
         
     } showHUD:NO];
 }
+
+#pragma mark - 支付功能
 /**
  *  分享支付连接
  */
@@ -286,6 +388,8 @@
         
     } showHUD:NO];
 }
+
+
 /**
  *  微信分享支付
  */
@@ -297,48 +401,28 @@
     [[ShareManager manager] shareParamsByText:payMessage images:nil url:nil title:@"点点云服" WeChatTitle:@""];
     
     
-
+    
 }
-#pragma mark UIActionSheetDelegate
-- (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex{
-    if (buttonIndex==0) {
-        AYCLog(@"短信支付");
-        [EYInputPopupView popViewWithTitle:@"请填写支付手机号"
-                               contentText:self.order.phoneNo
-                                      type:EYInputPopupView_Type_multi_line
-                               cancelBlock:^{
-                                   
-                               } confirmBlock:^(UIView *view, NSString *text) {
-                                   
-                                   [self sendPayMessage:text];
-                               } dismissBlock:^{
-                                   
-                               }];
+
+/**
+ *  下发支付短信
+ */
+- (void)sendPayMessage:(NSString *)phoneNo{
+    NSString *url = [NSString stringWithFormat:@"%@%@",BaseAPI,kSendPayMessage];
+    NSDictionary *params = @{@"baseId":self.order.baseId,
+                             @"phoneNo":phoneNo,
+                             @"userNum":[[SingleHandle shareSingleHandle] getUserInfo].userNum};
+    [MHNetworkManager postReqeustWithURL:url params:params successBlock:^(id returnData) {
+        if ([[returnData objectForKey:@"flag"] isEqualToString:@"success"]) {
+            [MBProgressHUD showMessag:@"下发支付短信成功" toView:nil];
+            
+        }else {
+            [MBProgressHUD showMessag:[returnData objectForKey:@"msg"] toView:nil];
+        }
+    } failureBlock:^(NSError *error) {
         
-    }
-    if (buttonIndex==1) {
-        AYCLog(@"微信分享");
-        
-        [self sharePayMessage];
-    }
+    } showHUD:NO];
+    
 }
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-- (void)dealloc
-{
-    AYCLog(@"订单详情销毁");
-}
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

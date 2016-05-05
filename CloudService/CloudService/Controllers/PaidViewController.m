@@ -54,11 +54,14 @@
         _isLoadData = YES;
         return;
     }
+    [[FireData sharedInstance] eventWithCategory:@"订单管理" action:@"已支付" evar:nil attributes:nil
+     ];
     [_tableView.mj_header beginRefreshing];
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
+    
 }
 
 - (void)viewDidDisappear:(BOOL)animated{

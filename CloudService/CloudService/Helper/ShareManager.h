@@ -11,6 +11,13 @@
 @interface ShareManager : NSObject
 
 + (instancetype)manager;
+
+- (void)shareParamsByText:(NSString *)text
+                   images:(id)images
+                      url:(NSURL *)url
+                    title:(NSString *)title
+                ChatTitle:(NSString *)chatTitle;
+
 /**
  *  sharkSDK分享
  *

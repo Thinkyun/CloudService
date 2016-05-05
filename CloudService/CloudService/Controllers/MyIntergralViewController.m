@@ -110,9 +110,13 @@
 
 - (IBAction)intergralCityAction:(id)sender {
     
+    if (_goodsCityUrl.length<=0) {
+        [MBProgressHUD showMessag:@"网络繁忙，请稍后再试" toView:nil];
+        return;
+    }
     [[FireData sharedInstance] eventWithCategory:@"我的积分" action:@"礼品商城" evar:nil attributes:nil];
-//    [MBProgressHUD showMessag:@"程序猿正在火力开发中" toView:self.view];
     IntergralCityViewController *VC = [[IntergralCityViewController alloc] init];
+    VC.goodsCityUrl = _goodsCityUrl;
     [self.navigationController pushViewController:VC animated:YES];
 }
 

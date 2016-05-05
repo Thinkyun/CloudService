@@ -78,8 +78,8 @@
     label.font = [UIFont systemFontOfSize:16];
     label.textAlignment = NSTextAlignmentCenter;
     label.textColor = [UIColor grayColor];
-    _label.text = @"共邀请0个好友";
     _label = label;
+    _label.text = @"共邀请0个好友";
     [bottomView addSubview:label];
 }
 

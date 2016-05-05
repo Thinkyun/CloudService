@@ -40,18 +40,19 @@
     
     
     //url
-    NSURL *url = [NSURL URLWithString: kIntergralCity];
+    NSURL *url = [NSURL URLWithString: _goodsCityUrl];
     //参数
     NSDate *date = [NSDate date];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
     NSString *dateStr = [dateFormatter stringFromDate:date];
     NSString *userNum = [[[SingleHandle shareSingleHandle] user] userNum];
-    NSNumber *totalCredits = [[[SingleHandle shareSingleHandle] user] usableNum];
+    NSString *totalCredits = [NSString stringWithFormat:@"%@",[[[SingleHandle shareSingleHandle] user] usableNum]];
     NSString *key = [NSString stringWithFormat:@"%@%@",kSecretKey,userNum];
     NSString *sign = [self md5String:key];
     
     NSDictionary *params = @{@"Trstype":@"YG",@"Trscode":@"300001",@"Channel":@"B2C",@"transationId":@"1001101",@"dateTime":dateStr,@"userNum":userNum,@"totalCredits":totalCredits,@"sign":sign};
+    NSLog(@"**%@*****%@",url,params);
     NSData *paramsData = [NSJSONSerialization dataWithJSONObject:params options:NSJSONWritingPrettyPrinted error:nil];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL: url];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];

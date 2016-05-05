@@ -28,7 +28,14 @@
     }];
 
     self.tabBarController.title = @"订单管理";
+    
+    [[FireData sharedInstance] beginLogPageView:@"订单管理" attributes:nil cvar:nil];
 
+}
+
+- (void)viewDidDisappear:(BOOL)animated{
+    [super viewDidDisappear:animated];
+    [[FireData sharedInstance] endLogPageView:@"订单管理"];
 }
 
 - (void)viewDidLoad {
