@@ -197,7 +197,7 @@
     
     [_cityArray removeAllObjects];
     [_cityCodeArray removeAllObjects];
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"province" ofType:@"sqlite"];
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"Province" ofType:@"sqlite"];
     FMDatabase *db = [FMDatabase databaseWithPath:path];
     if (![db open]) {
         AYCLog(@"数据库打开失败!");

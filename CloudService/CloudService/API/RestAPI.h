@@ -13,21 +13,21 @@
 
 //#define BaseAPI                 @"http://192.168.4.115:8080/cloudSales-action"  // 11服务器
 //#define BaseAPI                 @"http://192.168.0.103:8080/cloudSales-action"  // 测试服务器
-#define BaseAPI                     @"http://www.eyunkf.com" //测试服务器
+//#define BaseAPI                     @"http://www.eyunkf.com" //测试服务器
 //#define BaseAPI                     @"http://www.ddyunf.com" //生产服务器
 
-//#define BaseAPI                     @"http://139.198.0.209" //生产服务器
+#define BaseAPI                     @"http://139.198.0.209" //生产服务器
 
-#define kZhiKe      @"http://139.198.1.73:8081/zkyq-web/platform/getInfo"              //直客测试
-
-#define kZhiKeUnfinishInfo      @"http://139.198.1.73:8081/zkyq-web/unfinishedOrder/returnPage?baseId="   //直客测试订单详情
-
-#define kZhiKeFinishInfo      @"http://139.198.1.73:8081/zkyq-web/insure/returnPage?baseId="   //直客测试订单详情
-//#define kZhiKe      @"http://139.198.0.29:80/zkyq-web/platform/getInfo"              //直客
+//#define kZhiKe      @"http://139.198.1.73:8081/zkyq-web/platform/getInfo"              //直客测试
 //
-//#define kZhiKeUnfinishInfo      @"http://139.198.0.29:80/zkyq-web/unfinishedOrder/returnPage?baseId="   //直客订单详情(未完成)
+//#define kZhiKeUnfinishInfo      @"http://139.198.1.73:8081/zkyq-web/unfinishedOrder/returnPage?baseId="   //直客测试订单详情
 //
-//#define kZhiKeFinishInfo      @"http://139.198.0.29:80/zkyq-web/insure/returnPage?baseId="   //直客订单详情（完成）
+//#define kZhiKeFinishInfo      @"http://139.198.1.73:8081/zkyq-web/insure/returnPage?baseId="   //直客测试订单详情
+#define kZhiKe      @"http://139.198.0.29:80/zkyq-web/platform/getInfo"              //直客
+
+#define kZhiKeUnfinishInfo      @"http://139.198.0.29:80/zkyq-web/unfinishedOrder/returnPage?baseId="   //直客订单详情(未完成)
+
+#define kZhiKeFinishInfo      @"http://139.198.0.29:80/zkyq-web/insure/returnPage?baseId="   //直客订单详情（完成）
 
 #define kRegisterAPI            @"/app/user/register"                     //注册
 

@@ -32,7 +32,7 @@
     [weakSelf setLeftImageBarButtonItemWithFrame:CGRectMake(0, 0, 30, 30) image:@"title-back" selectImage:@"back" action:^(AYCButton *button) {
         CFRelease((__bridge CFTypeRef)weakSelf);
         AYCLog(@"Retain count is %ld", CFGetRetainCount((__bridge CFTypeRef)weakSelf));
-        [[FireData sharedInstance] eventWithCategory:@"积分商城" action:@"返回" evar:nil attributes:nil];
+        [[FireData sharedInstance] eventWithCategory:@"积分明细" action:@"返回" evar:nil attributes:nil];
         [weakSelf.navigationController popViewControllerAnimated:YES];
     }];
     [weakSelf setRightImageBarButtonItemWithFrame:CGRectMake(0, 0, 30, 30) image:@"title-search" selectImage:@"title-search_" action:^(AYCButton *button) {
@@ -181,7 +181,7 @@
     cell.lbComment.text = integral.comment;
     cell.lbTime.text = [HelperUtil timeFormat:integral.time format:@"yyyy-MM-dd HH:mm"];
     cell.lbReason.text = integral.reason;
-    cell.lbCreditsNum.text = [NSString stringWithFormat:@"%i",integral.creditsNum];
+    cell.lbCreditsNum.text = integral.creditsNum;
     
     return cell;
 }

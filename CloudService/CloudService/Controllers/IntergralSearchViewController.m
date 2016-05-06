@@ -477,7 +477,7 @@
     cell.lbComment.text = integral.comment;
     cell.lbTime.text = [HelperUtil timeFormat:integral.time format:@"yyyy-MM-dd HH:mm"];
     cell.lbReason.text = integral.reason;
-    cell.lbCreditsNum.text = [NSString stringWithFormat:@"%i",integral.creditsNum];
+    cell.lbCreditsNum.text = integral.creditsNum;
     
     return cell;
 }

@@ -25,7 +25,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.view.backgroundColor = [UIColor orangeColor];
+    self.view.backgroundColor = [UIColor whiteColor];
     OrderTableView *tableView = [[OrderTableView alloc] initWithFrame:CGRectMake(0, 0, KWidth, KHeight-64-49) style:UITableViewStylePlain];
     _tableView = tableView;
     _tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
@@ -98,16 +98,20 @@
                 }
                 _noDataimageView.hidden = NO;
             }else{
+               
                 _noDataimageView.hidden = YES;
-                _tableView.dataList = _unfinishedArray;
-                [_tableView reloadData];
+                
+                
             }
-            
+            _tableView.dataList = _unfinishedArray;
+            [_tableView reloadData];
         }else {
+            _noDataimageView.hidden = YES;
             [MBProgressHUD showMessag:[dic objectForKey:@"msg"] toView:weakSelf.view];
         }
         
     } failureBlock:^(NSError *error) {
+        _noDataimageView.hidden = YES;
         [_tableView.mj_header endRefreshing];
     } showHUD:NO];
 }

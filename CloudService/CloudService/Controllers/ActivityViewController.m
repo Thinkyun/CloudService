@@ -336,20 +336,20 @@ static NSString *cellID = @"cellID";
 - (IBAction)shareAction:(id)sender {
     
     [[FireData sharedInstance] eventWithCategory:@"我的猴运" action:@"分享" evar:nil attributes:nil];
-    if (!_linkUrl) {
-        [MBProgressHUD showMessag:@"生成邀请url失败" toView:self.view];
-        return;
-    }
+//    if (!_linkUrl) {
+//        [MBProgressHUD showMessag:@"生成邀请url失败" toView:self.view];
+//        return;
+//    }
     //1、创建分享参数
     NSArray* imageArray = @[[UIImage imageNamed:@"sharLogo"]];
     if (imageArray) {
-        NSString *content = [NSString stringWithFormat:@"诚心邀请您加入点点云服，参加集猴纳财活动，送万元梦想基金\n邀请码:%@",_personInviteCode];
+        NSString *content = [NSString stringWithFormat:@"邀请您加入点点云服，参加集候活动，万元梦想基金等你拿！邀请码:%@",_personInviteCode];
         
         /**
          *  微信分享
          */
         NSString *weChatTitle = [NSString stringWithFormat:@"诚心邀请您加入点点云服，邀请码:%@",_personInviteCode];
-        [[ShareManager manager] shareParamsByText:content images:imageArray url:[NSURL URLWithString:_linkUrl] title:@"点点云服" WeChatTitle:weChatTitle];
+        [[ShareManager manager] shareParamsByText:content images:imageArray url:[NSURL URLWithString:kCreateQRAPI] title:@"点点云服" WeChatTitle:weChatTitle];
                 
     }
 

@@ -11,7 +11,7 @@
 @interface Integral : NSObject
 
 @property (nonatomic, copy  ) NSString *comment;
-@property (nonatomic, assign) int      creditsNum;
+@property (nonatomic, assign) NSString *creditsNum;
 @property (nonatomic, copy  ) NSString *creditsId;
 @property (nonatomic, copy  ) NSString *reason;
 @property (nonatomic, copy  ) NSString *relatedId;

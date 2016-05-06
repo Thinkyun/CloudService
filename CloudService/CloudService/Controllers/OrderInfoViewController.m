@@ -284,22 +284,24 @@
         if (buttonIndex==0) {
             AYCLog(@"短信支付");
             [[FireData sharedInstance] eventWithCategory:@"订单详情" action:@"短信支付" evar:nil attributes:nil];
-            NSString *phoneNO = [self.order.phoneNo stringByReplacingCharactersInRange:(NSRange){3,4} withString:@"****"];
+             [self sendPayMessage:self.order.phoneNo];
             
-            NSString *contentText = [self.order.type isEqualToString:@"自建"] ?
-                                     self.order.phoneNo : phoneNO;
-            
-            [EYInputPopupView popViewWithTitle:@"请填写支付手机号"
-                                   contentText:contentText
-                                          type:EYInputPopupView_Type_multi_line
-                                   cancelBlock:^{
-                                       
-                                   } confirmBlock:^(UIView *view, NSString *text) {
-                                    
-                                       [self sendPayMessage:text];
-                                   } dismissBlock:^{
-                                       
-                                   }];
+//            NSString *phoneNO = [self.order.phoneNo stringByReplacingCharactersInRange:(NSRange){3,4} withString:@"****"];
+//            
+//            NSString *contentText = [self.order.type isEqualToString:@"自建"] ?
+//                                     self.order.phoneNo : phoneNO;
+//            
+//            [EYInputPopupView popViewWithTitle:@"请填写支付手机号"
+//                                   contentText:contentText
+//                                          type:EYInputPopupView_Type_multi_line
+//                                   cancelBlock:^{
+//                                       
+//                                   } confirmBlock:^(UIView *view, NSString *text) {
+//                                    [self sendPayMessage:text];
+//                                      
+//                                   } dismissBlock:^{
+//                                       
+//                                   }];
             
         }
         if (buttonIndex==1) {
@@ -342,8 +344,8 @@
     [MHNetworkManager postReqeustWithURL:url params:@{@"baseId":self.order.baseId} successBlock:^(id returnData) {
         if ([returnData[@"flag"] isEqualToString:@"success"]) {
             NSString  *contentStr = returnData[@"data"];
-//            [[ShareManager manager] shareParamsByText:nil images:nil url:[NSURL URLWithString:kCreateQRAPI] title:nil ChatTitle:contentStr];
-            [self test:contentStr];
+            [[ShareManager manager] shareText:contentStr];
+
         }
     } failureBlock:^(NSError *error) {
         [MBProgressHUD showMessag:@"网络繁忙，请稍后再试" toView:nil];
@@ -352,8 +354,7 @@
 }
 
 - (void)test:(NSString *)text{
-    [[ShareManager manager] shareText:text];
-}
+    }
 
 /**
  *  保存投保礼
@@ -409,8 +410,9 @@
     /**
      *  微信分享
      */
-    [[ShareManager manager] shareParamsByText:payMessage images:nil url:nil title:@"点点云服" WeChatTitle:@""];
-    
+//    [[ShareManager manager] shareParamsByText:payMessage images:nil url:nil title:@"点点云服" WeChatTitle:@""];
+
+    [[ShareManager manager] shareText:payMessage];
     
     
 }

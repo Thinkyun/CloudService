@@ -110,14 +110,22 @@
 
 - (IBAction)intergralCityAction:(id)sender {
     
-    if (_goodsCityUrl.length<=0) {
-        [MBProgressHUD showMessag:@"网络繁忙，请稍后再试" toView:nil];
-        return;
-    }
     [[FireData sharedInstance] eventWithCategory:@"我的积分" action:@"礼品商城" evar:nil attributes:nil];
-    IntergralCityViewController *VC = [[IntergralCityViewController alloc] init];
-    VC.goodsCityUrl = _goodsCityUrl;
-    [self.navigationController pushViewController:VC animated:YES];
+    
+    [MHNetworkManager postReqeustWithURL:[RequestEntity urlString:kIntergralCity] params:nil successBlock:^(id returnData) {
+        NSLog(@"%@",returnData);
+        if ([returnData[@"flag"] isEqualToString:@"success"]) {
+            if (returnData[@"data"]) {
+                IntergralCityViewController *intergCityVC = [[IntergralCityViewController alloc] init];
+                intergCityVC.goodsCityUrl = returnData[@"data"];
+                [self.navigationController pushViewController:intergCityVC animated:YES];
+            }
+            
+        }
+    } failureBlock:^(NSError *error) {
+        
+    } showHUD:YES];
+
 }
 
 - (void)viewWillAppear:(BOOL)animated {

@@ -24,11 +24,7 @@
 @property (nonatomic,strong)NSArray *cityArray;
 @property(nonatomic,strong)UIPickerView *pickerView;
 @property(nonatomic,strong)UIView *maskView;
-/**
- *  省模型
- */
-@property (nonatomic,copy)NSString * selecletPro;
-@property (nonatomic,copy)NSString * selecletCity;
+
 @end
 
 
@@ -115,7 +111,7 @@
         //获取当前省的数据
         NSDictionary * seleDic = self.provinceArray[seleProIndx];
         //保存当前省的数据
-        self.selecletPro = [seleDic valueForKey:@"name"];
+        self.province = [seleDic valueForKey:@"name"];
         //城市的数组
         self.cityArray = [seleDic valueForKey:@"city"];
         
@@ -187,7 +183,7 @@
     } completion:^(BOOL finished) {
         self.hidden = YES;
         if (flag) {
-            if (self.province||self.city) {
+            if (self.province&&self.city) {
                 _block(self.province,self.city);
             }else{
                 //获取内容
@@ -195,7 +191,7 @@
                 //获取当前省的数据
                 NSDictionary * seleDic = self.provinceArray[0];
                 //保存当前省的数据
-                self.selecletPro = [seleDic valueForKey:@"name"];
+                self.province = [seleDic valueForKey:@"name"];
                 //城市的数组
                 self.cityArray = [seleDic valueForKey:@"city"];
                 self.city = [self.cityArray[0] valueForKey:@"name"];

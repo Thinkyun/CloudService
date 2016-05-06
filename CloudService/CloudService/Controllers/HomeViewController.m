@@ -36,7 +36,6 @@
     Order *_order;//获取数据
     HomeHeaderView *_headerView;
     NSDictionary *_responseDic;
-    NSString *_goodsCityUrl;
 }
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 
@@ -99,8 +98,7 @@ static NSString *headerView_ID = @"headerView";
     // 获取我的积分
     [self getMyintegralData];
     
-    //商城接口的获取
-    [self getCityUrl];
+
     //限时活动
 //    [self timeLimitActivity];
     
@@ -113,7 +111,7 @@ static NSString *headerView_ID = @"headerView";
 
 - (void)initData {
     
-    _dataKeyArray = @[@"获取数据",@"我的客户",@"创建订单",@"积分商城",@"限时任务",@"我的积分"];
+    _dataKeyArray = @[@"获取数据",@"我的客户",@"创建订单",@"积分商城",@"邀请好友",@"我的积分"];
     _imageArray = @[@"home-icon1",@"home-icon2",@"home-icon3",@"home-icon4",@"home-icon5",@"home-icon6"];
     
     _dataDict = [NSMutableDictionary dictionary];
@@ -121,11 +119,11 @@ static NSString *headerView_ID = @"headerView";
     [_dataDict setValue:@"我的客户明细" forKey:_dataKeyArray[1]];
     [_dataDict setValue:@"创建我的订单" forKey:_dataKeyArray[2]];
     [_dataDict setValue:@"积分兑换商城" forKey:_dataKeyArray[3]];
-    [_dataDict setValue:@"我的限时任务" forKey:_dataKeyArray[4]];
+    [_dataDict setValue:@"邀请我的好友" forKey:_dataKeyArray[4]];
     [_dataDict setValue:@"积分明细查看" forKey:_dataKeyArray[5]];
     
 //    _scrollImgArray = @[@"banner",@"activity3",@"activity2"];
-    _scrollImgArray = @[@"banner",@"activity3"];
+    _scrollImgArray = @[@"banner",@"activity3",@"activity4"];
 
 }
 - (IBAction)my:(id)sender {
@@ -245,12 +243,19 @@ static NSString *headerView_ID = @"headerView";
                 [weakSelf.navigationController pushViewController:vc animated:YES];
 
             }
+//            if (index == 2) {
+//                UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+//                RuleViewController *vc = [storyBoard instantiateViewControllerWithIdentifier:@"RuleVC"];
+//                vc.ruleStr = @"活动3";
+//                [weakSelf.navigationController pushViewController:vc animated:YES];
+//
+//            }
             if (index == 2) {
                 UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
                 RuleViewController *vc = [storyBoard instantiateViewControllerWithIdentifier:@"RuleVC"];
-                vc.ruleStr = @"活动3";
+                vc.ruleStr = @"活动4";
                 [weakSelf.navigationController pushViewController:vc animated:YES];
-
+                
             }
         }];
         return _headerView;
@@ -294,23 +299,20 @@ static NSString *headerView_ID = @"headerView";
             break;
         case 3:
         {
-            if (_goodsCityUrl.length<=0) {
-                [MBProgressHUD showMessag:@"网络繁忙，请稍后再试" toView:nil];
-                return;
-            }
-            IntergralCityViewController *intergCityVC = [[IntergralCityViewController alloc] init];
-            intergCityVC.goodsCityUrl = _goodsCityUrl;
-            [self.navigationController pushViewController:intergCityVC animated:YES];
+            
+            //商城接口的获取,成功后进入
+            [self getCityUrl];
+            
             [[FireData sharedInstance] eventWithCategory:@"首页" action:@"积分商城" evar:nil attributes:nil];
         }
 //            [MBProgressHUD showMessag:@"程序猿正在火力开发中" toView:self.view];
             break;
         case 4:
         {
-//            UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-//            UIViewController *vc = [storyBoard instantiateViewControllerWithIdentifier:@"InviteFriendsVC"];
-//            [[FireData sharedInstance] eventWithCategory:@"首页" action:@"邀请好友" evar:nil attributes:nil];
-//            [self.navigationController pushViewController:vc animated:YES];
+            UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+            UIViewController *vc = [storyBoard instantiateViewControllerWithIdentifier:@"InviteFriendsVC"];
+            [[FireData sharedInstance] eventWithCategory:@"首页" action:@"邀请好友" evar:nil attributes:nil];
+            [self.navigationController pushViewController:vc animated:YES];
         }
             break;
         case 5:
@@ -366,11 +368,19 @@ static NSString *headerView_ID = @"headerView";
     [MHNetworkManager postReqeustWithURL:[RequestEntity urlString:kIntergralCity] params:nil successBlock:^(id returnData) {
         NSLog(@"%@",returnData);
         if ([returnData[@"flag"] isEqualToString:@"success"]) {
-            _goodsCityUrl = returnData[@"data"];
+            if (![returnData[@"data"] isEqualToString:@"<null>"]) {
+                IntergralCityViewController *intergCityVC = [[IntergralCityViewController alloc] init];
+                intergCityVC.goodsCityUrl = returnData[@"data"];
+                [self.navigationController pushViewController:intergCityVC animated:YES];
+            } 
+            
+        }else{
+            [MBProgressHUD showMessag:[returnData objectForKey:@"msg"] toView:nil];
         }
+        
     } failureBlock:^(NSError *error) {
         
-    } showHUD:NO];
+    } showHUD:YES];
 }
 
 /** 获取数据*/
@@ -446,10 +456,7 @@ static NSString *headerView_ID = @"headerView";
         OrderInfoViewController *receive = segue.destinationViewController;
         receive.order = _order;
     }
-    if ([segue.identifier isEqualToString:@"myIntergralVC_push"]) {
-        MyIntergralViewController *VC = segue.destinationViewController;
-        VC.goodsCityUrl = _goodsCityUrl;
-    }
+
 }
 
 /**

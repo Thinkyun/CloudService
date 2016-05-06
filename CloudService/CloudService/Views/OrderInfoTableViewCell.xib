@@ -766,7 +766,7 @@
                                 <rect key="frame" x="250" y="432" width="125" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <inset key="imageEdgeInsets" minX="-10" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                <state key="normal" title="分享" image="details-icon2">
+                                <state key="normal" title="分享" image="iconShare.png">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
@@ -800,7 +800,7 @@
                                     <constraint firstAttribute="height" constant="30" id="FqA-Hq-7Ek"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <state key="normal" title=" 详情" image="details-icon2">
+                                <state key="normal" title=" 详情" image="iconPay.png">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
@@ -1103,5 +1103,7 @@
         <image name="details-icon2" width="18" height="18"/>
         <image name="details-icon3" width="17" height="17"/>
         <image name="details-icon4" width="18" height="18"/>
+        <image name="iconPay.png" width="17" height="17"/>
+        <image name="iconShare.png" width="17" height="17"/>
     </resources>
 </document>

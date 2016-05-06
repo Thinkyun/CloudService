@@ -95,9 +95,11 @@
                 _noDataimageView.hidden = NO;
             }else{
                 _noDataimageView.hidden = YES;
-                _tableView.dataList = _unfinishedArray;
-                [_tableView reloadData];
+               
             }
+            
+            _tableView.dataList = _unfinishedArray;
+            [_tableView reloadData];
             
         }else {
             [MBProgressHUD showMessag:[dic objectForKey:@"msg"] toView:weakSelf.view];

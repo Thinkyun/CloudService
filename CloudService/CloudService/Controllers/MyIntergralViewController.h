@@ -10,6 +10,5 @@
 
 @interface MyIntergralViewController : BaseViewController
 
-@property (nonatomic,copy)NSString *goodsCityUrl;
 
 @end
