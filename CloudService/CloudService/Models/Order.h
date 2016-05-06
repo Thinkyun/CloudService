@@ -28,7 +28,7 @@
 @property (nonatomic, copy) NSString *vehicleModelName;
 @property (nonatomic, copy) NSString *primaryDate;
 @property (nonatomic, copy) NSString *baseId;
-@property (nonatomic, copy) NSString *type;
+@property (nonatomic, copy) NSString *type;   //订单类型（自建，）
 @property (nonatomic, copy) NSString *reserveTime;//预约时间
 @property (nonatomic, copy) NSString *gift;//投保礼
 @property (nonatomic, copy) NSString *payUrl;//支付地址

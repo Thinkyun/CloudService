@@ -153,9 +153,6 @@
         if ([self.tfDate.text isEqualToString:@""]) {
             [MBProgressHUD showMessag:@"请选择预约时间" toView:nil];
             return;
-        }if ([self.textView.text isEqualToString:@""]) {
-            [MBProgressHUD showMessag:@"请输入备注" toView:nil];
-            return;
         }
     }
     NSString *timeStr = self.tfDate.text.length >0?[NSString stringWithFormat:@"%@:00",self.tfDate.text]:@"";
@@ -183,7 +180,7 @@
         
     } failureBlock:^(NSError *error) {
         
-    } showHUD:NO];
+    } showHUD:YES];
 
    
     

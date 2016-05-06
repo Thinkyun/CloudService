@@ -191,11 +191,12 @@
 
 
 /**
- *  下发支付短信
+ *  招人代付
  */
 - (void)sendPayMessageClick:(UIButton *)sender {
     [[FireData sharedInstance] eventWithCategory:@"订单详情" action:@"找人代付按钮" evar:nil attributes:nil];
     if ([self.order.gift isEqualToString:@""]) {
+    
         [EYInputPopupView popViewWithTitle:@"请填写投保礼"
                                contentText:self.order.gift
                                       type:EYInputPopupView_Type_multi_line
@@ -283,13 +284,18 @@
         if (buttonIndex==0) {
             AYCLog(@"短信支付");
             [[FireData sharedInstance] eventWithCategory:@"订单详情" action:@"短信支付" evar:nil attributes:nil];
+            NSString *phoneNO = [self.order.phoneNo stringByReplacingCharactersInRange:(NSRange){3,4} withString:@"****"];
+            
+            NSString *contentText = [self.order.type isEqualToString:@"自建"] ?
+                                     self.order.phoneNo : phoneNO;
+            
             [EYInputPopupView popViewWithTitle:@"请填写支付手机号"
-                                   contentText:self.order.phoneNo
+                                   contentText:contentText
                                           type:EYInputPopupView_Type_multi_line
                                    cancelBlock:^{
                                        
                                    } confirmBlock:^(UIView *view, NSString *text) {
-                                       
+                                    
                                        [self sendPayMessage:text];
                                    } dismissBlock:^{
                                        
@@ -336,12 +342,17 @@
     [MHNetworkManager postReqeustWithURL:url params:@{@"baseId":self.order.baseId} successBlock:^(id returnData) {
         if ([returnData[@"flag"] isEqualToString:@"success"]) {
             NSString  *contentStr = returnData[@"data"];
-            [[ShareManager manager] shareParamsByText:nil images:nil url:[NSURL URLWithString:kCreateQRAPI] title:nil ChatTitle:contentStr];
+//            [[ShareManager manager] shareParamsByText:nil images:nil url:[NSURL URLWithString:kCreateQRAPI] title:nil ChatTitle:contentStr];
+            [self test:contentStr];
         }
     } failureBlock:^(NSError *error) {
         [MBProgressHUD showMessag:@"网络繁忙，请稍后再试" toView:nil];
     } showHUD:YES];
 
+}
+
+- (void)test:(NSString *)text{
+    [[ShareManager manager] shareText:text];
 }
 
 /**

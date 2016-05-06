@@ -31,4 +31,6 @@
                       url:(NSURL *)url
                     title:(NSString *)title
               WeChatTitle:(NSString *)WeChatTitle;
+
+- (void)shareText:(NSString *)text;
 @end
