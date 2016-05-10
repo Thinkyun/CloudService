@@ -178,7 +178,20 @@
 
 
 - (IBAction)showCityPickerView:(id)sender {
+    NSString *path =[[NSString alloc]initWithString:[[NSBundle mainBundle] pathForResource:@"province"ofType:@"plist"]];
     
+    NSDictionary *rootDic = [NSDictionary dictionaryWithContentsOfFile:path];
+    if (!rootDic) {
+        [MBProgressHUD showMessag:@"获取省份列表失败，正在重新获取，请稍候！" toView:nil];
+        /**
+         *  获取省份列表
+         *
+         */
+        
+        [[SingleHandle shareSingleHandle] getAreas];
+        
+    }else{
+
     [[FireData sharedInstance] eventWithCategory:@"创建订单" action:@"行驶省市" evar:nil attributes:nil];
 
     [HelperUtil resignKeyBoardInView:self.view];
@@ -192,6 +205,7 @@
         _limit = limit;
         cityPickerView = nil;
     }];
+    }
     
     
 }

@@ -52,7 +52,8 @@
     NSString *sign = [self md5String:key];
     
     NSDictionary *params = @{@"Trstype":@"YG",@"Trscode":@"300001",@"Channel":@"B2C",@"transationId":@"1001101",@"dateTime":dateStr,@"userNum":userNum,@"totalCredits":totalCredits,@"sign":sign};
-    NSLog(@"**%@*****%@",url,params);
+    AYCLog(@"商城：**%@*****%@",url,params);
+    [[FireData sharedInstance] eventWithCategory:@"商城" action:@"进入商城" evar:params attributes:nil];
     NSData *paramsData = [NSJSONSerialization dataWithJSONObject:params options:NSJSONWritingPrettyPrinted error:nil];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL: url];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];

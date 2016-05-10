@@ -12,6 +12,8 @@
 #import "CityPickerView.h"
 #import "DataSource.h"
 
+#import "ProvinceChooseViewController.h"
+
 @interface RegisterViewController ()
 
 @property (weak, nonatomic) IBOutlet UIButton *getCodeBtn;
@@ -106,6 +108,22 @@
         [weakSelf.locateBtn setTitle:cityStr forState:(UIControlStateNormal)];
         cityPickerView = nil;
     }];
+    
+//    NSString *location = [Utility location];
+//    ProvinceChooseViewController *provinceVC = [ProvinceChooseViewController new];
+//    if (location) {
+//        provinceVC.locationCity = location;
+//    }else{
+//        provinceVC.locationCity = @"获取不到定位信息";
+//    }
+//    provinceVC.proviceList = [self proviceList];
+//    provinceVC.cityblock = ^(UIViewController *VC,NSString *city,NSString *province){
+//        weakSelf.locateBtn.selected = !weakSelf.locateBtn.selected;
+//        NSString *cityStr = [NSString stringWithFormat:@"%@%@",province,city];
+//        [weakSelf.locateBtn setTitle:cityStr forState:(UIControlStateNormal)];
+//        [VC.navigationController popToViewController:weakSelf animated:YES];
+//    };
+//    [self.navigationController pushViewController:provinceVC animated:YES];
     
 }
 
@@ -213,6 +231,20 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+- (NSMutableArray *)proviceList{
+        NSMutableArray *_proviceList = [NSMutableArray array];
+        
+        NSString *path =[[NSString alloc]initWithString:[[NSBundle mainBundle] pathForResource:@"province"ofType:@"plist"]];
+        
+        NSDictionary *rootDic = [NSDictionary dictionaryWithContentsOfFile:path];
+        
+        NSDictionary *provinceDic = [rootDic valueForKey:@"root"];
+        _proviceList = [provinceDic valueForKey:@"province"];
+    
+    return _proviceList;
+}
+
 
 /*
 #pragma mark - Navigation

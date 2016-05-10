@@ -61,7 +61,7 @@
 }
 
 - (void)setupView {
-    
+
     self.maskView = [[UIView alloc] initWithFrame:self.bounds];
     self.maskView.alpha = 0;
     self.maskView.backgroundColor = [UIColor blackColor];
@@ -217,10 +217,15 @@
         NSString *path =[[NSString alloc]initWithString:[[NSBundle mainBundle] pathForResource:@"province"ofType:@"plist"]];
 
         NSDictionary *rootDic = [NSDictionary dictionaryWithContentsOfFile:path];
+      
+            NSDictionary *provinceDic = [rootDic valueForKey:@"root"];
+            NSArray *array = [provinceDic valueForKey:@"province"];
+            _provinceArray = array;
+     
+           
+     
         
-        NSDictionary *provinceDic = [rootDic valueForKey:@"root"];
-        NSArray *array = [provinceDic valueForKey:@"province"];
-        _provinceArray = array;
+        
     }
     return _provinceArray;
 }

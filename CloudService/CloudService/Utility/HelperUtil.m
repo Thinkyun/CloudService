@@ -462,8 +462,8 @@
     NSDate *date = [dateFormatter dateFromString:dateStr];
     
     NSTimeInterval time = [date timeIntervalSince1970];
-    long time2 = (long )(time * 1000);
-    return [NSString stringWithFormat:@"%ldL",time2];
+    long long time2 = (long long)(time * 1000);
+    return [NSString stringWithFormat:@"%lldL",time2];
 }
 /** 
  *

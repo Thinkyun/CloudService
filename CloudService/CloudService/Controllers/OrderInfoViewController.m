@@ -92,12 +92,17 @@
        
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
-    
+    cell.shareBtn.backgroundColor = [UIColor whiteColor];
     if (self.order) {
         cell.lbOrderNum.text = [NSString stringWithFormat:@"订单号:%@",self.order.baseId];
         cell.lbCustName.text = self.order.customerName;
         if ([self.order.type isEqualToString:@"自建"]) {
             cell.lbPhoneNo.text = self.order.phoneNo;
+            
+            if([self.order.orderStatus isEqualToString:@"未完成"]){
+                cell.shareBtn.enabled = NO;
+                cell.shareBtn.backgroundColor = [UIColor lightGrayColor];
+            }
         }else{
             if (self.order.phoneNo.length>10) {
                 NSMutableString *phone = [[NSMutableString alloc] initWithString:self.order.phoneNo];
@@ -144,7 +149,7 @@
     }else if ([self.order.orderStatus isEqualToString:@"已支付"]){
         return 402;
     }else{
-        return 382;
+        return 402;
     }
     
 }
@@ -157,7 +162,7 @@
 }
 /** 报价*/
 - (void)priceClick:(UIButton *)sender {
-    [[FireData sharedInstance] eventWithCategory:@"订单详情" action:@"报价按钮" evar:nil attributes:nil];
+
     NSString *url = @"";
     if ([self.order.orderStatus isEqualToString:@"未完成"]||[self.order.orderStatus isEqualToString:@""]) {
         url = [NSString stringWithFormat:@"%@%@&isCloud=%i",kZhiKeUnfinishInfo,self.order.baseId,1];
@@ -169,7 +174,7 @@
     
     OrderH5ViewController *orderH5VC = [[OrderH5ViewController alloc] init];
     orderH5VC.url = url;
-    
+    [[FireData sharedInstance] eventWithCategory:@"订单详情" action:@"报价按钮" evar:@{@"url":url} attributes:nil];
     [self.navigationController pushViewController:orderH5VC animated:YES];
 
 }

@@ -72,7 +72,7 @@
     }else if ([self.ruleStr isEqualToString:@"活动4"]) {
         self.imageView.image = [UIImage imageNamed:@"rulebg4"];
         label.textColor = [HelperUtil colorWithHexString:@"#525252"];
-        label.attributedText = [[NSAttributedString alloc] initWithString:@"【活动内容】\n 创建订单并投保支付成功，即可获10000积分奖励。\n【活动规则】\n 1、可与其它活动叠加；\n2、每单以车牌为准，新车以车架号为准；\n3、积分兑换比例1：100，如：10000积分能兑换100元；\n4、积分时时到账。\n【活动时间】\n2016年5月1日00时起\n2016年5月31日24时止。" attributes:attributes];
+        label.attributedText = [[NSAttributedString alloc] initWithString:@"【活动内容】\n 创建订单并投保支付成功，即可获10000积分奖励。\n【活动规则】\n 1、可与其它活动叠加；\n2、每单以车牌为准，新车以车架号为准；\n3、积分兑换比例1：100，如：10000积分能兑换100元；\n4、积分实时到账。\n【活动时间】\n2016年5月1日00时起\n2016年5月31日24时止。" attributes:attributes];
         
         //        UIButton *shareBtn = [[UIButton alloc] initWithFrame:cgrectmak]
         
@@ -132,7 +132,7 @@
             NSString *content;
             NSString *weChatTitle;
             if ([self.ruleStr isEqualToString:@"活动1"]) {
-                content =[NSString stringWithFormat:@"邀请您加入点点云服，参加集候活动，万元梦想基金等你拿！邀请码:%@",_personInviteCode];
+                content =[NSString stringWithFormat:@"邀请您加入点点云服，参加集猴活动，万元梦想基金等你拿！邀请码:%@",_personInviteCode];
             }else if ([self.ruleStr isEqualToString:@"活动2"]){
                 
                 content= [NSString stringWithFormat:@"邀请有礼：邀请您加入点点云服，邀请好友，万元现金等你拿！邀请码:%@",_personInviteCode];

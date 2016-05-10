@@ -65,6 +65,7 @@
  *  下一步报价
  */
 - (IBAction)nextAction:(id)sender {
+
     if ([_tfName.text isEqualToString:@""]) {
         [MBProgressHUD showMessag:@"车主姓名不能为空" toView:self.view];
         return ;
@@ -233,6 +234,7 @@
     [MHNetworkManager postReqeustWithURL:[RequestEntity urlString:ksaveOrder] params:params successBlock:^(id returnData) {
         
         if ([[returnData objectForKey:@"flag"] isEqualToString:@"success"]) {
+            [[FireData sharedInstance] eventWithCategory:@"创建订单" action:@"直客报价" evar:@{@"url":url} attributes:nil];
             OrderH5ViewController *orderH5VC = [[OrderH5ViewController alloc] init];
             orderH5VC.url = url;
             [weakSelf.navigationController pushViewController:orderH5VC animated:YES];
@@ -270,17 +272,32 @@
  *  选择城市的pickerView
  */
 - (IBAction)showCityPickerView:(id)sender {
-    [[FireData sharedInstance] eventWithCategory:@"创建订单" action:@"选择行驶省市" evar:nil attributes:nil];
-    [HelperUtil resignKeyBoardInView:self.view];
+    NSString *path =[[NSString alloc]initWithString:[[NSBundle mainBundle] pathForResource:@"province"ofType:@"plist"]];
     
-     __block ZQCityPickerView *cityPickerView = [[ZQCityPickerView alloc] initWithCount:2];
-    
-    __weak typeof(self) weakSelf = self;
-    [cityPickerView showPickViewAnimated:^(NSString *province, NSString *city,NSString *cityCode,NSString *provinceCode,BOOL limit) {
-        weakSelf.tfCarCity.text = [NSString stringWithFormat:@"%@ %@",province,city];
-        _cityCode = cityCode;
-        cityPickerView = nil;
-    }];
+    NSDictionary *rootDic = [NSDictionary dictionaryWithContentsOfFile:path];
+    if (!rootDic) {
+        [MBProgressHUD showMessag:@"获取省份列表失败，正在重新获取，请稍候！" toView:nil];
+        /**
+         *  获取省份列表
+         *
+         */
+        
+        [[SingleHandle shareSingleHandle] getAreas];
+       
+    }else{
+        [[FireData sharedInstance] eventWithCategory:@"创建订单" action:@"选择行驶省市" evar:nil attributes:nil];
+        [HelperUtil resignKeyBoardInView:self.view];
+        
+        __block ZQCityPickerView *cityPickerView = [[ZQCityPickerView alloc] initWithCount:2];
+        
+        __weak typeof(self) weakSelf = self;
+        [cityPickerView showPickViewAnimated:^(NSString *province, NSString *city,NSString *cityCode,NSString *provinceCode,BOOL limit) {
+            weakSelf.tfCarCity.text = [NSString stringWithFormat:@"%@ %@",province,city];
+            _cityCode = cityCode;
+            cityPickerView = nil;
+        }];
+
+    }
     
 
 
