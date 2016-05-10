@@ -112,7 +112,7 @@
 {
     @try {
         NSError *error = nil;
-        
+          
         [RequestManager startRequest:kResetUserInfoAPI paramer:userInfo method:RequestMethodPost success:^(NSURLSessionDataTask *task, id responseObject) {
             
         } failure:^(NSURLSessionDataTask *task, NSError *error) {
