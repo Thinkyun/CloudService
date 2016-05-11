@@ -50,11 +50,6 @@ static NSString *headerView_ID = @"headerView";
     //导航条滑动返回
     [super viewWillAppear:animated];
     [self.collectionView reloadData];
-    /**
-     *  首页隐藏青牛拨打页面
-     */
-    [[ButelHandle shareButelHandle] hideCallView];
-    
     
     self.view.frame = CGRectMake(0, 0, KWidth, KHeight - 64);
     

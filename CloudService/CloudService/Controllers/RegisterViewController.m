@@ -101,29 +101,34 @@
 
     [self resignKeyBoardInView:self.view];
     __weak typeof(self) weakSelf = self;
-    __block CityPickerView *cityPickerView = [[CityPickerView alloc] initWithCount:2];
-    [cityPickerView showPickViewAnimated:^(NSString *province, NSString *city) {
-        weakSelf.locateBtn.selected = !weakSelf.locateBtn.selected;
-        NSString *cityStr = [NSString stringWithFormat:@"%@%@",province,city];
-        [weakSelf.locateBtn setTitle:cityStr forState:(UIControlStateNormal)];
-        cityPickerView = nil;
-    }];
-    
-//    NSString *location = [Utility location];
-//    ProvinceChooseViewController *provinceVC = [ProvinceChooseViewController new];
-//    if (location) {
-//        provinceVC.locationCity = location;
-//    }else{
-//        provinceVC.locationCity = @"获取不到定位信息";
-//    }
-//    provinceVC.proviceList = [self proviceList];
-//    provinceVC.cityblock = ^(UIViewController *VC,NSString *city,NSString *province){
+//    __block CityPickerView *cityPickerView = [[CityPickerView alloc] initWithCount:2];
+//    [cityPickerView showPickViewAnimated:^(NSString *province, NSString *city) {
 //        weakSelf.locateBtn.selected = !weakSelf.locateBtn.selected;
 //        NSString *cityStr = [NSString stringWithFormat:@"%@%@",province,city];
 //        [weakSelf.locateBtn setTitle:cityStr forState:(UIControlStateNormal)];
-//        [VC.navigationController popToViewController:weakSelf animated:YES];
-//    };
-//    [self.navigationController pushViewController:provinceVC animated:YES];
+//        cityPickerView = nil;
+//    }];
+    
+    NSString *location = [Utility location];
+    ProvinceChooseViewController *provinceVC = [ProvinceChooseViewController new];
+    provinceVC.title = @"注册城市";
+//    provinceVC.isHidenLocation = YES;
+    if (location) {
+        provinceVC.locationCity = location;
+    }else{
+        provinceVC.locationCity = @"获取不到定位信息";
+    }
+    provinceVC.proviceList = [self proviceList];
+    provinceVC.popBlock = ^(NSString *str){
+        [weakSelf.locateBtn setTitle:str forState:(UIControlStateNormal)];
+    };
+    provinceVC.cityblock = ^(UIViewController *VC,NSString *city,NSString *province,NSString *code){
+        weakSelf.locateBtn.selected = !weakSelf.locateBtn.selected;
+        NSString *cityStr = [NSString stringWithFormat:@"%@%@",province,city];
+        [weakSelf.locateBtn setTitle:cityStr forState:(UIControlStateNormal)];
+        [VC.navigationController popToViewController:weakSelf animated:YES];
+    };
+    [self.navigationController pushViewController:provinceVC animated:YES];
     
 }
 

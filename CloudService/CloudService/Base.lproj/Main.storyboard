@@ -3543,6 +3543,7 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="isNewCarBtn" destination="IMU-2j-0pN" id="ulq-f9-duu"/>
+                        <outlet property="provinceBtn" destination="RE1-nB-SZT" id="QCl-xb-HdE"/>
                         <outlet property="tfCarCity" destination="J78-As-faK" id="oZK-iO-tZT"/>
                         <outlet property="tfLicenseNo" destination="EJE-b5-QWH" id="Ljc-Jp-v23"/>
                         <outlet property="tfName" destination="Wsf-Uz-RpB" id="DQx-Ik-l8B"/>
@@ -3583,7 +3584,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="hk9-Xv-JLY"/>
-        <segue reference="aJV-kD-afh"/>
+        <segue reference="zAa-Im-zuA"/>
         <segue reference="KaR-KU-zbk"/>
         <segue reference="01e-LJ-s33"/>
     </inferredMetricsTieBreakers>

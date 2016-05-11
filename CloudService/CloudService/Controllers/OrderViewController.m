@@ -21,6 +21,7 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    self.view.backgroundColor = [UIColor whiteColor];
     __weak typeof(self) weakSelf = self;
     [self.tabBarController setRightImageBarButtonItemWithFrame:CGRectMake(0, 0, 30, 30) image:@"title-search" selectImage:@"title-search_" action:^(AYCButton *button) {
         [[FireData sharedInstance] eventWithCategory:@"订单管理" action:@"搜索订单" evar:nil attributes:nil];
@@ -31,6 +32,10 @@
     
     [[FireData sharedInstance] beginLogPageView:@"订单管理" attributes:nil cvar:nil];
 
+}
+
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
 }
 
 - (void)viewDidDisappear:(BOOL)animated{
@@ -65,7 +70,7 @@
         OrderInfoViewController *receive = segue.destinationViewController;
         //        _dataList[]
         receive.order = sender;
-        Order *order = sender;
+//        Order *order = sender;
         AYCLog(@"%@",receive.order);
     }
 }

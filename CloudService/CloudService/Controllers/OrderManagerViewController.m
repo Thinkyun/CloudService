@@ -58,10 +58,6 @@
         [weakSelf performSegueWithIdentifier:@"searchOrder" sender:weakSelf];
     }];
     
-    /**
-     *  隐藏青牛拨打页面
-     */
-    [[ButelHandle shareButelHandle] hideCallView];
     
     /**
      *  判断每次进入页面时刷新哪个试图

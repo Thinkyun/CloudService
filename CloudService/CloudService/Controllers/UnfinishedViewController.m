@@ -25,7 +25,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor orangeColor];
+    self.view.backgroundColor = [UIColor whiteColor];
     OrderTableView *tableView = [[OrderTableView alloc] initWithFrame:CGRectMake(0, 0, KWidth, KHeight-64-49) style:UITableViewStylePlain];
     _tableView = tableView;
     _tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
@@ -43,10 +43,7 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    /**
-     *  隐藏青牛拨打页面
-     */
-    [[ButelHandle shareButelHandle] hideCallView];
+
 }
 
 - (void)viewDidAppear:(BOOL)animated{

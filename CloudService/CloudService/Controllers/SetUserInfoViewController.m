@@ -20,6 +20,7 @@
 #import "PellTableViewSelect.h"
 #import "ChooseCompanyViewController.h"
 #import "CityPickerView.h"
+#import "ProvinceChooseViewController.h"
 
 static NSString *const cell_id = @"setUserInfoCell";
 static NSString *const cell_Id2 = @"setUserInfoCell2";
@@ -500,7 +501,31 @@ static NSString *const select_CellID = @"selectCell";
         if (indexPath.row == 4 || indexPath.row == 5)
         {
             [[FireData sharedInstance] eventWithCategory:@"个人信息" action:@"开户城市" evar:nil attributes:nil];
-            [self showCityPickerViewWithCount:2];
+//            [self showCityPickerViewWithCount:2];
+            
+            __weak typeof(self) weakSelf = self;
+            NSString *location = [Utility location];
+            ProvinceChooseViewController *provinceVC = [ProvinceChooseViewController new];
+            provinceVC.title = @"开户城市";
+                provinceVC.isHidenLocation = YES;
+            if (location) {
+                provinceVC.locationCity = location;
+            }else{
+                provinceVC.locationCity = @"获取不到定位信息";
+            }
+            provinceVC.proviceList = [self proviceList];
+            provinceVC.popBlock = ^(NSString *str){
+//                [weakSelf.locateBtn setTitle:str forState:(UIControlStateNormal)];
+                
+            };
+            provinceVC.cityblock = ^(UIViewController *VC,NSString *city,NSString *province,NSString *code){
+                __strong typeof(self) strongSelf = weakSelf;
+                strongSelf->_valueArray_Bank[4] = province;
+                strongSelf->_valueArray_Bank[5] = city;
+                [VC.navigationController popToViewController:weakSelf animated:YES];
+                [weakSelf.tableView reloadData];
+            };
+            [self.navigationController pushViewController:provinceVC animated:YES];
             
         }
        
@@ -770,6 +795,20 @@ static NSString *const select_CellID = @"selectCell";
     user.saleCityValue = [self changeStrArraytoTextString:_saleCityArray];
     [[SingleHandle shareSingleHandle] saveUserInfo:user];
 }
+
+- (NSMutableArray *)proviceList{
+    NSMutableArray *_proviceList = [NSMutableArray array];
+    
+    NSString *path =[[NSString alloc]initWithString:[[NSBundle mainBundle] pathForResource:@"province"ofType:@"plist"]];
+    
+    NSDictionary *rootDic = [NSDictionary dictionaryWithContentsOfFile:path];
+    
+    NSDictionary *provinceDic = [rootDic valueForKey:@"root"];
+    _proviceList = [provinceDic valueForKey:@"province"];
+    
+    return _proviceList;
+}
+
 /*
  [[SingleHandle shareSingleHandle] saveUserInfo:user];
  user.realName = _valueArray_User[0];

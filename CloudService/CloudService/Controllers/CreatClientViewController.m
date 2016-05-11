@@ -7,14 +7,17 @@
 //
 
 #import "CreatClientViewController.h"
-#import "OfferViewController.h"
-#import "ZQCityPickerView.h"
-#import "Order.h"
-#import "ButelHandle.h"
+#import <FMDB.h>
+#import "ProvinceChooseViewController.h"
 #import "MyClientViewController.h"
-#import "DataSource.h"
-#import "EYPopupViewHeader.h"
 #import "OrderInfoViewController.h"
+#import "OfferViewController.h"
+#import "EYPopupViewHeader.h"
+#import "ZQCityPickerView.h"
+#import "ButelHandle.h"
+#import "DataSource.h"
+#import "Order.h"
+#import "MyFile.h"
 
 @interface CreatClientViewController ()<UITextFieldDelegate,UIAlertViewDelegate>
 {
@@ -31,6 +34,38 @@
 
 @implementation CreatClientViewController
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    self.title = @"创建客户";
+    /**
+     *  显示青牛拨打页面
+     *
+     */
+    [[ButelHandle shareButelHandle] showCallView];
+}
+
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    /**
+     *  显示青牛拨打页面
+     *
+     */
+    [[ButelHandle shareButelHandle] showCallView];
+}
+
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+}
+
+- (void)viewDidDisappear:(BOOL)animated{
+    [super viewDidDisappear:animated];
+    /**
+     *  显示青牛拨打页面
+     *
+     */
+    [[ButelHandle shareButelHandle] hideCallView];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     __weak typeof(self) weakSelf = self;
@@ -43,11 +78,7 @@
         [weakSelf.navigationController popViewControllerAnimated:YES];
     }];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tfPhoneChanged:) name:UITextFieldTextDidChangeNotification object:self.tfPhone];
-    /**
-     *  显示青牛拨打页面
-     *
-     */
-    [[ButelHandle shareButelHandle] showCallView];
+
     // Do any additional setup after loading the view.
 }
 /**
@@ -196,15 +227,33 @@
 
     [HelperUtil resignKeyBoardInView:self.view];
     
-     __block ZQCityPickerView *cityPickerView = [[ZQCityPickerView alloc] initWithCount:2];
+        __weak typeof(self) weakSelf = self;
     
-    __weak typeof(self) weakSelf = self;
-    [cityPickerView showPickViewAnimated:^(NSString *province, NSString *city,NSString *cityCode,NSString *provinceCode,BOOL limit) {
-        weakSelf.tfCarCity.text = [NSString stringWithFormat:@"%@ %@",province,city];
-        _cityCode = cityCode;
-        _limit = limit;
-        cityPickerView = nil;
-    }];
+//        __block ZQCityPickerView *cityPickerView = [[ZQCityPickerView alloc] initWithCount:2];
+//    [cityPickerView showPickViewAnimated:^(NSString *province, NSString *city,NSString *cityCode,NSString *provinceCode,BOOL limit) {
+//        weakSelf.tfCarCity.text = [NSString stringWithFormat:@"%@ %@",province,city];
+//        _cityCode = cityCode;
+//        _limit = limit;
+//        cityPickerView = nil;
+//    }];
+        ProvinceChooseViewController *provinceVC = [ProvinceChooseViewController new];
+        provinceVC.title = @"投保城市";
+        provinceVC.isHidenLocation = YES;
+        provinceVC.locationCity = @"";
+        provinceVC.proviceList = [self proviceList];
+        provinceVC.popBlock = ^(NSString *str){
+//            [weakSelf.provinceBtn setTitle:str forState:(UIControlStateNormal)];
+        };
+        provinceVC.cityblock = ^(UIViewController *VC,NSString *city,NSString *province,NSString *code){
+            __strong typeof(self) strongSelf = weakSelf;
+            strongSelf->_cityCode = code;
+            NSString *cityStr = [NSString stringWithFormat:@"%@ %@",province,city];
+            strongSelf->_tfCarCity.text = cityStr;
+            [VC.navigationController popToViewController:weakSelf animated:YES];
+        };
+        [self.navigationController pushViewController:provinceVC animated:YES];
+
+        
     }
     
     
@@ -226,13 +275,7 @@
     }
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    
-    [super viewWillAppear:animated];
-    self.title = @"创建客户";
 
-    
-}
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // segue.identifier：获取连线的ID
@@ -262,6 +305,47 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (NSMutableArray *)proviceList{
+    NSMutableArray *proviceList = [NSMutableArray array];
+    NSString *provincePath = [MyFile fileDocumentPath:PROVINCE_LIST];
+    
+    NSArray *provinceArray = [NSKeyedUnarchiver unarchiveObjectWithFile:provincePath];
+    for (NSDictionary *dic in provinceArray) {
+        NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+        NSString *provinceName = dic[@"provinceName"];
+        NSString *provinceCode = dic[@"provinceId"];
+        NSDictionary *cityDic = [self cityListByProvinceCode:provinceCode];
+        [dict setObject:provinceName forKey:@"name"];
+        [dict setObject:cityDic forKey:@"city"];
+        [proviceList addObject:dict];
+    }
+    
+    return proviceList;
+}
+
+- (NSDictionary *)cityListByProvinceCode:(NSString *)code{
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"Province" ofType:@"sqlite"];
+    FMDatabase *db = [FMDatabase databaseWithPath:path];
+    if (![db open]) {
+        AYCLog(@"数据库打开失败!");
+        return nil;
+    }
+    NSString *sqlStr = [NSString stringWithFormat:@"SELECT * FROM city where cityCode like '%@%%'",code];
+    FMResultSet *result = [db executeQuery:sqlStr];
+    NSMutableArray *_cityArray = [NSMutableArray array];
+    NSMutableArray *_cityCodeArray = [NSMutableArray array];
+    while ([result next]) {
+        AYCLog(@"%@",[result stringForColumn:@"cityName"]);
+        [_cityArray addObject:[result stringForColumn:@"cityName"]];
+        [_cityCodeArray addObject:[result stringForColumn:@"cityCode"]];
+    }
+    [dict setObject:_cityArray forKey:@"cityName"];
+    [dict setObject:_cityCodeArray forKey:@"cityCode"];
+    return dict;
+    
 }
 
 /*

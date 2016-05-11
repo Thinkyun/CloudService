@@ -51,10 +51,6 @@
 - (void)viewWillAppear:(BOOL)animated {
     
     [super viewWillAppear:animated];
-    /**
-     *  隐藏青牛页面
-     */
-    [[ButelHandle shareButelHandle] hideCallView];
     
     self.title = @"我的客户";
     __weak typeof(self) weakSelf = self;

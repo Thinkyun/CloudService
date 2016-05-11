@@ -8,7 +8,7 @@
 
 #import "BaseViewController.h"
 
-typedef void(^chooseCityHander)(UIViewController *VC,NSString *cityStr, NSString *province);
+typedef void(^chooseCityHander)(UIViewController *VC,NSString *cityStr, NSString *province,NSString *code);
 
 @interface CityChooseViewController : BaseViewController
 
@@ -16,6 +16,6 @@ typedef void(^chooseCityHander)(UIViewController *VC,NSString *cityStr, NSString
 
 @property (nonatomic,copy)NSString *provinceName;
 
-@property (nonatomic,strong)NSArray *cityList;
+@property (nonatomic,strong)id cityList;
 
 @end

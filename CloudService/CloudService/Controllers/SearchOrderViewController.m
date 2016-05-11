@@ -89,10 +89,7 @@
 
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    /**
-     *  隐藏青牛拨打页面
-     */
-    [[ButelHandle shareButelHandle] hideCallView];
+
 }
 
 /** 搜索菜单*/

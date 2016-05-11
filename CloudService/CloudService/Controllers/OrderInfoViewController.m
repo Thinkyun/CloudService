@@ -29,10 +29,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    /**
-     *  显示青牛拨打页面,并设置手机号
-     */
-    [[ButelHandle shareButelHandle] showCallView];
+
     
     [[ButelHandle shareButelHandle] setPhoneNo:self.order.phoneNo phoneWithBaseId:self.order.baseId];
     self.tableView.backgroundColor = [HelperUtil colorWithHexString:@"F4F4F4"];
@@ -48,10 +45,12 @@
 }
 - (void)viewWillAppear:(BOOL)animated {
     
+    /**
+     *  显示青牛拨打页面,并设置手机号
+     */
+    [[ButelHandle shareButelHandle] showCallView];
 //    [super viewWillAppear:animated];
     [[FireData sharedInstance] beginLogPageView:@"订单详情" attributes:nil cvar:nil];
-    
-    
     NSDictionary *params ;
     if([_order.orderStatus isEqualToString:@"未完成"]){
         
@@ -66,9 +65,20 @@
    
 }
 
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    /**
+     *  显示青牛拨打页面,并设置手机号
+     */
+    [[ButelHandle shareButelHandle] showCallView];
+}
+
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
-
+    /**
+     *  显示青牛拨打页面,并设置手机号
+     */
+    [[ButelHandle shareButelHandle] hideCallView];
 }
 
 
@@ -96,13 +106,15 @@
     if (self.order) {
         cell.lbOrderNum.text = [NSString stringWithFormat:@"订单号:%@",self.order.baseId];
         cell.lbCustName.text = self.order.customerName;
+        if(([self.order.orderStatus isEqualToString:@"未完成"])&&([self.order.ciPremium floatValue]<=0)){
+    
+            cell.shareBtn.enabled = NO;
+            cell.shareBtn.backgroundColor = [UIColor lightGrayColor];
+            
+        }
+        
         if ([self.order.type isEqualToString:@"自建"]) {
             cell.lbPhoneNo.text = self.order.phoneNo;
-            
-            if([self.order.orderStatus isEqualToString:@"未完成"]){
-                cell.shareBtn.enabled = NO;
-                cell.shareBtn.backgroundColor = [UIColor lightGrayColor];
-            }
         }else{
             if (self.order.phoneNo.length>10) {
                 NSMutableString *phone = [[NSMutableString alloc] initWithString:self.order.phoneNo];

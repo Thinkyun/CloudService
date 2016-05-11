@@ -29,6 +29,25 @@
 
 @implementation AppointmentViewController
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [[ButelHandle shareButelHandle] showCallView];
+}
+
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    [[ButelHandle shareButelHandle] showCallView];
+}
+
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+}
+
+- (void)viewDidDisappear:(BOOL)animated{
+    [super viewDidDisappear:animated];
+    [[ButelHandle shareButelHandle] hideCallView];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -51,10 +70,7 @@
    
     // Do any additional setup after loading the view.
 }
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    [[ButelHandle shareButelHandle] showCallView];
-}
+
 
 - (IBAction)codeAction:(id)sender {
     [[FireData sharedInstance] eventWithCategory:@"预约" action:@"选择结束码" evar:nil attributes:nil];

@@ -243,8 +243,8 @@
                                     <constraint firstAttribute="height" constant="1" id="nfJ-ZT-Anq"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TO7-HC-V2N">
-                                <rect key="frame" x="187" y="355" width="1" height="30"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TO7-HC-V2N" userLabel="ShareLine">
+                                <rect key="frame" x="186" y="355" width="1" height="30"/>
                                 <color key="backgroundColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="Bgt-jR-bCv"/>
@@ -289,7 +289,7 @@
                             <constraint firstItem="o93-He-e5w" firstAttribute="top" secondItem="7mB-fS-oAc" secondAttribute="bottom" constant="8" id="Pwc-DA-cU8"/>
                             <constraint firstItem="BFw-cm-VyD" firstAttribute="trailing" secondItem="Mn2-VQ-IpI" secondAttribute="trailing" id="Qvz-dh-pGa"/>
                             <constraint firstItem="KgO-YT-UOt" firstAttribute="leading" secondItem="Jzo-XL-xf0" secondAttribute="leading" id="S4v-yn-ci0"/>
-                            <constraint firstItem="TO7-HC-V2N" firstAttribute="leading" secondItem="DLn-MO-kaN" secondAttribute="trailing" id="SjH-qy-wKT"/>
+                            <constraint firstItem="TO7-HC-V2N" firstAttribute="leading" secondItem="DLn-MO-kaN" secondAttribute="trailing" constant="-1" id="SjH-qy-wKT"/>
                             <constraint firstItem="NyH-5o-C9x" firstAttribute="top" secondItem="BFw-cm-VyD" secondAttribute="bottom" constant="8" id="Wqr-1f-K4J"/>
                             <constraint firstItem="8Ol-oY-u1t" firstAttribute="leading" secondItem="bic-c9-7pd" secondAttribute="leading" id="Xf4-li-cMP"/>
                             <constraint firstItem="kM4-J4-Vxk" firstAttribute="top" secondItem="s9T-bh-0sE" secondAttribute="bottom" constant="8" id="Xjd-Oe-mD7"/>

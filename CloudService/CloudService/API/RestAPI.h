@@ -23,6 +23,8 @@
 #define kZhiKeUnfinishInfo      @"http://139.198.1.73:8081/zkyq-web/unfinishedOrder/returnPage?baseId="   //直客测试订单详情
 
 #define kZhiKeFinishInfo      @"http://139.198.1.73:8081/zkyq-web/insure/returnPage?baseId="   //直客测试订单详情
+
+
 //#define kZhiKe      @"http://139.198.0.29:80/zkyq-web/platform/getInfo"              //直客
 //
 //#define kZhiKeUnfinishInfo      @"http://139.198.0.29:80/zkyq-web/unfinishedOrder/returnPage?baseId="   //直客订单详情(未完成)
