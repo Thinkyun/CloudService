@@ -118,7 +118,7 @@ static NSString *headerView_ID = @"headerView";
     [_dataDict setValue:@"积分明细查看" forKey:_dataKeyArray[5]];
     
 //    _scrollImgArray = @[@"banner",@"activity3",@"activity2"];
-    _scrollImgArray = @[@"banner",@"activity3"/*,@"activity4"*/];
+    _scrollImgArray = @[@"banner",@"activity3",@"activity4"];
 
 }
 - (IBAction)my:(id)sender {

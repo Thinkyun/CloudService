@@ -106,7 +106,7 @@
     leftButton.frame = frame;
     [leftButton setTitle:titile forState:UIControlStateNormal];
     [leftButton setTitleColor:titleColor forState:UIControlStateNormal];
-    leftButton.titleLabel.font = [UIFont boldSystemFontOfSize:16];
+    leftButton.titleLabel.font = [UIFont boldSystemFontOfSize:14];
     [leftButton setBackgroundImage:[UIImage imageNamed:backImage] forState:UIControlStateNormal];
     [leftButton setBackgroundImage:[UIImage imageNamed:selectBackImage] forState:UIControlStateHighlighted];
     leftButton.action = action;

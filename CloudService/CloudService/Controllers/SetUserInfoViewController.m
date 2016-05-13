@@ -518,10 +518,10 @@ static NSString *const select_CellID = @"selectCell";
 //                [weakSelf.locateBtn setTitle:str forState:(UIControlStateNormal)];
                 
             };
-            provinceVC.cityblock = ^(UIViewController *VC,NSString *city,NSString *province,NSString *code){
+            provinceVC.cityblock = ^(UIViewController *VC,NSString *county,NSString *city,NSString *province,NSString *code){
                 __strong typeof(self) strongSelf = weakSelf;
                 strongSelf->_valueArray_Bank[4] = province;
-                strongSelf->_valueArray_Bank[5] = city;
+                strongSelf->_valueArray_Bank[5] = [NSString stringWithFormat:@"%@ %@",city,county];
                 [VC.navigationController popToViewController:weakSelf animated:YES];
                 [weakSelf.tableView reloadData];
             };

@@ -8,8 +8,8 @@
 
 #import <UIKit/UIKit.h>
 @class Order;
-
-@interface OrderManagerCell : UITableViewCell
+typedef void(^deletedOrderBlock)();
+@interface OrderManagerCell : UITableViewCell<UIAlertViewDelegate>
 
 @property (weak, nonatomic)IBOutlet UILabel *lbLicenseNo;
 @property (weak, nonatomic)IBOutlet UIButton *btnOrderStatus;
@@ -17,5 +17,7 @@
 @property (weak, nonatomic)IBOutlet UILabel *lbBiPremium;
 @property (weak, nonatomic)IBOutlet UILabel *lbCiPremium;
 @property (weak, nonatomic)IBOutlet UILabel *lbVehicleTaxPremium;
+
+@property (nonatomic,copy) deletedOrderBlock deletedOrderHander;
 @property (nonatomic, strong) Order *order;
 @end

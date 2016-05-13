@@ -24,10 +24,11 @@
     self.view.backgroundColor = [UIColor whiteColor];
 
     __weak typeof(self) weakSelf = self;
-    [weakSelf setLeftImageBarButtonItemWithFrame:CGRectMake(0, 0, 30, 30) image:@"title-back" selectImage:@"back" action:^(AYCButton *button) {
-        
-        [[FireData sharedInstance] eventWithCategory:@"选择省份" action:@"返回" evar:nil attributes:nil];
-        [weakSelf.navigationController popViewControllerAnimated:YES];
+    [weakSelf setLeftTextBarButtonItemWithFrame:CGRectMake(0, 0, 30, 30) title:@"取消" titleColor:[UIColor whiteColor] backImage:@"" selectBackImage:@"" action:^(AYCButton *button) {
+        [[FireData sharedInstance] eventWithCategory:@"选择省份" action:@"取消" evar:nil attributes:nil];
+        NSInteger count = weakSelf.navigationController.viewControllers.count;
+        UIViewController *VC = weakSelf.navigationController.viewControllers[count-2];
+        [weakSelf.navigationController popToViewController:VC animated:YES];
     }];
     
     [self setupUI];
@@ -121,6 +122,7 @@
     tableView.showsHorizontalScrollIndicator = NO;
     tableView.delegate = self;
     tableView.dataSource = self;
+    tableView.tableFooterView = [UIView new];
     [self.view addSubview:tableView];
 }
 
@@ -138,8 +140,7 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.textLabel.font = [UIFont systemFontOfSize:14];
+        cell.textLabel.font = [UIFont systemFontOfSize:16];
     }
 
 
@@ -197,7 +198,7 @@
         [self.navigationController pushViewController:cityVC animated:YES];
     }else{
         NSString *proviceStr = [self proviceStrByCityStr:[btn titleForState:UIControlStateNormal]];
-        _cityblock(self,[NSString stringWithFormat:@"%@市",[btn titleForState:UIControlStateNormal]],proviceStr,@"");
+        _cityblock(self,@"",[NSString stringWithFormat:@"%@市",[btn titleForState:UIControlStateNormal]],proviceStr,@"");
     }
 }
 

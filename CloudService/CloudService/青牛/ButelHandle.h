@@ -8,9 +8,14 @@
 
 #import <Foundation/Foundation.h>
 
+@class CallView;
 @interface ButelHandle : NSObject
 
+@property (nonatomic,strong)CallView *callView;
+
+
 + (ButelHandle *)shareButelHandle;
+
 
 /**
  *  青牛http登陆

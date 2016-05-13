@@ -24,7 +24,7 @@
 
 #define kZhiKeFinishInfo      @"http://139.198.1.73:8081/zkyq-web/insure/returnPage?baseId="   //直客测试订单详情
 
-
+// 17545207    
 //#define kZhiKe      @"http://139.198.0.29:80/zkyq-web/platform/getInfo"              //直客
 //
 //#define kZhiKeUnfinishInfo      @"http://139.198.0.29:80/zkyq-web/unfinishedOrder/returnPage?baseId="   //直客订单详情(未完成)
@@ -90,6 +90,8 @@
 #define kGetOrderInfo          @"/app/order/getCustomerOrderDataVO"               //获取订单详情
 
 #define kfindOrderByCondition     @"/app/order/findOrderByCondition"             //订单条件查询
+
+#define kdelegateOrderBybaseId    @"/app/order/deleteOrderBybaseId"           //删除订单
 
 #define kfindMainOrder     @"/app/order/findMainOrder"             //订单列表查询
 

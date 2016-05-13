@@ -40,7 +40,7 @@ static ButelHandle *singleHandle = nil;
 
 @property (retain) ButelCommonConnectV1 *connect;
 
-@property (nonatomic,strong)CallView *callView;
+
 @end
 
 @implementation ButelHandle

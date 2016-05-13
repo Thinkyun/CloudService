@@ -9,8 +9,11 @@
 #import <UIKit/UIKit.h>
 #import <MJRefresh.h>
 
+@class OrderTableView;
 @interface PaidViewController : UIViewController
 
 @property (nonatomic,assign)BOOL isLoadData;
+
+@property (nonatomic,weak)OrderTableView *tableView;
 
 @end

@@ -8,7 +8,7 @@
 
 #import "BaseViewController.h"
 
-typedef void(^chooseCityHander)(UIViewController *VC,NSString *cityStr,NSString *province,NSString *code);
+typedef void(^chooseCityHander)(UIViewController *VC,NSString *countyStr,NSString *cityStr, NSString *province,NSString *code);
 
 typedef void (^popProvinceHander)(NSString *string);
 

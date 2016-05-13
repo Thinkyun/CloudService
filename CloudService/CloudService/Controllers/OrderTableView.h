@@ -14,5 +14,6 @@
 @property (nonatomic,strong)NSArray *dataList;
 
 
+- (void)setEditing:(BOOL)editing;
 
 @end

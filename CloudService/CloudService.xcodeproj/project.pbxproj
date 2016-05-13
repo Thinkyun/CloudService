@@ -36,6 +36,8 @@
 		6349DE5C1CD8AA8000A82A9F /* province.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6349DE5B1CD8AA8000A82A9F /* province.plist */; };
 		6349DE5F1CD8B5D300A82A9F /* ButelCommonConnectSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 6349DE5D1CD8B5D300A82A9F /* ButelCommonConnectSDK.bundle */; };
 		6349DE601CD8B5D300A82A9F /* ButelCommonConnectSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6349DE5E1CD8B5D300A82A9F /* ButelCommonConnectSDK.framework */; };
+		634DFCC31CE2D784001207CD /* ZhiKeInfoInputViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 634DFCC21CE2D784001207CD /* ZhiKeInfoInputViewController.m */; };
+		634DFCC61CE2DBF2001207CD /* InputButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 634DFCC51CE2DBF2001207CD /* InputButton.m */; };
 		634EE61F1C995A8D00FB526D /* activity2.png in Resources */ = {isa = PBXBuildFile; fileRef = 634EE61D1C995A8D00FB526D /* activity2.png */; };
 		634EE6201C995A8D00FB526D /* activity2@2X.png in Resources */ = {isa = PBXBuildFile; fileRef = 634EE61E1C995A8D00FB526D /* activity2@2X.png */; };
 		634EE6271C997F0000FB526D /* rulebg3.png in Resources */ = {isa = PBXBuildFile; fileRef = 634EE6251C997F0000FB526D /* rulebg3.png */; };
@@ -58,6 +60,10 @@
 		635C2AC91C8527D10051708D /* CreatClientViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 635C2AC81C8527D10051708D /* CreatClientViewController.m */; };
 		6367FB0D1C9AA19900947038 /* rulebg1.png in Resources */ = {isa = PBXBuildFile; fileRef = 6367FB0C1C9AA19900947038 /* rulebg1.png */; };
 		6367FB101C9ACDCC00947038 /* CouponsRuleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6367FB0F1C9ACDCC00947038 /* CouponsRuleViewController.m */; };
+		63687EDC1CE42A6200323CA8 /* CountyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63687EDB1CE42A6200323CA8 /* CountyViewController.m */; };
+		63687EDE1CE45C0200323CA8 /* WeChat_1463034780.png in Resources */ = {isa = PBXBuildFile; fileRef = 63687EDD1CE45C0200323CA8 /* WeChat_1463034780.png */; };
+		63687EE11CE485B900323CA8 /* CityTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 63687EE01CE485B900323CA8 /* CityTableViewCell.m */; };
+		63687EE41CE4AB3D00323CA8 /* CityView.m in Sources */ = {isa = PBXBuildFile; fileRef = 63687EE31CE4AB3D00323CA8 /* CityView.m */; };
 		636A35D01C9CFEB900540CD0 /* guize.png in Resources */ = {isa = PBXBuildFile; fileRef = 636A35CF1C9CFEB900540CD0 /* guize.png */; };
 		636CD9161C880BE70050935E /* libiconv.2.4.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 636CD9151C880BE70050935E /* libiconv.2.4.0.tbd */; };
 		636CD9181C880BF40050935E /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 636CD9171C880BF40050935E /* libz.tbd */; };
@@ -253,6 +259,10 @@
 		6349DE5B1CD8AA8000A82A9F /* province.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = province.plist; sourceTree = "<group>"; };
 		6349DE5D1CD8B5D300A82A9F /* ButelCommonConnectSDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ButelCommonConnectSDK.bundle; sourceTree = "<group>"; };
 		6349DE5E1CD8B5D300A82A9F /* ButelCommonConnectSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ButelCommonConnectSDK.framework; sourceTree = "<group>"; };
+		634DFCC11CE2D784001207CD /* ZhiKeInfoInputViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZhiKeInfoInputViewController.h; sourceTree = "<group>"; };
+		634DFCC21CE2D784001207CD /* ZhiKeInfoInputViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZhiKeInfoInputViewController.m; sourceTree = "<group>"; };
+		634DFCC41CE2DBF2001207CD /* InputButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputButton.h; sourceTree = "<group>"; };
+		634DFCC51CE2DBF2001207CD /* InputButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputButton.m; sourceTree = "<group>"; };
 		634EE61D1C995A8D00FB526D /* activity2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = activity2.png; sourceTree = "<group>"; };
 		634EE61E1C995A8D00FB526D /* activity2@2X.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "activity2@2X.png"; sourceTree = "<group>"; };
 		634EE6251C997F0000FB526D /* rulebg3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rulebg3.png; sourceTree = "<group>"; };
@@ -293,6 +303,13 @@
 		6367FB0C1C9AA19900947038 /* rulebg1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rulebg1.png; sourceTree = "<group>"; };
 		6367FB0E1C9ACDCC00947038 /* CouponsRuleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CouponsRuleViewController.h; sourceTree = "<group>"; };
 		6367FB0F1C9ACDCC00947038 /* CouponsRuleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CouponsRuleViewController.m; sourceTree = "<group>"; };
+		63687EDA1CE42A6200323CA8 /* CountyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CountyViewController.h; sourceTree = "<group>"; };
+		63687EDB1CE42A6200323CA8 /* CountyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CountyViewController.m; sourceTree = "<group>"; };
+		63687EDD1CE45C0200323CA8 /* WeChat_1463034780.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WeChat_1463034780.png; sourceTree = "<group>"; };
+		63687EDF1CE485B900323CA8 /* CityTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CityTableViewCell.h; sourceTree = "<group>"; };
+		63687EE01CE485B900323CA8 /* CityTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CityTableViewCell.m; sourceTree = "<group>"; };
+		63687EE21CE4AB3D00323CA8 /* CityView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CityView.h; sourceTree = "<group>"; };
+		63687EE31CE4AB3D00323CA8 /* CityView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CityView.m; sourceTree = "<group>"; };
 		636A35CF1C9CFEB900540CD0 /* guize.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = guize.png; sourceTree = "<group>"; };
 		636CD9151C880BE70050935E /* libiconv.2.4.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.2.4.0.tbd; path = usr/lib/libiconv.2.4.0.tbd; sourceTree = SDKROOT; };
 		636CD9171C880BF40050935E /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
@@ -570,6 +587,17 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		634DFCBF1CE2D6B9001207CD /* 直客原生 */ = {
+			isa = PBXGroup;
+			children = (
+				634DFCC11CE2D784001207CD /* ZhiKeInfoInputViewController.h */,
+				634DFCC21CE2D784001207CD /* ZhiKeInfoInputViewController.m */,
+				634DFCC41CE2DBF2001207CD /* InputButton.h */,
+				634DFCC51CE2DBF2001207CD /* InputButton.m */,
+			);
+			name = "直客原生";
+			sourceTree = "<group>";
+		};
 		63588FDB1CA4CEA4002C6857 /* 青牛 */ = {
 			isa = PBXGroup;
 			children = (
@@ -652,6 +680,7 @@
 				63C8C2BC1CDC780A00F9E7D8 /* iconShare@2X.png */,
 				63A1701B1CDADC070084E8AA /* icon_friends.png */,
 				04BF40E21CCF6671007325FB /* icon80.png */,
+				63687EDD1CE45C0200323CA8 /* WeChat_1463034780.png */,
 			);
 			name = images;
 			sourceTree = "<group>";
@@ -856,6 +885,12 @@
 				6373B10D1CE0841300B4D4F1 /* local.png */,
 				63AA97531CE07817006FCC03 /* CityChooseViewController.h */,
 				63AA97541CE07817006FCC03 /* CityChooseViewController.m */,
+				63687EE21CE4AB3D00323CA8 /* CityView.h */,
+				63687EE31CE4AB3D00323CA8 /* CityView.m */,
+				63687EDF1CE485B900323CA8 /* CityTableViewCell.h */,
+				63687EE01CE485B900323CA8 /* CityTableViewCell.m */,
+				63687EDA1CE42A6200323CA8 /* CountyViewController.h */,
+				63687EDB1CE42A6200323CA8 /* CountyViewController.m */,
 				F019C9E01C7C685600E73A2C /* RegisterSucViewController.h */,
 				F019C9E11C7C685700E73A2C /* RegisterSucViewController.m */,
 				F019C9E31C7C7BB700E73A2C /* SetUserInfoViewController.h */,
@@ -997,6 +1032,7 @@
 				63C54E2A1C7C2B41007CE8CA /* OrderManager(订单管理) */,
 				63C54E371C7C34FA007CE8CA /* ResultsController(业绩查询) */,
 				63C54E381C7C3561007CE8CA /* PersonalController(个人中心) */,
+				634DFCBF1CE2D6B9001207CD /* 直客原生 */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1261,6 +1297,7 @@
 				63C8C2C21CDC9DE900F9E7D8 /* Province.sqlite in Resources */,
 				63C8C2C81CDCBA2E00F9E7D8 /* rulebg4.png in Resources */,
 				6339B0DD1CB6637C0045F7E0 /* Default.png in Resources */,
+				63687EDE1CE45C0200323CA8 /* WeChat_1463034780.png in Resources */,
 				63A1701C1CDADC070084E8AA /* icon_friends.png in Resources */,
 				6349DE5C1CD8AA8000A82A9F /* province.plist in Resources */,
 				F09A5F901A55BEDD008D4963 /* HomeHeaderView.xib in Resources */,
@@ -1390,6 +1427,7 @@
 				F07FF9D61C81469400EB1BB1 /* ResetPhonePopView.m in Sources */,
 				636CD9881C884E9A0050935E /* IntergralSearchViewController.m in Sources */,
 				F094B5A31C80223400A2312D /* PersonalViewCell.m in Sources */,
+				63687EE11CE485B900323CA8 /* CityTableViewCell.m in Sources */,
 				F06DDBA41C7DAAE900C862A1 /* SearchOrderViewController.m in Sources */,
 				6339A3FC1CC4D6B7007305DE /* EYTextPopupView.m in Sources */,
 				F07FF9E31C8189E200EB1BB1 /* UserInfoViewController.m in Sources */,
@@ -1453,6 +1491,7 @@
 				635A4E221CCE30CE00C41C0D /* NSData+YYAdd.m in Sources */,
 				6367FB101C9ACDCC00947038 /* CouponsRuleViewController.m in Sources */,
 				63E143B01CCF0694002462DB /* DJMeunBarController.m in Sources */,
+				63687EE41CE4AB3D00323CA8 /* CityView.m in Sources */,
 				F090DEDA1C89394900168BF8 /* RequestEntity.m in Sources */,
 				F07FF9DF1C81752D00EB1BB1 /* MyTeamTableViewCell.m in Sources */,
 				630EF18A1C8530940059CB34 /* MyClientTableViewCell.m in Sources */,
@@ -1475,11 +1514,14 @@
 				F0292BB21C7B00CD00A810A9 /* AppDelegate.m in Sources */,
 				F057320B1C859D2400D88B78 /* SingleHandle.m in Sources */,
 				635A4E231CCE30CE00C41C0D /* NSString+YYAdd.m in Sources */,
+				63687EDC1CE42A6200323CA8 /* CountyViewController.m in Sources */,
 				6392CFF41C8D8F8200D84F38 /* Achievement.m in Sources */,
 				630EF1971C8567960059CB34 /* IntegralTableViewCell.m in Sources */,
 				F05732051C8584F300D88B78 /* IntergralCityViewController.m in Sources */,
 				639CF6AD1C9FF0800086C72B /* UIViewController+AlertView.m in Sources */,
 				F0DF32121C87E612008D098F /* ResetUserPwdViewController.m in Sources */,
+				634DFCC61CE2DBF2001207CD /* InputButton.m in Sources */,
+				634DFCC31CE2D784001207CD /* ZhiKeInfoInputViewController.m in Sources */,
 				F0FED91D1C96D38B008186C3 /* AboutAppViewController.m in Sources */,
 				63C07B9C1C7B14BB0084581F /* MHAsiNetworkItem.m in Sources */,
 				634647C31CB49EAF004A064E /* EYInputPopupView.m in Sources */,
@@ -1630,7 +1672,7 @@
 					"$(PROJECT_DIR)/CloudService/Venders",
 					"$(PROJECT_DIR)/CloudService/Models",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.sinosig.EYunKeF;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sinosig.EYunKeFu;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -1658,7 +1700,7 @@
 					"$(PROJECT_DIR)/CloudService/Venders",
 					"$(PROJECT_DIR)/CloudService/Models",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.sinosig.EYunKeF;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sinosig.EYunKeFu;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};

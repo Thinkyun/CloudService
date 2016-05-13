@@ -14,7 +14,6 @@
 #import "UIView+YYAdd.h"
 
 @interface UnfinishedViewController (){
-    OrderTableView *_tableView;
     NSInteger _pageNo;
     UIImageView *_noDataimageView;
 }
@@ -59,7 +58,7 @@
     
     _pageNo = 0;
     NSDictionary *paramsDic=@{@"userId":[[SingleHandle shareSingleHandle] getUserInfo].userId,
-                              @"pageSize":[NSString stringWithFormat:@"%@",@4],
+                              @"pageSize":[NSString stringWithFormat:@"%@",@10],
                               @"pageNo":[NSString stringWithFormat:@"%@",@1],
                               @"orderStatus":@"未完成"};
     NSString *url = [NSString stringWithFormat:@"%@%@",BaseAPI,kfindMainOrder];
@@ -116,7 +115,7 @@
         return;
     }
     NSDictionary *paramsDic=@{@"userId":[[SingleHandle shareSingleHandle] getUserInfo].userId,
-                              @"pageSize":[NSString stringWithFormat:@"%@",@4],
+                              @"pageSize":[NSString stringWithFormat:@"%@",@10],
                               @"pageNo":@(index),
                               @"orderStatus":@"未完成"};
     NSString *url = [NSString stringWithFormat:@"%@%@",BaseAPI,kfindMainOrder];

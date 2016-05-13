@@ -329,10 +329,10 @@
         provinceVC.popBlock = ^(NSString *str){
             [weakSelf.provinceBtn setTitle:str forState:(UIControlStateNormal)];
         };
-        provinceVC.cityblock = ^(UIViewController *VC,NSString *city,NSString *province,NSString *code){
+        provinceVC.cityblock = ^(UIViewController *VC,NSString *countyStr,NSString *city,NSString *province,NSString *code){
             __strong typeof(self) strongSelf = weakSelf;
             strongSelf->_cityCode = code;
-            NSString *cityStr = [NSString stringWithFormat:@"%@ %@",province,city];
+            NSString *cityStr = (!countyStr&&(countyStr.length<=0))?[NSString stringWithFormat:@"%@ %@",province,city]:[NSString stringWithFormat:@"%@ %@ %@",province,city,countyStr];
             strongSelf->_tfCarCity.text = cityStr;
             [VC.navigationController popToViewController:weakSelf animated:YES];
         };
@@ -424,19 +424,45 @@
         AYCLog(@"数据库打开失败!");
         return nil;
     }
-    NSString *sqlStr = [NSString stringWithFormat:@"SELECT * FROM city where cityCode like '%@%%'",code];
+    NSString *sqlStr = [NSString stringWithFormat:@"SELECT * FROM t_se_city where parent = '%@' ORDER BY spelling_acronym",code];
+    FMResultSet *result = [db executeQuery:sqlStr];
+    NSMutableArray *_cityArray = [NSMutableArray array];
+    NSMutableArray *_cityCodeArray = [NSMutableArray array];
+    NSMutableArray *_countyArray = [NSMutableArray array];
+    while ([result next]) {
+        AYCLog(@"%@",[result stringForColumn:@"city"]);
+        [_cityArray addObject:[result stringForColumn:@"city"]];
+        [_cityCodeArray addObject:[result stringForColumn:@"org_id"]];
+        [_countyArray addObject:[self countyByparentCode:[result stringForColumn:@"org_id"] FMDatabase:db]];
+    }
+    [dict setObject:_cityArray forKey:@"cityName"];
+    [dict setObject:_cityCodeArray forKey:@"cityCode"];
+    [dict setObject:_countyArray forKey:@"county"];
+    return dict;
+
+}
+
+- (NSDictionary *)countyByparentCode:(NSString *)code FMDatabase:(FMDatabase *)db{
+    NSMutableDictionary *mutableDic = [NSMutableDictionary dictionary];
+    NSString *sqlStr = [NSString stringWithFormat:@"SELECT * FROM t_se_city where parent = '%@' ORDER BY spelling_acronym",code];
     FMResultSet *result = [db executeQuery:sqlStr];
     NSMutableArray *_cityArray = [NSMutableArray array];
     NSMutableArray *_cityCodeArray = [NSMutableArray array];
     while ([result next]) {
-        AYCLog(@"%@",[result stringForColumn:@"cityName"]);
-        [_cityArray addObject:[result stringForColumn:@"cityName"]];
-        [_cityCodeArray addObject:[result stringForColumn:@"cityCode"]];
+        AYCLog(@"%@",[result stringForColumn:@"city"]);
+        NSString *cityName = [result stringForColumn:@"city"];
+        NSString *cityCode = [result stringForColumn:@"org_id"];
+        if (cityName&&(cityName.length>0)) {
+            [_cityArray addObject:cityName];
+            [_cityCodeArray addObject:cityCode];
+        }
+        
     }
-    [dict setObject:_cityArray forKey:@"cityName"];
-    [dict setObject:_cityCodeArray forKey:@"cityCode"];
-    return dict;
-
+    if (([_cityArray count]>0)&&([_cityCodeArray count]>0)) {
+        [mutableDic setObject:_cityArray forKey:@"countyName"];
+        [mutableDic setObject:_cityCodeArray forKey:@"countyCode"];
+    }
+    return mutableDic;
 }
 
 /*

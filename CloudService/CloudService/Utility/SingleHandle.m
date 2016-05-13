@@ -173,7 +173,7 @@ static SingleHandle *singleHandle = nil;
         }
     } failureBlock:^(NSError *error) {
         
-    } showHUD:YES];
+    } showHUD:NO];
 
 }
 

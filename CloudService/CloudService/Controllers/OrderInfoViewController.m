@@ -15,6 +15,7 @@
 #import "ButelHandle.h"
 #import "EYPopupViewHeader.h"
 #import "ShareManager.h"
+#import "CallView.h"
 
 @interface OrderInfoViewController ()<UITableViewDataSource,UITableViewDelegate,UIActionSheetDelegate>
 {
@@ -71,6 +72,7 @@
      *  显示青牛拨打页面,并设置手机号
      */
     [[ButelHandle shareButelHandle] showCallView];
+    [[[ButelHandle shareButelHandle] callView] setTelNumStr:_order.phoneNo];
 }
 
 - (void)viewDidDisappear:(BOOL)animated {

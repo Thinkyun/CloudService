@@ -122,9 +122,11 @@
     provinceVC.popBlock = ^(NSString *str){
         [weakSelf.locateBtn setTitle:str forState:(UIControlStateNormal)];
     };
-    provinceVC.cityblock = ^(UIViewController *VC,NSString *city,NSString *province,NSString *code){
+    provinceVC.cityblock = ^(UIViewController *VC,NSString *countyStr,NSString *city,NSString *province,NSString *code){
         weakSelf.locateBtn.selected = !weakSelf.locateBtn.selected;
-        NSString *cityStr = [NSString stringWithFormat:@"%@%@",province,city];
+        NSString *cityStr = (countyStr.length<= 0)?
+        [NSString stringWithFormat:@"%@%@",province,city]:   
+        [NSString stringWithFormat:@"%@%@%@",province,city,countyStr];
         [weakSelf.locateBtn setTitle:cityStr forState:(UIControlStateNormal)];
         [VC.navigationController popToViewController:weakSelf animated:YES];
     };

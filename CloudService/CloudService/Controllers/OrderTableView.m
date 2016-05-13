@@ -41,6 +41,13 @@
     Order *order = _dataList[indexPath.row];
         static NSString *ID = @"OrderManagerCell";
         OrderManagerCell *cell = [tableView dequeueReusableCellWithIdentifier:ID forIndexPath:indexPath];
+    __weak typeof(self) weakSelf = self;
+    cell.deletedOrderHander = ^{
+                    NSMutableArray *tem =  weakSelf.dataList.mutableCopy;
+                    [tem removeObjectAtIndex:indexPath.row];
+                    weakSelf.dataList = tem.copy;
+        [weakSelf reloadData];
+    };
         cell.order = order;
         return cell;
     
@@ -57,6 +64,40 @@
 }
 
 
+//- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(nonnull NSIndexPath *)indexPath{
+//    return YES;
+//}
+//
+//- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+//    if (editingStyle == UITableViewCellEditingStyleDelete) {
+//        
+//        NSString *url = [NSString stringWithFormat:@"%@%@",BaseAPI,kdelegateOrderBybaseId];
+//        Order *_order = _dataList[indexPath.row];
+//        
+//        [MHNetworkManager postReqeustWithURL:url params:@{@"baseId":_order.baseId} successBlock:^(id returnData) {
+//            if ([returnData[@"flag"] isEqualToString:@"success"]) {
+//                
+////                _deletedOrderHander();
+//                NSMutableArray *tem =  self.dataList.mutableCopy;
+//                [tem removeObjectAtIndex:indexPath.row];
+//                self.dataList = tem.copy;
+//                [self reloadData];
+//                
+//            }
+//        } failureBlock:^(NSError *error) {
+//            [MBProgressHUD showMessag:@"网络连接断开,删除失败!" toView:nil];
+//        } showHUD:NO];
+//
+//
+//    }
+//}
+
+
+- (void)setEditing:(BOOL)editing{
+    [super setEditing:editing];
+    
+}
+
 - (UIViewController *)getViewController{
     UIResponder *responder = [self nextResponder];
     while (![responder isKindOfClass:[UIViewController class]]) {
@@ -65,6 +106,8 @@
     return (UIViewController *)responder;
     
 }
+
+
 
 
 

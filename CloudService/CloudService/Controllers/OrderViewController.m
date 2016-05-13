@@ -26,7 +26,11 @@
     [self.tabBarController setRightImageBarButtonItemWithFrame:CGRectMake(0, 0, 30, 30) image:@"title-search" selectImage:@"title-search_" action:^(AYCButton *button) {
         [[FireData sharedInstance] eventWithCategory:@"订单管理" action:@"搜索订单" evar:nil attributes:nil];
         [weakSelf performSegueWithIdentifier:@"searchOrder" sender:weakSelf];
+        
+//        UITableView *tableView = [weakSelf.viewControllers[weakSelf.selectedIndex] valueForKey:@"tableView"];
+//         [tableView setEditing:!tableView.editing animated:YES];
     }];
+    
 
     self.tabBarController.title = @"订单管理";
     

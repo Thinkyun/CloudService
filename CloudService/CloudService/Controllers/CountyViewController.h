@@ -1,8 +1,8 @@
 //
-//  CityChooseViewController.h
+//  CountyViewController.h
 //  CloudService
 //
-//  Created by 安永超 on 16/5/9.
+//  Created by 安永超 on 16/5/12.
 //  Copyright © 2016年 zhangqiang. All rights reserved.
 //
 
@@ -10,14 +10,13 @@
 
 typedef void(^chooseCityHander)(UIViewController *VC,NSString *countyStr,NSString *cityStr, NSString *province,NSString *code);
 
-@interface CityChooseViewController : BaseViewController
+@interface CountyViewController : BaseViewController
 
 @property (nonatomic,copy)chooseCityHander cityblock;
 
-//@property (nonatomic,assign)BOOL is
-
 @property (nonatomic,copy)NSString *provinceName;
 
-@property (nonatomic,strong)id cityList;
+@property (nonatomic,copy)NSString *cityName;
 
+@property (nonatomic,strong)id countyList;
 @end

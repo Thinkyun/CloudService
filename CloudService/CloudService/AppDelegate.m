@@ -573,7 +573,7 @@
         NSString *url = [NSString stringWithFormat:@"%@%@",BaseAPI,kGetOrderInfo];
 
         [MHNetworkManager getRequstWithURL:url params:@{@"baseId":baseId,@"userId":userId} successBlock:^(id returnData) {
-            NSLog(@"%@",returnData);
+            AYCLog(@"%@",returnData);
             Order *order  = [Order mj_objectWithKeyValues:returnData[@"data"]];
             OrderInfoViewController *orderInfoVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"orderInfo"];
             orderInfoVC.order = order;

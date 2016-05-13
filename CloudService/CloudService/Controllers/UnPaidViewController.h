@@ -9,9 +9,12 @@
 #import <UIKit/UIKit.h>
 #import <MJRefresh.h>
 
+
+@class OrderTableView;
 @interface UnPaidViewController : UIViewController
 
 @property (nonatomic,assign)BOOL isLoadData;
 
+@property (nonatomic,weak)OrderTableView *tableView;
 
 @end

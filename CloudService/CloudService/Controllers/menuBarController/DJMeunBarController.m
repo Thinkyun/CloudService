@@ -46,6 +46,7 @@
     _contentSizeHeight = _contentSizeHeight ==  0 ? self.view.bounds.size.height:_contentSizeHeight;
     CGFloat Y = _isObligate?44:0;
     _scrollView = [UIScrollView new];
+    _scrollView.canCancelContentTouches = YES;
     _scrollView.pagingEnabled = YES;
     _scrollView.bounces = NO;
     _scrollView.showsHorizontalScrollIndicator = NO;

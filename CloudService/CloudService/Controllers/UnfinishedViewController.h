@@ -9,9 +9,10 @@
 #import <UIKit/UIKit.h>
 #import <MJRefresh.h>
 
-
+@class OrderTableView;
 @interface UnfinishedViewController : UIViewController
 
+@property (nonatomic,weak)OrderTableView *tableView;
 
 
 @end
