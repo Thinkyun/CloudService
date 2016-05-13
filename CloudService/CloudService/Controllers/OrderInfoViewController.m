@@ -188,6 +188,7 @@
     
     OrderH5ViewController *orderH5VC = [[OrderH5ViewController alloc] init];
     orderH5VC.url = url;
+    orderH5VC.telPhoneNum = _order.phoneNo;
     [[FireData sharedInstance] eventWithCategory:@"订单详情" action:@"报价按钮" evar:@{@"url":url} attributes:nil];
     [self.navigationController pushViewController:orderH5VC animated:YES];
 

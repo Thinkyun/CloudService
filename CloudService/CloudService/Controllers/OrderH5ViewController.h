@@ -12,5 +12,8 @@
 @interface OrderH5ViewController : BaseViewController
 
 @property (nonatomic,copy)NSString *url;
+
+@property (nonatomic,copy)NSString *telPhoneNum;
+
 @property (nonatomic, strong) FiredataApp *fireDataApp;
 @end

@@ -145,9 +145,12 @@
 //拨打电话
 - (void)callNum:(UIButton *)sender {
 
-        [[ButelHandle shareButelHandle] makeCallWithPhoneNo:self.telNumStr];
- 
-    
+    User *user = [SingleHandle shareSingleHandle].user;
+    if (![user.sign isEqualToString:@"1"]) {
+        [MBProgressHUD showMessag:@"当前未签到,不能拨打电话" toView:nil];
+        return;
+    }
+    [[ButelHandle shareButelHandle] makeCallWithPhoneNo:self.telNumStr];
       
 }
 - (void)callPhoneOrHangUp {

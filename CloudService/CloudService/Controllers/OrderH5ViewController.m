@@ -8,6 +8,7 @@
 
 #import "OrderH5ViewController.h"
 #import "ButelHandle.h"
+#import "CallView.h"
 
 @interface OrderH5ViewController ()<UIWebViewDelegate>
 
@@ -25,7 +26,19 @@
 }
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-//    [[ButelHandle shareButelHandle] showCallView];
+    [[ButelHandle shareButelHandle] showCallView];
+}
+
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    [[ButelHandle shareButelHandle] showCallView];
+    [[[ButelHandle shareButelHandle] callView] setTelNumStr:self.telPhoneNum];
+    ;
+}
+
+- (void)viewDidDisappear:(BOOL)animated{
+    [super viewDidDisappear:animated];
+    [[ButelHandle shareButelHandle] hideCallView];;
 }
 
 - (void)setupViews {

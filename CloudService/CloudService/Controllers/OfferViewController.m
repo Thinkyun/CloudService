@@ -14,6 +14,7 @@
 #import "OrderH5ViewController.h"
 #import "MyFile.h"
 #import "Order.h"
+#import "ButelHandle.h"
 
 static NSString *const header_id = @"setUserInfoHeader";
 static CGFloat headerHeight = 30;
@@ -43,8 +44,25 @@ static CGFloat headerHeight = 30;
     
     [super viewWillAppear:animated];
     self.title = @"客户信息";
-    
+    /**
+     *  显示青牛拨打页面
+     *
+     */
+    [[ButelHandle shareButelHandle] showCallView];
 }
+
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    /**
+     *  显示青牛拨打页面
+     *
+     */
+    [[ButelHandle shareButelHandle] showCallView];
+    NSIndexPath *path2 = [NSIndexPath indexPathForRow:0 inSection:1];
+    OfferTableViewCell *cell2 = [self.tableView cellForRowAtIndexPath:path2];
+    [[ButelHandle shareButelHandle] setPhoneNo:cell2.carUserPhone.text phoneWithBaseId:@""];
+}
+
 - (void)initFootView {
     _footView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, KWidth, 60)];
     _footView.backgroundColor = [UIColor colorWithWhite:0.919 alpha:1.000];
@@ -248,8 +266,8 @@ static CGFloat headerHeight = 30;
                                            @"date":cell1.firstTime.text,
                                            @"vehicleModelName":cell1.engineType.text
                                            };
-            OrderH5ViewController *cliteVC = [[OrderH5ViewController alloc] init];
-            cliteVC.url = url;
+
+
             [weakSelf createOrderWithParam:myServerDict pushUrl:url];
         }else{
             [MBProgressHUD showMessag:returnData[@"msg"] toView:weakSelf.view];
@@ -271,8 +289,11 @@ static CGFloat headerHeight = 30;
             MyClientViewController *VC = self.navigationController.viewControllers[1];
             VC.isSaveCarInfo = YES;
             
+            NSIndexPath *path2 = [NSIndexPath indexPathForRow:0 inSection:1];
+            OfferTableViewCell *cell2 = [self.tableView cellForRowAtIndexPath:path2];
             OrderH5ViewController *orderH5VC = [[OrderH5ViewController alloc] init];
             orderH5VC.url = url;
+            orderH5VC.telPhoneNum = cell2.carUserPhone.text;
             [weakSelf.navigationController pushViewController:orderH5VC animated:YES];
         }else {
             [MBProgressHUD showMessag:[returnData objectForKey:@"msg"] toView:weakSelf.view];
@@ -323,6 +344,7 @@ static CGFloat headerHeight = 30;
                 cell.carUserName.text = self.order.customerName;
                 cell.carUserCard.text = self.order.cappld;
                 cell.carUserPhone.text = self.order.phoneNo;
+                [cell.carUserPhone addTarget:self action:@selector(carPhoneAction:) forControlEvents:UIControlEventEditingChanged];
             }
 
         
@@ -409,6 +431,10 @@ static CGFloat headerHeight = 30;
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)carPhoneAction:(UITextField *)textField{
+    [[ButelHandle shareButelHandle] setPhoneNo:textField.text phoneWithBaseId:@""];
 }
 
 /*

@@ -18,6 +18,7 @@
 #import "EYPopupViewHeader.h"
 #import <FMDB.h>
 #import "MyFile.h"
+#import "CallView.h"
 
 // baseId 25961588
 @interface CreatOrderViewController ()<UITextFieldDelegate>
@@ -46,6 +47,8 @@
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     [[ButelHandle shareButelHandle] showCallView];
+    [[[ButelHandle shareButelHandle] callView] setTelNumStr:_tfPhone.text]
+    ;
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
@@ -68,22 +71,24 @@
         [weakSelf.navigationController popViewControllerAnimated:YES];
     }];
     
+    [self.tfPhone addTarget:self action:@selector(tfPhoneChanged:) forControlEvents:UIControlEventEditingChanged];
 
-
-     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tfPhoneChanged:) name:UITextFieldTextDidChangeNotification object:self.tfPhone];
+//     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tfPhoneChanged:) name:UITextFieldTextDidChangeNotification object:self.tfPhone];
     // Do any additional setup after loading the view.
 }
 
 /**
  *  设置青牛拨打号码
  */
-- (void)tfPhoneChanged:(NSNotification *)sender {
+- (void)tfPhoneChanged:(UITextField *)sender {
+    NSLog(@"phone:%@",sender.text);
+    
     if (self.tfPhone.text.length >= 11) {
         self.tfPhone.text = [self.tfPhone.text substringToIndex:11];
         [[ButelHandle shareButelHandle] setPhoneNo:_tfPhone.text phoneWithBaseId:@""];
-        AYCLog(@"%@",_tfPhone);
+        AYCLog(@"tfPhoneChanged:%@",_tfPhone);
     }
-    
+//
 }
 /**
  *  下一步报价
@@ -261,6 +266,7 @@
             [[FireData sharedInstance] eventWithCategory:@"创建订单" action:@"直客报价" evar:@{@"url":url} attributes:nil];
             OrderH5ViewController *orderH5VC = [[OrderH5ViewController alloc] init];
             orderH5VC.url = url;
+            orderH5VC.telPhoneNum = _tfPhone.text;
             [weakSelf.navigationController pushViewController:orderH5VC animated:YES];
         }else {
             [MBProgressHUD showMessag:[returnData objectForKey:@"msg"] toView:weakSelf.view];
@@ -334,7 +340,10 @@
             strongSelf->_cityCode = code;
             NSString *cityStr = (!countyStr&&(countyStr.length<=0))?[NSString stringWithFormat:@"%@ %@",province,city]:[NSString stringWithFormat:@"%@ %@ %@",province,city,countyStr];
             strongSelf->_tfCarCity.text = cityStr;
+  
+
             [VC.navigationController popToViewController:weakSelf animated:YES];
+            
         };
         [self.navigationController pushViewController:provinceVC animated:YES];
 

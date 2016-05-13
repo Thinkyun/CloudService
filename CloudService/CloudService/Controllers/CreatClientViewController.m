@@ -18,6 +18,8 @@
 #import "DataSource.h"
 #import "Order.h"
 #import "MyFile.h"
+#import "ButelHandle.h"
+#import "CallView.h"
 
 #import "ZhiKeInfoInputViewController.h"
 
@@ -53,7 +55,8 @@
      *
      */
     [[ButelHandle shareButelHandle] showCallView];
-    
+    [[[ButelHandle shareButelHandle] callView] setTelNumStr:_tfPhone.text]
+    ;
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
@@ -68,6 +71,7 @@
      *
      */
     [[ButelHandle shareButelHandle] hideCallView];
+    
 }
 
 - (void)viewDidLoad {
